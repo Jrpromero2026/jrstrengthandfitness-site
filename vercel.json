@@ -1,0 +1,111 @@
+{
+  "buildCommand": "python3 -m pip install --quiet pillow && python3 src/build.py",
+  "outputDirectory": "public",
+  "installCommand": "",
+  "framework": null,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home-1",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/online-coaching",
+      "destination": "/online-training",
+      "permanent": true
+    },
+    {
+      "source": "/onlinetraining-1",
+      "destination": "/online-training",
+      "permanent": true
+    },
+    {
+      "source": "/programs",
+      "destination": "/online-training",
+      "permanent": true
+    },
+    {
+      "source": "/train-with-me",
+      "destination": "/train",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/train",
+      "permanent": true
+    },
+    {
+      "source": "/mentorship",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/trainer-mentorship",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/mentorship-program-application",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/resources",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/new-gallery",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/writing",
+      "permanent": true
+    },
+    {
+      "source": "/blog-1",
+      "destination": "/writing",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/writing",
+      "permanent": true
+    },
+    {
+      "source": "/store",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/store/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/cart",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    }
+  ]
+}

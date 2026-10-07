@@ -1,0 +1,137 @@
+"""Shared page shell for jrstrengthandfitness.com."""
+
+SITE = "https://www.jrstrengthandfitness.com"
+EMAIL = "jr@jrstrengthandfitness.com"
+LINKEDIN = "https://www.linkedin.com/in/jr-prieto-romero-cscs-33850a126/"
+INSTAGRAM = "https://www.instagram.com/jrstrengthandfitness/"
+YOUTUBE = "https://www.youtube.com/channel/UC3gQzznf26wawqKAFj_yuzQ"
+FACEBOOK = "https://www.facebook.com/jrstrengthandfitness"
+VAULT = "https://vault.jrstrengthandfitness.com"
+LOGO_W, LOGO_H = 928, 240  # set by build.py from the actual file
+
+NAV = [
+    ("/#projects", "Projects", "projects"),
+    ("/#standard", "The Standard", "standard"),
+    ("/train", "Train with JR", "train"),
+    ("/about", "About", "about"),
+]
+
+GRAIN = (
+    '<svg class="grain" aria-hidden="true" focusable="false">'
+    '<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/>'
+    '<feColorMatrix type="saturate" values="0"/></filter>'
+    '<rect width="100%" height="100%" filter="url(#grain)"/></svg>'
+)
+
+SCHEMA = """<script type="application/ld+json">{
+ "@context":"https://schema.org","@type":"LocalBusiness",
+ "name":"JR Strength and Fitness","url":"%s","email":"%s",
+ "image":"%s/assets/og-image.png",
+ "founder":{"@type":"Person","name":"JR Prieto-Romero","jobTitle":"Strength and Conditioning Coach, CSCS"},
+ "address":{"@type":"PostalAddress","streetAddress":"862 SW Adams Ave","addressLocality":"Corvallis","addressRegion":"OR","postalCode":"97333","addressCountry":"US"},
+ "areaServed":["Corvallis, OR","Online"],
+ "sameAs":["%s","%s","%s","%s"]
+}</script>""" % (SITE, EMAIL, SITE, LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK)
+
+
+def page(*, path, title, description, body, active="", schema=False, low_watermark=False, script=""):
+    nav = "\n".join(
+        f'<a href="{href}"{" aria-current=\"page\"" if key == active else ""}>{label}</a>'
+        for href, label, key in NAV
+    )
+    canonical = SITE + (path if path != "/" else "/")
+    low = '<img class="watermark low" src="/assets/jr-watermark.png" alt="" aria-hidden="true">' if low_watermark else ""
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content="{description}">
+<link rel="canonical" href="{canonical}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JR Strength &amp; Fitness">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{description}">
+<meta property="og:url" content="{canonical}">
+<meta property="og:image" content="{SITE}/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,700&amp;display=swap">
+<link rel="stylesheet" href="/assets/styles.css">
+{SCHEMA if schema else ""}
+</head>
+<body>
+<div class="backdrop">
+{GRAIN}
+<img class="watermark hero" src="/assets/jr-watermark.png" alt="" aria-hidden="true">
+{low}
+<div class="page">
+<header class="site-header">
+<a class="logo" href="/" aria-label="JR Strength &amp; Fitness home"><img src="/assets/jr-logo.png" alt="JR Strength &amp; Fitness" width="{LOGO_W}" height="{LOGO_H}"></a>
+<nav class="site-nav" aria-label="Main">
+{nav}
+</nav>
+</header>
+<main id="main">
+{body}
+</main>
+<section class="band" aria-label="Get started">
+<div class="wrap">
+<div class="stack" style="gap:10px">
+<h2>Start training yesterday</h2>
+<span class="tag">You’ll Thank Yourself Tomorrow</span>
+</div>
+<a class="btn btn-square" href="/train">Join today</a>
+</div>
+</section>
+<footer class="site-footer">
+<div class="wrap">
+<div class="col">
+<img src="/assets/jr-logo.png" alt="JR Strength &amp; Fitness" width="{LOGO_W}" height="{LOGO_H}">
+<a href="mailto:{EMAIL}">{EMAIL}</a>
+<span>Coaching at Timberhill Athletic Club and G3 Sports &amp; Fitness, Corvallis, Oregon</span>
+</div>
+<nav class="col" aria-label="Projects">
+<span class="head">Projects</span>
+<a href="{VAULT}">Trainer’s Coach Vault</a>
+<a href="/#built-for-her">Built For Her</a>
+<a href="/#traincnd">TRAINCND</a>
+<a href="/#credential-standard">The Credential Standard</a>
+</nav>
+<nav class="col" aria-label="Train">
+<span class="head">Train</span>
+<a href="/train">Train with JR</a>
+<a href="/online-training">Online coaching</a>
+<a href="/apply">Apply</a>
+<a href="/writing">Writing</a>
+</nav>
+<nav class="col" aria-label="Follow">
+<span class="head">Follow</span>
+<a href="{LINKEDIN}">LinkedIn</a>
+<a href="{INSTAGRAM}">Instagram</a>
+<a href="{YOUTUBE}">YouTube</a>
+<a href="{FACEBOOK}">Facebook</a>
+</nav>
+<nav class="col" aria-label="Legal">
+<span class="head">Legal</span>
+<a href="/privacy-policy">Privacy Policy</a>
+<a href="/terms-of-service">Terms of Service</a>
+<a href="/refund-policy">Refund Policy</a>
+<a href="/waiver">Waiver</a>
+</nav>
+</div>
+<div class="wrap copyright">© 2026 JR Strength and Fitness LLC</div>
+</footer>
+</div>
+</div>
+{script}
+</body>
+</html>
+"""
