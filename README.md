@@ -13,7 +13,7 @@ Static site for JR Strength & Fitness, hosted on Vercel.
     python3 src/build.py
 
 ## Deploy
-Import this repo in Vercel (team: JR Strength and Fitness LLC). Vercel reads `vercel.json` for the build command and output folder.
+Vercel serves the prebuilt `public/` folder; it does not run the Python build. After editing `src/`, run `python3 src/build.py` locally and commit the updated `public/` and `vercel.json`.
 
 ## Before cancelling Squarespace
 Keep `public/assets/jr-logo.png` committed. If it's missing, the build downloads the logo from the Squarespace media library, which goes away with the account.

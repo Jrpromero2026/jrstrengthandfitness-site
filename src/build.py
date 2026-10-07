@@ -124,7 +124,7 @@ def fetch_assets():
 
 def build_config():
     cfg = {
-        "buildCommand": "python3 -m pip install --quiet pillow && python3 src/build.py",
+        "buildCommand": "echo \"Prebuilt site: run python3 src/build.py locally before committing\"",
         "outputDirectory": "public",
         "installCommand": "",
         "framework": None,
