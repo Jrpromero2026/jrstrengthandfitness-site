@@ -15,7 +15,7 @@ ASSETS = os.path.join(OUT, "assets")
 PAGES = [
     dict(path="/", file="index.html", active="", schema=True, low_watermark=True,
          title="JR Strength & Fitness | Coach, Builder · Corvallis, Oregon",
-         description="JR Prieto-Romero, CSCS: Director of Training at Timberhill Athletic Club and owner of G3 Sports & Fitness. Coaching in Corvallis and online, plus tools for coaches.",
+         description="JR Prieto-Romero, CSCS: Director of Training at Timberhill Athletic Club and Director of Personal Training and Performance at G3 Sports & Fitness. Coaching in Corvallis and online, plus tools for coaches.",
          body=P.HOME),
     dict(path="/train", file="train.html", active="train",
          title="Train with JR | In-Person in Corvallis & Online Coaching",
@@ -31,7 +31,7 @@ PAGES = [
          body=P.APPLY, script=P.APPLY_SCRIPT + P.FORM_SCRIPT),
     dict(path="/about", file="about.html", active="about",
          title="About JR Prieto-Romero, CSCS | JR Strength & Fitness",
-         description="Director of Training at Timberhill Athletic Club, owner of G3 Sports & Fitness, Oregon State Exercise & Sport Science graduate, ~20,000 coaching hours.",
+         description="Director of Training at Timberhill Athletic Club, Director of Personal Training and Performance at G3 Sports & Fitness, Oregon State Exercise & Sport Science graduate, ~20,000 coaching hours.",
          body=P.ABOUT),
     dict(path="/writing", file="writing.html", active="",
          title="Writing | JR Strength & Fitness",

@@ -25,7 +25,7 @@ HOME = f"""
 <section class="wrap" style="padding-top:88px;padding-bottom:96px">
 <div class="stack center" style="gap:26px">
 <h1 class="h-hero">Built on the floor.<br>Now built for coaches.</h1>
-<p class="lead">I’m JR Prieto-Romero, CSCS: Director of Training at Timberhill Athletic Club and owner of G3 Sports &amp; Fitness. After 20,000 hours coaching, I’m turning what works on the floor into tools for coaches and athletes.</p>
+<p class="lead">I’m JR Prieto-Romero, CSCS. I direct training at Timberhill Athletic Club and lead personal training and performance at G3 Sports &amp; Fitness. After 20,000 hours coaching, I’m turning what works on the floor into tools for coaches and athletes.</p>
 <div class="btns" style="padding-top:10px">
 <a class="btn btn-red" href="#projects">See what I’m building</a>
 <a class="btn btn-ghost" href="/train">Train with JR</a>
@@ -35,7 +35,7 @@ HOME = f"""
 <span>B.S. Exercise &amp; Sport Science, Oregon State</span><span class="dot">•</span>
 <span>~20,000 coaching hours</span><span class="dot">•</span>
 <span>Director of Training, TAC</span><span class="dot">•</span>
-<span>Owner, G3</span>
+<span>Director of Personal Training &amp; Performance, G3</span>
 </div>
 </div>
 </section>
@@ -141,7 +141,7 @@ HOME = f"""
 <h2 class="h-section">About JR</h2>
 <div class="rule"></div>
 <p>I grew up in Salem, came to Corvallis for Oregon State and earned my degree in Exercise &amp; Sport Science. I played soccer, sprinted and threw before I ever coached.</p>
-<p>Today I direct training at Timberhill Athletic Club, run G3 Sports &amp; Fitness, and coach my own clients at the Enhanced tier: trained athletes who have plateaued and want finer margins.</p>
+<p>Today I direct training at Timberhill Athletic Club, lead personal training and performance at G3 Sports &amp; Fitness, and coach my own clients at the Enhanced tier: trained athletes who have plateaued and want finer margins.</p>
 <a class="link-arrow" href="/about">Read the full story <span>→</span></a>
 </div>
 </div>
@@ -382,7 +382,7 @@ ABOUT = page_head("About JR") + f"""
 <div class="split" style="align-items:flex-start">
 <div class="side"><div class="photo">{ph("Photo: JR coaching on the floor")}</div></div>
 <div class="main prose">
-<p class="lead" style="color:#fff">I’m JR Prieto-Romero, CSCS. I direct training at Timberhill Athletic Club and own G3 Sports &amp; Fitness in Corvallis, Oregon.</p>
+<p class="lead" style="color:#fff">I’m JR Prieto-Romero, CSCS. I direct training at Timberhill Athletic Club and lead personal training and performance at G3 Sports &amp; Fitness in Corvallis, Oregon.</p>
 <p>I grew up in Salem and came to Corvallis for Oregon State, where I earned my degree in Exercise &amp; Sport Science. Before I coached, I competed: soccer, sprinting and throwing.</p>
 <p>I’ve spent more than ten years and roughly 20,000 hours on the training floor. Today I run personal training across two facilities. Every client who comes to TAC or G3 starts with a consult with me, and I place them with the coach and program that fit, even when that isn’t me.</p>
 <p>My own clients sit at the Enhanced tier of IAOE: trained people, often current or former athletes, who have plateaued and want finer margins.</p>
@@ -397,7 +397,8 @@ ABOUT = page_head("About JR") + f"""
 <li>Certified Strength and Conditioning Specialist (CSCS)</li>
 <li>B.S. Exercise &amp; Sport Science, Oregon State University</li>
 <li>Director of Training, Timberhill Athletic Club</li>
-<li>Owner, G3 Sports &amp; Fitness</li>
+<li>Director of Personal Training, G3 Sports &amp; Fitness</li>
+<li>Director of Performance, G3 Sports &amp; Fitness</li>
 </ul>
 <div class="btns" style="padding-top:8px"><a class="btn btn-red" href="/train">Train with JR</a><a class="btn btn-ghost" href="{LINKEDIN}">Connect on LinkedIn</a></div>
 </div>
