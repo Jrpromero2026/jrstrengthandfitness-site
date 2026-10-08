@@ -10,7 +10,7 @@ VAULT = "https://vault.jrstrengthandfitness.com"
 LOGO_W, LOGO_H = 928, 240  # set by build.py from the actual file
 
 NAV = [
-    ("/#projects", "Projects", "projects"),
+    ("/projects", "Projects", "projects"),
     ("/#standard", "The Standard", "standard"),
     ("/train", "Train with JR", "train"),
     ("/about", "About", "about"),
@@ -100,10 +100,10 @@ def page(*, path, title, description, body, active="", schema=False, low_waterma
 </div>
 <nav class="col" aria-label="Projects">
 <span class="head">Projects</span>
-<a href="{VAULT}">Trainer’s Coach Vault</a>
-<a href="/#built-for-her">Built For Her</a>
-<a href="/#traincnd">TRAINCND</a>
-<a href="/#credential-standard">The Credential Standard</a>
+<a href="/projects/vault">Trainer’s Coach Vault</a>
+<a href="/projects/built-for-her">Built For Her</a>
+<a href="/projects/traincnd">TRAINCND</a>
+<a href="/projects/credential-standard">The Credential Standard</a>
 </nav>
 <nav class="col" aria-label="Train">
 <span class="head">Train</span>

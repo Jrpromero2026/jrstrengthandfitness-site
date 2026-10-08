@@ -1,6 +1,7 @@
 """Page content for jrstrengthandfitness.com. Bracketed [text] marks copy JR still needs to supply."""
 
 from layout import VAULT, LINKEDIN, EMAIL
+import projects as P
 
 
 def ph(text):
@@ -44,13 +45,13 @@ HOME = f"""
 <div class="stack" style="gap:40px">
 {head("What I’m building", "Four projects, one coaching standard. Each one started as a problem I kept solving by hand at TAC or G3.")}
 
-<a class="card feature" href="{VAULT}">
+<a class="card feature" href="/projects/vault">
 <div class="main">
-<span class="chip live">Live · founding rate</span>
+<span class="chip live">Live · founding membership soon</span>
 <h3 class="h-card lg">The Trainer’s Coach Vault</h3>
 <div class="rule sm"></div>
 <p class="intro">The operating library for professional trainers and coaches. Consultation systems, programming frameworks and client-management tools built from real coaching practice.</p>
-<span class="link-arrow">Explore the Vault <span>→</span></span>
+<span class="link-arrow">Learn more <span>→</span></span>
 </div>
 <div class="side">
 <div class="stat"><b>34</b><span>Systems &amp; frameworks</span></div>
@@ -60,34 +61,7 @@ HOME = f"""
 </div>
 </a>
 
-<div class="grid">
-<article class="card" id="built-for-her">
-<span class="chip dev">In development</span>
-<h3 class="h-card">Built For Her</h3>
-<div class="rule sm"></div>
-<p class="intro">Training, nutrition and progress tracking in one app. {ph("Who it’s for, in one line")}</p>
-<div class="grow"></div>
-<a class="link-arrow" href="#built-for-her">{ph("Waitlist link")} <span>→</span></a>
-</article>
-
-<article class="card" id="traincnd">
-<span class="chip">{ph("Status")}</span>
-<h3 class="h-card">TRAINCND</h3>
-<div class="rule sm"></div>
-<p class="intro">{ph("One line: what TRAINCND does and who it’s for")}</p>
-<div class="grow"></div>
-<a class="link-arrow" href="#traincnd">{ph("Link")} <span>→</span></a>
-</article>
-
-<article class="card" id="credential-standard">
-<span class="chip">{ph("Status")}</span>
-<h3 class="h-card">The Credential Standard</h3>
-<div class="rule sm"></div>
-<p class="intro">{ph("One line: what The Credential Standard does and who it’s for")}</p>
-<div class="grow"></div>
-<a class="link-arrow" href="#credential-standard">{ph("Link")} <span>→</span></a>
-</article>
-</div>
+<div class="grid">{"".join(P.card(x) for x in P.PROJECTS[1:])}</div>
 </div>
 </section>
 
@@ -389,8 +363,10 @@ ABOUT = page_head("About JR") + f"""
 <p>{ph("Your own words: why you started building tools for other coaches")}</p>
 <h2>What I’m building</h2>
 <ul>
-<li><a href="{VAULT}">The Trainer’s Coach Vault</a>: the operating library for professional trainers and coaches.</li>
-<li>Built For Her, TRAINCND and The Credential Standard: {ph("one line each")}</li>
+<li><a href="/projects/vault">The Trainer’s Coach Vault</a>: the operating library for professional trainers and coaches.</li>
+<li><a href="/projects/built-for-her">Built For Her</a>: strength training built for women.</li>
+<li><a href="/projects/traincnd">TRAINCND</a>: the operating platform for coaches and training businesses.</li>
+<li><a href="/projects/credential-standard">The Credential Standard</a>: the reference for professional fitness credentials.</li>
 </ul>
 <h2>Credentials</h2>
 <ul>

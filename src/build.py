@@ -6,6 +6,7 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 from layout import page, SITE  # noqa: E402
 import pages as P  # noqa: E402
+import projects as PR  # noqa: E402
 from PIL import Image, ImageDraw, ImageFilter  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -53,6 +54,17 @@ PAGES = [
          title="Waiver | JR Strength & Fitness",
          description="Liability waiver and release for JR Strength and Fitness LLC training clients.",
          body=P.WAIVER, script=P.FORM_SCRIPT),
+    dict(path="/projects", file="projects.html", active="projects",
+         title="Projects | JR Strength & Fitness",
+         description="What JR Prieto-Romero is building: The Trainer’s Coach Vault, Built For Her, TRAINCND and The Credential Standard.",
+         body=PR.projects_index()),
+] + [
+    dict(path=f"/projects/{p['slug']}", file=f"projects/{p['slug']}.html", active="projects",
+         title=f"{p['name']} | Projects | JR Strength & Fitness".replace("&amp;", "&"),
+         description=(p['tagline'] + " " + p['card']).replace("&amp;", "&"),
+         body=PR.project_page(p))
+    for p in PR.PROJECTS
+] + [
     dict(path="/404", file="404.html", active="", sitemap=False,
          title="Page not found | JR Strength & Fitness",
          description="That page moved or never existed.",
@@ -77,6 +89,7 @@ def build_pages():
                     description=spec["description"].replace("&", "&amp;"), body=spec["body"],
                     active=spec["active"], schema=spec.get("schema", False),
                     low_watermark=spec.get("low_watermark", False), script=spec.get("script", ""))
+        os.makedirs(os.path.dirname(os.path.join(OUT, spec["file"])), exist_ok=True)
         with open(os.path.join(OUT, spec["file"]), "w", encoding="utf-8") as fh:
             fh.write(html)
 
