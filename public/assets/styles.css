@@ -285,3 +285,6 @@ fieldset { border: 0; padding: 0; margin: 0; }
 .inline-form { display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch; max-width: 620px; padding-top: 6px; }
 .inline-form input[type=email] { flex: 1 1 260px; min-height: 54px; }
 .inline-form .form-status { flex: 1 1 100%; }
+.site-header .btn-line { color: #fff; border-color: rgba(255,255,255,0.5); min-height: 44px; padding: 0 18px; font-size: 13px; }
+.site-header .btn-line:hover { background: #fff; color: #0a0a0a; border-bottom-color: #fff; }
+@media (max-width: 720px) { .site-header .btn-line { width: 100%; } }

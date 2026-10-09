@@ -45,7 +45,8 @@ def closing_cta():
     return f"""<section class="closing" id="start" aria-label="Get started">
 <img class="watermark" src="/assets/jr-watermark.png" alt="" aria-hidden="true">
 <div class="wrap">
-<div class="tagline"><b>Start training yesterday.</b><span>You’ll thank yourself tomorrow.</span></div>
+<div class="tagline"><b>Start training yesterday.</b><span>You’ll thank yourself tomorrow.</span>
+<a class="link-u" href="{VAULT}/signup" rel="noopener" data-track="Free Vault account (closing)" style="align-self:flex-start;margin-top:22px;color:#fff">Coach or trainer? Get a free Vault account →</a></div>
 <div class="cta-card">
 <h2 class="h-md" style="color:#121212">Ready to train?</h2>
 <p>Local to Corvallis? Start with a free consult at Timberhill or G3. Anywhere else, apply for online coaching.</p>
@@ -96,6 +97,7 @@ def page(*, path, title, description, body, active="", schema=False, script="", 
 <a class="logo" href="/" aria-label="JR Strength &amp; Fitness home"><img src="/assets/jr-logo.png" alt="JR Strength &amp; Fitness" width="{LOGO_W}" height="{LOGO_H}"></a>
 <nav class="site-nav" aria-label="Main">
 {nav}
+<a class="btn btn-line" href="/projects/vault" data-track="For coaches (header)">For coaches</a>
 <a class="btn btn-red" href="{CONSULT}">Book a free consult</a>
 </nav>
 </div>
