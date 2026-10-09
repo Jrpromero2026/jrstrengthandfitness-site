@@ -144,7 +144,7 @@ def build_config():
         "cleanUrls": True,
         "trailingSlash": False,
         "redirects": [{"source": s, "destination": d, "permanent": True} for s, d in REDIRECTS],
-        "headers": [{"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=604800"}]}],
+        "headers": [{"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=3600, must-revalidate"}]}],
     }
     with open(os.path.join(ROOT, "vercel.json"), "w") as fh:
         json.dump(cfg, fh, indent=2)
@@ -194,6 +194,8 @@ def build_images():
 if __name__ == "__main__":
     import layout
     layout.LOGO_W, layout.LOGO_H = fetch_assets()
+    import hashlib
+    layout.CSS_VER = hashlib.sha1(open(os.path.join(ASSETS, "styles.css"), "rb").read()).hexdigest()[:10]
     build_pages()
     build_config()
     build_images()

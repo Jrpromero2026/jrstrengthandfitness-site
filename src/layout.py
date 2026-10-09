@@ -8,6 +8,7 @@ YOUTUBE = "https://www.youtube.com/channel/UC3gQzznf26wawqKAFj_yuzQ"
 FACEBOOK = "https://www.facebook.com/jrstrengthandfitness"
 VAULT = "https://vault.jrstrengthandfitness.com"
 LOGO_W, LOGO_H = 928, 240  # set by build.py from the actual file
+CSS_VER = "1"  # set by build.py: hash of styles.css, so browsers fetch the new file after each change
 
 NAV = [
     ("/projects", "Projects", "projects"),
@@ -80,7 +81,7 @@ def page(*, path, title, description, body, active="", schema=False, script="", 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&amp;display=swap">
-<link rel="stylesheet" href="/assets/styles.css">
+<link rel="stylesheet" href="/assets/styles.css?v={CSS_VER}">
 {SCHEMA if schema else ""}
 </head>
 <body>
