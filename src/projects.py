@@ -2,7 +2,7 @@
 
 Facts come from each product's own live site. "Why" sections are drafts for JR to rewrite in his own words.
 """
-from layout import VAULT, EMAIL, CONSULT
+from layout import VAULT, EMAIL, CONSULT, FORM_ENDPOINT
 from ui import hero, sec, ext
 
 PROJECTS = [
@@ -79,8 +79,9 @@ PROJECTS = [
             ("Pilot", "Running now with a small group."),
             ("Signups", "Open soon. TRAINCND isn’t taking new gyms just yet."),
         ],
-        cta=("Visit traincnd.com", "https://traincnd.com"),
-        cta2=("Ask about the pilot", f"mailto:{EMAIL}?subject=TRAINCND%20pilot"),
+        cta=("Join the waitlist", "#waitlist"),
+        cta2=("Visit traincnd.com", "https://traincnd.com"),
+        waitlist="Get an email when TRAINCND opens to new coaches and gyms.",
     ),
     dict(
         slug="credential-standard",
@@ -104,8 +105,9 @@ PROJECTS = [
             ("Credential register", "In development."),
             ("Organization pilots", "Coming for gyms and training businesses."),
         ],
-        cta=("Get notified at launch", f"mailto:{EMAIL}?subject=The%20Credential%20Standard"),
+        cta=("Join the waitlist", "#waitlist"),
         cta2=None,
+        waitlist="Get an email when The Credential Standard opens, for coaches and for gyms that hire.",
     ),
 ]
 
@@ -130,6 +132,24 @@ def panel():
 FOR_ROW = """<div class="for-row"><span class="eyebrow">Built for</span><span>Trainers &amp; coaches</span><span>Women who lift</span><span>Coaching businesses</span><span>Gyms that hire</span></div>"""
 
 
+def next_step(p, btns):
+    return f"""<div class="main stack"><span class="eyebrow">Next step</span><h2 class="h-md">{p['cta'][0]}</h2><p class="body">{p['tagline']}</p><div class="btns">{btns}</div></div>"""
+
+
+def waitlist_block(p):
+    name = p["name"]
+    return f"""<div class="main stack" id="waitlist"><span class="eyebrow">Waitlist</span><h2 class="h-md">Be first in.</h2><p class="body">{p['waitlist']}</p>
+<form class="inline-form" novalidate data-form="waitlist" data-done="You’re on the list. You’ll get an email when {name} opens.">
+<input type="hidden" name="_subject" value="Waitlist signup: {name}">
+<input type="hidden" name="project" value="{name}">
+<div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+<label class="sr" for="wl-{p['slug']}">Email address</label>
+<input id="wl-{p['slug']}" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+<button class="btn btn-red" type="submit">Join the waitlist</button>
+<div class="form-status" role="status" hidden></div>
+</form></div>"""
+
+
 def project_page(p):
     i = PROJECTS.index(p)
     nxt = PROJECTS[(i + 1) % len(PROJECTS)]
@@ -150,7 +170,7 @@ def project_page(p):
 <div class="main stack"><p class="quote">{p['why']}</p>{iaoe}<p class="muted">JR Prieto-Romero, CSCS</p></div>
 </div>""")
         + sec("gray", f"""<div class="split">
-<div class="main stack"><span class="eyebrow">Next step</span><h2 class="h-md">{p['cta'][0]}</h2><p class="body">{p['tagline']}</p><div class="btns">{btns}</div></div>
+{waitlist_block(p) if p.get('waitlist') else next_step(p, btns)}
 <div class="side"><a class="cell" href="/projects/{nxt['slug']}" style="border:1px solid var(--line)"><div class="bar"></div><span class="tag">Next project</span><h3 class="h-cell">{nxt['name']}</h3><p>{nxt['card']}</p><span class="more">See it</span></a></div>
 </div>""", mark=False)
     )

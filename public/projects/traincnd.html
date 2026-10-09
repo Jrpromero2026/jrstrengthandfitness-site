@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&amp;display=swap">
-<link rel="stylesheet" href="/assets/styles.css?v=8cb0f6d844">
+<link rel="stylesheet" href="/assets/styles.css?v=cde64557e1">
 
 </head>
 <body>
@@ -34,7 +34,7 @@
 <a href="/#standard">The Standard</a>
 <a href="/train">Train with JR</a>
 <a href="/about">About</a>
-<a class="btn btn-red" href="/apply?path=consult">Book a free consult</a>
+<a class="btn btn-red" href="/consult">Book a free consult</a>
 </nav>
 </div>
 </header>
@@ -47,7 +47,7 @@
 <span class="eyebrow">Project · For coaches &amp; training businesses</span>
 <h1 class="h-display">TRAINCND</h1>
 <p class="lead">The all-in-one operating platform for modern fitness coaches and training businesses.</p>
-<div class="btns" style="padding-top:6px"><a class="btn btn-red" href="https://traincnd.com" rel="noopener">Visit traincnd.com</a><a class="link-u" href="mailto:jr@jrstrengthandfitness.com?subject=TRAINCND%20pilot">Ask about the pilot →</a></div>
+<div class="btns" style="padding-top:6px"><a class="btn btn-red" href="#waitlist">Join the waitlist</a><a class="link-u" href="https://traincnd.com" rel="noopener">Visit traincnd.com →</a></div>
 </div>
 <div class="side"><div class="info-card"><span class="k">Where it stands</span><div class="it"><b>Pilot</b><span>Running now with a small group.</span></div><div class="it"><b>Signups</b><span>Open soon. TRAINCND isn’t taking new gyms just yet.</span></div></div></div>
 </div>
@@ -58,7 +58,16 @@
 <div class="side stack" style="gap:18px"><span class="eyebrow">From the floor</span><h2 class="h-display">Why I built it</h2></div>
 <div class="main stack"><p class="quote">I run personal training across two facilities, with coaches who work at one location or both. TRAINCND is the system I wanted for that: every client, program and coach in one place, held to one coaching standard.</p><p class="muted">JR Prieto-Romero, CSCS</p></div>
 </div></div></section><section class="sec gray"><div class="wrap"><div class="split">
-<div class="main stack"><span class="eyebrow">Next step</span><h2 class="h-md">Visit traincnd.com</h2><p class="body">The all-in-one operating platform for modern fitness coaches and training businesses.</p><div class="btns"><a class="btn btn-red" href="https://traincnd.com" rel="noopener">Visit traincnd.com</a><a class="link-u" href="mailto:jr@jrstrengthandfitness.com?subject=TRAINCND%20pilot">Ask about the pilot →</a></div></div>
+<div class="main stack" id="waitlist"><span class="eyebrow">Waitlist</span><h2 class="h-md">Be first in.</h2><p class="body">Get an email when TRAINCND opens to new coaches and gyms.</p>
+<form class="inline-form" novalidate data-form="waitlist" data-done="You’re on the list. You’ll get an email when TRAINCND opens.">
+<input type="hidden" name="_subject" value="Waitlist signup: TRAINCND">
+<input type="hidden" name="project" value="TRAINCND">
+<div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+<label class="sr" for="wl-traincnd">Email address</label>
+<input id="wl-traincnd" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+<button class="btn btn-red" type="submit">Join the waitlist</button>
+<div class="form-status" role="status" hidden></div>
+</form></div>
 <div class="side"><a class="cell" href="/projects/credential-standard" style="border:1px solid var(--line)"><div class="bar"></div><span class="tag">Next project</span><h3 class="h-cell">The Credential Standard</h3><p>Which fitness credentials are accredited, what they require and what renewal takes, with every fact cited to its source.</p><span class="more">See it</span></a></div>
 </div></div></section>
 </main>
@@ -68,8 +77,8 @@
 <div class="tagline"><b>Start training yesterday.</b><span>You’ll thank yourself tomorrow.</span></div>
 <div class="cta-card">
 <h2 class="h-md" style="color:#121212">Ready to train?</h2>
-<p>Start with a free 30-minute consult, in person in Corvallis or online. I’ll match you with the right coach and program.</p>
-<div class="btns" style="padding-top:4px"><a class="btn btn-red" href="/apply?path=consult">Book a free consult</a><a class="mail" href="mailto:jr@jrstrengthandfitness.com">jr@jrstrengthandfitness.com</a></div>
+<p>Local to Corvallis? Start with a free consult at Timberhill or G3. Anywhere else, apply for online coaching.</p>
+<div class="btns" style="padding-top:4px"><a class="btn btn-red" href="/consult">Book a free consult</a><a class="mail" href="/apply">Apply for online coaching</a></div>
 </div>
 </div>
 </section>
@@ -114,9 +123,26 @@
 <a href="/privacy-policy">Privacy Policy</a>
 <a href="/terms-of-service">Terms of Service</a>
 <a href="/refund-policy">Refund Policy</a>
-<a href="/waiver">Waiver</a>
 </div>
 </footer>
-
+<script>
+document.querySelectorAll('form[data-form]').forEach(function(f){
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var st=f.querySelector('.form-status'), btn=f.querySelector('button[type=submit]');
+    if(!f.checkValidity()){ st.textContent='Please fill in the required fields marked with *.'; st.hidden=false; f.reportValidity(); return; }
+    var data={}; new FormData(f).forEach(function(v,k){ if(data[k]!==undefined){ data[k]=data[k]+', '+v; } else { data[k]=v; } });
+    if(data._honey){ return; }
+    var who=((data.first_name||'')+' '+(data.last_name||'')).trim();
+    if(who){ data._subject=(data._subject||'Website submission')+' — '+who; }
+    data._template='table'; data._captcha='false'; data.page=location.href;
+    btn.disabled=true; var label=btn.textContent; btn.textContent='Sending…'; st.hidden=true;
+    fetch('https://formsubmit.co/ajax/jr@jrstrengthandfitness.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ if(!r.ok || String(j.success)==='false'){ throw new Error(j.message||'send failed'); } }); })
+      .then(function(){ f.reset(); st.textContent=f.getAttribute('data-done')||'Thanks, it’s in. You’ll hear back by email.'; st.hidden=false; btn.textContent=label; btn.disabled=false; })
+      .catch(function(){ st.textContent='Something went wrong sending this. Please email jr@jrstrengthandfitness.com directly.'; st.hidden=false; btn.textContent=label; btn.disabled=false; });
+  });
+});
+</script>
 </body>
 </html>

@@ -35,7 +35,10 @@ SCHEMA = """<script type="application/ld+json">{
 }</script>""" % (SITE, EMAIL, SITE, LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK)
 
 
-CONSULT = "/apply?path=consult"
+CONSULT = "/consult"
+TAC_PT = "https://timberhillac.com/programs/personal-training"
+G3_PT = "https://www.gthreesports.com/personal-training"
+FORM_ENDPOINT = "https://formsubmit.co/ajax/jr@jrstrengthandfitness.com"
 
 
 def closing_cta():
@@ -45,8 +48,8 @@ def closing_cta():
 <div class="tagline"><b>Start training yesterday.</b><span>You’ll thank yourself tomorrow.</span></div>
 <div class="cta-card">
 <h2 class="h-md" style="color:#121212">Ready to train?</h2>
-<p>Start with a free 30-minute consult, in person in Corvallis or online. I’ll match you with the right coach and program.</p>
-<div class="btns" style="padding-top:4px"><a class="btn btn-red" href="{CONSULT}">Book a free consult</a><a class="mail" href="mailto:{EMAIL}">{EMAIL}</a></div>
+<p>Local to Corvallis? Start with a free consult at Timberhill or G3. Anywhere else, apply for online coaching.</p>
+<div class="btns" style="padding-top:4px"><a class="btn btn-red" href="{CONSULT}">Book a free consult</a><a class="mail" href="/apply">Apply for online coaching</a></div>
 </div>
 </div>
 </section>"""
@@ -140,7 +143,6 @@ def page(*, path, title, description, body, active="", schema=False, script="", 
 <a href="/privacy-policy">Privacy Policy</a>
 <a href="/terms-of-service">Terms of Service</a>
 <a href="/refund-policy">Refund Policy</a>
-<a href="/waiver">Waiver</a>
 </div>
 </footer>
 {script}

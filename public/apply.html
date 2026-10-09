@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Apply to Train with JR | JR Strength &amp; Fitness</title>
-<meta name="description" content="Apply for in-person training in Corvallis or online coaching with JR Prieto-Romero, CSCS.">
+<title>Apply for Online Coaching | JR Strength &amp; Fitness</title>
+<meta name="description" content="Apply for online training and nutrition coaching with JR Prieto-Romero, CSCS. Applications go straight to JR.">
 <link rel="canonical" href="https://www.jrstrengthandfitness.com/apply">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="JR Strength &amp; Fitness">
-<meta property="og:title" content="Apply to Train with JR | JR Strength &amp; Fitness">
-<meta property="og:description" content="Apply for in-person training in Corvallis or online coaching with JR Prieto-Romero, CSCS.">
+<meta property="og:title" content="Apply for Online Coaching | JR Strength &amp; Fitness">
+<meta property="og:description" content="Apply for online training and nutrition coaching with JR Prieto-Romero, CSCS. Applications go straight to JR.">
 <meta property="og:url" content="https://www.jrstrengthandfitness.com/apply">
 <meta property="og:image" content="https://www.jrstrengthandfitness.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&amp;display=swap">
-<link rel="stylesheet" href="/assets/styles.css?v=8cb0f6d844">
+<link rel="stylesheet" href="/assets/styles.css?v=cde64557e1">
 
 </head>
 <body>
@@ -34,7 +34,7 @@
 <a href="/#standard">The Standard</a>
 <a href="/train" aria-current="page">Train with JR</a>
 <a href="/about">About</a>
-<a class="btn btn-red" href="/apply?path=consult">Book a free consult</a>
+<a class="btn btn-red" href="/consult">Book a free consult</a>
 </nav>
 </div>
 </header>
@@ -44,22 +44,16 @@
 <img class="watermark" src="/assets/jr-watermark.png" alt="" aria-hidden="true">
 <div class="wrap split">
 <div class="main stack" style="gap:24px">
-<span class="eyebrow">Apply</span>
-<h1 class="h-display">Apply to train with JR.</h1>
-<p class="lead">In person or online, this is where it starts. If you’re a good fit, you’ll hear back with next steps.</p>
-
+<span class="eyebrow">Online coaching</span>
+<h1 class="h-display">Apply for online coaching.</h1>
+<p class="lead">Tell me about your training and goals. Your application comes straight to me, and if you’re a good fit you’ll hear back by email with next steps.</p>
+<div class="btns" style="padding-top:6px"><a class="link-u" href="/consult">Local to Corvallis? Book a free consult instead →</a></div>
 </div>
 
 </div>
-</section><section class="sec light"><div class="wrap"><form class="form-card" id="apply-form" novalidate data-form="apply">
-<fieldset class="field">
-<legend>How do you want to train? <span class="req">*</span></legend>
-<div class="choices">
-<label class="choice"><input type="radio" name="path" value="in-person" required> In person, Corvallis</label>
-<label class="choice"><input type="radio" name="path" value="online"> Online coaching</label>
-<label class="choice"><input type="radio" name="path" value="consult"> Not sure, let’s talk</label>
-</div>
-</fieldset>
+</section><section class="sec light"><div class="wrap"><form class="form-card" id="apply-form" novalidate data-form="apply" data-done="Thanks, your application went straight to JR. You’ll hear back by email with next steps.">
+<input type="hidden" name="_subject" value="Online coaching application">
+<div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
 <div class="row2">
 <div class="field"><label for="f-first">First name <span class="req">*</span></label><input id="f-first" name="first_name" type="text" autocomplete="given-name" required></div>
 <div class="field"><label for="f-last">Last name <span class="req">*</span></label><input id="f-last" name="last_name" type="text" autocomplete="family-name" required></div>
@@ -74,7 +68,7 @@
 </div>
 <div class="row2">
 <div class="field"><label for="f-freq">Current training frequency</label><select id="f-freq" name="frequency"><option value="">Select one</option><option value="0–2 days/week">0–2 days/week</option><option value="3–4 days/week">3–4 days/week</option><option value="5+ days/week">5+ days/week</option></select></div>
-<div class="field"><label for="f-level">Online coaching level <span class="hint">(if online)</span></label><select id="f-level" name="level"><option value="">Select one</option><option value="Essentials">Essentials</option><option value="Core">Core</option><option value="Premium">Premium</option><option value="Not sure yet">Not sure yet</option></select></div>
+<div class="field"><label for="f-level">Coaching level you’re interested in</label><select id="f-level" name="level"><option value="">Select one</option><option value="Essentials">Essentials</option><option value="Core">Core</option><option value="Premium">Premium</option><option value="Not sure yet">Not sure yet</option></select></div>
 </div>
 <fieldset class="field">
 <legend>Access to equipment</legend>
@@ -95,8 +89,7 @@
 </div>
 </fieldset>
 <div class="field"><label for="f-msg">Anything else I should know?</label><textarea id="f-msg" name="message"></textarea></div>
-<label class="choice"><input type="checkbox" name="newsletter" value="yes"> Send me occasional news and updates by email</label>
-<p class="form-note">By applying you agree to the <a href="/privacy-policy">Privacy Policy</a>. Health details are optional; we’ll cover them in your consult.</p>
+<p class="form-note">Your application is emailed to JR. By applying you agree to the <a href="/privacy-policy">Privacy Policy</a>. Health details are optional; we’ll cover them on our first call.</p>
 <div class="form-status" role="status" hidden></div>
 <div class="btns"><button class="btn btn-red" type="submit">Submit application</button></div>
 </form></div></section>
@@ -143,23 +136,30 @@
 <a href="/privacy-policy">Privacy Policy</a>
 <a href="/terms-of-service">Terms of Service</a>
 <a href="/refund-policy">Refund Policy</a>
-<a href="/waiver">Waiver</a>
 </div>
 </footer>
 <script>
 (function(){
   var f=document.getElementById('apply-form'); if(!f) return;
-  var q=new URLSearchParams(location.search), p=q.get('path'), lv=q.get('level');
-  if(p){var r=f.querySelector('input[name=path][value="'+p+'"]'); if(r) r.checked=true;}
+  var q=new URLSearchParams(location.search), lv=q.get('level');
   if(lv){var s=f.querySelector('#f-level'); for(var i=0;i<s.options.length;i++){if(s.options[i].value.toLowerCase()===lv){s.selectedIndex=i;}}}
 })();
 </script><script>
 document.querySelectorAll('form[data-form]').forEach(function(f){
   f.addEventListener('submit',function(e){
     e.preventDefault();
-    var st=f.querySelector('.form-status');
+    var st=f.querySelector('.form-status'), btn=f.querySelector('button[type=submit]');
     if(!f.checkValidity()){ st.textContent='Please fill in the required fields marked with *.'; st.hidden=false; f.reportValidity(); return; }
-    st.textContent='Preview only: this form isn’t connected yet, so nothing was sent.'; st.hidden=false;
+    var data={}; new FormData(f).forEach(function(v,k){ if(data[k]!==undefined){ data[k]=data[k]+', '+v; } else { data[k]=v; } });
+    if(data._honey){ return; }
+    var who=((data.first_name||'')+' '+(data.last_name||'')).trim();
+    if(who){ data._subject=(data._subject||'Website submission')+' — '+who; }
+    data._template='table'; data._captcha='false'; data.page=location.href;
+    btn.disabled=true; var label=btn.textContent; btn.textContent='Sending…'; st.hidden=true;
+    fetch('https://formsubmit.co/ajax/jr@jrstrengthandfitness.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ if(!r.ok || String(j.success)==='false'){ throw new Error(j.message||'send failed'); } }); })
+      .then(function(){ f.reset(); st.textContent=f.getAttribute('data-done')||'Thanks, it’s in. You’ll hear back by email.'; st.hidden=false; btn.textContent=label; btn.disabled=false; })
+      .catch(function(){ st.textContent='Something went wrong sending this. Please email jr@jrstrengthandfitness.com directly.'; st.hidden=false; btn.textContent=label; btn.disabled=false; });
   });
 });
 </script>

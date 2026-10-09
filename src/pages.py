@@ -1,6 +1,6 @@
 """Page content for jrstrengthandfitness.com (v2 layout). Bracketed [text] marks copy or media JR still needs to supply."""
 
-from layout import VAULT, LINKEDIN, EMAIL, CONSULT
+from layout import VAULT, LINKEDIN, EMAIL, CONSULT, TAC_PT, G3_PT, FORM_ENDPOINT
 from ui import ph, hero, sec, head_row, rows, frame
 import projects as P
 
@@ -43,7 +43,7 @@ HOME = (
 <div class="main stack">
 <span class="eyebrow">Train with JR</span>
 <h2 class="h-md">Every client starts with a free 30-minute consult.</h2>
-<p class="lead">Goals, training history, limitations, barriers and preferences. From there I pick the facility, the coach and the program. Sometimes that coach isn’t me.</p>
+<p class="lead">Goals, training history, limitations, barriers and preferences. Local clients start at Timberhill or G3, where I match you with the right coach and program. Sometimes that coach isn’t me.</p>
 <div class="facts"><div>In person · Corvallis</div><div>Online · from $129/mo</div><div>No membership needed</div></div>
 <div class="btns">{CONSULT_BTN}<a class="link-u" href="/train">How training works →</a></div>
 </div>
@@ -71,7 +71,7 @@ HOME = (
 # ---------------------------------------------------------------- Train with JR
 TRAIN = (
     hero("Train with JR", "Every client starts with a free consult.",
-         "Thirty minutes with me, in person or online. You don’t need to be a member anywhere.",
+         "Local to Corvallis? Book a free consult at Timberhill Athletic Club or G3 Sports &amp; Fitness. You don’t need to be a member. Anywhere else, apply for online coaching.",
          f'{CONSULT_BTN}<a class="link-u" href="/online-training">Online coaching →</a>',
          frame("Photo: consult at TAC or G3"), short=True, size="h-display")
     + sec("light", head_row("How it works", "Consult. Match.<br>Train.",
@@ -83,9 +83,9 @@ TRAIN = (
           ]))
     + sec("dark", head_row("Where you’ll train", "Two facilities.<br>One standard.",
                            "Families often split: a parent trains at TAC while their kid trains at G3. One consult covers both.")
-          + """<div class="panel">
-<div class="cell"><div class="bar"></div><span class="tag live">In person · Corvallis</span><h3 class="h-cell">Timberhill Athletic Club</h3><ul class="ticks"><li>Health and general fitness</li><li>Longevity and staying capable</li><li>Adults at every starting point</li></ul></div>
-<div class="cell"><div class="bar"></div><span class="tag live">In person · Corvallis</span><h3 class="h-cell">G3 Sports &amp; Fitness</h3><ul class="ticks"><li>Youth athletic development</li><li>Adult human performance</li><li>Tactical, teams and organizations</li></ul></div>
+          + f"""<div class="panel">
+<div class="cell"><div class="bar"></div><span class="tag live">In person · Corvallis</span><h3 class="h-cell">Timberhill Athletic Club</h3><ul class="ticks"><li>Health and general fitness</li><li>Longevity and staying capable</li><li>Adults at every starting point</li></ul><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{TAC_PT}" rel="noopener">Book at Timberhill</a></div></div>
+<div class="cell"><div class="bar"></div><span class="tag live">In person · Corvallis</span><h3 class="h-cell">G3 Sports &amp; Fitness</h3><ul class="ticks"><li>Youth athletic development</li><li>Adult human performance</li><li>Tactical, teams and organizations</li></ul><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{G3_PT}" rel="noopener">Book at G3</a></div></div>
 </div>""")
     + sec("light", f"""<div class="split">
 <div class="side">{frame("Photo: an online coaching check-in", wide=True)}</div>
@@ -94,8 +94,25 @@ TRAIN = (
 <h2 class="h-md">Train with me online.</h2>
 <p class="lead">Individualized training and nutrition through the app, with check-ins and adjustments.</p>
 <div class="facts"><div>Essentials · $129/mo</div><div>Core · $179/mo</div><div>Premium · $249/mo</div></div>
-<div class="btns"><a class="btn btn-line" href="/online-training">Compare packages</a></div>
+<div class="btns"><a class="btn btn-red" href="/apply">Apply for online coaching</a><a class="link-u" href="/online-training">Compare packages →</a></div>
 </div>
+</div>""")
+)
+
+# ---------------------------------------------------------------- Consult routing
+CONSULT_PAGE = (
+    hero("Free consult", "Start with a free consult.",
+         "Local to Corvallis? Every in-person client starts with a free consult at Timberhill Athletic Club or G3 Sports &amp; Fitness. Pick the one that fits your goals. You don’t need to be a member.",
+         '<a class="link-u" href="#choose">Choose a facility ↓</a>', short=True, size="h-display")
+    + sec("light", head_row("Choose your facility", "Two facilities.<br>One standard.",
+                            "Not sure? Pick either one. Families often split: a parent trains at Timberhill while their kid trains at G3.")
+          + f"""<div class="panel">
+<div class="cell"><div class="bar"></div><span class="tag live">Health · fitness · longevity</span><h2 class="h-cell">Timberhill Athletic Club</h2><ul class="ticks"><li>Health and general fitness</li><li>Longevity and staying capable</li><li>Adults at every starting point</li><li>Free initial consultation with personal training</li></ul><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{TAC_PT}" rel="noopener">Book at Timberhill</a></div></div>
+<div class="cell"><div class="bar"></div><span class="tag live">Performance · athletes · teams</span><h2 class="h-cell">G3 Sports &amp; Fitness</h2><ul class="ticks"><li>Youth athletic development</li><li>Adult human performance</li><li>Tactical, teams and organizations</li><li>Personal training with the G3 coaching staff</li></ul><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{G3_PT}" rel="noopener">Book at G3</a></div></div>
+</div>""", id="choose")
+    + sec("dark", """<div class="split">
+<div class="main stack"><span class="eyebrow">Not in Corvallis?</span><h2 class="h-md">Train with me online.</h2><p class="lead">Individualized training and nutrition through the app, with check-ins and adjustments. Packages start at $129 a month.</p></div>
+<div class="side"><div class="btns"><a class="btn btn-red" href="/apply">Apply for online coaching</a><a class="link-u" href="/online-training">Compare packages →</a></div></div>
 </div>""")
 )
 
@@ -114,14 +131,14 @@ def package(name, who, features, prices, pick=False):
 <p class="terms">3 months: ${three[0]} (~${three[1]}/mo) · 6 months: ${six[0]} (~${six[1]}/mo)</p>
 <ul class="ticks">{feats}</ul>
 <div class="grow"></div>
-<div class="btns" style="padding-top:8px"><a class="btn {'btn-red' if pick else 'btn-line'}" href="/apply?path=online&amp;level={short.lower()}">Apply for {short}</a></div>
+<div class="btns" style="padding-top:8px"><a class="btn {'btn-red' if pick else 'btn-line'}" href="/apply?level={short.lower()}">Apply for {short}</a></div>
 </div>"""
 
 
 ONLINE = (
     hero("Online coaching", "Coaching, not content.",
          "You don’t need more workouts. You need structure, progression and a plan built for your life, with someone checking that it gets done.",
-         '<a class="btn btn-red" href="/apply?path=online">Apply for online coaching</a><a class="link-u" href="#packages">See packages ↓</a>',
+         '<a class="btn btn-red" href="/apply">Apply for online coaching</a><a class="link-u" href="#packages">See packages ↓</a>',
          short=True, size="h-display")
     + sec("light", head_row("How it works", "Assess. Build.<br>Execute. Refine.") + rows([
         ("01", "Assess", "No assumptions", "Intake, history, schedule, goals and constraints."),
@@ -162,7 +179,7 @@ ONLINE = (
 <li>PDF and in-app resources: macro guides, recipes, cardio planning</li>
 <li>Progress tracking with photos, metrics and performance</li>
 </ul></div>
-<div class="side"><div class="info-card"><span class="k">This is an application</span><div class="it"><b>Not a sign-up</b><span>If you’re a good fit, you’ll hear back with next steps.</span></div><div class="btns" style="padding-top:14px"><a class="btn btn-red" href="/apply?path=online">Apply now</a></div></div></div>
+<div class="side"><div class="info-card"><span class="k">This is an application</span><div class="it"><b>Not a sign-up</b><span>If you’re a good fit, you’ll hear back with next steps.</span></div><div class="btns" style="padding-top:14px"><a class="btn btn-red" href="/apply">Apply now</a></div></div></div>
 </div>""")
 )
 
@@ -172,17 +189,12 @@ def opt(values):
 
 
 APPLY = (
-    hero("Apply", "Apply to train with JR.",
-         "In person or online, this is where it starts. If you’re a good fit, you’ll hear back with next steps.", short=True, size="h-display")
-    + sec("light", f"""<form class="form-card" id="apply-form" novalidate data-form="apply">
-<fieldset class="field">
-<legend>How do you want to train? <span class="req">*</span></legend>
-<div class="choices">
-<label class="choice"><input type="radio" name="path" value="in-person" required> In person, Corvallis</label>
-<label class="choice"><input type="radio" name="path" value="online"> Online coaching</label>
-<label class="choice"><input type="radio" name="path" value="consult"> Not sure, let’s talk</label>
-</div>
-</fieldset>
+    hero("Online coaching", "Apply for online coaching.",
+         "Tell me about your training and goals. Your application comes straight to me, and if you’re a good fit you’ll hear back by email with next steps.",
+         f'<a class="link-u" href="{CONSULT}">Local to Corvallis? Book a free consult instead →</a>', short=True, size="h-display")
+    + sec("light", f"""<form class="form-card" id="apply-form" novalidate data-form="apply" data-done="Thanks, your application went straight to JR. You’ll hear back by email with next steps.">
+<input type="hidden" name="_subject" value="Online coaching application">
+<div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
 <div class="row2">
 <div class="field"><label for="f-first">First name <span class="req">*</span></label><input id="f-first" name="first_name" type="text" autocomplete="given-name" required></div>
 <div class="field"><label for="f-last">Last name <span class="req">*</span></label><input id="f-last" name="last_name" type="text" autocomplete="family-name" required></div>
@@ -197,7 +209,7 @@ APPLY = (
 </div>
 <div class="row2">
 <div class="field"><label for="f-freq">Current training frequency</label><select id="f-freq" name="frequency"><option value="">Select one</option>{opt(["0–2 days/week", "3–4 days/week", "5+ days/week"])}</select></div>
-<div class="field"><label for="f-level">Online coaching level <span class="hint">(if online)</span></label><select id="f-level" name="level"><option value="">Select one</option>{opt(["Essentials", "Core", "Premium", "Not sure yet"])}</select></div>
+<div class="field"><label for="f-level">Coaching level you’re interested in</label><select id="f-level" name="level"><option value="">Select one</option>{opt(["Essentials", "Core", "Premium", "Not sure yet"])}</select></div>
 </div>
 <fieldset class="field">
 <legend>Access to equipment</legend>
@@ -218,8 +230,7 @@ APPLY = (
 </div>
 </fieldset>
 <div class="field"><label for="f-msg">Anything else I should know?</label><textarea id="f-msg" name="message"></textarea></div>
-<label class="choice"><input type="checkbox" name="newsletter" value="yes"> Send me occasional news and updates by email</label>
-<p class="form-note">By applying you agree to the <a href="/privacy-policy">Privacy Policy</a>. Health details are optional; we’ll cover them in your consult.</p>
+<p class="form-note">Your application is emailed to JR. By applying you agree to the <a href="/privacy-policy">Privacy Policy</a>. Health details are optional; we’ll cover them on our first call.</p>
 <div class="form-status" role="status" hidden></div>
 <div class="btns"><button class="btn btn-red" type="submit">Submit application</button></div>
 </form>""", mark=False)
@@ -228,20 +239,28 @@ APPLY = (
 APPLY_SCRIPT = """<script>
 (function(){
   var f=document.getElementById('apply-form'); if(!f) return;
-  var q=new URLSearchParams(location.search), p=q.get('path'), lv=q.get('level');
-  if(p){var r=f.querySelector('input[name=path][value="'+p+'"]'); if(r) r.checked=true;}
+  var q=new URLSearchParams(location.search), lv=q.get('level');
   if(lv){var s=f.querySelector('#f-level'); for(var i=0;i<s.options.length;i++){if(s.options[i].value.toLowerCase()===lv){s.selectedIndex=i;}}}
 })();
 </script>"""
 
-# Shared form handler: preview mode until a backend is chosen.
+# Shared form handler: emails each submission to JR through FormSubmit (formsubmit.co).
 FORM_SCRIPT = """<script>
 document.querySelectorAll('form[data-form]').forEach(function(f){
   f.addEventListener('submit',function(e){
     e.preventDefault();
-    var st=f.querySelector('.form-status');
+    var st=f.querySelector('.form-status'), btn=f.querySelector('button[type=submit]');
     if(!f.checkValidity()){ st.textContent='Please fill in the required fields marked with *.'; st.hidden=false; f.reportValidity(); return; }
-    st.textContent='Preview only: this form isn’t connected yet, so nothing was sent.'; st.hidden=false;
+    var data={}; new FormData(f).forEach(function(v,k){ if(data[k]!==undefined){ data[k]=data[k]+', '+v; } else { data[k]=v; } });
+    if(data._honey){ return; }
+    var who=((data.first_name||'')+' '+(data.last_name||'')).trim();
+    if(who){ data._subject=(data._subject||'Website submission')+' — '+who; }
+    data._template='table'; data._captcha='false'; data.page=location.href;
+    btn.disabled=true; var label=btn.textContent; btn.textContent='Sending…'; st.hidden=true;
+    fetch('""" + FORM_ENDPOINT + """',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ if(!r.ok || String(j.success)==='false'){ throw new Error(j.message||'send failed'); } }); })
+      .then(function(){ f.reset(); st.textContent=f.getAttribute('data-done')||'Thanks, it’s in. You’ll hear back by email.'; st.hidden=false; btn.textContent=label; btn.disabled=false; })
+      .catch(function(){ st.textContent='Something went wrong sending this. Please email jr@jrstrengthandfitness.com directly.'; st.hidden=false; btn.textContent=label; btn.disabled=false; });
   });
 });
 </script>"""
@@ -291,28 +310,27 @@ PRIVACY = legal("Legal", "Privacy Policy", f"""{DRAFT}{UPDATED}
 <p>This policy explains what JR Strength and Fitness LLC (“we”) collects through jrstrengthandfitness.com and how we use it.</p>
 <h2>What we collect</h2>
 <ul>
-<li><strong>Coaching applications:</strong> your name, email, phone (optional), training goals, experience, equipment access, and anything else you choose to tell us.</li>
-<li><strong>Waiver signatures:</strong> your name, email and the date you signed.</li>
-<li><strong>Waitlist and newsletter sign-ups:</strong> your email address.</li>
+<li><strong>Online coaching applications:</strong> your name, email, phone (optional), training goals, experience, equipment access, and anything else you choose to tell us.</li>
+<li><strong>Waitlist sign-ups:</strong> your email address and the project you’re interested in.</li>
 <li><strong>Basic technical data:</strong> our hosting provider records standard server logs (such as IP address and browser type) to run and secure the site.</li>
 </ul>
 <h2>How we use it</h2>
 <ul>
 <li>To review your application and contact you about coaching.</li>
-<li>To keep a record of your signed waiver.</li>
-<li>To send news and updates, only if you opted in. You can unsubscribe at any time.</li>
+<li>To tell you when a project you signed up for opens. You can ask to be removed at any time.</li>
 </ul>
 <p>We don’t sell your personal information.</p>
 <h2>Who we share it with</h2>
 <ul>
 <li>Vercel, which hosts this website.</li>
 <li>Google Fonts, which serves the site’s typeface.</li>
-<li>{ph("Where form submissions are stored and how you're notified")}</li>
+<li>FormSubmit, which delivers form submissions from this site to our email inbox.</li>
+<li>Google Workspace, which hosts our email.</li>
 <li>Trainerize, if you become an online coaching client.</li>
 </ul>
 <p>We may also share information when required by law.</p>
 <h2>How long we keep it</h2>
-<p>We keep applications and waivers for as long as needed to provide coaching and meet legal obligations, then delete them. {ph("Confirm retention period")}</p>
+<p>We keep applications and sign-ups for as long as needed to provide coaching and meet legal obligations, then delete them. {ph("Confirm retention period")}</p>
 <h2>Your choices</h2>
 <p>You can ask us to see, correct or delete your information by emailing <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
 <h2>Minors</h2>
@@ -322,7 +340,7 @@ PRIVACY = legal("Legal", "Privacy Policy", f"""{DRAFT}{UPDATED}
 TERMS = legal("Legal", "Terms of Service", f"""{DRAFT}{UPDATED}
 <p>These terms apply to your use of jrstrengthandfitness.com and to coaching services from JR Strength and Fitness LLC (“we”). By using the site or our services, you agree to them.</p>
 <h2>Not medical advice</h2>
-<p>Content on this site and in our coaching is for general fitness education. It isn’t medical advice. Talk to your physician before starting a new exercise or nutrition program. Every client signs our <a href="/waiver">waiver</a> before training.</p>
+<p>Content on this site and in our coaching is for general fitness education. It isn’t medical advice. Talk to your physician before starting a new exercise or nutrition program. Clients sign a waiver with their training facility (Timberhill Athletic Club or G3 Sports &amp; Fitness) or coaching platform before training.</p>
 <h2>Coaching services</h2>
 <p>Online coaching packages, prices and inclusions are described on the <a href="/online-training">Online Coaching</a> page. Coaching is delivered through the Trainerize app, and payments are processed there. Cancellations and refunds follow our <a href="/refund-policy">Refund Policy</a>.</p>
 <p>We may decline an application if coaching isn’t a good fit.</p>
@@ -350,23 +368,6 @@ REFUND = legal("Legal", "Refund Policy", f"""{DRAFT}{UPDATED}
 <p>Email <a href="mailto:{EMAIL}">{EMAIL}</a> or message your coach in the app. {ph("Notice period, if any")}</p>
 <h2>Exceptions</h2>
 <p>If an injury or medical issue stops you from training, contact us. {ph("Your policy: e.g. pause or partial credit")}</p>""")
-WAIVER = legal("Legal", "Waiver", f"""<p>Because physical exercise can be strenuous and subject to risk of serious injury, you are urged to obtain a physical examination from a doctor before using any exercise equipment or participating in any exercise activity. You agree that by participating in physical exercise or training activities, you do so entirely at your own risk. Any recommendation for changes in diet including the use of food supplements, weight reduction and body building enhancement products are entirely your responsibility and you should consult a physician prior to undergoing any dietary or food supplement changes. You agree that you are voluntarily participating in these activities and assume all risks of injury, illness, or death.</p>
-<p>You acknowledge that you have carefully read this “waiver and release” and fully understand that it is a release of liability. You expressly agree to release and discharge JR Strength and Fitness LLC from any and all claims or causes of action and you agree to voluntarily give up or waive any right that you may otherwise have to bring a legal action against JR Strength and Fitness LLC for personal injury or damage.</p>
-<p>To the extent that statute or case law does not prohibit releases for negligence, this release is also for negligence.</p>
-<p>If any portion of this release form liability shall be deemed by a Court of competent jurisdiction to be invalid, then the remainder of this release from liability shall remain in full force and effect and the offending provision or provisions severed here from.</p>
-<p>By signing this release, I acknowledge that I understand its content and that this release cannot be modified orally.</p>
-<p><strong>JR Prieto-Romero</strong><br>Owner &amp; CEO<br>JR Strength and Fitness LLC</p>
-<form class="form-card" data-form="waiver" novalidate style="margin:16px 0 0;max-width:none">
-<h2 class="h-cell" style="padding-top:0">Sign the waiver</h2>
-<div class="row2">
-<div class="field"><label for="w-first">First name <span class="req">*</span></label><input id="w-first" name="first_name" type="text" autocomplete="given-name" required></div>
-<div class="field"><label for="w-last">Last name <span class="req">*</span></label><input id="w-last" name="last_name" type="text" autocomplete="family-name" required></div>
-</div>
-<div class="field"><label for="w-email">Email <span class="req">*</span></label><input id="w-email" name="email" type="email" autocomplete="email" required></div>
-<label class="choice"><input type="checkbox" name="agree" value="yes" required> I have read this waiver and agree to its terms. <span class="req">*</span></label>
-<div class="form-status" role="status" hidden></div>
-<div class="btns"><button class="btn btn-red" type="submit">Sign waiver</button></div>
-</form>""")
 
 NOT_FOUND = hero("404", "Page not found.", "That page moved or never existed.",
                  '<a class="btn btn-red" href="/">Go home</a><a class="link-u" href="/train">Train with JR →</a>', short=True, size="h-display")

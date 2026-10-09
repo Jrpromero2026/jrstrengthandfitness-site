@@ -33,12 +33,17 @@
     },
     {
       "source": "/train-with-me",
-      "destination": "/train",
+      "destination": "/consult",
       "permanent": true
     },
     {
       "source": "/contact",
-      "destination": "/train",
+      "destination": "/consult",
+      "permanent": true
+    },
+    {
+      "source": "/waiver",
+      "destination": "/terms-of-service",
       "permanent": true
     },
     {
