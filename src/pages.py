@@ -259,7 +259,7 @@ document.querySelectorAll('form[data-form]').forEach(function(f){
     btn.disabled=true; var label=btn.textContent; btn.textContent='Sending…'; st.hidden=true;
     fetch('""" + FORM_ENDPOINT + """',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
       .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ if(!r.ok || String(j.success)==='false'){ throw new Error(j.message||'send failed'); } }); })
-      .then(function(){ f.reset(); st.textContent=f.getAttribute('data-done')||'Thanks, it’s in. You’ll hear back by email.'; st.hidden=false; btn.textContent=label; btn.disabled=false; })
+      .then(function(){ if(window.va){ window.va('event',{name:(f.getAttribute('data-form')==='apply'?'Application submitted':'Waitlist signup'),data:{project:(data.project||data.level||''),page:location.pathname}}); } f.reset(); st.textContent=f.getAttribute('data-done')||'Thanks, it’s in. You’ll hear back by email.'; st.hidden=false; btn.textContent=label; btn.disabled=false; })
       .catch(function(){ st.textContent='Something went wrong sending this. Please email jr@jrstrengthandfitness.com directly.'; st.hidden=false; btn.textContent=label; btn.disabled=false; });
   });
 });

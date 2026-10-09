@@ -22,6 +22,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&amp;display=swap">
 <link rel="stylesheet" href="/assets/styles.css?v=cde64557e1">
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+<script defer src="/_vercel/insights/script.js"></script>
 
 </head>
 <body>
@@ -126,5 +128,16 @@
 </div>
 </footer>
 
+<script>
+/* Button and outbound-link click tracking for Vercel Web Analytics (2 properties max per event). */
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a'); if(!a) return;
+  var label=(a.getAttribute('data-track')||a.textContent||'').replace(/\s+/g,' ').trim().slice(0,60);
+  var url; try{ url=new URL(a.href, location.href); }catch(x){ return; }
+  if(url.protocol==='mailto:'){ window.va('event',{name:'Email click',data:{label:label,page:location.pathname}}); return; }
+  if(url.host!==location.host){ window.va('event',{name:'Outbound click',data:{to:url.host+url.pathname,label:label}}); return; }
+  if(a.classList.contains('btn')||a.classList.contains('link-u')){ window.va('event',{name:'CTA click',data:{label:label,page:location.pathname}}); }
+});
+</script>
 </body>
 </html>
