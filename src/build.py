@@ -56,7 +56,7 @@ PAGES = [
          body=P.WAIVER, script=P.FORM_SCRIPT),
     dict(path="/projects", file="projects.html", active="projects",
          title="Projects | JR Strength & Fitness",
-         description="What JR Prieto-Romero is building: The Trainer’s Coach Vault, Built For Her, TRAINCND and The Credential Standard.",
+         description="What JR Prieto-Romero is building: The Trainer’s Coach Vault, Built For Her™, TRAINCND and The Credential Standard.",
          body=PR.projects_index()),
 ] + [
     dict(path=f"/projects/{p['slug']}", file=f"projects/{p['slug']}.html", active="projects",

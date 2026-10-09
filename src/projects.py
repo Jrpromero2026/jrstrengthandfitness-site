@@ -32,7 +32,7 @@ PROJECTS = [
     ),
     dict(
         slug="built-for-her",
-        name="Built For Her",
+        name="Built For Her™",
         chip=("live", "Live · 7-day free trial"),
         tag=("live", "Live · free trial"),
         audience="For women 18+",
@@ -45,9 +45,9 @@ PROJECTS = [
             "Demo videos and the reasoning behind every exercise",
             "Calorie and macro targets with meal logging",
             "Progress tracking: body weight, strength, measurements, PRs and private photos",
-            "The Built For Her Score: training, fuel and standards over seven days",
+            "The Built For Her™ Score: training, fuel and standards over seven days",
         ],
-        why="Most fitness apps for women are content libraries. Built For Her is a training system: the same structure, progression and coaching standard I use with clients on the floor, built into an app.",
+        why="Most fitness apps for women are content libraries. Built For Her™ is a training system: the same structure, progression and coaching standard I use with clients on the floor, built into an app.",
         iaoe="",
         status=[
             ("App Access · $19.99/mo", "Self-guided training."),

@@ -109,7 +109,7 @@ def page(*, path, title, description, body, active="", schema=False, script="", 
 <nav class="col" aria-label="Projects">
 <span class="head">Projects</span>
 <a href="/projects/vault">Trainer’s Coach Vault</a>
-<a href="/projects/built-for-her">Built For Her</a>
+<a href="/projects/built-for-her">Built For Her™</a>
 <a href="/projects/traincnd">TRAINCND</a>
 <a href="/projects/credential-standard">The Credential Standard</a>
 </nav>
