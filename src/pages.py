@@ -179,21 +179,41 @@ ONLINE = (
 <li>PDF and in-app resources: macro guides, recipes, cardio planning</li>
 <li>Progress tracking with photos, metrics and performance</li>
 </ul></div>
-<div class="side"><div class="info-card"><span class="k">This is an application</span><div class="it"><b>Not a sign-up</b><span>If you’re a good fit, you’ll hear back with next steps.</span></div><div class="btns" style="padding-top:14px"><a class="btn btn-red" href="/apply">Apply now</a></div></div></div>
+<div class="side"><div class="info-card"><span class="k">This is an application</span><div class="it"><b>Not a sign-up</b><span>Apply, and I reply within 2 business days. If it’s a fit, we do a short call, then you get your coaching app invite.</span></div><div class="btns" style="padding-top:14px"><a class="btn btn-red" href="/apply">Apply now</a></div></div></div>
 </div>""")
 )
 
 # ---------------------------------------------------------------- Apply
+REPLY_TIME = "2 business days"
+NEXT_STEPS = [
+    ("Apply", "About five minutes. Your application comes straight to me."),
+    ("I reply", f"Within {REPLY_TIME}, by email. You’ll get a confirmation right away."),
+    ("Short call", "15–20 minutes by phone or video to talk through your goals and pick the right package."),
+    ("Start", "You get your coaching app invite, set up your first payment and we get to work."),
+]
+NEXT_CARD = ('<div class="info-card"><span class="k">What happens next</span>'
+             + "".join(f'<div class="it"><b>{i:02d} · {t}</b><span>{d}</span></div>' for i, (t, d) in enumerate(NEXT_STEPS, 1))
+             + "</div>")
+AUTORESPONSE = (
+    "Thanks for applying for online coaching with JR Strength & Fitness. "
+    f"Your application came straight to me, and I’ll reply within {REPLY_TIME}. "
+    "If it looks like a fit, we’ll set up a short call (15–20 minutes, phone or video) to talk through your goals and pick the right package. "
+    "After that you’ll get your coaching app invite and we’ll get to work. "
+    "If you need me before then, email jr@jrstrengthandfitness.com. "
+    "JR Prieto-Romero, CSCS"
+)
+
 def opt(values):
     return "".join(f'<option value="{v}">{v}</option>' for v in values)
 
 
 APPLY = (
     hero("Online coaching", "Apply for online coaching.",
-         "Tell me about your training and goals. Your application comes straight to me, and if you’re a good fit you’ll hear back by email with next steps.",
-         f'<a class="link-u" href="{CONSULT}">Local to Corvallis? Book a free consult instead →</a>', short=True, size="h-display")
-    + sec("light", f"""<form class="form-card" id="apply-form" novalidate data-form="apply" data-done="Thanks, your application went straight to JR. You’ll hear back by email with next steps.">
+         f"Tell me about your training and goals. Your application comes straight to me, and I reply to every one within {REPLY_TIME}.",
+         f'<a class="link-u" href="{CONSULT}">Local to Corvallis? Book a free consult instead →</a>', side=NEXT_CARD, short=True, size="h-display")
+    + sec("light", f"""<form class="form-card" id="apply-form" novalidate data-form="apply" data-done="Thanks, your application went straight to JR. A confirmation is on its way to your inbox, and you’ll hear back within {REPLY_TIME}.">
 <input type="hidden" name="_subject" value="Online coaching application">
+<input type="hidden" name="_autoresponse" value="{AUTORESPONSE.replace('&', '&amp;')}">
 <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
 <div class="row2">
 <div class="field"><label for="f-first">First name <span class="req">*</span></label><input id="f-first" name="first_name" type="text" autocomplete="given-name" required></div>
