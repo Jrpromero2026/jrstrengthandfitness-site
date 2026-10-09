@@ -288,3 +288,28 @@ fieldset { border: 0; padding: 0; margin: 0; }
 .site-header .btn-line { color: #fff; border-color: rgba(255,255,255,0.5); min-height: 44px; padding: 0 18px; font-size: 13px; }
 .site-header .btn-line:hover { background: #fff; color: #0a0a0a; border-bottom-color: #fff; }
 @media (max-width: 720px) { .site-header .btn-line { width: 100%; } }
+
+/* ---------------------------------------------------------------- Writing */
+a.post-row { color: inherit; transition: background .15s; }
+a.post-row:hover .t { color: var(--red); }
+.post-row .k .dt { font-weight: 500; letter-spacing: 0.08em; color: var(--muted); }
+.post-row .t { font-size: 22px; }
+.post { max-width: 800px; display: flex; flex-direction: column; gap: 56px; }
+.post-body { font-size: 18px; line-height: 1.75; gap: 22px; }
+.post-body h2 { font-size: 22px; padding-top: 22px; text-transform: uppercase; }
+.post-body h3 { font-weight: 800; font-size: 18px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg); padding-top: 8px; }
+.post-body ol, .post-body ul { margin: 0; padding-left: 24px; display: flex; flex-direction: column; gap: 8px; }
+.post-body strong { color: var(--fg); }
+.post-cta { padding: 40px; display: flex; flex-direction: column; gap: 14px; border-top: 4px solid var(--red); }
+.post-cta p { color: var(--body); }
+.post-cta .btns { padding-top: 8px; }
+.refs { display: flex; flex-direction: column; gap: 12px; font-size: 14px; line-height: 1.6; color: var(--muted); overflow-wrap: anywhere; }
+.refs h2 { font-weight: 800; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--eyebrow); padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+.refs a { color: inherit; text-decoration: underline; }
+.coach-cap { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px 64px; }
+.coach-cap > .stack { flex: 1 1 520px; min-width: 0; }
+@media (max-width: 720px) {
+  .post-body { font-size: 17px; }
+  .post-cta { padding: 28px 22px; }
+  .post-row .t { font-size: 20px; }
+}

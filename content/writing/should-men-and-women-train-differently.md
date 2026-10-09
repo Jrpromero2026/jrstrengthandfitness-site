@@ -1,0 +1,84 @@
+---
+title: Should Men and Women Train Differently?
+date: 2021-01-11
+category: Exercise Science
+audience: bfh
+excerpt: There are biological differences between men and women in body composition, fat distribution, muscle fiber and hormones, yet exercise prescription is mostly the same. What do the differences mean for training?
+---
+This question may cause controversy, but it is something that should be considered. Contrary to modern belief, there are biological differences between men and women such as body composition, fat distribution, muscle fiber count, hormonal influence, etc. Yet exercise prescription is relatively the same between the two sexes. This article will seek to establish what differences there are between men and women that could impact training performances or outcomes. It will also establish if any differences warrant any exercise prescription modifications. As a side note, this article is not meant to discourage either sex from any type of exercise training or poke the woke bubble. This is a legitimate question I, myself have pondered through my years of training both men and women at various ages. My focus as a coach has always been to establish optimal training methods for better performance and results.
+
+It is well established that exercise in general is beneficial for both men and women. Any strength training or aerobic training is going to have tremendous effect on men and women. The extent of these effects may be influenced by potential biological differences. Before I get into the main points of the article, I want to establish a lens for analyzing differences. Many people get a little too worked up when talking about inherent differences between men and women. Most of their argument, and therefore lens, is their fixed observation that some women showcase tremendous physical achievements of strength, power, and work output more than most men such as elite female sprinters, athletes, Crossfitters, etc. and that validates a notion that men and women are the same physically. It is important to remember that in this overlapping distribution, a large majority of men and women can be nearly the same, but at the extremes are vastly different. We are concerned with the extremes and how these differences may affect training.
+
+First, it is important to establish what these differences are. Body composition has been deemed the main reason for performance differences between men and women. On average, females have 2/3rd the muscle mass and 2x the fat as males (Lundsgaard, 2014). In the upper arm and thigh, women are seen to have larger fat cross- sectional area and smaller bone and muscle cross sectional area compared to men (Kanehisa , 1994).
+
+Females tend to have more subcutaneous fat meaning they have most of their fat layered between the muscle and skin while men have more visceral fat which is the fat stored around the organs. Women already have a health and metabolic advantage there. Visceral fat can cause many health concerns such as heart disease and diabetes. There is obviously a difference in fat distribution, but can it affect exercise performance that warrants different training methods?
+
+Fat plays a major role in exercise. It is the most energy abundant substrate, but it is slower. Women are generally better equipped metabolically in handling carbs and fat. They have a greater uptake of fat into the muscles. They utilize a larger portion of fat at any given exercise intensity than men do. This could be a factor for a greater fatigue resilience than men. On the carbs side, men have a higher glycolytic capacity with a much faster uptake of glucose in the muscles. This benefits men in fast, intense short bursts but it is not as fatigue resilient (Lundsgaard, 2014). It is clear there are differences in body composition and metabolic efficiency.
+
+Muscle composition is another area that can play a major role. The main difference that we have discussed already is women are generally smaller. They have less absolute muscle mass and smaller individual muscle fibers. This has been shown to display 2/3rd the absolute overall strength and power of men. Studies have shown females gaining more relative lower-body strength than males while males gained more absolute strength and absolute muscle size (Roberts, 2020). What this means is men can lift significantly heavier weights, but women are able to improve strength relative to their bodyweight greater than men. One study took untrained men and trained women athletes and found the untrained men had greater upper and lower body absolute and relative strength compared to the trained women (Morrow, 1981). These studies point towards the fact men may be inherently stronger than women, but why and does this affect training?
+
+One important factor for the differences in strength is body size as we mentioned before. Women on average are smaller with less absolute muscle mass and smaller muscle fibers. Muscle fibers generate force when we lift, and cross-sectional area of a muscle is a primary factor for how much force is applied. Muscle fibers produce approximately 30 N per square centimeter of cross-sectional area during an isometric contraction (McGinnis, 2013). One study found women were approximately 52% and 66% as strong in their upper body and lower body compared to men (Miller, 1993). They concluded that the great difference in strength is primarily due to the larger muscle fibers that are seen in men.
+
+While there seems to be a significant difference in body composition and muscle size, some studies have found strength per unit of cross-sectional area of a muscle are similar between females and males (Holloway, 1990; Ikai, 1998). This validates the main reason most men are inherently stronger than women is primarily due to differences in body size and muscle mass. Women also tend to have less lean mass proportionally in their upper body than men (Miller 1993).
+
+Another important factor of sex differences in strength and muscle mass is hormones. It is well known that men have higher testosterone, an anabolic hormone critical for lean muscle mass, than women do. It has been purported that the lack of anabolic hormones may limit training increases of muscle mass in women (Shepard, 2000).
+
+When it comes to training, it is apparent there are sex differences in adaptations to resistance training (Roberts, 2000). However, relative strength gains when training under the same program are similar between men and women (Lewis, 1986). Also, similar increases in strength performance and hypertrophy of muscle fibers relative to pretraining levels were found between the two sexes (Holloway, 1990).
+
+The main difference in strength training adaptation seem to occur differently between the upper body and lower body. Strength gains of the lower body are similar (Staron, 1985) while untrained women display a higher capacity to increase upper body strength than men (Roberts, 2020). This has a lot to do with women naturally having proportionally less upper body mass. Eccentric overload resistance training produces similar gains in strength, power, and muscle mass between men and women, but men have been seen to have greater improvements in maximal strength and power using higher loads (Fernandez-Gonzalo, 2014).
+
+When it comes to aerobic training, there are also significant differences between men and women. Women have lower blood volume, stroke volume, and cardiac output ultimately resulting in lower max aerobic power than men (Charkoudian, 2004; Shepard, 2000). Most of these differences are again due to different body sizes and composition. However, there appears to be no differences in cardiovascular adaptations to aerobic training with relatively similar increases in VO2 Max (Lewis, 1986; Pate, 1985).
+
+We established earlier that women are better metabolically for performance. We touched on the influence of fat and how women have more fat and can metabolize fat more than carbohydrates during exercise (Shepard, 2000). This was shown in a study that looked at differences between trained men and women distance runners and established the differences were largely due to the percentage of body fat (Sparling Cureton, 1983). Women also have a larger proportion of Type I muscle fibers than men which are slower yet more endurance-oriented fibers (Simoneau, 1989).
+
+It is also important to note the effects female hormones play. Estrogen and progesterone can play a key role in ventilation, metabolism, and thermoregulation during exercise (Charkoudian, 2004). We have seen that endurance trained men have 3 – 5 x as many estrogen receptors in muscles than sedentary men (Lundsgaard, 2014)). This does not mean you become more feminine. It means you are more sensitive to estrogen that has been seen to increase rate of glucose intake. Evidently, estrogen plays a key role in endurance performance.
+
+The final area of sex difference in training and performance is one I have noticed more in my time as an athlete and coach. I have witnessed a substantial difference in fatigue and recovery that has influenced aspects such as frequency and training volume and intensity. There are studies that support this observation. One study found that while men had greater muscle thickness and knee extension peak torque, women had a higher decrease of muscle fatigue slope showing muscle fatigue is significantly influenced by gender (Fujisawa, 2017). Women appear to be more resilient to neuromuscular fatigue and recover faster than men (Hakkinen, 1993). Men have been shown to have longer-lasting muscle soreness than women (Dannecker, 2012). There are possible factors that could explain the difference including body composition, metabolism, hormones, etc.
+
+Coming full circle, we established the differences between men and women when it comes to exercise. We covered body composition, hormones, metabolism, etc. We then discussed strength and aerobic training adaptations and established there are some differences between men and women. While there may be significant differences, some studies have concluded that it is difficult to establish if women should train differently than men and that training should be tailored to the individual (Roberts, 2020; Holloway, 1990) In ways, that is how I have gone about my training.
+
+I work with many women and men and I have found when you program and train them individually, some of these differences will manifest naturally in some way. I do not necessarily need to consciously modify programming simply because they are a woman or man. There are some aspects of their training that I keep in mind knowing some of the common differences in training and recovery. In my experience and what has been backed by some of the studies we covered, women tend to fair better with aerobically and metabolically oriented training. I have witnessed this in areas such as endurance sports, recreational choices of physical activity, and CrossFit. CrossFit seems to be the most ideal training structure of women based mostly on the high-volume demand and intense metabolic demand, areas that most women perform better in. Activities such as strongman, weightlifting, and powerlifting are most ideal for men based mostly on the glycolytic nature of the activities and muscular demand of high loads. This does not mean men cannot do CrossFit and women should not powerlift. It takes time to establish what your preferences are and ultimately what your goals are. An experienced coach would be able to structure an individual program that may contain certain aspects of each modality of exercise. Therefore, it is not incumbent on anyone to drastically modify a program between men and women. The training variables I have monitored and modified are frequency, volume tolerance, and inter-session recovery. Most men need longer rest periods between sets while women might and may perform better with fewer rest. Most women I have trained can handle more time under tension than men as well. This is just a few ways you can think about training differences and if these differences manifest themselves in your training, that is okay. Embrace it.
+
+## References
+
+Charkoudian N, Joyner MJ. Physiologic considerations for exercise performance in women. Clin Chest Med. 2004 Jun;25(2):247-55. doi: 10.1016/j.ccm.2004.01.001. PMID: 15099886.
+
+Daniels J, Daniels N. Running economy of elite male and elite female runners. Med Sci Sports Exerc. 1992 Apr;24(4):483-9. PMID: 1560747.
+
+Dannecker EA, Liu Y, Rector RS, Thomas TR, Fillingim RB, Robinson ME. Sex differences in exercise-induced muscle pain and muscle damage. J Pain. 2012 Dec;13(12):1242-9. doi: 10.1016/j.jpain.2012.09.014. PMID: 23182229; PMCID: PMC3513404.
+
+Fernandez-Gonzalo R, Lundberg TR, Alvarez-Alvarez L, de Paz JA. Muscle damage responses and adaptations to eccentric-overload resistance exercise in men and women. Eur J Appl Physiol. 2014 May;114(5):1075-84. doi: 10.1007/s00421-014-2836-7. Epub 2014 Feb 12. PMID: 24519446.
+
+Lundsgaard Anne-Marie, Kiens Bente. Gender Differences in Skeletal Muscle Substrate Metabolism – Molecular Mechanisms and Insulin Sensitivity. Frontiers in Endocrinology. 2014; 5(195). Doi: 10.3389/fendo.2014.00195
+
+Fujisawa C MSc Pt, Tamaki A PhD Pt, Yamada E PhD Pt, Matsuoka H PhD Md. Influence of gender on muscle fatigue during dynamic knee contractions. Phys Ther Res. 2017 Feb 24;20(1):1-8. doi: 10.1298/ptr.E9889. PMID: 28781931; PMCID: PMC5515715.
+
+Häkkinen K. Neuromuscular fatigue and recovery in male and female athletes during heavy resistance exercise. Int J Sports Med. 1993 Feb;14(2):53-9. doi: 10.1055/s-2007-1021146. PMID: 8463025.
+
+Holloway JB, Baechle TR. Strength training for female athletes. A review of selected aspects. Sports Med. 1990 Apr;9(4):216-28. doi: 10.2165/00007256-199009040-00003. PMID: 2183330.
+
+Hubal MJ, Gordish-Dressman H, Thompson PD, Price TB, Hoffman EP, Angelopoulos TJ, Gordon PM, Moyna NM, Pescatello LS, Visich PS, Zoeller RF, Seip RL, Clarkson PM. Variability in Muscle Size and Strength Gain after Unilateral Resistance Training. Medicine &amp; Science in Sports &amp; Exercise: June 2005 - Volume 37 - Issue 6 - p 964-972.
+
+Ikai, M., Fukunaga, T. Calculation of muscle strength per unit cross-sectional area of human muscle by means of ultrasonic measurement. Int. Z. Angew. Physiol. Einschl. Arbeitsphysiol. 26, 26–32 (1968). [https://doi.org/10.1007/BF00696087](https://doi.org/10.1007/BF00696087)
+
+Jones MD, Wewege MA, Hackett DA, Keogh JWL, Hagstrom AD. Sex Differences in Adaptations in Muscle Strength and Size Following Resistance Training in Older Adults: A Systematic Review and Meta-analysis. Sports Med. 2020 Dec 17. doi: 10.1007/s40279-020-01388-4. Epub ahead of print. PMID: 33332016.
+
+Kanehisa H, Ikegawa S, Fukunaga T. Comparison of muscle cross-sectional area and strength between untrained women and men. Eur J Appl Physiol Occup Physiol. 1994;68(2):148-54. doi: 10.1007/BF00244028. PMID: 8194544.
+
+Lewis DA, Kamon E, Hodgson JL. Physiological differences between genders. Implications for sports conditioning. Sports Med. 1986 Sep-Oct;3(5):357-69. doi: 10.2165/00007256-198603050-00005. PMID: 3529284.
+
+Lundsgaard A-M and Kiens B (2014) Gender differences in skeletal muscle substrate metabolism – molecular mechanisms and insulin sensitivity. Front. Endocrinol. 5:195. doi: 10.3389/fendo.2014.00195
+
+McGinnis, Peter M. (2013). Biomechanics of Sport and Exercise (3rd ed.). Champaign, IL: Human Kinetics. ISBN 978-0-7360-7966-2.
+
+Miller AE, MacDougall JD, Tarnopolsky MA, Sale DG. Gender differences in strength and muscle fiber characteristics. Eur J Appl Physiol Occup Physiol. 1993;66(3):254-62. doi: 10.1007/BF00235103. PMID: 8477683.
+
+Morrow JR Jr, Hosler WW. Strength comparisons in untrained men and trained women athletes. Med Sci Sports Exerc. 1981;13(3):194-7. PMID: 7253873.
+
+Roberts, Brandon M.; Nuckols, Greg; Krieger, James W. Sex Differences in Resistance Training: A Systematic Review and Meta-Analysis, Journal of Strength and Conditioning Research: May 2020 - Volume 34 - Issue 5 - p 1448-1460
+
+Shephard RJ. Exercise and training in women, Part I: Influence of gender on exercise and training responses. Can J Appl Physiol. 2000 Feb;25(1):19-34. doi: 10.1139/h00-002. PMID: 10683598.
+
+Simoneau JA, Bouchard C. Human variation in skeletal muscle fiber-type proportion and enzyme activities. Am J Physiol. 1989 Oct;257(4 Pt 1):E567-72. doi: 10.1152/ajpendo.1989.257.4.E567. PMID: 2529775.
+
+Staron RS, Karapondo DL, Kraemer WJ, Fry AC, Gordon SE, Falkel JE, Hagerman FC, Hikida RS. Skeletal muscle adaptations during early phase of heavy-resistance training in men and women. J Appl Physiol (1985). 1994 Mar;76(3):1247-55. doi: 10.1152/jappl.1994.76.3.1247. PMID: 8005869.

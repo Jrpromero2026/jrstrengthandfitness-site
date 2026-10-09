@@ -290,13 +290,6 @@ ABOUT = (
     + sec("light", head_row("What I’m building", "Four projects.<br>One standard.") + P.panel())
 )
 
-# ---------------------------------------------------------------- Writing
-WRITING = (
-    hero("Writing", "Coaching systems,<br>in public.",
-         "I write about coaching systems, consultations and building in public. New posts go up on LinkedIn every weekday.",
-         f'<a class="btn btn-red" href="{LINKEDIN}" rel="noopener">Follow JR on LinkedIn</a>', short=True, size="h-display")
-)
-
 # ---------------------------------------------------------------- Legal
 DRAFT = '<p class="draft">Draft for JR’s review before launch. This is not legal advice; have an attorney review it.</p>'
 UPDATED = "<p class=\"muted\">Last updated: [launch date]</p>"

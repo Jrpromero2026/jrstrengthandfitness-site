@@ -82,6 +82,56 @@
       "permanent": true
     },
     {
+      "source": "/blog/5-questions-to-ask-during-a-personal-training-consultation",
+      "destination": "/writing/5-questions-to-ask-during-a-personal-training-consultation",
+      "permanent": true
+    },
+    {
+      "source": "/blog/should-men-and-women-train-differently",
+      "destination": "/writing/should-men-and-women-train-differently",
+      "permanent": true
+    },
+    {
+      "source": "/blog/what-happens-when-you-combine-strength-and-endurance-training",
+      "destination": "/writing/what-happens-when-you-combine-strength-and-endurance-training",
+      "permanent": true
+    },
+    {
+      "source": "/blog/is-constantly-varied-exercise-worthwhile",
+      "destination": "/writing/is-constantly-varied-exercise-worthwhile",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-quickly-you-lose-strength-gains",
+      "destination": "/writing/how-quickly-you-lose-strength-gains",
+      "permanent": true
+    },
+    {
+      "source": "/blog/mastering-client-assessment-and-goal-setting-for-effective-progress",
+      "destination": "/writing/5-questions-to-ask-during-a-personal-training-consultation",
+      "permanent": true
+    },
+    {
+      "source": "/blog/creating-effective-workout-programs-a-step-by-step-guide-to-tailored-fitness-routines",
+      "destination": "/projects/vault",
+      "permanent": true
+    },
+    {
+      "source": "/blog/anatomy-and-exercise-science-basics-fundamentals-every-personal-trainer-should-know",
+      "destination": "/projects/vault",
+      "permanent": true
+    },
+    {
+      "source": "/blog/essential-qualities-of-personal-trainers",
+      "destination": "/projects/vault",
+      "permanent": true
+    },
+    {
+      "source": "/blog/introduction-to-personal-training-unveiling-the-role-benefits-and-opportunities",
+      "destination": "/train",
+      "permanent": true
+    },
+    {
       "source": "/blog/:path*",
       "destination": "/writing",
       "permanent": true

@@ -7,6 +7,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from layout import page, SITE  # noqa: E402
 import pages as P  # noqa: E402
 import projects as PR  # noqa: E402
+import writing as W  # noqa: E402
 from PIL import Image, ImageDraw, ImageFilter  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -40,8 +41,8 @@ PAGES = [
          body=P.ABOUT),
     dict(path="/writing", file="writing.html", active="",
          title="Writing | JR Strength & Fitness",
-         description="JR Prieto-Romero writes about coaching systems, consultations and building in public.",
-         body=P.WRITING),
+         description="Research reviews and coaching notes from JR Prieto-Romero, CSCS: consultations, programming, strength and conditioning science, and training women.",
+         body=W.index_body()),
     dict(path="/privacy-policy", file="privacy-policy.html", active="",
          title="Privacy Policy | JR Strength & Fitness",
          description="How JR Strength and Fitness LLC collects and uses information on jrstrengthandfitness.com.",
@@ -64,7 +65,7 @@ dict(path="/projects", file="projects.html", active="projects",
          description=(p['tagline'] + " " + p['card']).replace("&amp;", "&"),
          body=PR.project_page(p), script=P.FORM_SCRIPT if p.get("waitlist") else "")
     for p in PR.PROJECTS
-] + [
+] + W.page_specs() + [
     dict(path="/404", file="404.html", active="", sitemap=False,
          title="Page not found | JR Strength & Fitness",
          description="That page moved or never existed.",
@@ -78,7 +79,16 @@ REDIRECTS = [
     ("/train-with-me", "/consult"), ("/contact", "/consult"), ("/waiver", "/terms-of-service"),
     ("/mentorship", "/"), ("/trainer-mentorship", "/"), ("/mentorship-program-application", "/"),
     ("/resources", "/"), ("/new-gallery", "/"),
-    ("/blog", "/writing"), ("/blog-1", "/writing"), ("/blog/:path*", "/writing"),
+    ("/blog", "/writing"), ("/blog-1", "/writing"),
+] + [(f"/blog/{p['slug']}", f"/writing/{p['slug']}") for p in W.POSTS] + [
+    # 2023 posts that were retired: send each to its closest match
+    ("/blog/mastering-client-assessment-and-goal-setting-for-effective-progress",
+     "/writing/5-questions-to-ask-during-a-personal-training-consultation"),
+    ("/blog/creating-effective-workout-programs-a-step-by-step-guide-to-tailored-fitness-routines", "/projects/vault"),
+    ("/blog/anatomy-and-exercise-science-basics-fundamentals-every-personal-trainer-should-know", "/projects/vault"),
+    ("/blog/essential-qualities-of-personal-trainers", "/projects/vault"),
+    ("/blog/introduction-to-personal-training-unveiling-the-role-benefits-and-opportunities", "/train"),
+    ("/blog/:path*", "/writing"),
     ("/store", "/"), ("/store/:path*", "/"), ("/cart", "/"),
 ]
 
@@ -88,7 +98,8 @@ def build_pages():
         html = page(path=spec["path"], title=spec["title"].replace("&", "&amp;"),
                     description=spec["description"].replace("&", "&amp;"), body=spec["body"],
                     active=spec["active"], schema=spec.get("schema", False),
-                    script=spec.get("script", ""), closing=spec.get("closing", True))
+                    script=spec.get("script", ""), closing=spec.get("closing", True),
+                    og_type=spec.get("og_type", "website"), head=spec.get("head", ""))
         os.makedirs(os.path.dirname(os.path.join(OUT, spec["file"])), exist_ok=True)
         with open(os.path.join(OUT, spec["file"]), "w", encoding="utf-8") as fh:
             fh.write(html)

@@ -56,7 +56,7 @@ def closing_cta():
 </section>"""
 
 
-def page(*, path, title, description, body, active="", schema=False, script="", closing=True, **_):
+def page(*, path, title, description, body, active="", schema=False, script="", closing=True, og_type="website", head="", **_):
     nav = "\n".join(
         f'<a href="{href}"{" aria-current=\"page\"" if key == active else ""}>{label}</a>'
         for href, label, key in NAV
@@ -70,7 +70,7 @@ def page(*, path, title, description, body, active="", schema=False, script="", 
 <title>{title}</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="{canonical}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{og_type}">
 <meta property="og:site_name" content="JR Strength &amp; Fitness">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
@@ -89,6 +89,7 @@ def page(*, path, title, description, body, active="", schema=False, script="", 
 <script>window.va=window.va||function(){{(window.vaq=window.vaq||[]).push(arguments);}};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 {SCHEMA if schema else ""}
+{head}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
