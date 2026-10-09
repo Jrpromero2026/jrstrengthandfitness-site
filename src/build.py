@@ -14,7 +14,7 @@ OUT = os.path.join(ROOT, "public")
 ASSETS = os.path.join(OUT, "assets")
 
 PAGES = [
-    dict(path="/", file="index.html", active="", schema=True, low_watermark=True,
+    dict(path="/", file="index.html", active="", schema=True,
          title="JR Strength & Fitness | Coach, Builder · Corvallis, Oregon",
          description="JR Prieto-Romero, CSCS: Director of Training at Timberhill Athletic Club and Director of Personal Training and Performance at G3 Sports & Fitness. Coaching in Corvallis and online, plus tools for coaches.",
          body=P.HOME),
@@ -29,7 +29,7 @@ PAGES = [
     dict(path="/apply", file="apply.html", active="train",
          title="Apply to Train with JR | JR Strength & Fitness",
          description="Apply for in-person training in Corvallis or online coaching with JR Prieto-Romero, CSCS.",
-         body=P.APPLY, script=P.APPLY_SCRIPT + P.FORM_SCRIPT),
+         body=P.APPLY, script=P.APPLY_SCRIPT + P.FORM_SCRIPT, closing=False),
     dict(path="/about", file="about.html", active="about",
          title="About JR Prieto-Romero, CSCS | JR Strength & Fitness",
          description="Director of Training at Timberhill Athletic Club, Director of Personal Training and Performance at G3 Sports & Fitness, Oregon State Exercise & Sport Science graduate, ~20,000 coaching hours.",
@@ -88,7 +88,7 @@ def build_pages():
         html = page(path=spec["path"], title=spec["title"].replace("&", "&amp;"),
                     description=spec["description"].replace("&", "&amp;"), body=spec["body"],
                     active=spec["active"], schema=spec.get("schema", False),
-                    low_watermark=spec.get("low_watermark", False), script=spec.get("script", ""))
+                    script=spec.get("script", ""), closing=spec.get("closing", True))
         os.makedirs(os.path.dirname(os.path.join(OUT, spec["file"])), exist_ok=True)
         with open(os.path.join(OUT, spec["file"]), "w", encoding="utf-8") as fh:
             fh.write(html)

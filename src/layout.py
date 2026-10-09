@@ -34,13 +34,29 @@ SCHEMA = """<script type="application/ld+json">{
 }</script>""" % (SITE, EMAIL, SITE, LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK)
 
 
-def page(*, path, title, description, body, active="", schema=False, low_watermark=False, script=""):
+CONSULT = "/apply?path=consult"
+
+
+def closing_cta():
+    return f"""<section class="closing" id="start" aria-label="Get started">
+<img class="watermark" src="/assets/jr-watermark.png" alt="" aria-hidden="true">
+<div class="wrap">
+<div class="tagline"><b>Start training yesterday.</b><span>You’ll thank yourself tomorrow.</span></div>
+<div class="cta-card">
+<h2 class="h-md" style="color:#121212">Ready to train?</h2>
+<p>Start with a free 30-minute consult, in person in Corvallis or online. I’ll match you with the right coach and program.</p>
+<div class="btns" style="padding-top:4px"><a class="btn btn-red" href="{CONSULT}">Book a free consult</a><a class="mail" href="mailto:{EMAIL}">{EMAIL}</a></div>
+</div>
+</div>
+</section>"""
+
+
+def page(*, path, title, description, body, active="", schema=False, script="", closing=True, **_):
     nav = "\n".join(
         f'<a href="{href}"{" aria-current=\"page\"" if key == active else ""}>{label}</a>'
         for href, label, key in NAV
     )
     canonical = SITE + (path if path != "/" else "/")
-    low = '<img class="watermark low" src="/assets/jr-watermark.png" alt="" aria-hidden="true">' if low_watermark else ""
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -63,40 +79,31 @@ def page(*, path, title, description, body, active="", schema=False, low_waterma
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&amp;display=swap">
 <link rel="stylesheet" href="/assets/styles.css">
 {SCHEMA if schema else ""}
 </head>
 <body>
-<div class="backdrop">
-{GRAIN}
-<img class="watermark hero" src="/assets/jr-watermark.png" alt="" aria-hidden="true">
-{low}
-<div class="page">
+<a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
+<div class="wrap">
 <a class="logo" href="/" aria-label="JR Strength &amp; Fitness home"><img src="/assets/jr-logo.png" alt="JR Strength &amp; Fitness" width="{LOGO_W}" height="{LOGO_H}"></a>
 <nav class="site-nav" aria-label="Main">
 {nav}
+<a class="btn btn-red" href="{CONSULT}">Book a free consult</a>
 </nav>
+</div>
 </header>
 <main id="main">
 {body}
 </main>
-<section class="band" aria-label="Get started">
-<div class="wrap">
-<div class="stack" style="gap:10px">
-<h2>Start training yesterday</h2>
-<span class="tag">You’ll Thank Yourself Tomorrow</span>
-</div>
-<a class="btn btn-square" href="/train">Join today</a>
-</div>
-</section>
+{closing_cta() if closing else ""}
 <footer class="site-footer">
-<div class="wrap">
-<div class="col">
+<div class="wrap cols">
+<div class="brand">
 <img src="/assets/jr-logo.png" alt="JR Strength &amp; Fitness" width="{LOGO_W}" height="{LOGO_H}">
-<a href="mailto:{EMAIL}">{EMAIL}</a>
-<span>Coaching at Timberhill Athletic Club and G3 Sports &amp; Fitness, Corvallis, Oregon</span>
+<span class="motto">Built on standards. Proven through execution.</span>
+<a href="mailto:{EMAIL}" style="color:#fff">{EMAIL}</a>
 </div>
 <nav class="col" aria-label="Projects">
 <span class="head">Projects</span>
@@ -110,27 +117,31 @@ def page(*, path, title, description, body, active="", schema=False, low_waterma
 <a href="/train">Train with JR</a>
 <a href="/online-training">Online coaching</a>
 <a href="/apply">Apply</a>
-<a href="/writing">Writing</a>
+<a href="/about">About JR</a>
 </nav>
+<div class="col">
+<span class="head">Train in Corvallis</span>
+<span>Timberhill Athletic Club</span>
+<span>G3 Sports &amp; Fitness</span>
+<span>Online, anywhere</span>
+</div>
 <nav class="col" aria-label="Follow">
 <span class="head">Follow</span>
 <a href="{LINKEDIN}">LinkedIn</a>
 <a href="{INSTAGRAM}">Instagram</a>
 <a href="{YOUTUBE}">YouTube</a>
 <a href="{FACEBOOK}">Facebook</a>
+<a href="/writing">Writing</a>
 </nav>
-<nav class="col" aria-label="Legal">
-<span class="head">Legal</span>
+</div>
+<div class="wrap legal">
+<span>© 2026 JR Strength and Fitness LLC</span>
 <a href="/privacy-policy">Privacy Policy</a>
 <a href="/terms-of-service">Terms of Service</a>
 <a href="/refund-policy">Refund Policy</a>
 <a href="/waiver">Waiver</a>
-</nav>
 </div>
-<div class="wrap copyright">© 2026 JR Strength and Fitness LLC</div>
 </footer>
-</div>
-</div>
 {script}
 </body>
 </html>
