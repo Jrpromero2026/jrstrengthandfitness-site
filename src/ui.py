@@ -56,9 +56,21 @@ def rows(items):
     return f'<div class="rows">{"".join(out)}</div>'
 
 
+# Real photos go here as they come in: label -> (path under /assets, alt text).
+PHOTOS = {}
+
+
 def frame(label, wide=False, card=""):
+    """Photo slot. Until JR supplies the photo for `label`, shows a branded panel instead of a placeholder."""
     cls = "frame with-card" if card else "frame"
-    return f'<div class="{cls}"><div class="media{" wide" if wide else ""}">{ph(label)}</div>{card}</div>'
+    w = " wide" if wide else ""
+    if label in PHOTOS:
+        src, alt = PHOTOS[label]
+        media = f'<div class="media photo{w}"><img src="{src}" alt="{alt}" loading="lazy"></div>'
+    else:
+        media = (f'<div class="media brand-fill{w}" aria-hidden="true"><!-- photo slot: {label} -->'
+                 f'<img src="/assets/jr-mark.png" alt=""></div>')
+    return f'<div class="{cls}">{media}{card}</div>'
 
 
 def ext(href):

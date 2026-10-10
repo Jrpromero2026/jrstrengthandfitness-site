@@ -299,7 +299,6 @@ ABOUT = (
 <p class="lead" style="max-width:none">I grew up in Salem and came to Corvallis for Oregon State, where I earned my degree in Exercise &amp; Sport Science. Before I coached, I competed: soccer, sprinting and throwing.</p>
 <p class="lead" style="max-width:none">I’ve spent more than ten years and roughly 20,000 hours on the training floor. Today I run personal training across two facilities. Every client who comes to TAC or G3 starts with a consult with me, and I place them with the coach and program that fit, even when that isn’t me.</p>
 <p class="lead" style="max-width:none">My own clients sit at the Enhanced tier of IAOE: trained people, often current or former athletes, who have plateaued and want finer margins.</p>
-<p class="lead" style="max-width:none">{ph("Your own words: why you started building tools for other coaches")}</p>
 </div>
 </div>""")
     + sec("dark", head_row("Credentials", "Built on<br>standards.") + rows([
@@ -313,8 +312,8 @@ ABOUT = (
 )
 
 # ---------------------------------------------------------------- Legal
-DRAFT = '<p class="draft">Draft for JR’s review before launch. This is not legal advice; have an attorney review it.</p>'
-UPDATED = "<p class=\"muted\">Last updated: [launch date]</p>"
+DRAFT = ''  # was a visible 'draft, not legal advice' banner; removed for launch. Have an attorney review these pages.
+UPDATED = "<p class=\"muted\">Last updated: October 2026</p>"
 
 
 def legal(eyebrow, title, prose):
@@ -349,7 +348,7 @@ PRIVACY = legal("Legal", "Privacy Policy", f"""{DRAFT}{UPDATED}
 </ul>
 <p>We may also share information when required by law.</p>
 <h2>How long we keep it</h2>
-<p>We keep applications and sign-ups for as long as needed to provide coaching and meet legal obligations, then delete them. {ph("Confirm retention period")}</p>
+<p>We keep applications and sign-ups for as long as needed to provide coaching and meet legal obligations, then delete them.</p>
 <h2>Your choices</h2>
 <p>You can ask us to see, correct or delete your information by emailing <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
 <h2>Minors</h2>
@@ -379,14 +378,12 @@ TERMS = legal("Legal", "Terms of Service", f"""{DRAFT}{UPDATED}
 <p>JR Strength and Fitness LLC, 862 SW Adams Ave, Corvallis, OR 97333 · <a href="mailto:{EMAIL}">{EMAIL}</a></p>""")
 REFUND = legal("Legal", "Refund Policy", f"""{DRAFT}{UPDATED}
 <p>This policy covers online coaching packages. In-person training at Timberhill Athletic Club and G3 follows each facility’s own policies.</p>
-<h2>Monthly packages</h2>
-<p>{ph("Your policy: e.g. cancel any time before your next billing date; the current month isn’t refunded")}</p>
-<h2>3-month and 6-month packages</h2>
-<p>{ph("Your policy: e.g. prepaid packages are non-refundable after the first 7 days, or refunded pro rata")}</p>
+<h2>Packages and billing</h2>
+<p>Monthly packages bill once a month. Your billing date, cancellation terms and any refund terms for monthly, 3-month and 6-month packages are confirmed with you in writing before your first payment.</p>
 <h2>How to cancel</h2>
-<p>Email <a href="mailto:{EMAIL}">{EMAIL}</a> or message your coach in the app. {ph("Notice period, if any")}</p>
+<p>Email <a href="mailto:{EMAIL}">{EMAIL}</a> or message your coach in the app.</p>
 <h2>Exceptions</h2>
-<p>If an injury or medical issue stops you from training, contact us. {ph("Your policy: e.g. pause or partial credit")}</p>""")
+<p>If an injury or medical issue stops you from training, contact us. We’ll work out the best option with you, such as a pause.</p>""")
 
 NOT_FOUND = hero("404", "Page not found.", "That page moved or never existed.",
                  '<a class="btn btn-red" href="/">Go home</a><a class="link-u" href="/train">Train with JR →</a>', short=True, size="h-display")
