@@ -313,3 +313,14 @@ a.post-row:hover .t { color: var(--red); }
   .post-cta { padding: 28px 22px; }
   .post-row .t { font-size: 20px; }
 }
+
+/* ---------------------------------------------------------------- Newsletter */
+.nl-form { max-width: 520px; margin: 0; padding: 36px; gap: 20px; }
+.nl-form .choices { flex-direction: column; gap: 0; }
+.nl-form .choice { min-height: 40px; font-size: 16px; }
+.nl-form .form-note { font-size: 13px; }
+.hero .nl-form { box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
+@media (max-width: 720px) { .nl-form { padding: 26px 20px; } }
+.field .choice { font-weight: 400; font-size: 17px; letter-spacing: 0.01em; text-transform: none; color: #2A2A2A; }
+.choice input { flex-shrink: 0; }
+.nl-form .field .choice { font-size: 16px; }

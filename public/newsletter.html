@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found | JR Strength &amp; Fitness</title>
-<meta name="description" content="That page moved or never existed.">
-<link rel="canonical" href="https://www.jrstrengthandfitness.com/404">
+<title>Newsletter | Notes from the Floor | JR Strength &amp; Fitness</title>
+<meta name="description" content="Notes from JR Prieto-Romero, CSCS: what he's testing with clients and coaches, new writing, and first word on TRAINCND and The Credential Standard.">
+<link rel="canonical" href="https://www.jrstrengthandfitness.com/newsletter">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="JR Strength &amp; Fitness">
-<meta property="og:title" content="Page not found | JR Strength &amp; Fitness">
-<meta property="og:description" content="That page moved or never existed.">
-<meta property="og:url" content="https://www.jrstrengthandfitness.com/404">
+<meta property="og:title" content="Newsletter | Notes from the Floor | JR Strength &amp; Fitness">
+<meta property="og:description" content="Notes from JR Prieto-Romero, CSCS: what he's testing with clients and coaches, new writing, and first word on TRAINCND and The Credential Standard.">
+<meta property="og:url" content="https://www.jrstrengthandfitness.com/newsletter">
 <meta property="og:image" content="https://www.jrstrengthandfitness.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -48,12 +48,21 @@
 <img class="watermark" src="/assets/jr-watermark.png" alt="" aria-hidden="true">
 <div class="wrap split">
 <div class="main stack" style="gap:24px">
-<span class="eyebrow">404</span>
-<h1 class="h-display">Page not found.</h1>
-<p class="lead">That page moved or never existed.</p>
-<div class="btns" style="padding-top:6px"><a class="btn btn-red" href="/">Go home</a><a class="link-u" href="/train">Train with JR →</a></div>
-</div>
+<span class="eyebrow">The newsletter</span>
+<h1 class="h-display">Notes from<br>the floor.</h1>
+<p class="lead">What I’m testing with clients and coaches, new writing, and first word when TRAINCND and The Credential Standard open. No spam. Unsubscribe anytime.</p>
 
+</div>
+<div class="side"><form class="form-card nl-form" method="post" action="/newsletter" novalidate data-newsletter>
+<div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+<div class="field"><label for="nl-first-p">First name</label><input id="nl-first-p" name="fields[first_name]" type="text" autocomplete="given-name"></div>
+<div class="field"><label for="nl-email-p">Email <span class="req">*</span></label>
+<input id="nl-email-p" name="email_address" type="email" autocomplete="email" required></div>
+<fieldset class="field"><legend>I’m most interested in</legend><div class="choices"><label class="choice"><input type="radio" name="interest" value="coach" checked> I coach or train others</label><label class="choice"><input type="radio" name="interest" value="training"> My own training</label><label class="choice"><input type="radio" name="interest" value="women"> Strength training for women</label></div></fieldset>
+<div class="form-status" role="status" hidden></div>
+<div class="btns"><button class="btn btn-red" type="submit">Join the list</button></div>
+<p class="form-note">See the <a href="/privacy-policy">Privacy Policy</a>.</p>
+</form></div>
 </div>
 </section>
 </main>
@@ -113,7 +122,30 @@
 <a href="/refund-policy">Refund Policy</a>
 </div>
 </footer>
-
+<script>
+(function(){
+  var KIT={"coach": "", "training": "", "women": ""};
+  document.querySelectorAll('form[data-newsletter]').forEach(function(f){
+    f.addEventListener('submit',function(e){
+      var st=f.querySelector('.form-status'), btn=f.querySelector('button[type=submit]');
+      if(!f.checkValidity()){ e.preventDefault(); st.textContent='Please enter your email.'; st.hidden=false; f.reportValidity(); return; }
+      var fd=new FormData(f); if(fd.get('_honey')){ e.preventDefault(); return; }
+      var interest=fd.get('interest')||'coach';
+      if(window.va){ window.va('event',{name:'Newsletter signup',data:{interest:interest,page:location.pathname}}); }
+      if(KIT[interest]){ f.action='https://app.kit.com/forms/'+KIT[interest]+'/subscriptions'; return; }
+      e.preventDefault();
+      var data={_subject:'Newsletter signup ('+interest+')', email:fd.get('email_address'), first_name:fd.get('fields[first_name]')||'', interest:interest,
+        _template:'table', _captcha:'false', page:location.href,
+        _autoresponse:'You’re on the list. I’ll be in touch with notes from the floor, new writing and project launches. JR Prieto-Romero, JR Strength & Fitness'};
+      btn.disabled=true; var label=btn.textContent; btn.textContent='Sending…'; st.hidden=true;
+      fetch('https://formsubmit.co/ajax/jr@jrstrengthandfitness.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+        .then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ if(!r.ok||String(j.success)==='false'){ throw new Error('send failed'); } }); })
+        .then(function(){ f.reset(); st.textContent='You’re on the list. Watch your inbox.'; st.hidden=false; btn.textContent=label; btn.disabled=false; })
+        .catch(function(){ st.textContent='Something went wrong. Please email jr@jrstrengthandfitness.com and I’ll add you.'; st.hidden=false; btn.textContent=label; btn.disabled=false; });
+    });
+  });
+})();
+</script>
 <script>
 /* Button and outbound-link click tracking for Vercel Web Analytics (2 properties max per event). */
 document.addEventListener('click',function(e){

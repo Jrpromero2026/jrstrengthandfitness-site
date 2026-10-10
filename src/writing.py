@@ -12,6 +12,7 @@ import re
 
 from layout import VAULT, LINKEDIN, CONSULT, SITE
 from ui import hero, sec, head_row
+import newsletter as NL
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONTENT = os.path.join(ROOT, "content", "writing")
@@ -138,6 +139,7 @@ def index_body():
         + sec("light", head_row("The archive", "Long-form posts",
                                 "Written for coaches, for women who lift and for anyone who wants to know why a program is built the way it is.")
               + _post_rows(POSTS), mark=False)
+        + NL.block("dark", uid="w")
         + sec("gray", coach, mark=True, id="coaches", tight=True, label="For coaches")
     )
 
@@ -175,6 +177,7 @@ def post_body(p):
         hero(f'{p["category"]} · {p["date_h"]}', html.escape(p["title"]),
              f'By JR Prieto-Romero, CSCS · {mins} min read', short=True, size="h-md")
         + sec("light", article, mark=False)
+        + NL.block("dark", uid="p", default={"coach": "coach", "bfh": "women"}.get(p["audience"], "training"))
         + sec("gray", head_row("Keep reading", "More writing", None, size="h-md")
               + _post_rows(more)
               + '<div class="btns" style="padding-top:36px"><a class="link-u" href="/writing">All writing →</a></div>',

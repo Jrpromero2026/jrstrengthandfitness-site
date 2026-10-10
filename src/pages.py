@@ -3,6 +3,7 @@
 from layout import VAULT, LINKEDIN, EMAIL, CONSULT, TAC_PT, G3_PT, FORM_ENDPOINT
 from ui import ph, hero, sec, head_row, rows, frame
 import projects as P
+import newsletter as NL
 
 CONSULT_BTN = f'<a class="btn btn-red" href="{CONSULT}">Book a free consult</a>'
 
@@ -66,6 +67,7 @@ HOME = (
 <a class="link-u" href="/about" style="align-self:flex-start">Read the full story →</a>
 </div>
 </div>""", id="about")
+    + NL.block("light", uid="h")
 )
 
 # ---------------------------------------------------------------- Train with JR
@@ -325,12 +327,14 @@ PRIVACY = legal("Legal", "Privacy Policy", f"""{DRAFT}{UPDATED}
 <ul>
 <li><strong>Online coaching applications:</strong> your name, email, phone (optional), training goals, experience, equipment access, and anything else you choose to tell us.</li>
 <li><strong>Waitlist sign-ups:</strong> your email address and the project you’re interested in.</li>
+<li><strong>Newsletter sign-ups:</strong> your email address, first name (optional) and the topic you picked.</li>
 <li><strong>Basic technical data:</strong> our hosting provider records standard server logs (such as IP address and browser type) to run and secure the site.</li>
 </ul>
 <h2>How we use it</h2>
 <ul>
 <li>To review your application and contact you about coaching.</li>
 <li>To tell you when a project you signed up for opens. You can ask to be removed at any time.</li>
+<li>To send the newsletter you signed up for. Every issue has an unsubscribe link.</li>
 </ul>
 <p>We don’t sell your personal information.</p>
 <h2>Who we share it with</h2>
@@ -338,6 +342,8 @@ PRIVACY = legal("Legal", "Privacy Policy", f"""{DRAFT}{UPDATED}
 <li>Vercel, which hosts this website.</li>
 <li>Google Fonts, which serves the site’s typeface.</li>
 <li>FormSubmit, which delivers form submissions from this site to our email inbox.</li>
+<li>Kit, which stores the newsletter list and sends the newsletter.</li>
+<li>Vercel Web Analytics, which counts page visits without cookies.</li>
 <li>Google Workspace, which hosts our email.</li>
 <li>Trainerize, if you become an online coaching client.</li>
 </ul>

@@ -141,6 +141,7 @@ def page(*, path, title, description, body, active="", schema=False, script="", 
 <a href="{YOUTUBE}">YouTube</a>
 <a href="{FACEBOOK}">Facebook</a>
 <a href="/writing">Writing</a>
+<a href="/newsletter">Newsletter</a>
 </nav>
 </div>
 <div class="wrap legal">

@@ -8,6 +8,7 @@ from layout import page, SITE  # noqa: E402
 import pages as P  # noqa: E402
 import projects as PR  # noqa: E402
 import writing as W  # noqa: E402
+import newsletter as NL  # noqa: E402
 from PIL import Image, ImageDraw, ImageFilter  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,6 +44,14 @@ PAGES = [
          title="Writing | JR Strength & Fitness",
          description="Research reviews and coaching notes from JR Prieto-Romero, CSCS: consultations, programming, strength and conditioning science, and training women.",
          body=W.index_body()),
+    dict(path="/newsletter", file="newsletter.html", active="",
+         title="Newsletter | Notes from the Floor | JR Strength & Fitness",
+         description="Notes from JR Prieto-Romero, CSCS: what he's testing with clients and coaches, new writing, and first word on TRAINCND and The Credential Standard.",
+         body=NL.PAGE),
+    dict(path="/subscribed", file="subscribed.html", active="", sitemap=False,
+         title="You're in | JR Strength & Fitness",
+         description="Confirm your newsletter subscription from the email JR just sent.",
+         body=NL.THANKS),
     dict(path="/privacy-policy", file="privacy-policy.html", active="",
          title="Privacy Policy | JR Strength & Fitness",
          description="How JR Strength and Fitness LLC collects and uses information on jrstrengthandfitness.com.",
@@ -98,7 +107,7 @@ def build_pages():
         html = page(path=spec["path"], title=spec["title"].replace("&", "&amp;"),
                     description=spec["description"].replace("&", "&amp;"), body=spec["body"],
                     active=spec["active"], schema=spec.get("schema", False),
-                    script=spec.get("script", ""), closing=spec.get("closing", True),
+                    script=spec.get("script", "") + (NL.SCRIPT if "data-newsletter" in spec["body"] else ""), closing=spec.get("closing", True),
                     og_type=spec.get("og_type", "website"), head=spec.get("head", ""))
         os.makedirs(os.path.dirname(os.path.join(OUT, spec["file"])), exist_ok=True)
         with open(os.path.join(OUT, spec["file"]), "w", encoding="utf-8") as fh:
