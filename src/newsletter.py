@@ -11,9 +11,9 @@ from layout import FORM_ENDPOINT
 from ui import hero, sec
 
 KIT_FORMS = {
-    "coach": "",      # Kit form: "Newsletter: Coaches"
-    "training": "",   # Kit form: "Newsletter: Training"
-    "women": "",      # Kit form: "Newsletter: Women's training"
+    "coach": "10028376",     # Kit form: "Newsletter: Coaches"
+    "training": "10028379",  # Kit form: "Newsletter: Training"
+    "women": "10028394",     # Kit form: "Newsletter: Women's training"
 }
 INTERESTS = [
     ("coach", "I coach or train others"),
@@ -70,6 +70,7 @@ THANKS = (
 SCRIPT = """<script>
 (function(){
   var KIT=""" + json.dumps(KIT_FORMS) + """;
+  window.addEventListener('pageshow',function(){ document.querySelectorAll('form[data-newsletter]').forEach(function(f){ f.querySelectorAll('[disabled]').forEach(function(i){ i.disabled=false; }); var b=f.querySelector('button[type=submit]'); if(b){ b.textContent='Join the list'; } }); });
   document.querySelectorAll('form[data-newsletter]').forEach(function(f){
     f.addEventListener('submit',function(e){
       var st=f.querySelector('.form-status'), btn=f.querySelector('button[type=submit]');
@@ -77,7 +78,7 @@ SCRIPT = """<script>
       var fd=new FormData(f); if(fd.get('_honey')){ e.preventDefault(); return; }
       var interest=fd.get('interest')||'coach';
       if(window.va){ window.va('event',{name:'Newsletter signup',data:{interest:interest,page:location.pathname}}); }
-      if(KIT[interest]){ f.action='https://app.kit.com/forms/'+KIT[interest]+'/subscriptions'; return; }
+      if(KIT[interest]){ f.action='https://app.kit.com/forms/'+KIT[interest]+'/subscriptions'; f.querySelectorAll('[name=_honey],[name=interest]').forEach(function(i){ i.disabled=true; }); btn.disabled=true; btn.textContent='Joining…'; return; }
       e.preventDefault();
       var data={_subject:'Newsletter signup ('+interest+')', email:fd.get('email_address'), first_name:fd.get('fields[first_name]')||'', interest:interest,
         _template:'table', _captcha:'false', page:location.href,
