@@ -339,7 +339,7 @@ a.post-row:hover .t { color: var(--red); }
 .panel.brands a.cell:hover { transform: translateY(-2px); }
 
 /* The Trainer's Coach Vault: from vault.jrstrengthandfitness.com. #141414 cards, #262626 border, gold #C9A24B, gold folded corner, header lockup */
-.cell.brand-vault { position: relative; overflow: hidden; background: radial-gradient(80% 70% at 100% 0, rgba(201,162,75,0.10), rgba(0,0,0,0) 60%), #141414; border-color: #262626; color: #F5F5F3; }
+.cell.brand-vault { position: relative; overflow: hidden; background: radial-gradient(80% 70% at 100% 0, rgba(201,162,75,0.10), rgba(0,0,0,0) 60%), #141414; border-color: #262626; border-radius: 16px; color: #F5F5F3; }
 .cell.brand-vault::after { content: ""; position: absolute; top: 0; right: 0; width: 76px; height: 76px; background: linear-gradient(225deg, #C9A24B 0%, #C9A24B 48%, rgba(0,0,0,0) 48%); opacity: 0.22; pointer-events: none; }
 .cell.brand-vault:hover { background: radial-gradient(80% 70% at 100% 0, rgba(201,162,75,0.16), rgba(0,0,0,0) 60%), #171717; }
 .cell.brand-vault .bar { background: #C9A24B; }
