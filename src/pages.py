@@ -3,6 +3,7 @@
 from layout import ADDRESS, VAULT, LINKEDIN, EMAIL, CONSULT, TAC_PT, G3_PT, FORM_ENDPOINT
 from ui import ph, hero, sec, head_row, rows, frame
 import projects as P
+import vault_showcase as VS
 import newsletter as NL
 
 CONSULT_BTN = f'<a class="btn btn-red" href="{CONSULT}">Book a free consult</a>'
@@ -49,16 +50,7 @@ HOME = (
 <div class="btns">{CONSULT_BTN}<a class="link-u" href="/train">How training works →</a></div>
 </div>
 </div>""", id="train")
-    + sec("gray", f"""<div class="split">
-<div class="side"><div class="tile"><div class="box"><img src="/assets/jr-mark.png" alt=""><span>The Trainer’s<br>Coach Vault</span></div><span class="badge">Founding membership soon</span></div></div>
-<div class="main stack">
-<span class="eyebrow">Featured project</span>
-<h2 class="h-md">The operating library for coaches.</h2>
-<p class="lead">Consultation systems, programming frameworks and client-management tools I built and run across two facilities, packaged so a working coach can use them this week.</p>
-<div class="stats"><div><b>34</b><span>Systems &amp; frameworks</span></div><div><b>26</b><span>Tools</span></div><div><b>11</b><span>Workflows</span></div></div>
-<div class="btns"><a class="btn btn-line" href="{VAULT}/signup" rel="noopener">Create a free account</a><a class="link-u" href="/projects/vault">About the Vault →</a></div>
-</div>
-</div>""", mark=False)
+    + VS.block()
     + sec("dark", """<div class="head-row" style="margin-bottom:0">
 <div class="h"><span class="eyebrow">About JR</span><h2 class="h-display">Salem.<br>Oregon State.<br>20,000 hours.</h2></div>
 <div class="stack" style="flex:1 1 420px;min-width:0;gap:18px">

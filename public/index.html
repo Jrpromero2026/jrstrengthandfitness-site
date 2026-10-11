@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&amp;family=Montserrat:wght@700;800&amp;family=Inter:wght@600;800&amp;family=Geist:wght@700&amp;family=Geist+Mono:wght@500&amp;display=swap">
-<link rel="stylesheet" href="/assets/styles.css?v=1bbdfc0afd">
+<link rel="stylesheet" href="/assets/styles.css?v=eec12ef9bc">
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">{
@@ -115,16 +115,40 @@
 <div class="facts"><div>In person · Corvallis</div><div>Online · from $129/mo</div><div>No membership needed</div></div>
 <div class="btns"><a class="btn btn-red" href="/consult">Book a free consult</a><a class="link-u" href="/train">How training works →</a></div>
 </div>
-</div></div></section><section class="sec gray"><div class="wrap"><div class="split">
-<div class="side"><div class="tile"><div class="box"><img src="/assets/jr-mark.png" alt=""><span>The Trainer’s<br>Coach Vault</span></div><span class="badge">Founding membership soon</span></div></div>
-<div class="main stack">
-<span class="eyebrow">Featured project</span>
-<h2 class="h-md">The operating library for coaches.</h2>
-<p class="lead">Consultation systems, programming frameworks and client-management tools I built and run across two facilities, packaged so a working coach can use them this week.</p>
-<div class="stats"><div><b>34</b><span>Systems &amp; frameworks</span></div><div><b>26</b><span>Tools</span></div><div><b>11</b><span>Workflows</span></div></div>
-<div class="btns"><a class="btn btn-line" href="https://vault.jrstrengthandfitness.com/signup" rel="noopener">Create a free account</a><a class="link-u" href="/projects/vault">About the Vault →</a></div>
+</div></div></section><section class="sec gray vs-sec" aria-label="Featured project"><div class="wrap">
+<div class="vs proj-vault" data-vs>
+<div class="vs-copy">
+<span class="vs-eyebrow">Featured project</span>
+<span class="v-lockup"><img src="/assets/jr-mark.png" alt="" width="42" height="34"><span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span><span class="v-name">The Trainer’s Coach</span><span class="v-vault">Vault</span></span></span>
+<h2 class="vs-h">The operating library for coaches.</h2>
+<p class="vs-lead">Consultation systems, programming frameworks and client-management tools I built and run across two facilities, packaged so a working coach can use them this week.</p>
+<div class="vs-stats"><div><b data-count="34">34</b><span>Systems &amp; frameworks</span></div><div><b data-count="26">26</b><span>Tools</span></div><div><b data-count="11">11</b><span>Workflows</span></div></div>
+<div class="btns"><a class="btn btn-pa" href="https://vault.jrstrengthandfitness.com/signup" rel="noopener" data-track="Free Vault account (home)">Create a free account</a><a class="link-u" href="/projects/vault">About the Vault →</a></div>
 </div>
-</div></div></section><section class="sec dark mark" id="about"><div class="wrap"><div class="head-row" style="margin-bottom:0">
+<div class="vs-stage" role="img" aria-label="The Trainer’s Coach Vault on a phone: the Vault home page scrolling through its featured systems">
+<div class="vs-glow" aria-hidden="true"></div>
+<div aria-hidden="true"><div class="vs-phone vs-phone-a"><div class="vs-screen"><img class="vs-scroll" src="/assets/vault/home-body.webp" width="585" height="2784" alt="" loading="lazy" decoding="async" style="--shift:56.90%;animation-delay:0s"></div><span class="vs-island"></span></div><div class="vs-card vs-card-1"><span class="vs-card-q">How do I run the whole consultation, start to finish?</span><span class="vs-card-n">Initial Consultation System</span><span class="vs-card-m">System · Client Systems<i>◆ Featured</i></span></div><div class="vs-card vs-card-2"><span class="vs-card-q">How do I judge a coach across weeks, not one workout?</span><span class="vs-card-n">JR Coaching Audit Method</span><span class="vs-card-m">System · JR Methods<i>◆ Featured</i></span></div></div>
+</div>
+</div>
+</div></section>
+<script>
+(function(){
+  var el=document.querySelector('[data-vs]'); if(!el) return;
+  var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(still||!('IntersectionObserver' in window)) return;
+  el.classList.add('armed');
+  var nums=el.querySelectorAll('[data-count]');
+  nums.forEach(function(n){ n.textContent='0'; });
+  function count(){ nums.forEach(function(n){ var end=+n.getAttribute('data-count'), t0=null;
+    function step(t){ if(!t0) t0=t; var p=Math.min(1,(t-t0)/1400); n.textContent=Math.round(end*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step); }
+    requestAnimationFrame(step); }); }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){
+    if(e.isIntersecting){ if(!el.classList.contains('in')){ el.classList.add('in'); count(); } el.classList.remove('paused'); }
+    else if(el.classList.contains('in')){ el.classList.add('paused'); }
+  }); },{threshold:0.25});
+  io.observe(el);
+})();
+</script><section class="sec dark mark" id="about"><div class="wrap"><div class="head-row" style="margin-bottom:0">
 <div class="h"><span class="eyebrow">About JR</span><h2 class="h-display">Salem.<br>Oregon State.<br>20,000 hours.</h2></div>
 <div class="stack" style="flex:1 1 420px;min-width:0;gap:18px">
 <p class="lead">I grew up in Salem, came to Corvallis for Oregon State and earned my degree in Exercise &amp; Sport Science. I played soccer, sprinted and threw before I ever coached.</p>
