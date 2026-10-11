@@ -175,22 +175,58 @@ def waitlist_block(p):
 <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
 <label class="sr" for="wl-{p['slug']}">Email address</label>
 <input id="wl-{p['slug']}" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
-<button class="btn btn-red" type="submit">Join the waitlist</button>
+<button class="btn btn-pa" type="submit">Join the waitlist</button>
 <div class="form-status" role="status" hidden></div>
 </form></div>"""
+
+
+# Project pages: the top banner and buttons carry the project's own brand (matching its card).
+# The header, footer, "Why I built it" and the closing section stay JR Strength & Fitness.
+def hero_name(p):
+    slug = p["slug"]
+    if slug == "vault":
+        return VAULT_LOCKUP
+    if slug == "built-for-her":
+        return ('<span class="lockup-wrap"><img class="lockup" src="/assets/brands/bfh-lockup-on-dark.svg" width="1045" height="535" alt="Built For Her">'
+                '<span class="tm" aria-label="trademark">™</span></span>')
+    if slug == "traincnd":
+        return '<img class="lockup" src="/assets/brands/traincnd-lockup-dark.png" width="363" height="67" alt="TRAINCND">'
+    if slug == "credential-standard":
+        return CS_SEAL.replace('width="22" height="22"', 'width="56" height="56"') + '<span>The Credential Standard</span>'
+    return p["name"]
+
+
+def project_hero(p, btns, side):
+    slug = p["slug"]
+    theme = "light" if slug == "credential-standard" else "dark"
+    deco = (CS_SEAL.replace('class="seal"', 'class="ph-seal" aria-hidden="true"') if slug == "credential-standard" else "")
+    return f"""<section class="hero short ph ph-{slug} {theme}">
+{deco}
+<div class="wrap split">
+<div class="main stack" style="gap:22px">
+<span class="eyebrow">Project · {p['audience']}</span>
+<h1 class="ph-name">{hero_name(p)}</h1>
+{SIG_LINE.get(slug, "")}
+<p class="lead">{p['tagline']}</p>
+<div class="btns" style="padding-top:6px">{btns}</div>
+</div>
+<div class="side">{side}</div>
+</div>
+</section>"""
 
 
 def project_page(p):
     i = PROJECTS.index(p)
     nxt = PROJECTS[(i + 1) % len(PROJECTS)]
-    btns = f'<a class="btn btn-red" href="{p["cta"][1]}"{ext(p["cta"][1])}>{p["cta"][0]}</a>'
+    btns = f'<a class="btn btn-pa" href="{p["cta"][1]}"{ext(p["cta"][1])}>{p["cta"][0]}</a>'
     if p["cta2"]:
         btns += f'<a class="link-u" href="{p["cta2"][1]}"{ext(p["cta2"][1])}>{p["cta2"][0]} →</a>'
     status = "".join(f'<div class="it"><b>{t}</b><span>{d}</span></div>' for t, d in p["status"])
-    side = f'<div class="info-card"><span class="k">Where it stands</span>{status}</div>'
+    side = f'<div class="info-card ph-card"><span class="k">Where it stands</span>{status}</div>'
     iaoe = f'<p class="body"><strong style="color:var(--fg)">IAOE · </strong>{p["iaoe"]}</p>' if p["iaoe"] else ""
     return (
-        hero(f"Project · {p['audience']}", p["name"], p["tagline"], btns, side, short=True, size="h-display")
+        f'<div class="proj proj-{p["slug"]}">'
+        + project_hero(p, btns, side)
         + sec("light", f"""<div class="split top">
 <div class="main stack"><span class="eyebrow">What it is</span><p style="font-size:clamp(21px,2.1vw,26px);line-height:1.5;color:var(--fg)">{p['what']}</p></div>
 <div class="side"><span class="eyebrow" style="padding-bottom:18px">What’s inside</span><ul class="ticks">{"".join(f"<li>{x}</li>" for x in p["inside"])}</ul></div>
@@ -201,8 +237,9 @@ def project_page(p):
 </div>""")
         + sec("gray", f"""<div class="split">
 {waitlist_block(p) if p.get('waitlist') else next_step(p, btns)}
-<div class="side"><a class="cell" href="/projects/{nxt['slug']}" style="border:1px solid var(--line)"><div class="bar"></div><span class="tag">Next project</span><h3 class="h-cell">{nxt['name']}</h3><p>{nxt['card']}</p><span class="more">See it</span></a></div>
+<div class="side"><span class="eyebrow" style="padding-bottom:16px">Next project</span><div class="panel brands next-one">{cell(nxt)}</div></div>
 </div>""", mark=False)
+        + '</div>'
     )
 
 
