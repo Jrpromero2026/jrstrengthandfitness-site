@@ -120,12 +120,16 @@ CS_SEAL = ('<svg class="seal" width="22" height="22" viewBox="0 0 24 24" aria-hi
            '<path d="M8.6 12.2l2.3 2.4 4.5-4.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>')
 
 
+TC_LINE = '<span class="tc-line">PLAN<i>/</i>COACH<i>/</i>TRACK<i>/</i>SCALE</span>'
+
+
 def cell(p, heading="h3"):
     cls, tag = p["tag"]
     mark = CS_SEAL if p["slug"] == "credential-standard" else ""
     return f"""<a class="cell brand-{p['slug']}" href="/projects/{p['slug']}">
 <div class="bar"></div>
 <div class="top"><{heading} class="h-cell">{mark}{p['name']}</{heading}><span class="tag {cls}">{tag}</span></div>
+{TC_LINE if p["slug"] == "traincnd" else ""}
 <p>{p['card']}</p>
 <div class="grow"></div>
 <span class="more">Learn more</span>
