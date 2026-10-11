@@ -9,6 +9,7 @@ import pages as P  # noqa: E402
 import projects as PR  # noqa: E402
 import writing as W  # noqa: E402
 import newsletter as NL  # noqa: E402
+import seo as S  # noqa: E402
 from PIL import Image, ImageDraw, ImageFilter  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -17,28 +18,29 @@ ASSETS = os.path.join(OUT, "assets")
 
 PAGES = [
     dict(path="/", file="index.html", active="", schema=True,
-         title="JR Strength & Fitness | Coach, Builder · Corvallis, Oregon",
-         description="JR Prieto-Romero, CSCS: Director of Training at Timberhill Athletic Club and Director of Personal Training and Performance at G3 Sports & Fitness. Coaching in Corvallis and online, plus tools for coaches.",
+         title="JR Prieto-Romero, CSCS | Strength Coach in Corvallis, Oregon",
+         description="Strength coach JR Prieto-Romero, CSCS: personal training at Timberhill Athletic Club and G3 Sports & Fitness in Corvallis, online coaching, and tools for coaches.",
          body=P.HOME),
     dict(path="/train", file="train.html", active="train",
-         title="Train with JR | In-Person in Corvallis & Online Coaching",
+         title="Personal Training in Corvallis, Oregon & Online | Train with JR",
+         head=S.ld(S.IN_PERSON_SERVICE, S.FAQ_LD, S.breadcrumbs([("Home", "/"), ("Train with JR", "/train")])),
          description="Train with JR Prieto-Romero, CSCS. Local clients start with a free consult at Timberhill Athletic Club or G3 Sports & Fitness in Corvallis; anywhere else, apply for online coaching.",
          body=P.TRAIN),
     dict(path="/consult", file="consult.html", active="train",
          title="Book a Free Consult | Timberhill or G3 | JR Strength & Fitness",
          description="Local to Corvallis? Start with a free consult at Timberhill Athletic Club or G3 Sports & Fitness. Anywhere else, apply for online coaching.",
-         body=P.CONSULT_PAGE),
+         body=P.CONSULT_PAGE, head=S.ld(S.IN_PERSON_SERVICE, S.breadcrumbs([("Home", "/"), ("Train with JR", "/train"), ("Free consult", "/consult")]))),
     dict(path="/online-training", file="online-training.html", active="train",
          title="Online Coaching | Training & Nutrition | JR Strength & Fitness",
          description="Individualized online training and nutrition coaching from JR Prieto-Romero, CSCS. Essentials, Core and Premium packages from $129 a month.",
-         body=P.ONLINE),
+         body=P.ONLINE, head=S.ld(S.ONLINE_SERVICE, S.breadcrumbs([("Home", "/"), ("Train with JR", "/train"), ("Online coaching", "/online-training")]))),
     dict(path="/apply", file="apply.html", active="train",
          title="Apply for Online Coaching | JR Strength & Fitness",
          description="Apply for online training and nutrition coaching with JR Prieto-Romero, CSCS. Applications go straight to JR.",
          body=P.APPLY, script=P.APPLY_SCRIPT + P.FORM_SCRIPT, closing=False),
     dict(path="/about", file="about.html", active="about",
          title="About JR Prieto-Romero, CSCS | JR Strength & Fitness",
-         description="Director of Training at Timberhill Athletic Club, Director of Personal Training and Performance at G3 Sports & Fitness, Oregon State Exercise & Sport Science graduate, ~20,000 coaching hours.",
+         description="JR Prieto-Romero, CSCS: Director of Training at Timberhill Athletic Club, Director of PT and Performance at G3, Oregon State graduate, ~20,000 coaching hours.",
          body=P.ABOUT),
     dict(path="/writing", file="writing.html", active="",
          title="Writing | JR Strength & Fitness",
@@ -48,7 +50,7 @@ PAGES = [
          title="Newsletter | Notes from the Floor | JR Strength & Fitness",
          description="Notes from JR Prieto-Romero, CSCS: what he's testing with clients and coaches, new writing, and first word on TRAINCND and The Credential Standard.",
          body=NL.PAGE),
-    dict(path="/subscribed", file="subscribed.html", active="", sitemap=False,
+    dict(path="/subscribed", file="subscribed.html", active="", sitemap=False, noindex=True,
          title="You're in | JR Strength & Fitness",
          description="Confirm your newsletter subscription from the email JR just sent.",
          body=NL.THANKS),
@@ -72,10 +74,11 @@ dict(path="/projects", file="projects.html", active="projects",
     dict(path=f"/projects/{p['slug']}", file=f"projects/{p['slug']}.html", active="projects",
          title=f"{p['name']} | Projects | JR Strength & Fitness".replace("&amp;", "&"),
          description=(p['tagline'] + " " + p['card']).replace("&amp;", "&"),
-         body=PR.project_page(p), script=P.FORM_SCRIPT if p.get("waitlist") else "")
+         body=PR.project_page(p), script=P.FORM_SCRIPT if p.get("waitlist") else "",
+         head=S.ld(S.project_ld(p), S.breadcrumbs([("Home", "/"), ("Projects", "/projects"), (p["name"].replace("&amp;", "&"), f"/projects/{p['slug']}")])))
     for p in PR.PROJECTS
 ] + W.page_specs() + [
-    dict(path="/404", file="404.html", active="", sitemap=False,
+    dict(path="/404", file="404.html", active="", sitemap=False, noindex=True,
          title="Page not found | JR Strength & Fitness",
          description="That page moved or never existed.",
          body=P.NOT_FOUND),
@@ -109,7 +112,7 @@ def build_pages():
                     active=spec["active"], schema=spec.get("schema", False),
                     script=spec.get("script", "") + (NL.SCRIPT if "data-newsletter" in spec["body"] else "")
                     + (PR.VAULT_STATS_SCRIPT if "data-vault-stat" in spec["body"] else ""), closing=spec.get("closing", True),
-                    og_type=spec.get("og_type", "website"), head=spec.get("head", ""))
+                    og_type=spec.get("og_type", "website"), head=spec.get("head", ""), noindex=spec.get("noindex", False))
         os.makedirs(os.path.dirname(os.path.join(OUT, spec["file"])), exist_ok=True)
         with open(os.path.join(OUT, spec["file"]), "w", encoding="utf-8") as fh:
             fh.write(html)
@@ -174,7 +177,9 @@ def build_config():
     with open(os.path.join(OUT, "sitemap.xml"), "w") as fh:
         fh.write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     with open(os.path.join(OUT, "robots.txt"), "w") as fh:
-        fh.write(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
+        fh.write(S.robots_txt())
+    with open(os.path.join(OUT, "llms.txt"), "w") as fh:
+        fh.write(S.llms_txt(PR.PROJECTS, W.POSTS))
 
 
 def build_images():

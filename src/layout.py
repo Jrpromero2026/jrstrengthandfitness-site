@@ -60,9 +60,10 @@ def closing_cta():
 
 
 from motion import MOTION_JS  # noqa: E402
+from seo import SITE_GRAPH, OG_IMAGE  # noqa: E402
 
 
-def page(*, path, title, description, body, active="", schema=False, script="", closing=True, og_type="website", head="", **_):
+def page(*, path, title, description, body, active="", schema=False, script="", closing=True, og_type="website", head="", noindex=False, **_):
     nav = "\n".join(
         f'<a href="{href}"{" aria-current=\"page\"" if key == active else ""}>{label}</a>'
         for href, label, key in NAV
@@ -83,10 +84,15 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
 <meta property="og:url" content="{canonical}">
-<meta property="og:image" content="{SITE}/assets/og-image.png">
+{'<meta name="robots" content="noindex, follow">' if noindex else '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">'}
+<meta property="og:image" content="{OG_IMAGE}">
+<meta property="og:image:alt" content="JR Prieto-Romero, CSCS, strength coach in Corvallis, Oregon">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{description}">
+<meta name="twitter:image" content="{OG_IMAGE}">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -96,7 +102,7 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <link rel="stylesheet" href="/assets/styles.css?v={CSS_VER}">
 <script>window.va=window.va||function(){{(window.vaq=window.vaq||[]).push(arguments);}};</script>
 <script defer src="/_vercel/insights/script.js"></script>
-{SCHEMA if schema else ""}
+{SITE_GRAPH}
 {head}
 </head>
 <body>

@@ -10,7 +10,7 @@ def ph(text):
 def _lines(title):
     """Each headline line in its own clipped span, so it can rise in (see .ln in styles.css)."""
     parts = [x for x in title.split("<br>")]
-    return "".join(f'<span class="ln" style="--i:{i}"><span>{x}</span></span>' for i, x in enumerate(parts))
+    return " ".join(f'<span class="ln" style="--i:{i}"><span>{x}</span></span>' for i, x in enumerate(parts))
 
 
 def hero(eyebrow, title, lead="", btns="", side="", short=False, size="h-hero"):

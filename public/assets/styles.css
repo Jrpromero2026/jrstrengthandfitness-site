@@ -643,3 +643,13 @@ a.post-row:hover .t { color: var(--red); }
 .m .rv { opacity: 0; translate: 0 24px; transition: opacity .7s ease, translate .8s cubic-bezier(.2,.7,.2,1); }
 .m .panel.brands .cell.rv { transition: opacity .7s ease, translate .8s cubic-bezier(.2,.7,.2,1), background .15s, transform .15s; }
 .m .rv.rv-in { opacity: 1; translate: 0 0; }
+
+/* ---------------------------------------------------------------- FAQ */
+.faq { border-bottom: 1px solid var(--line); max-width: 900px; }
+.faq-q { border-top: 1px solid var(--line); }
+.faq-q summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 22px 0; font-weight: 700; font-size: 19px; line-height: 1.35; color: var(--fg); }
+.faq-q summary::-webkit-details-marker { display: none; }
+.faq-q summary::after { content: "+"; flex: none; font-weight: 600; font-size: 26px; line-height: 1; color: var(--red); transition: transform .2s; }
+.faq-q[open] summary::after { transform: rotate(45deg); }
+.faq-q summary:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+.faq-q p { margin: 0; padding: 0 48px 24px 0; color: var(--body); max-width: 760px; }

@@ -146,17 +146,16 @@ def index_body():
 
 # ---------------------------------------------------------------- Post pages
 def _schema(p):
-    data = {
-        "@context": "https://schema.org", "@type": "BlogPosting",
+    import seo as S
+    post = {
+        "@type": "BlogPosting", "@id": f"{SITE}/writing/{p['slug']}#post",
         "headline": p["title"], "description": p["excerpt"],
         "datePublished": p["date"], "url": f"{SITE}/writing/{p['slug']}",
         "mainEntityOfPage": f"{SITE}/writing/{p['slug']}",
-        "image": f"{SITE}/assets/og-image.png",
-        "author": {"@type": "Person", "name": "JR Prieto-Romero", "url": f"{SITE}/about"},
-        "publisher": {"@type": "Organization", "name": "JR Strength & Fitness",
-                      "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/jr-logo.png"}},
+        "image": S.OG_IMAGE, "articleSection": p["category"], "wordCount": p["words"], "inLanguage": "en-US",
+        "author": {"@id": S.PERSON_ID}, "publisher": {"@id": S.ORG_ID},
     }
-    return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
+    return S.ld(post, S.breadcrumbs([("Home", "/"), ("Writing", "/writing"), (p["title"], f"/writing/{p['slug']}")]))
 
 
 def post_body(p):
@@ -190,6 +189,6 @@ def page_specs():
     for p in POSTS:
         specs.append(dict(
             path=f"/writing/{p['slug']}", file=f"writing/{p['slug']}.html", active="",
-            title=f"{p['title']} | JR Strength & Fitness", description=p["excerpt"],
+            title=p["title"] if len(p["title"]) > 42 else f"{p['title']} | JR Strength & Fitness", description=p["excerpt"],
             body=post_body(p), og_type="article", head=_schema(p)))
     return specs

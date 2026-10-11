@@ -4,6 +4,7 @@ from layout import ADDRESS, VAULT, LINKEDIN, EMAIL, CONSULT, TAC_PT, G3_PT, FORM
 from ui import ph, hero, sec, head_row, rows, frame
 import projects as P
 import vault_showcase as VS
+import seo as S
 import newsletter as NL
 
 CONSULT_BTN = f'<a class="btn btn-red" href="{CONSULT}">Book a free consult</a>'
@@ -91,6 +92,8 @@ TRAIN = (
 <div class="btns"><a class="btn btn-red" href="/apply">Apply for online coaching</a><a class="link-u" href="/online-training">Compare packages →</a></div>
 </div>
 </div>""")
+    + sec("gray", head_row("Questions", "Before you<br>book.", "Straight answers about consults, facilities and online coaching.", size="h-md")
+          + S.faq_html(), id="faq", label="Frequently asked questions")
 )
 
 # ---------------------------------------------------------------- Consult routing
