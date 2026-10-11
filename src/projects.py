@@ -126,9 +126,12 @@ TC_LINE = '<span class="tc-line">PLAN<i>/</i>COACH<i>/</i>TRACK<i>/</i>SCALE</sp
 def cell(p, heading="h3"):
     cls, tag = p["tag"]
     mark = CS_SEAL if p["slug"] == "credential-standard" else ""
+    name = p["name"]
+    if p["slug"] == "traincnd":  # official lockup from the TRAINCND Brand Kit v1.0
+        name = '<img class="lockup" src="/assets/brands/traincnd-lockup-dark.png" width="363" height="67" alt="TRAINCND, the coaching operating platform">'
     return f"""<a class="cell brand-{p['slug']}" href="/projects/{p['slug']}">
 <div class="bar"></div>
-<div class="top"><{heading} class="h-cell">{mark}{p['name']}</{heading}><span class="tag {cls}">{tag}</span></div>
+<div class="top"><{heading} class="h-cell">{mark}{name}</{heading}><span class="tag {cls}">{tag}</span></div>
 {TC_LINE if p["slug"] == "traincnd" else ""}
 <p>{p['card']}</p>
 <div class="grow"></div>

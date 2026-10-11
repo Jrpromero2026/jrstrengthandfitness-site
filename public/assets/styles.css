@@ -358,19 +358,20 @@ a.post-row:hover .t { color: var(--red); }
 .cell.brand-built-for-her .more { align-self: flex-start; background: #0A0A0A; color: #fff; padding: 12px 20px; border-radius: 999px; margin-top: 6px; }
 .cell.brand-built-for-her .more::after { color: #C9A3EE; }
 
-/* TRAINCND: near-black, chrome white, indigo accent #606DF5 (from the TRAINCND app and landing page) */
-.cell.brand-traincnd { position: relative; overflow: hidden; background: linear-gradient(160deg, #1A1B20 0%, #0C0D10 55%, #08090B 100%); border-color: #23252B; border-radius: 16px; color: #fff; }
+/* TRAINCND: Brand Kit v1.0. Obsidian #090A0C / Carbon #17191C, Machined Silver #B8BDC5, Titanium #D7DADF, Signal Blue #4B6BFF (restrained accent), Inter */
+.cell.brand-traincnd { position: relative; overflow: hidden; background: linear-gradient(160deg, #17191C 0%, #0D0E11 55%, #090A0C 100%); border-color: #23262B; border-radius: 16px; color: #fff; }
 .cell.brand-traincnd::before { content: ""; position: absolute; inset: -40% 30% auto -20%; height: 180%; background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.05) 50%, transparent 60%); pointer-events: none; }
 .cell.brand-traincnd > * { position: relative; }
-.cell.brand-traincnd:hover { background: linear-gradient(160deg, #1E2026 0%, #0F1014 55%, #0A0B0D 100%); }
-.cell.brand-traincnd .bar { width: 64px; background: linear-gradient(90deg, #474A4F 0 50%, #606DF5 50% 100%); }
-.cell.brand-traincnd .h-cell { font-family: "Inter", sans-serif; font-weight: 800; color: #fff; letter-spacing: 0.32em; }
-.cell.brand-traincnd .tc-line { font-family: "Inter", sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.24em; color: #fff; }
-.cell.brand-traincnd .tc-line i { font-style: normal; color: #606DF5; padding: 0 4px; }
-.cell.brand-traincnd .tag { background: #121423; border: 1px solid #2A2F5A; color: #7985DA; padding: 6px 12px; border-radius: 8px; letter-spacing: 0.12em; }
-.cell.brand-traincnd p { color: #B7BBC4; }
+.cell.brand-traincnd:hover { background: linear-gradient(160deg, #1C1E22 0%, #101114 55%, #0B0C0E 100%); }
+.cell.brand-traincnd .bar { width: 64px; background: linear-gradient(90deg, #B8BDC5 0 50%, #4B6BFF 50% 100%); opacity: .9; }
+.cell.brand-traincnd .h-cell { line-height: 0; }
+.cell.brand-traincnd .lockup { width: min(280px, 100%); height: auto; }
+.cell.brand-traincnd .tc-line { font-family: "Inter", sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.24em; color: #D7DADF; }
+.cell.brand-traincnd .tc-line i { font-style: normal; color: #4B6BFF; padding: 0 4px; }
+.cell.brand-traincnd .tag { background: rgba(75,107,255,0.12); border: 1px solid rgba(75,107,255,0.45); color: #D7DADF; padding: 6px 12px; border-radius: 8px; letter-spacing: 0.12em; }
+.cell.brand-traincnd p { color: #B8BDC5; }
 .cell.brand-traincnd .more { color: #fff; }
-.cell.brand-traincnd .more::after { color: #606DF5; }
+.cell.brand-traincnd .more::after { color: #4B6BFF; }
 
 /* The Credential Standard: white paper, ink, verification green, Geist (from its site tokens) */
 .cell.brand-credential-standard { background: #FFFFFF; border-color: #D3D9E0; border-radius: 12px; color: #0E141B; }
