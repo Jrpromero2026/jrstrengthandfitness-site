@@ -285,7 +285,7 @@ document.querySelectorAll('form[data-form]').forEach(function(f){
 # ---------------------------------------------------------------- About
 ABOUT = (
     hero("About JR", "Salem. Oregon State.<br>20,000 hours.",
-         "I’m JR Prieto-Romero, CSCS. I direct training at Timberhill Athletic Club and lead personal training and performance at G3 Sports &amp; Fitness in Corvallis, Oregon.",
+         "I’m JR Prieto-Romero, CSCS, though most people on the floor know me as JR Romero. I direct training at Timberhill Athletic Club and lead personal training and performance at G3 Sports &amp; Fitness in Corvallis, Oregon.",
          f'{CONSULT_BTN}<a class="link-u" href="{LINKEDIN}" rel="noopener">Connect on LinkedIn →</a>',
          frame("Photo: JR portrait"), short=True, size="h-display")
     + sec("light", f"""<div class="split top">

@@ -14,7 +14,8 @@ ORG_ID = f"{SITE}/#org"
 SAME_AS = [LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK]
 
 PERSON = {
-    "@type": "Person", "@id": PERSON_ID, "name": "JR Prieto-Romero",
+    "@type": "Person", "@id": PERSON_ID, "name": "JR Prieto-Romero", "alternateName": ["JR Romero", "JR Romero, CSCS"],
+    "givenName": "JR", "familyName": "Prieto-Romero",
     "url": f"{SITE}/about", "image": PORTRAIT,
     "jobTitle": "Director of Training, Timberhill Athletic Club; Director of Personal Training and Performance, G3 Sports & Fitness",
     "description": "Strength and conditioning coach (CSCS) in Corvallis, Oregon, with roughly 20,000 hours of coaching. "
@@ -98,7 +99,7 @@ FAQ = [
      "Essentials is $129 a month, Core is $179 a month and Premium is $249 a month. Three- and six-month terms lower the monthly rate. "
      "Every package includes both training and nutrition coaching."),
     ("Who is JR Prieto-Romero?",
-     "JR Prieto-Romero, CSCS, is Director of Training at Timberhill Athletic Club and Director of Personal Training and Performance at "
+     "JR Prieto-Romero, CSCS, known on the floor as JR Romero, is Director of Training at Timberhill Athletic Club and Director of Personal Training and Performance at "
      "G3 Sports &amp; Fitness in Corvallis, Oregon. He earned his degree in Exercise &amp; Sport Science at Oregon State and has roughly "
      "20,000 hours of coaching on the floor."),
 ]
@@ -151,7 +152,7 @@ def llms_txt(projects, posts):
     faq = "\n\n".join(f"### {_plain(q)}\n{_plain(a)}" for q, a in FAQ)
     return f"""# JR Strength & Fitness
 
-> JR Prieto-Romero, CSCS, is a strength and conditioning coach in Corvallis, Oregon: Director of Training at Timberhill Athletic Club and Director of Personal Training and Performance at G3 Sports & Fitness. He coaches in person in Corvallis and online, and builds tools for coaches and athletes.
+> JR Prieto-Romero, CSCS (known professionally as JR Romero), is a strength and conditioning coach in Corvallis, Oregon: Director of Training at Timberhill Athletic Club and Director of Personal Training and Performance at G3 Sports & Fitness. He coaches in person in Corvallis and online, and builds tools for coaches and athletes.
 
 - Credentials: Certified Strength and Conditioning Specialist (CSCS); B.S. in Exercise & Sport Science, Oregon State University; roughly 20,000 hours of coaching.
 - Coaching standard: IAOE (Inadequate, Adequate, Optimal, Enhanced). Match the intervention to the person; adequate is a legitimate target.
