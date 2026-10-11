@@ -120,7 +120,16 @@ CS_SEAL = ('<svg class="seal" width="22" height="22" viewBox="0 0 24 24" aria-hi
            '<path d="M8.6 12.2l2.3 2.4 4.5-4.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>')
 
 
-TC_LINE = '<span class="tc-line">PLAN<i>/</i>COACH<i>/</i>TRACK<i>/</i>SCALE</span>'
+# One signature line per brand, taken from each product's own site.
+SIG_LINE = {
+    "vault": '<span class="sig">Resources<i>.</i> Systems<i>.</i> Standards<i>.</i></span>',
+    "traincnd": '<span class="tc-line">PLAN<i>/</i>COACH<i>/</i>TRACK<i>/</i>SCALE</span>',
+    "credential-standard": '<span class="sig">Checked against NCCA<i>·</i>NBHWC<i>·</i>Woolf</span>',
+}
+# The Vault header lockup, built the same way vault.jrstrengthandfitness.com builds it (JR mark + type).
+VAULT_LOCKUP = ('<span class="v-lockup"><img src="/assets/jr-mark.png" alt="" width="42" height="34">'
+                '<span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span>'
+                '<span class="v-name">The Trainer’s Coach</span><span class="v-vault">Vault</span></span></span>')
 
 
 def cell(p, heading="h3"):
@@ -130,15 +139,18 @@ def cell(p, heading="h3"):
     if p["slug"] == "built-for-her":  # official lockup from builtforher.io/brand
         name = ('<span class="lockup-wrap"><img class="lockup" src="/assets/brands/bfh-lockup-on-dark.svg" width="1045" height="535" alt="Built For Her">'
                 '<span class="tm" aria-label="trademark">™</span></span>')
+    if p["slug"] == "vault":
+        name = VAULT_LOCKUP
     if p["slug"] == "traincnd":  # official lockup from the TRAINCND Brand Kit v1.0
         name = '<img class="lockup" src="/assets/brands/traincnd-lockup-dark.png" width="363" height="67" alt="TRAINCND, the coaching operating platform">'
     return f"""<a class="cell brand-{p['slug']}" href="/projects/{p['slug']}">
 <div class="bar"></div>
 <div class="top"><{heading} class="h-cell">{mark}{name}</{heading}><span class="tag {cls}">{tag}</span></div>
-{TC_LINE if p["slug"] == "traincnd" else ""}
+{SIG_LINE.get(p["slug"], "")}
 <p>{p['card']}</p>
 <div class="grow"></div>
 <span class="more">Learn more</span>
+{CS_SEAL.replace('class="seal"', 'class="seal-mark" aria-hidden="true"') if p["slug"] == "credential-standard" else ""}
 </a>"""
 
 

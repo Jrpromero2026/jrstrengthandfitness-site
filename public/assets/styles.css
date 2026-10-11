@@ -338,15 +338,25 @@ a.post-row:hover .t { color: var(--red); }
 .panel.brands .cell { border: 1px solid var(--line); transition: background .15s, transform .15s; }
 .panel.brands a.cell:hover { transform: translateY(-2px); }
 
-/* The Trainer's Coach Vault: black, gold framing (JRSF / Vault extension) */
-.cell.brand-vault { background: #000; border-color: rgba(200,169,110,0.55); color: #fff; }
-.cell.brand-vault:hover { background: #0b0b0b; }
-.cell.brand-vault .bar { background: #C8A96E; }
-.cell.brand-vault .h-cell { font-family: "Montserrat", sans-serif; font-weight: 800; color: #fff; letter-spacing: 0.02em; text-transform: uppercase; }
-.cell.brand-vault .tag, .cell.brand-vault .tag.live { color: #C8A96E; }
-.cell.brand-vault p { color: rgba(247,247,245,0.8); }
-.cell.brand-vault .more { color: #fff; }
-.cell.brand-vault .more::after { color: #C8A96E; }
+/* The Trainer's Coach Vault: from vault.jrstrengthandfitness.com. #141414 cards, #262626 border, gold #C9A24B, gold folded corner, header lockup */
+.cell.brand-vault { position: relative; overflow: hidden; background: radial-gradient(80% 70% at 100% 0, rgba(201,162,75,0.10), rgba(0,0,0,0) 60%), #141414; border-color: #262626; color: #F5F5F3; }
+.cell.brand-vault::after { content: ""; position: absolute; top: 0; right: 0; width: 76px; height: 76px; background: linear-gradient(225deg, #C9A24B 0%, #C9A24B 48%, rgba(0,0,0,0) 48%); opacity: 0.22; pointer-events: none; }
+.cell.brand-vault:hover { background: radial-gradient(80% 70% at 100% 0, rgba(201,162,75,0.16), rgba(0,0,0,0) 60%), #171717; }
+.cell.brand-vault .bar { background: #C9A24B; }
+.cell.brand-vault .top { padding-right: 40px; }
+.cell.brand-vault .h-cell { line-height: 1; }
+.cell.brand-vault .v-lockup { display: inline-flex; align-items: center; gap: 12px; }
+.cell.brand-vault .v-lockup img { width: 46px; height: auto; }
+.cell.brand-vault .v-stack { display: flex; flex-direction: column; gap: 3px; }
+.cell.brand-vault .v-brand { font-family: "Inter", sans-serif; font-weight: 600; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #C9A24B; }
+.cell.brand-vault .v-name { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 14px; letter-spacing: -0.01em; text-transform: uppercase; color: #CFCFCB; }
+.cell.brand-vault .v-vault { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.01em; text-transform: uppercase; color: #C9A24B; }
+.cell.brand-vault .tag, .cell.brand-vault .tag.live { color: #C9A24B; }
+.cell.brand-vault .sig { font-family: "Inter", sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #C9A24B; }
+.cell.brand-vault .sig i { font-style: normal; }
+.cell.brand-vault p { color: #CFCFCB; }
+.cell.brand-vault .more { color: #F5F5F3; }
+.cell.brand-vault .more::after { color: #C9A24B; }
 
 /* Built For Her: dark card with builtforher.io's soft purple hero glow (#040309 + rgba(123,77,255) radials), official lockup, purple #7B2FBE accents, cream CTA */
 .cell.brand-built-for-her { background: radial-gradient(60% 55% at 85% 0, rgba(123,77,255,0.28), rgba(0,0,0,0) 70%), radial-gradient(45% 45% at 0 100%, rgba(123,77,255,0.12), rgba(0,0,0,0) 70%), #040309; border-color: #1C1630; border-radius: 20px; color: #F3F0E9; }
@@ -378,13 +388,17 @@ a.post-row:hover .t { color: var(--red); }
 .cell.brand-traincnd .more { color: #fff; }
 .cell.brand-traincnd .more::after { color: #4B6BFF; }
 
-/* The Credential Standard: white paper, ink, verification green, Geist (from its site tokens) */
-.cell.brand-credential-standard { background: #FFFFFF; border-color: #D3D9E0; border-radius: 12px; color: #0E141B; }
-.cell.brand-credential-standard:hover { background: #F1F4F7; }
+/* The Credential Standard: from its site tokens. White paper, ink #0E141B, verification green #087A5B, Geist + Geist Mono, its seal */
+.cell.brand-credential-standard { position: relative; overflow: hidden; background: radial-gradient(70% 80% at 100% 100%, #E2F6EE 0%, rgba(226,246,238,0) 60%), #FFFFFF; border-color: #D3D9E0; border-radius: 12px; color: #0E141B; }
+.cell.brand-credential-standard:hover { background: radial-gradient(70% 80% at 100% 100%, #D6F1E6 0%, rgba(226,246,238,0) 62%), #FFFFFF; }
+.cell.brand-credential-standard > *:not(.seal-mark) { position: relative; z-index: 1; }
+.cell.brand-credential-standard .seal-mark { position: absolute; right: -48px; bottom: -58px; width: 180px; height: 180px; color: #087A5B; opacity: 0.12; pointer-events: none; }
 .cell.brand-credential-standard .bar { background: #087A5B; }
 .cell.brand-credential-standard .h-cell { font-family: "Geist", sans-serif; font-weight: 700; color: #0E141B; text-transform: none; letter-spacing: -0.01em; display: inline-flex; align-items: center; gap: 10px; }
-.cell.brand-credential-standard .seal { color: #087A5B; flex: none; }
+.cell.brand-credential-standard .seal { color: #087A5B; flex: none; width: 26px; height: 26px; }
 .cell.brand-credential-standard .tag { font-family: "Geist Mono", monospace; font-weight: 500; background: #E2F6EE; color: #087A5B; padding: 6px 10px; border-radius: 6px; letter-spacing: 0.06em; }
+.cell.brand-credential-standard .sig { font-family: "Geist Mono", monospace; font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #087A5B; }
+.cell.brand-credential-standard .sig i { font-style: normal; padding: 0 6px; color: #586573; }
 .cell.brand-credential-standard p { color: #586573; }
 .cell.brand-credential-standard .more { color: #0E141B; }
 .cell.brand-credential-standard .more::after { color: #087A5B; }
