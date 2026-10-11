@@ -57,7 +57,13 @@ def rows(items):
 
 
 # Real photos go here as they come in: label -> (path under /assets, alt text).
-PHOTOS = {}
+# label -> (src, alt, CSS object-position). Photos are JR's own, supplied by JR.
+_PORTRAIT = ("/assets/photos/jr-portrait.webp",
+             "JR Prieto-Romero, CSCS, arms crossed on the training floor", "50% 22%")
+PHOTOS = {
+    "Photo: JR coaching on the floor": _PORTRAIT,
+    "Photo: JR portrait": _PORTRAIT,
+}
 
 
 def frame(label, wide=False, card=""):
@@ -65,8 +71,9 @@ def frame(label, wide=False, card=""):
     cls = "frame with-card" if card else "frame"
     w = " wide" if wide else ""
     if label in PHOTOS:
-        src, alt = PHOTOS[label]
-        media = f'<div class="media photo{w}"><img src="{src}" alt="{alt}" loading="lazy"></div>'
+        src, alt, pos = PHOTOS[label]
+        media = (f'<div class="media photo{w}"><img src="{src}" alt="{alt}" width="832" height="1248" '
+                 f'style="object-position:{pos}" fetchpriority="high"></div>')
     else:
         media = (f'<div class="media brand-fill{w}" aria-hidden="true"><!-- photo slot: {label} -->'
                  f'<img src="/assets/jr-mark.png" alt=""></div>')
