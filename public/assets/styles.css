@@ -359,8 +359,8 @@ a.post-row:hover .t { color: var(--red); }
 .cell.brand-built-for-her .top { align-items: flex-start; }
 .cell.brand-built-for-her .tag, .cell.brand-built-for-her .tag.live { background: #7B2FBE; color: #fff; padding: 6px 12px; border-radius: 999px; letter-spacing: 0.1em; }
 .cell.brand-built-for-her p { color: rgba(243,240,233,0.82); }
-.cell.brand-built-for-her .more { align-self: flex-start; background: #F3F0E9; color: #0A0A0A; padding: 12px 20px; border-radius: 999px; margin-top: 6px; }
-.cell.brand-built-for-her .more::after { color: #7B2FBE; }
+.cell.brand-built-for-her .more { color: #F3F0E9; }
+.cell.brand-built-for-her .more::after { color: #A98BFF; }
 
 /* TRAINCND: Brand Kit v1.0. Obsidian #090A0C / Carbon #17191C, Machined Silver #B8BDC5, Titanium #D7DADF, Signal Blue #4B6BFF (restrained accent), Inter */
 .cell.brand-traincnd { position: relative; overflow: hidden; background: linear-gradient(180deg, #090A0C 0%, rgba(9,10,12,0.9) 38%, rgba(9,10,12,0.74) 62%, rgba(9,10,12,0.6) 100%), url("/assets/brands/traincnd-mountains.jpg") center bottom / cover no-repeat, #090A0C; border-color: #23262B; border-radius: 16px; color: #fff; }
