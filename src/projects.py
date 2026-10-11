@@ -120,6 +120,8 @@ CS_SEAL = ('<svg class="seal" width="22" height="22" viewBox="0 0 24 24" aria-hi
            '<path d="M8.6 12.2l2.3 2.4 4.5-4.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>')
 
 
+BFH_PHONE = ('<img class="bfh-phone" src="https://www.builtforher.io/screens/train.webp" width="300" height="651" loading="lazy" '
+             'alt="The Built For Her Train screen: current phase, this week\'s sessions and training score">')
 TC_LINE = '<span class="tc-line">PLAN<i>/</i>COACH<i>/</i>TRACK<i>/</i>SCALE</span>'
 
 
@@ -127,12 +129,15 @@ def cell(p, heading="h3"):
     cls, tag = p["tag"]
     mark = CS_SEAL if p["slug"] == "credential-standard" else ""
     name = p["name"]
+    if p["slug"] == "built-for-her":  # official lockup from builtforher.io/brand
+        name = '<img class="lockup" src="/assets/brands/bfh-lockup-on-dark.svg" width="1045" height="535" alt="Built For Her">'
     if p["slug"] == "traincnd":  # official lockup from the TRAINCND Brand Kit v1.0
         name = '<img class="lockup" src="/assets/brands/traincnd-lockup-dark.png" width="363" height="67" alt="TRAINCND, the coaching operating platform">'
     return f"""<a class="cell brand-{p['slug']}" href="/projects/{p['slug']}">
 <div class="bar"></div>
 <div class="top"><{heading} class="h-cell">{mark}{name}</{heading}><span class="tag {cls}">{tag}</span></div>
 {TC_LINE if p["slug"] == "traincnd" else ""}
+{BFH_PHONE if p["slug"] == "built-for-her" else ""}
 <p>{p['card']}</p>
 <div class="grow"></div>
 <span class="more">Learn more</span>
