@@ -122,7 +122,7 @@
 <span class="v-lockup"><img src="/assets/jr-mark.png" alt="" width="42" height="34"><span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span><span class="v-name">The Trainer’s Coach</span><span class="v-vault">Vault</span></span></span>
 <h2 class="vs-h">The operating library for coaches.</h2>
 <p class="vs-lead">Consultation systems, programming frameworks and client-management tools I built and run across two facilities, packaged so a working coach can use them this week.</p>
-<div class="vs-stats"><div><b data-count="34">34</b><span>Systems &amp; frameworks</span></div><div><b data-count="26">26</b><span>Tools</span></div><div><b data-count="11">11</b><span>Workflows</span></div></div>
+<div class="vs-stats"><div><b data-vault-stat="systems" data-count="34">34</b><span>Systems &amp; frameworks</span></div><div><b data-vault-stat="tools" data-count="26">26</b><span>Tools</span></div><div><b data-vault-stat="workflows" data-count="11">11</b><span>Workflows</span></div></div>
 <div class="btns"><a class="btn btn-pa" href="https://vault.jrstrengthandfitness.com/signup" rel="noopener" data-track="Free Vault account (home)">Create a free account</a><a class="link-u" href="/projects/vault">About the Vault →</a></div>
 </div>
 <div class="vs-stage" role="img" aria-label="The Trainer’s Coach Vault on a phone: the Vault home page scrolling through its featured systems">
@@ -138,9 +138,10 @@
   if(still||!('IntersectionObserver' in window)) return;
   el.classList.add('armed');
   var nums=el.querySelectorAll('[data-count]');
-  nums.forEach(function(n){ n.textContent='0'; });
-  function count(){ nums.forEach(function(n){ var end=+n.getAttribute('data-count'), t0=null;
-    function step(t){ if(!t0) t0=t; var p=Math.min(1,(t-t0)/1400); n.textContent=Math.round(end*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step); }
+  nums.forEach(function(n){ n.textContent='0'; n.setAttribute('data-state','armed'); });
+  function count(){ nums.forEach(function(n){ var t0=null; n.setAttribute('data-state','running');
+    function step(t){ if(!t0) t0=t; var p=Math.min(1,(t-t0)/1400), end=+n.getAttribute('data-count');
+      n.textContent=Math.round(end*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step); else n.setAttribute('data-state','done'); }
     requestAnimationFrame(step); }); }
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){
     if(e.isIntersecting){ if(!el.classList.contains('in')){ el.classList.add('in'); count(); } el.classList.remove('paused'); }
@@ -251,6 +252,18 @@
         .catch(function(){ st.textContent='Something went wrong. Please email jr@jrstrengthandfitness.com and I’ll add you.'; st.hidden=false; btn.textContent=label; btn.disabled=false; });
     });
   });
+})();
+</script><script>
+(function(){
+  if(!window.fetch) return;
+  fetch('/api/vault-stats').then(function(r){ return r.ok ? r.json() : null; }).then(function(s){
+    if(!s) return;
+    document.querySelectorAll('[data-vault-stat]').forEach(function(n){
+      var v=s[n.getAttribute('data-vault-stat')]; if(typeof v!=='number') return;
+      if(n.hasAttribute('data-count')){ n.setAttribute('data-count', v); if(n.getAttribute('data-state')!=='armed' && n.getAttribute('data-state')!=='running') n.textContent=v; }
+      else n.textContent=v;
+    });
+  }).catch(function(){});
 })();
 </script>
 <script>

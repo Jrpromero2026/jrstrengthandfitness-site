@@ -57,7 +57,7 @@
 </div>
 </section><section class="sec light mark"><div class="wrap"><div class="split top">
 <div class="main stack"><span class="eyebrow">What it is</span><p style="font-size:clamp(21px,2.1vw,26px);line-height:1.5;color:var(--fg)">A searchable, versioned library of systems, methods, frameworks, templates, tools, SOPs and AI workflows from hands-on coaching work. It isn’t a certification and it isn’t a consumer fitness app.</p></div>
-<div class="side"><span class="eyebrow" style="padding-bottom:18px">What’s inside</span><ul class="ticks"><li>34 systems and frameworks, 26 tools and 11 workflows</li><li>Initial Consultation System, Hypertrophy Progression Framework, JR Coaching Audit Method</li><li>Every resource states the problem it solves, who it’s for and how to implement it</li><li>Versioned and updated as methods evolve</li></ul></div>
+<div class="side"><span class="eyebrow" style="padding-bottom:18px">What’s inside</span><ul class="ticks"><li><span data-vault-stat="systems">34</span> systems and frameworks, <span data-vault-stat="tools">26</span> tools and <span data-vault-stat="workflows">11</span> workflows</li><li>Initial Consultation System, Hypertrophy Progression Framework, JR Coaching Audit Method</li><li>Every resource states the problem it solves, who it’s for and how to implement it</li><li>Versioned and updated as methods evolve</li></ul></div>
 </div></div></section><section class="sec dark mark"><div class="wrap"><div class="split top">
 <div class="side stack" style="gap:18px"><span class="eyebrow">From the floor</span><h2 class="h-display">Why I built it</h2></div>
 <div class="main stack"><p class="quote">Most coaches build their consultation process, programming model and client systems from scratch, on their own. I’ve built and refined mine across two facilities. The Vault packages them so a working coach can put them to use this week.</p><p class="body"><strong style="color:var(--fg)">IAOE · </strong>IAOE runs through the Vault’s frameworks, so coaches can match the intervention to the client in front of them.</p><p class="muted">JR Prieto-Romero, CSCS</p></div>
@@ -131,7 +131,19 @@
 <a href="/refund-policy">Refund Policy</a>
 </div>
 </footer>
-
+<script>
+(function(){
+  if(!window.fetch) return;
+  fetch('/api/vault-stats').then(function(r){ return r.ok ? r.json() : null; }).then(function(s){
+    if(!s) return;
+    document.querySelectorAll('[data-vault-stat]').forEach(function(n){
+      var v=s[n.getAttribute('data-vault-stat')]; if(typeof v!=='number') return;
+      if(n.hasAttribute('data-count')){ n.setAttribute('data-count', v); if(n.getAttribute('data-state')!=='armed' && n.getAttribute('data-state')!=='running') n.textContent=v; }
+      else n.textContent=v;
+    });
+  }).catch(function(){});
+})();
+</script>
 <script>
 /* Button and outbound-link click tracking for Vercel Web Analytics (2 properties max per event). */
 document.addEventListener('click',function(e){

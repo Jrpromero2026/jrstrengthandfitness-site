@@ -107,7 +107,8 @@ def build_pages():
         html = page(path=spec["path"], title=spec["title"].replace("&", "&amp;"),
                     description=spec["description"].replace("&", "&amp;"), body=spec["body"],
                     active=spec["active"], schema=spec.get("schema", False),
-                    script=spec.get("script", "") + (NL.SCRIPT if "data-newsletter" in spec["body"] else ""), closing=spec.get("closing", True),
+                    script=spec.get("script", "") + (NL.SCRIPT if "data-newsletter" in spec["body"] else "")
+                    + (PR.VAULT_STATS_SCRIPT if "data-vault-stat" in spec["body"] else ""), closing=spec.get("closing", True),
                     og_type=spec.get("og_type", "website"), head=spec.get("head", ""))
         os.makedirs(os.path.dirname(os.path.join(OUT, spec["file"])), exist_ok=True)
         with open(os.path.join(OUT, spec["file"]), "w", encoding="utf-8") as fh:

@@ -5,6 +5,31 @@ Facts come from each product's own live site. "Why" sections are drafts for JR t
 from layout import VAULT, EMAIL, CONSULT, FORM_ENDPOINT
 from ui import hero, sec, ext
 
+# Fallback Vault counts, as published on vault.jrstrengthandfitness.com/pricing (Oct 2026).
+# Pages show these first; VAULT_STATS_SCRIPT then swaps in the live counts from /api/vault-stats.
+VAULT_STATS = {"resources": 88, "systems": 34, "tools": 26, "workflows": 11}
+
+
+def stat(key):
+    return f'<span data-vault-stat="{key}">{VAULT_STATS[key]}</span>'
+
+
+# Fills every [data-vault-stat] with the Vault's live counts. Elements with data-count (the home page
+# count-up) get the new target; the count-up reads it as it runs.
+VAULT_STATS_SCRIPT = """<script>
+(function(){
+  if(!window.fetch) return;
+  fetch('/api/vault-stats').then(function(r){ return r.ok ? r.json() : null; }).then(function(s){
+    if(!s) return;
+    document.querySelectorAll('[data-vault-stat]').forEach(function(n){
+      var v=s[n.getAttribute('data-vault-stat')]; if(typeof v!=='number') return;
+      if(n.hasAttribute('data-count')){ n.setAttribute('data-count', v); if(n.getAttribute('data-state')!=='armed' && n.getAttribute('data-state')!=='running') n.textContent=v; }
+      else n.textContent=v;
+    });
+  }).catch(function(){});
+})();
+</script>"""
+
 PROJECTS = [
     dict(
         slug="vault",
@@ -16,7 +41,7 @@ PROJECTS = [
         card="Consultation systems, programming frameworks and client-management tools built from real coaching practice.",
         what="A searchable, versioned library of systems, methods, frameworks, templates, tools, SOPs and AI workflows from hands-on coaching work. It isn’t a certification and it isn’t a consumer fitness app.",
         inside=[
-            "34 systems and frameworks, 26 tools and 11 workflows",
+            f'{stat("systems")} systems and frameworks, {stat("tools")} tools and {stat("workflows")} workflows',
             "Initial Consultation System, Hypertrophy Progression Framework, JR Coaching Audit Method",
             "Every resource states the problem it solves, who it’s for and how to implement it",
             "Versioned and updated as methods evolve",

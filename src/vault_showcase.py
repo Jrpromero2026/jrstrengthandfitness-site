@@ -7,7 +7,7 @@ import json
 import os
 
 from layout import VAULT
-from projects import VAULT_LOCKUP
+from projects import VAULT_LOCKUP, VAULT_STATS
 
 META = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "vault_screens.json")))
 PHONE_W, PHONE_H = 390, 844  # the CSS viewport the screens were captured at
@@ -40,6 +40,8 @@ def block():
     cards = "".join(_card(i + 1, *c) for i, c in enumerate(CARDS))
     stage_label = ("The Trainer’s Coach Vault on a phone: the Vault home page scrolling through its featured systems"
                    + (", next to the Initial Consultation System page" if second else ""))
+    stats = "".join(f'<div><b data-vault-stat="{k}" data-count="{VAULT_STATS[k]}">{VAULT_STATS[k]}</b><span>{label}</span></div>'
+                    for k, label in (("systems", "Systems &amp; frameworks"), ("tools", "Tools"), ("workflows", "Workflows")))
     return f"""<section class="sec gray vs-sec" aria-label="Featured project"><div class="wrap">
 <div class="vs proj-vault{' vs-two' if second else ''}" data-vs>
 <div class="vs-copy">
@@ -47,7 +49,7 @@ def block():
 {VAULT_LOCKUP}
 <h2 class="vs-h">The operating library for coaches.</h2>
 <p class="vs-lead">Consultation systems, programming frameworks and client-management tools I built and run across two facilities, packaged so a working coach can use them this week.</p>
-<div class="vs-stats"><div><b data-count="34">34</b><span>Systems &amp; frameworks</span></div><div><b data-count="26">26</b><span>Tools</span></div><div><b data-count="11">11</b><span>Workflows</span></div></div>
+<div class="vs-stats">{stats}</div>
 <div class="btns"><a class="btn btn-pa" href="{VAULT}/signup" rel="noopener" data-track="Free Vault account (home)">Create a free account</a><a class="link-u" href="/projects/vault">About the Vault →</a></div>
 </div>
 <div class="vs-stage" role="img" aria-label="{stage_label}">
@@ -63,9 +65,10 @@ def block():
   if(still||!('IntersectionObserver' in window)) return;
   el.classList.add('armed');
   var nums=el.querySelectorAll('[data-count]');
-  nums.forEach(function(n){{ n.textContent='0'; }});
-  function count(){{ nums.forEach(function(n){{ var end=+n.getAttribute('data-count'), t0=null;
-    function step(t){{ if(!t0) t0=t; var p=Math.min(1,(t-t0)/1400); n.textContent=Math.round(end*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step); }}
+  nums.forEach(function(n){{ n.textContent='0'; n.setAttribute('data-state','armed'); }});
+  function count(){{ nums.forEach(function(n){{ var t0=null; n.setAttribute('data-state','running');
+    function step(t){{ if(!t0) t0=t; var p=Math.min(1,(t-t0)/1400), end=+n.getAttribute('data-count');
+      n.textContent=Math.round(end*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step); else n.setAttribute('data-state','done'); }}
     requestAnimationFrame(step); }}); }}
   var io=new IntersectionObserver(function(es){{ es.forEach(function(e){{
     if(e.isIntersecting){{ if(!el.classList.contains('in')){{ el.classList.add('in'); count(); }} el.classList.remove('paused'); }}
