@@ -116,7 +116,7 @@ BY_SLUG = {p["slug"]: p for p in PROJECTS}
 
 def cell(p, heading="h3"):
     cls, tag = p["tag"]
-    return f"""<a class="cell" href="/projects/{p['slug']}">
+    return f"""<a class="cell brand-{p['slug']}" href="/projects/{p['slug']}">
 <div class="bar"></div>
 <div class="top"><{heading} class="h-cell">{p['name']}</{heading}><span class="tag {cls}">{tag}</span></div>
 <p>{p['card']}</p>
@@ -126,7 +126,7 @@ def cell(p, heading="h3"):
 
 
 def panel():
-    return f'<div class="panel">{"".join(cell(p) for p in PROJECTS)}</div>'
+    return f'<div class="panel brands">{"".join(cell(p) for p in PROJECTS)}</div>'
 
 
 FOR_ROW = """<div class="for-row"><span class="eyebrow">Built for</span><span>Trainers &amp; coaches</span><span>Women who lift</span><span>Coaching businesses</span><span>Gyms that hire</span></div>"""
