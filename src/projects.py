@@ -114,11 +114,18 @@ PROJECTS = [
 BY_SLUG = {p["slug"]: p for p in PROJECTS}
 
 
+# The Credential Standard's seal, copied as-is from its own site header.
+CS_SEAL = ('<svg class="seal" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5">'
+           '<circle cx="12" cy="12" r="10.5"></circle><circle cx="12" cy="12" r="6.8" stroke-dasharray="1.6 2.05"></circle></g>'
+           '<path d="M8.6 12.2l2.3 2.4 4.5-4.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>')
+
+
 def cell(p, heading="h3"):
     cls, tag = p["tag"]
+    mark = CS_SEAL if p["slug"] == "credential-standard" else ""
     return f"""<a class="cell brand-{p['slug']}" href="/projects/{p['slug']}">
 <div class="bar"></div>
-<div class="top"><{heading} class="h-cell">{p['name']}</{heading}><span class="tag {cls}">{tag}</span></div>
+<div class="top"><{heading} class="h-cell">{mark}{p['name']}</{heading}><span class="tag {cls}">{tag}</span></div>
 <p>{p['card']}</p>
 <div class="grow"></div>
 <span class="more">Learn more</span>

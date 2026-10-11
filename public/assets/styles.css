@@ -348,12 +348,33 @@ a.post-row:hover .t { color: var(--red); }
 .cell.brand-vault .more { color: #fff; }
 .cell.brand-vault .more::after { color: #C8A96E; }
 
-/* Built For Her: cream, black, purple (platform purple #7B4DFF) */
+/* Built For Her: cream, black, purple (brand purple #7B2FBE) */
 .cell.brand-built-for-her { background: #F3F0E9; border-color: #E2DCCD; border-radius: 20px; color: #0A0A0A; }
 .cell.brand-built-for-her:hover { background: #EDE8DD; }
-.cell.brand-built-for-her .bar { background: #7B4DFF; border-radius: 2px; }
+.cell.brand-built-for-her .bar { background: #7B2FBE; border-radius: 2px; }
 .cell.brand-built-for-her .h-cell { font-family: "Montserrat", sans-serif; font-weight: 800; color: #0A0A0A; letter-spacing: 0.01em; text-transform: uppercase; }
-.cell.brand-built-for-her .tag, .cell.brand-built-for-her .tag.live { background: #7B4DFF; color: #fff; padding: 6px 12px; border-radius: 999px; letter-spacing: 0.1em; }
+.cell.brand-built-for-her .tag, .cell.brand-built-for-her .tag.live { background: #7B2FBE; color: #fff; padding: 6px 12px; border-radius: 999px; letter-spacing: 0.1em; }
 .cell.brand-built-for-her p { color: #3A3A3A; }
 .cell.brand-built-for-her .more { align-self: flex-start; background: #0A0A0A; color: #fff; padding: 12px 20px; border-radius: 999px; margin-top: 6px; }
-.cell.brand-built-for-her .more::after { color: #B9A2FF; }
+.cell.brand-built-for-her .more::after { color: #C9A3EE; }
+
+/* TRAINCND: warm white, deep ink, blue accent (from traincnd.com / app tokens) */
+.cell.brand-traincnd { background: #FFFFFF; border-color: #E6E2DC; border-radius: 16px; color: #1A1523; }
+.cell.brand-traincnd:hover { background: #F7F6F3; }
+.cell.brand-traincnd .bar { background: #4B6BFF; border-radius: 2px; }
+.cell.brand-traincnd .h-cell { font-family: "Inter", sans-serif; font-weight: 800; color: #1A1523; letter-spacing: -0.01em; }
+.cell.brand-traincnd .tag { background: #E6EAFF; color: #1A1523; padding: 6px 12px; border-radius: 999px; letter-spacing: 0.1em; }
+.cell.brand-traincnd p { color: #3D3450; }
+.cell.brand-traincnd .more { color: #1A1523; }
+.cell.brand-traincnd .more::after { color: #4B6BFF; }
+
+/* The Credential Standard: white paper, ink, verification green, Geist (from its site tokens) */
+.cell.brand-credential-standard { background: #FFFFFF; border-color: #D3D9E0; border-radius: 12px; color: #0E141B; }
+.cell.brand-credential-standard:hover { background: #F1F4F7; }
+.cell.brand-credential-standard .bar { background: #087A5B; }
+.cell.brand-credential-standard .h-cell { font-family: "Geist", sans-serif; font-weight: 700; color: #0E141B; text-transform: none; letter-spacing: -0.01em; display: inline-flex; align-items: center; gap: 10px; }
+.cell.brand-credential-standard .seal { color: #087A5B; flex: none; }
+.cell.brand-credential-standard .tag { font-family: "Geist Mono", monospace; font-weight: 500; background: #E2F6EE; color: #087A5B; padding: 6px 10px; border-radius: 6px; letter-spacing: 0.06em; }
+.cell.brand-credential-standard p { color: #586573; }
+.cell.brand-credential-standard .more { color: #0E141B; }
+.cell.brand-credential-standard .more::after { color: #087A5B; }
