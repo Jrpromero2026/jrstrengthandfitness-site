@@ -348,9 +348,11 @@ a.post-row:hover .t { color: var(--red); }
 .cell.brand-vault .more { color: #fff; }
 .cell.brand-vault .more::after { color: #C8A96E; }
 
-/* Built For Her: dark card in the platform's own card gradient (app.builtforher.io: 160deg #1A1035 to #0A0A0A), official lockup, purple #7B2FBE accents, cream CTA */
-.cell.brand-built-for-her { background: linear-gradient(160deg, #1A1035 0%, #0A0A0A 65%); border-color: #241A3D; border-radius: 20px; color: #F3F0E9; }
-.cell.brand-built-for-her:hover { background: linear-gradient(160deg, #22154A 0%, #0D0C12 65%); }
+/* Built For Her: dark card with builtforher.io's soft purple hero glow (#040309 + rgba(123,77,255) radials), official lockup, purple #7B2FBE accents, cream CTA */
+.cell.brand-built-for-her { background: radial-gradient(60% 55% at 85% 0, rgba(123,77,255,0.28), rgba(0,0,0,0) 70%), radial-gradient(45% 45% at 0 100%, rgba(123,77,255,0.12), rgba(0,0,0,0) 70%), #040309; border-color: #1C1630; border-radius: 20px; color: #F3F0E9; }
+.cell.brand-built-for-her:hover { background: radial-gradient(60% 55% at 85% 0, rgba(123,77,255,0.36), rgba(0,0,0,0) 70%), radial-gradient(45% 45% at 0 100%, rgba(123,77,255,0.16), rgba(0,0,0,0) 70%), #040309; }
+.cell.brand-built-for-her .lockup-wrap { display: inline-flex; align-items: flex-start; gap: 3px; }
+.cell.brand-built-for-her .tm { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 13px; line-height: 1; color: #F3F0E9; margin-top: 2px; }
 .cell.brand-built-for-her .bar { background: #7B2FBE; border-radius: 2px; }
 .cell.brand-built-for-her .h-cell { line-height: 0; }
 .cell.brand-built-for-her .lockup { width: min(150px, 100%); height: auto; }

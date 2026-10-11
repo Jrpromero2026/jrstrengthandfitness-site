@@ -128,7 +128,8 @@ def cell(p, heading="h3"):
     mark = CS_SEAL if p["slug"] == "credential-standard" else ""
     name = p["name"]
     if p["slug"] == "built-for-her":  # official lockup from builtforher.io/brand
-        name = '<img class="lockup" src="/assets/brands/bfh-lockup-on-dark.svg" width="1045" height="535" alt="Built For Her">'
+        name = ('<span class="lockup-wrap"><img class="lockup" src="/assets/brands/bfh-lockup-on-dark.svg" width="1045" height="535" alt="Built For Her">'
+                '<span class="tm" aria-label="trademark">™</span></span>')
     if p["slug"] == "traincnd":  # official lockup from the TRAINCND Brand Kit v1.0
         name = '<img class="lockup" src="/assets/brands/traincnd-lockup-dark.png" width="363" height="67" alt="TRAINCND, the coaching operating platform">'
     return f"""<a class="cell brand-{p['slug']}" href="/projects/{p['slug']}">
