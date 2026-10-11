@@ -1,6 +1,6 @@
 """Page content for jrstrengthandfitness.com (v2 layout). Bracketed [text] marks copy or media JR still needs to supply."""
 
-from layout import VAULT, LINKEDIN, EMAIL, CONSULT, TAC_PT, G3_PT, FORM_ENDPOINT
+from layout import ADDRESS, VAULT, LINKEDIN, EMAIL, CONSULT, TAC_PT, G3_PT, FORM_ENDPOINT
 from ui import ph, hero, sec, head_row, rows, frame
 import projects as P
 import newsletter as NL
@@ -354,7 +354,7 @@ PRIVACY = legal("Legal", "Privacy Policy", f"""{DRAFT}{UPDATED}
 <h2>Minors</h2>
 <p>Youth athletes train through G3 with a parent or guardian. Applications on this site should be submitted by adults, or by a parent or guardian for a minor.</p>
 <h2>Contact</h2>
-<p>JR Strength and Fitness LLC, 862 SW Adams Ave, Corvallis, OR 97333 · <a href="mailto:{EMAIL}">{EMAIL}</a></p>""")
+<p>{ADDRESS} · <a href="mailto:{EMAIL}">{EMAIL}</a></p>""")
 TERMS = legal("Legal", "Terms of Service", f"""{DRAFT}{UPDATED}
 <p>These terms apply to your use of jrstrengthandfitness.com and to coaching services from JR Strength and Fitness LLC (“we”). By using the site or our services, you agree to them.</p>
 <h2>Not medical advice</h2>
@@ -375,7 +375,7 @@ TERMS = legal("Legal", "Terms of Service", f"""{DRAFT}{UPDATED}
 <h2>Governing law</h2>
 <p>These terms are governed by the laws of the State of Oregon.</p>
 <h2>Contact</h2>
-<p>JR Strength and Fitness LLC, 862 SW Adams Ave, Corvallis, OR 97333 · <a href="mailto:{EMAIL}">{EMAIL}</a></p>""")
+<p>{ADDRESS} · <a href="mailto:{EMAIL}">{EMAIL}</a></p>""")
 REFUND = legal("Legal", "Refund Policy", f"""{DRAFT}{UPDATED}
 <p>This policy covers online coaching packages. In-person training at Timberhill Athletic Club and G3 follows each facility’s own policies.</p>
 <h2>Packages and billing</h2>
@@ -383,7 +383,9 @@ REFUND = legal("Legal", "Refund Policy", f"""{DRAFT}{UPDATED}
 <h2>How to cancel</h2>
 <p>Email <a href="mailto:{EMAIL}">{EMAIL}</a> or message your coach in the app.</p>
 <h2>Exceptions</h2>
-<p>If an injury or medical issue stops you from training, contact us. We’ll work out the best option with you, such as a pause.</p>""")
+<p>If an injury or medical issue stops you from training, contact us. We’ll work out the best option with you, such as a pause.</p>
+<h2>Contact</h2>
+<p>{ADDRESS} · <a href="mailto:{EMAIL}">{EMAIL}</a></p>""")
 
 NOT_FOUND = hero("404", "Page not found.", "That page moved or never existed.",
                  '<a class="btn btn-red" href="/">Go home</a><a class="link-u" href="/train">Train with JR →</a>', short=True, size="h-display")

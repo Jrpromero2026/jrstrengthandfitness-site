@@ -7,6 +7,9 @@ INSTAGRAM = "https://www.instagram.com/jrstrengthandfitness/"
 YOUTUBE = "https://www.youtube.com/channel/UC3gQzznf26wawqKAFj_yuzQ"
 FACEBOOK = "https://www.facebook.com/jrstrengthandfitness"
 VAULT = "https://vault.jrstrengthandfitness.com"
+# Business mailing address for everything public (site, legal pages, Kit emails).
+ADDRESS_LINES = ("JR Strength and Fitness LLC", "5441 S Macadam Ave, Suite 6590", "Portland, OR 97239")
+ADDRESS = ", ".join(ADDRESS_LINES)
 LOGO_W, LOGO_H = 928, 240  # set by build.py from the actual file
 CSS_VER = "1"  # set by build.py: hash of styles.css, so browsers fetch the new file after each change
 
@@ -29,7 +32,7 @@ SCHEMA = """<script type="application/ld+json">{
  "name":"JR Strength and Fitness","url":"%s","email":"%s",
  "image":"%s/assets/og-image.png",
  "founder":{"@type":"Person","name":"JR Prieto-Romero","jobTitle":"Strength and Conditioning Coach, CSCS"},
- "address":{"@type":"PostalAddress","streetAddress":"862 SW Adams Ave","addressLocality":"Corvallis","addressRegion":"OR","postalCode":"97333","addressCountry":"US"},
+ "address":{"@type":"PostalAddress","streetAddress":"5441 S Macadam Ave, Suite 6590","addressLocality":"Portland","addressRegion":"OR","postalCode":"97239","addressCountry":"US"},
  "areaServed":["Corvallis, OR","Online"],
  "sameAs":["%s","%s","%s","%s"]
 }</script>""" % (SITE, EMAIL, SITE, LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK)
@@ -113,6 +116,7 @@ def page(*, path, title, description, body, active="", schema=False, script="", 
 <img src="/assets/jr-logo.png" alt="JR Strength &amp; Fitness" width="{LOGO_W}" height="{LOGO_H}">
 <span class="motto">Built on standards. Proven through execution.</span>
 <a href="mailto:{EMAIL}" style="color:#fff">{EMAIL}</a>
+<address class="addr">{"<br>".join(ADDRESS_LINES)}</address>
 </div>
 <nav class="col" aria-label="Projects">
 <span class="head">Projects</span>
