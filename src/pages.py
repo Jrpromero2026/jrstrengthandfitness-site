@@ -9,7 +9,7 @@ import newsletter as NL
 CONSULT_BTN = f'<a class="btn btn-red" href="{CONSULT}">Book a free consult</a>'
 
 # ---------------------------------------------------------------- Home
-CRED_CARD = """<div class="cred-card"><div class="k">Credentials</div><div class="v"><span>CSCS</span><span>B.S. Oregon State</span><span>20,000 hrs</span></div></div>"""
+CRED_CARD = """<div class="cred-card"><div class="k">Credentials</div><div class="v"><span>CSCS</span><span>B.S. Oregon State</span><span><b data-countup="20000">20,000</b> hrs</span></div></div>"""
 
 STRIP = """<section class="strip" aria-label="Roles"><div class="wrap">
 <div class="c"><b>01</b><span>Director of Training, TAC</span></div>
@@ -23,7 +23,7 @@ IAOE_ROWS = rows([
     dict(n="02", k="Fitness trainer", t="Adequate", d="Safe, effective and progressing. The right target for many clients."),
     dict(n="03", k="Fitness coach", t="Optimal", d="Individualized programming built around the person’s goals."),
     dict(n="04", k="Performance coach", t="Enhanced", d="Where I coach: trained athletes who have plateaued and want finer margins.", cls="hot"),
-])
+]).replace('<div class="rows">', '<div class="rows ladder" data-ladder>', 1)
 
 HOME = (
     hero(

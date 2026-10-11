@@ -59,6 +59,9 @@ def closing_cta():
 </section>"""
 
 
+from motion import MOTION_JS  # noqa: E402
+
+
 def page(*, path, title, description, body, active="", schema=False, script="", closing=True, og_type="website", head="", **_):
     nav = "\n".join(
         f'<a href="{href}"{" aria-current=\"page\"" if key == active else ""}>{label}</a>'
@@ -70,6 +73,8 @@ def page(*, path, title, description, body, active="", schema=False, script="", 
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* Motion on only when it can finish and the visitor hasn't asked for less. */
+if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) document.documentElement.classList.add('m');</script>
 <title>{title}</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="{canonical}">
@@ -155,6 +160,7 @@ def page(*, path, title, description, body, active="", schema=False, script="", 
 <a href="/refund-policy">Refund Policy</a>
 </div>
 </footer>
+{MOTION_JS}
 {script}
 <script>
 /* Button and outbound-link click tracking for Vercel Web Analytics (2 properties max per event). */

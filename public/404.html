@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* Motion on only when it can finish and the visitor hasn't asked for less. */
+if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) document.documentElement.classList.add('m');</script>
 <title>Page not found | JR Strength &amp; Fitness</title>
 <meta name="description" content="That page moved or never existed.">
 <link rel="canonical" href="https://www.jrstrengthandfitness.com/404">
@@ -21,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&amp;family=Montserrat:wght@700;800&amp;family=Inter:wght@600;800&amp;family=Geist:wght@700&amp;family=Geist+Mono:wght@500&amp;display=swap">
-<link rel="stylesheet" href="/assets/styles.css?v=eec12ef9bc">
+<link rel="stylesheet" href="/assets/styles.css?v=c9005a377b">
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 
@@ -49,7 +51,7 @@
 <div class="wrap split">
 <div class="main stack" style="gap:24px">
 <span class="eyebrow">404</span>
-<h1 class="h-display">Page not found.</h1>
+<h1 class="h-display"><span class="ln" style="--i:0"><span>Page not found.</span></span></h1>
 <p class="lead">That page moved or never existed.</p>
 <div class="btns" style="padding-top:6px"><a class="btn btn-red" href="/">Go home</a><a class="link-u" href="/train">Train with JR →</a></div>
 </div>
@@ -114,6 +116,44 @@
 <a href="/refund-policy">Refund Policy</a>
 </div>
 </footer>
+<script>
+(function(){
+  var root=document.documentElement; if(!root.classList.contains('m')) return;
+
+  /* 1. Scroll reveal: blocks rise in as they enter view, siblings staggered. Skips anything already on screen. */
+  var SEL=['.sec .head-row','.panel.brands .cell','.sec .split > .main','.sec .split > .side','.sec .facts',
+           '.sec .rows:not(.ladder) .row','.for-row','.post-row','.sec .info-card','.sec .form-card','.post-cta','.closing .wrap > *'];
+  var items=[].slice.call(document.querySelectorAll(SEL.join(','))).filter(function(el){
+    return !el.closest('.hero') && !el.closest('.vs') && !el.closest('.ladder') && el.getBoundingClientRect().top > innerHeight*0.92;
+  });
+  items=items.filter(function(el){ return !items.some(function(o){ return o!==el && o.contains(el); }); });  /* outermost only */
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){
+    if(!e.isIntersecting) return; var el=e.target; io.unobserve(el);
+    var sib=[].slice.call(el.parentNode.children).filter(function(c){ return c.classList.contains('rv'); });
+    el.style.transitionDelay=Math.min(sib.indexOf(el),5)*90+'ms';
+    el.classList.add('rv-in');
+    setTimeout(function(){ el.style.transitionDelay=''; }, 1600);
+  }); },{rootMargin:'0px 0px -8% 0px'});
+  items.forEach(function(el){ el.classList.add('rv'); io.observe(el); });
+
+  /* 2. IAOE ladder: rungs light up in order, Enhanced last. */
+  document.querySelectorAll('[data-ladder]').forEach(function(l){
+    l.classList.add('armed');
+    var lo=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ l.classList.add('go'); lo.disconnect(); } },{threshold:0.35});
+    lo.observe(l);
+  });
+
+  /* 3. Hero credential count-up (20,000 hrs). */
+  document.querySelectorAll('.hero [data-countup]').forEach(function(n){
+    var end=+n.getAttribute('data-countup'), t0=null; n.textContent='0';
+    setTimeout(function(){ requestAnimationFrame(function step(t){
+      if(!t0) t0=t; var p=Math.min(1,(t-t0)/1600);
+      n.textContent=Math.round(end*(1-Math.pow(1-p,3))).toLocaleString('en-US');
+      if(p<1) requestAnimationFrame(step);
+    }); },1100);
+  });
+})();
+</script>
 
 <script>
 /* Button and outbound-link click tracking for Vercel Web Analytics (2 properties max per event). */

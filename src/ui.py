@@ -7,12 +7,18 @@ def ph(text):
     return f'<span class="placeholder">[{text}]</span>'
 
 
+def _lines(title):
+    """Each headline line in its own clipped span, so it can rise in (see .ln in styles.css)."""
+    parts = [x for x in title.split("<br>")]
+    return "".join(f'<span class="ln" style="--i:{i}"><span>{x}</span></span>' for i, x in enumerate(parts))
+
+
 def hero(eyebrow, title, lead="", btns="", side="", short=False, size="h-hero"):
     lead_html = f'<p class="lead">{lead}</p>' if lead else ""
     btn_html = f'<div class="btns" style="padding-top:6px">{btns}</div>' if btns else ""
     main = f"""<div class="main stack" style="gap:24px">
 <span class="eyebrow">{eyebrow}</span>
-<h1 class="{size}">{title}</h1>
+<h1 class="{size}">{_lines(title)}</h1>
 {lead_html}
 {btn_html}
 </div>"""

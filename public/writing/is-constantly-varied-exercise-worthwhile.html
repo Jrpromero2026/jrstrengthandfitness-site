@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* Motion on only when it can finish and the visitor hasn't asked for less. */
+if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) document.documentElement.classList.add('m');</script>
 <title>Is Constantly Varied Exercise Worthwhile? | JR Strength &amp; Fitness</title>
 <meta name="description" content="Muscle confusion, CrossFit and P90x made exercise variation a hot topic. A look at the research on constantly varied versus fixed exercise selection, and how to program structured variation.">
 <link rel="canonical" href="https://www.jrstrengthandfitness.com/writing/is-constantly-varied-exercise-worthwhile">
@@ -21,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&amp;family=Montserrat:wght@700;800&amp;family=Inter:wght@600;800&amp;family=Geist:wght@700&amp;family=Geist+Mono:wght@500&amp;display=swap">
-<link rel="stylesheet" href="/assets/styles.css?v=eec12ef9bc">
+<link rel="stylesheet" href="/assets/styles.css?v=c9005a377b">
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 
@@ -49,7 +51,7 @@
 <div class="wrap split">
 <div class="main stack" style="gap:24px">
 <span class="eyebrow">Programming · Dec 7, 2020</span>
-<h1 class="h-md">Is Constantly Varied Exercise Worthwhile?</h1>
+<h1 class="h-md"><span class="ln" style="--i:0"><span>Is Constantly Varied Exercise Worthwhile?</span></span></h1>
 <p class="lead">By JR Prieto-Romero, CSCS · 10 min read</p>
 
 </div>
@@ -188,6 +190,44 @@
 <a href="/refund-policy">Refund Policy</a>
 </div>
 </footer>
+<script>
+(function(){
+  var root=document.documentElement; if(!root.classList.contains('m')) return;
+
+  /* 1. Scroll reveal: blocks rise in as they enter view, siblings staggered. Skips anything already on screen. */
+  var SEL=['.sec .head-row','.panel.brands .cell','.sec .split > .main','.sec .split > .side','.sec .facts',
+           '.sec .rows:not(.ladder) .row','.for-row','.post-row','.sec .info-card','.sec .form-card','.post-cta','.closing .wrap > *'];
+  var items=[].slice.call(document.querySelectorAll(SEL.join(','))).filter(function(el){
+    return !el.closest('.hero') && !el.closest('.vs') && !el.closest('.ladder') && el.getBoundingClientRect().top > innerHeight*0.92;
+  });
+  items=items.filter(function(el){ return !items.some(function(o){ return o!==el && o.contains(el); }); });  /* outermost only */
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){
+    if(!e.isIntersecting) return; var el=e.target; io.unobserve(el);
+    var sib=[].slice.call(el.parentNode.children).filter(function(c){ return c.classList.contains('rv'); });
+    el.style.transitionDelay=Math.min(sib.indexOf(el),5)*90+'ms';
+    el.classList.add('rv-in');
+    setTimeout(function(){ el.style.transitionDelay=''; }, 1600);
+  }); },{rootMargin:'0px 0px -8% 0px'});
+  items.forEach(function(el){ el.classList.add('rv'); io.observe(el); });
+
+  /* 2. IAOE ladder: rungs light up in order, Enhanced last. */
+  document.querySelectorAll('[data-ladder]').forEach(function(l){
+    l.classList.add('armed');
+    var lo=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ l.classList.add('go'); lo.disconnect(); } },{threshold:0.35});
+    lo.observe(l);
+  });
+
+  /* 3. Hero credential count-up (20,000 hrs). */
+  document.querySelectorAll('.hero [data-countup]').forEach(function(n){
+    var end=+n.getAttribute('data-countup'), t0=null; n.textContent='0';
+    setTimeout(function(){ requestAnimationFrame(function step(t){
+      if(!t0) t0=t; var p=Math.min(1,(t-t0)/1600);
+      n.textContent=Math.round(end*(1-Math.pow(1-p,3))).toLocaleString('en-US');
+      if(p<1) requestAnimationFrame(step);
+    }); },1100);
+  });
+})();
+</script>
 <script>
 (function(){
   var KIT={"coach": "10028376", "training": "10028379", "women": "10028394"};
