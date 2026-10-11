@@ -354,7 +354,7 @@ a.post-row:hover .t { color: var(--red); }
 .cell.brand-built-for-her > *:not(.bfh-phone) { position: relative; z-index: 1; }
 .cell.brand-built-for-her .bar { background: #7B2FBE; border-radius: 2px; }
 .cell.brand-built-for-her .h-cell { line-height: 0; }
-.cell.brand-built-for-her .lockup { width: min(200px, 100%); height: auto; }
+.cell.brand-built-for-her .lockup { width: min(165px, 100%); height: auto; }
 .cell.brand-built-for-her .top { flex-direction: column; align-items: flex-start; gap: 14px; }
 .cell.brand-built-for-her .tag, .cell.brand-built-for-her .tag.live { background: #7B2FBE; color: #fff; padding: 6px 12px; border-radius: 999px; letter-spacing: 0.1em; }
 .cell.brand-built-for-her p { color: rgba(243,240,233,0.82); }
