@@ -39,7 +39,8 @@ SCHEMA = """<script type="application/ld+json">{
 
 
 CONSULT = "/consult"
-TAC_PT = "https://timberhillac.com/programs/personal-training"
+# Timberhill free consult: JR's Setmore booking page (opens on the time-slot step for the consult service)
+TAC_PT = "https://timberhill-personal-training.setmore.com/jrprietoromero?step=time-slot&amp;products=8aff2d32-3927-4531-a6ba-f12c9e5ab214&amp;type=service&amp;staff=91f71610-48fd-4e00-bd4e-2017f4f4a65b&amp;staffSelected=false"
 G3_PT = "https://www.gthreesports.com/personal-training"
 FORM_ENDPOINT = "https://formsubmit.co/ajax/jr@jrstrengthandfitness.com"
 
