@@ -654,23 +654,27 @@ a.post-row:hover .t { color: var(--red); }
 .faq-q summary:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
 .faq-q p { margin: 0; padding: 0 48px 24px 0; color: var(--body); max-width: 760px; }
 
-/* The Credential Standard card: verification-green glow and gradient (brand green #087A5B on white paper) */
+/* The Credential Standard card: dark blend of ink #0E141B and verification green #087A5B (options 3 + 4).
+   Only the brand's own colours: green, ink and mint #E2F6EE. No outer glow. */
 .cell.brand-credential-standard {
-  background: radial-gradient(85% 95% at 100% 100%, rgba(8,122,91,0.20) 0%, rgba(8,122,91,0) 62%),
-              radial-gradient(60% 70% at 0% 0%, rgba(8,122,91,0.09) 0%, rgba(8,122,91,0) 70%),
-              linear-gradient(160deg, #FFFFFF 0%, #F1FAF6 100%);
-  border-color: rgba(8,122,91,0.30);
-  box-shadow: 0 0 0 1px rgba(8,122,91,0.05), 0 22px 50px -22px rgba(8,122,91,0.55), 0 0 40px -12px rgba(8,122,91,0.25);
-  transition: background .2s, transform .15s, box-shadow .25s;
+  background: radial-gradient(70% 80% at 100% 0%, rgba(8,122,91,0.55) 0%, rgba(8,122,91,0) 70%),
+              linear-gradient(155deg, #087A5B 0%, rgba(8,122,91,0.55) 32%, rgba(8,122,91,0) 72%), #0E141B;
+  border-color: rgba(8,122,91,0.6); color: #FFFFFF; box-shadow: none;
 }
 .cell.brand-credential-standard:hover {
-  background: radial-gradient(85% 95% at 100% 100%, rgba(8,122,91,0.26) 0%, rgba(8,122,91,0) 64%),
-              radial-gradient(60% 70% at 0% 0%, rgba(8,122,91,0.12) 0%, rgba(8,122,91,0) 70%),
-              linear-gradient(160deg, #FFFFFF 0%, #EBF8F2 100%);
-  box-shadow: 0 0 0 1px rgba(8,122,91,0.10), 0 26px 60px -20px rgba(8,122,91,0.65), 0 0 56px -10px rgba(8,122,91,0.35);
+  background: radial-gradient(70% 80% at 100% 0%, rgba(8,122,91,0.7) 0%, rgba(8,122,91,0) 72%),
+              linear-gradient(155deg, #087A5B 0%, rgba(8,122,91,0.62) 36%, rgba(8,122,91,0) 76%), #0E141B;
 }
-.cell.brand-credential-standard .seal-mark { opacity: 0.16; }
-.cell.brand-credential-standard .bar { background: linear-gradient(90deg, #087A5B, rgba(8,122,91,0.35)); }
+.cell.brand-credential-standard .bar { background: #E2F6EE; }
+.cell.brand-credential-standard .h-cell { color: #FFFFFF; }
+.cell.brand-credential-standard .seal { color: #E2F6EE; }
+.cell.brand-credential-standard .tag { background: rgba(226,246,238,0.14); color: #E2F6EE; }
+.cell.brand-credential-standard .sig { color: #E2F6EE; }
+.cell.brand-credential-standard .sig i { color: rgba(255,255,255,0.55); }
+.cell.brand-credential-standard p { color: rgba(255,255,255,0.82); }
+.cell.brand-credential-standard .more { color: #FFFFFF; }
+.cell.brand-credential-standard .more::after { color: #E2F6EE; }
+.cell.brand-credential-standard .seal-mark { color: #E2F6EE; opacity: 0.09; }
 
 /* "Built for" row spans the full content width on desktop */
 @media (min-width: 900px) {
