@@ -5,6 +5,7 @@ from ui import ph, hero, sec, head_row, rows, frame
 import projects as P
 import vault_showcase as VS
 import seo as S
+import iaoe as IAOE
 import newsletter as NL
 
 CONSULT_BTN = f'<a class="btn btn-red" href="{CONSULT}">Book a free consult</a>'
@@ -13,10 +14,10 @@ CONSULT_BTN = f'<a class="btn btn-red" href="{CONSULT}">Book a free consult</a>'
 CRED_CARD = """<div class="cred-card"><div class="k">Credentials</div><div class="v"><span>CSCS</span><span>B.S. Oregon State</span><span><b data-countup="20000">20,000</b> hrs</span></div></div>"""
 
 STRIP = """<section class="strip" aria-label="Roles"><div class="wrap">
-<div class="c"><b>01</b><span>Director of Training, TAC</span></div>
-<div class="c"><b>02</b><span>Director of PT &amp; Performance, G3</span></div>
-<div class="c"><b>03</b><span>Founder of four coaching products</span></div>
-<div class="c"><b>04</b><span>10+ years on the floor</span></div>
+<div class="c"><b>01</b><span>Director of Personal Training, Timberhill Athletic Club</span></div>
+<div class="c"><b>02</b><span>Director of Performance, G3 Sports &amp; Fitness</span></div>
+<div class="c"><b>03</b><span>Founder of Four Coaching Products</span></div>
+<div class="c"><b>04</b><span>10+ Years on the Floor</span></div>
 </div></section>"""
 
 IAOE_ROWS = rows([
@@ -30,7 +31,7 @@ HOME = (
     hero(
         "Coach · Builder · Corvallis, Oregon",
         "Built on<br>the floor.<br>Now built<br>for coaches.",
-        "I’m JR Prieto-Romero, CSCS. I direct training at Timberhill Athletic Club and lead personal training and performance at G3 Sports &amp; Fitness. Now I’m turning what works on the floor into tools for coaches and athletes.",
+        "I’m JR Prieto-Romero, CSCS. I’m Director of Personal Training at Timberhill Athletic Club and Director of Performance at G3 Sports &amp; Fitness. Now I’m turning what works on the floor into tools for coaches and athletes.",
         f'{CONSULT_BTN}<a class="link-u" href="#projects">See what I’m building ↓</a>',
         frame("Photo: JR coaching on the floor", card=CRED_CARD),
     )
@@ -39,15 +40,15 @@ HOME = (
                             "Each one started as a problem I kept solving by hand at TAC or G3. Now they’re tools any coach, athlete or gym can use.")
           + P.panel() + P.FOR_ROW, id="projects")
     + sec("dark", head_row("The standard underneath", "Match the<br>intervention<br>to the person.",
-                           "Every project runs on IAOE. Adequate is a legitimate target, not a failure: safe, effective and progressing is the right outcome for many clients.")
-          + IAOE_ROWS, id="standard")
+                           "IAOE runs through everything I build: coaching, training programs, nutrition, trainer development and the client experience. Adequate is a legitimate target, not a failure.")
+          + IAOE.block(), id="standard")
     + sec("light", f"""<div class="split">
 <div class="side">{frame("Photo or short video: a session at TAC or G3", wide=True)}</div>
 <div class="main stack">
 <span class="eyebrow">Train with JR</span>
 <h2 class="h-md">Every client starts with a free 30-minute consult.</h2>
 <p class="lead">Goals, training history, limitations, barriers and preferences. Local clients start at Timberhill or G3, where I match you with the right coach and program. Sometimes that coach isn’t me.</p>
-<div class="facts"><div>In person · Corvallis</div><div>Online · from $129/mo</div><div>No membership needed</div></div>
+<div class="facts"><div>In person · Corvallis</div><div>Online · from $199/mo</div><div>No membership needed</div></div>
 <div class="btns">{CONSULT_BTN}<a class="link-u" href="/train">How training works →</a></div>
 </div>
 </div>""", id="train")
@@ -56,7 +57,7 @@ HOME = (
 <div class="h"><span class="eyebrow">About JR</span><h2 class="h-display">Salem.<br>Oregon State.<br>20,000 hours.</h2></div>
 <div class="stack" style="flex:1 1 420px;min-width:0;gap:18px">
 <p class="lead">I grew up in Salem, came to Corvallis for Oregon State and earned my degree in Exercise &amp; Sport Science. I played soccer, sprinted and threw before I ever coached.</p>
-<p class="lead">Today I direct training at Timberhill Athletic Club, lead personal training and performance at G3, and coach my own clients at the Enhanced tier.</p>
+<p class="lead">Today I’m Director of Personal Training at Timberhill Athletic Club and Director of Performance at G3, and I coach my own clients at the Enhanced tier.</p>
 <a class="link-u" href="/about" style="align-self:flex-start">Read the full story →</a>
 </div>
 </div>""", id="about")
@@ -88,7 +89,7 @@ TRAIN = (
 <span class="eyebrow">Not in Corvallis?</span>
 <h2 class="h-md">Train with me online.</h2>
 <p class="lead">Individualized training and nutrition through the app, with check-ins and adjustments.</p>
-<div class="facts"><div>Essentials · $129/mo</div><div>Core · $179/mo</div><div>Premium · $249/mo</div></div>
+<div class="facts"><div>Essentials · $199/mo</div><div>Core · $249/mo</div><div>Premium · $319/mo</div></div>
 <div class="btns"><a class="btn btn-red" href="/apply">Apply for online coaching</a><a class="link-u" href="/online-training">Compare packages →</a></div>
 </div>
 </div>""")
@@ -108,7 +109,7 @@ CONSULT_PAGE = (
 <div class="cell"><div class="bar"></div><span class="tag live">Performance · athletes · teams</span><h2 class="h-cell">G3 Sports &amp; Fitness</h2><ul class="ticks"><li>Youth athletic development</li><li>Adult human performance</li><li>Tactical, teams and organizations</li><li>Personal training with the G3 coaching staff</li></ul><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{G3_PT}" rel="noopener">Book at G3</a></div></div>
 </div>""", id="choose")
     + sec("dark", """<div class="split">
-<div class="main stack"><span class="eyebrow">Not in Corvallis?</span><h2 class="h-md">Train with me online.</h2><p class="lead">Individualized training and nutrition through the app, with check-ins and adjustments. Packages start at $129 a month.</p></div>
+<div class="main stack"><span class="eyebrow">Not in Corvallis?</span><h2 class="h-md">Train with me online.</h2><p class="lead">Individualized training and nutrition through the app, with check-ins and adjustments. Packages start at $199 a month.</p></div>
 <div class="side"><div class="btns"><a class="btn btn-red" href="/apply">Apply for online coaching</a><a class="link-u" href="/online-training">Compare packages →</a></div></div>
 </div>""")
 )
@@ -125,7 +126,7 @@ def package(name, who, features, prices, pick=False):
 <h3 class="h-cell">{name}</h3>
 <p>{who}</p>
 <div class="amt">${month}<small>/month</small></div>
-<p class="terms">3 months: ${three[0]} (~${three[1]}/mo) · 6 months: ${six[0]} (~${six[1]}/mo)</p>
+<p class="terms">3 months: ${three[0]:,} (~${three[1]}/mo) · 6 months: ${six[0]:,} (~${six[1]}/mo)</p>
 <ul class="ticks">{feats}</ul>
 <div class="grow"></div>
 <div class="btns" style="padding-top:8px"><a class="btn {'btn-red' if pick else 'btn-line'}" href="/apply?level={short.lower()}">Apply for {short}</a></div>
@@ -151,21 +152,21 @@ ONLINE = (
     "Weekly in-app messaging",
     "Progress tracking and accountability",
     "One 15-minute video call a month",
-], (129, (368, 123), (696, 116)))}
+], (199, (567, 189), (1074, 179)))}
 {package("Core Coaching", "For committed clients who want structure, feedback and real support.", [
     "Everything in Essentials",
     "Two 30-minute video calls a month",
     "Monthly training and nutrition updates",
     "Form check-ins by video",
     "Private coaching resource library",
-], (179, (511, 170), (966, 161)), pick=True)}
+], (249, (710, 237), (1344, 224)), pick=True)}
 {package("Premium Coaching", "For high performers who want full support, accountability and access.", [
     "Everything in Core",
     "Weekly 15-minute calls or two 60-minute deep dives",
     "On-demand video form checks",
     "Biweekly training and nutrition adjustments",
     "Priority messaging and response",
-], (249, (711, 237), (1344, 224)))}
+], (319, (909, 303), (1722, 287)))}
 </div>""", id="packages")
     + sec("light", """<div class="split top">
 <div class="main stack"><span class="eyebrow">Every package includes</span><h2 class="h-md">Everything you need to execute.</h2>
@@ -285,7 +286,7 @@ document.querySelectorAll('form[data-form]').forEach(function(f){
 # ---------------------------------------------------------------- About
 ABOUT = (
     hero("About JR", "Salem. Oregon State.<br>20,000 hours.",
-         "I’m JR Prieto-Romero, CSCS, though most people on the floor know me as JR Romero. I direct training at Timberhill Athletic Club and lead personal training and performance at G3 Sports &amp; Fitness in Corvallis, Oregon.",
+         "I’m JR Prieto-Romero, CSCS, though most people on the floor know me as JR Romero. I’m Director of Personal Training at Timberhill Athletic Club and Director of Performance at G3 Sports &amp; Fitness in Corvallis, Oregon.",
          f'{CONSULT_BTN}<a class="link-u" href="{LINKEDIN}" rel="noopener">Connect on LinkedIn →</a>',
          frame("Photo: JR portrait"), short=True, size="h-display")
     + sec("light", f"""<div class="split top">
@@ -299,9 +300,9 @@ ABOUT = (
     + sec("dark", head_row("Credentials", "Built on<br>standards.") + rows([
         ("01", "Certification", "CSCS", "Certified Strength and Conditioning Specialist."),
         ("02", "Education", "B.S. Exercise &amp; Sport Science", "Oregon State University."),
-        ("03", "Timberhill Athletic Club", "Director of Training", "Leads personal training and the trainer team."),
-        ("04", "G3 Sports &amp; Fitness", "Director of Personal Training", "Every G3 training client starts with JR."),
-        ("05", "G3 Sports &amp; Fitness", "Director of Performance", "Youth athletic development, adult performance, tactical and teams."),
+        ("03", "Timberhill Athletic Club", "Director of Personal Training", "Leads personal training and the trainer team."),
+        ("04", "G3 Sports &amp; Fitness", "Director of Performance", "Youth athletic development, adult performance, tactical and teams."),
+        ("05", "JR Strength and Fitness LLC", "Founder", "Four coaching products: The Trainer’s Coach Vault, Built For Her™, TRAINCND and The Credential Standard."),
     ]))
     + sec("light", head_row("What I’m building", "Four projects.<br>One standard.") + P.panel())
 )

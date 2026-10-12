@@ -17,7 +17,7 @@ PERSON = {
     "@type": "Person", "@id": PERSON_ID, "name": "JR Prieto-Romero", "alternateName": ["JR Romero", "JR Romero, CSCS"],
     "givenName": "JR", "familyName": "Prieto-Romero",
     "url": f"{SITE}/about", "image": PORTRAIT,
-    "jobTitle": "Director of Training, Timberhill Athletic Club; Director of Personal Training and Performance, G3 Sports & Fitness",
+    "jobTitle": "Director of Personal Training, Timberhill Athletic Club; Director of Performance, G3 Sports & Fitness",
     "description": "Strength and conditioning coach (CSCS) in Corvallis, Oregon, with roughly 20,000 hours of coaching. "
                    "Builder of The Trainer's Coach Vault, Built For Her, TRAINCND and The Credential Standard.",
     "worksFor": [{"@type": "SportsActivityLocation", "name": "Timberhill Athletic Club", "address": {"@type": "PostalAddress", "addressLocality": "Corvallis", "addressRegion": "OR", "addressCountry": "US"}},
@@ -72,7 +72,7 @@ ONLINE_SERVICE = {
     "@type": "Service", "name": "Online training and nutrition coaching", "serviceType": "Online personal training",
     "provider": {"@id": PERSON_ID}, "url": f"{SITE}/online-training",
     "description": "Individualized online training and nutrition coaching with JR Prieto-Romero, CSCS: assess, build, execute, refine. Every package includes training and nutrition.",
-    "offers": [_monthly("Essentials Coaching", 129), _monthly("Core Coaching", 179), _monthly("Premium Coaching", 249)],
+    "offers": [_monthly("Essentials Coaching", 199), _monthly("Core Coaching", 249), _monthly("Premium Coaching", 319)],
 }
 IN_PERSON_SERVICE = {
     "@type": "Service", "name": "Personal training in Corvallis, Oregon", "serviceType": "Personal training",
@@ -96,10 +96,10 @@ FAQ = [
      "Yes. Online coaching gives you individualized training and nutrition through the coaching app, with check-ins and adjustments. "
      "It starts with an application: I reply within 2 business days, and if it’s a fit we do a short call before you get your app invite."),
     ("How much does online coaching cost?",
-     "Essentials is $129 a month, Core is $179 a month and Premium is $249 a month. Three- and six-month terms lower the monthly rate. "
+     "Essentials is $199 a month, Core is $249 a month and Premium is $319 a month. Three- and six-month terms lower the monthly rate. "
      "Every package includes both training and nutrition coaching."),
     ("Who is JR Prieto-Romero?",
-     "JR Prieto-Romero, CSCS, known on the floor as JR Romero, is Director of Training at Timberhill Athletic Club and Director of Personal Training and Performance at "
+     "JR Prieto-Romero, CSCS, known on the floor as JR Romero, is Director of Personal Training at Timberhill Athletic Club and Director of Performance at "
      "G3 Sports &amp; Fitness in Corvallis, Oregon. He earned his degree in Exercise &amp; Sport Science at Oregon State and has roughly "
      "20,000 hours of coaching on the floor."),
 ]
@@ -152,7 +152,7 @@ def llms_txt(projects, posts):
     faq = "\n\n".join(f"### {_plain(q)}\n{_plain(a)}" for q, a in FAQ)
     return f"""# JR Strength & Fitness
 
-> JR Prieto-Romero, CSCS (known professionally as JR Romero), is a strength and conditioning coach in Corvallis, Oregon: Director of Training at Timberhill Athletic Club and Director of Personal Training and Performance at G3 Sports & Fitness. He coaches in person in Corvallis and online, and builds tools for coaches and athletes.
+> JR Prieto-Romero, CSCS (known professionally as JR Romero), is a strength and conditioning coach in Corvallis, Oregon: Director of Personal Training at Timberhill Athletic Club and Director of Performance at G3 Sports & Fitness. Founder of four coaching products. He coaches in person in Corvallis and online, and builds tools for coaches and athletes.
 
 - Credentials: Certified Strength and Conditioning Specialist (CSCS); B.S. in Exercise & Sport Science, Oregon State University; roughly 20,000 hours of coaching.
 - Coaching standard: IAOE (Inadequate, Adequate, Optimal, Enhanced). Match the intervention to the person; adequate is a legitimate target.
@@ -162,7 +162,7 @@ def llms_txt(projects, posts):
 
 - [Train with JR]({SITE}/train): in-person personal training in Corvallis at Timberhill Athletic Club or G3 Sports & Fitness. Every client starts with a free 30-minute consult; no membership needed.
 - [Book a free consult]({SITE}/consult): choose Timberhill (health, fitness, longevity) or G3 (youth development, adult performance, tactical and teams).
-- [Online coaching]({SITE}/online-training): individualized training and nutrition. Essentials $129/month, Core $179/month, Premium $249/month; 3- and 6-month terms lower the rate.
+- [Online coaching]({SITE}/online-training): individualized training and nutrition. Essentials $199/month, Core $249/month, Premium $319/month; 3- and 6-month terms lower the rate.
 - [Apply for online coaching]({SITE}/apply): JR replies within 2 business days; if it's a fit, a short call, then the coaching app invite.
 
 ## Projects
