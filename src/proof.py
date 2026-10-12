@@ -21,7 +21,7 @@ MIN_REVIEWS = 6
 # dict(name="First L.", where="Timberhill" | "G3" | "Online", date="YYYY-MM", text="...as written...", tag="Training" | "Consult")
 # Copied word for word from Timberhill's Setmore reviews (all 160 checked 2026-10-12; these name JR).
 # Paragraph breaks kept; typos kept. Name = first name + last initial as the reviewer gave it.
-# Left out: two that are mainly about another trainer, and one that ends with a facility note.
+# All 20 that name JR are here; JR is reviewing which to keep.
 T, C = "Training", "Consult"
 REVIEWS = [
     dict(name="Jen A.", date="2026-03", tag=T, text="I can’t say enough good things about JR as a personal trainer.\n\nAfter a hamstring rupture and surgical repair, I wasn’t sure what my recovery—or future strength—would look like. JR has been instrumental in not only helping me recover safely, but in building strength and confidence beyond where I was before the injury.\n\nHe brings a rare combination of deep knowledge, professionalism, and genuine respect for his clients. JR is patient, attentive, and highly intentional in how he programs and coaches. As someone who has been an athlete my entire life, I value being coached—and that’s exactly what this feels like. Every session has purpose, progression, and accountability.\n\nWhat’s been most impressive is his expertise in muscle building and strength development. Thanks to his guidance, I’ve been able to rebuild and even improve my physique—something I didn’t think was possible at age 50, especially after such a significant injury.\n\nIf you’re looking for someone who truly understands how to help you recover, get stronger, and perform at your best, JR is exceptional."),
@@ -41,6 +41,9 @@ REVIEWS = [
     dict(name="Brenda R.", date="2026-02", tag=C, text="Very intentional and focused…excited to work with JR, having support and a plan to help me reach my goals."),
     dict(name="Diana S.", date="2026-04", tag=C, text="J.R. was polite , knowledgeable and informative of the trainer programs available at TAC"),
     dict(name="Kristin G.", date="2024-11", tag=C, text="JR.  Helped me figure out a fitness plan for me. I was very happy with his advice."),
+    dict(name="Chelsea C.", date="2025-10", tag=C, text="I have been training with Kyra since June. My main goal was to feel strong and confident in my body, and Kyra has helped me get there. I’ve made progress each week, with Kyra’s ability to create programs that keep me motivated, engaged and challenged. She is thoughtful, intentional with her coaching, supportive and always checks in to make sure I’m getting the most out of my workouts while staying safe. I’ve been able to accomplish new things while lifting that I never would have pushed myself to do on my own. Thank you to JR for matching me with Kyra!"),
+    dict(name="Amanda B.", date="2025-09", tag=T, text="JR is a spectacular trainer. Extremely knowledgeable in anatomy and physiology. Knows how to coach for ideal mind muscle connection and create modifications fine tuned to my own needs/restrictions/injuries. Cannot recommend enough as a trainer. Hoping continued facility improvement and equipment updates are in the plan as well"),
+    dict(name="Veronica J.", date="2025-04", tag=T, text="JR and Rebecca listened to my goals and the training (one year now) is fantastic! Rebecca listened and adapted exercises and also inspired me to continue my fitness journey! The best thing is I never felt too sore or there was never an exercise that caused any problems. Super!"),
 ]
 for r in REVIEWS:
     r["where"] = "Timberhill"
