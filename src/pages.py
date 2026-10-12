@@ -11,7 +11,8 @@ import newsletter as NL
 CONSULT_BTN = f'<a class="btn btn-red" href="{CONSULT}">Book a free consult</a>'
 
 # ---------------------------------------------------------------- Home
-CRED_CARD = """<div class="cred-card"><div class="k">Credentials</div><div class="v"><span>CSCS</span><span>B.S. Oregon State</span><span><b data-countup="20000">20,000</b> hrs</span></div></div>"""
+CHECK = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+CRED_CARD = f"""<div class="cred-card"><span class="k">Credentials</span><ul><li>{CHECK}<b>CSCS</b><em>Certified Strength &amp; Conditioning Specialist</em></li><li>{CHECK}<b>B.S. Exercise &amp; Sport Science</b><em>Oregon State University</em></li><li>{CHECK}<b><span data-countup="20000">20,000</span> hours</b><em>Coaching on the floor, 10+ years</em></li></ul></div>"""
 
 STRIP = """<section class="strip" aria-label="Roles"><div class="wrap">
 <div class="c"><b>01</b><span>Director of Personal Training, Timberhill Athletic Club</span></div>

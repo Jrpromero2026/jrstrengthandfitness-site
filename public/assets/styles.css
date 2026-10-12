@@ -695,3 +695,21 @@ a.post-row:hover .t { color: var(--red); }
   .iaoe-tabs::-webkit-scrollbar { display: none; }
   .iaoe-tabs [role=tab] { flex: none; }
 }
+
+/* ---------------------------------------------------------------- Hero credential plate (dark, full names), set low so the forearms show */
+.frame.with-card { padding-bottom: 168px; }
+.frame.with-card::before { bottom: 146px; }
+.cred-card { left: 24px; right: 46px; bottom: 0; background: #121212; color: #F6F6F6; border: 1px solid rgba(255,255,255,0.1); border-left: 3px solid var(--red); padding: 16px 18px 6px; box-shadow: 0 24px 50px rgba(0,0,0,0.55); }
+.cred-card .k { display: block; font-weight: 600; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #FF5A5F; padding-bottom: 8px; }
+.cred-card ul { list-style: none; margin: 0; padding: 0; }
+.cred-card li { display: grid; grid-template-columns: 18px 1fr; column-gap: 8px; padding: 8px 0; border-top: 1px solid rgba(255,255,255,0.08); }
+.cred-card li svg { grid-row: span 2; margin-top: 3px; color: var(--red); }
+.cred-card b { font-weight: 700; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; color: #fff; }
+.cred-card em { font-style: normal; font-size: 13px; line-height: 1.45; color: rgba(255,255,255,0.68); }
+@media (max-width: 760px) {
+  .frame.with-card { padding-bottom: 200px; }
+  .frame.with-card::before { bottom: 178px; }
+  .cred-card { left: 14px; right: 28px; }
+  .cred-card b { font-size: 13px; }
+  .cred-card em { font-size: 12px; }
+}
