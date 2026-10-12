@@ -11,7 +11,7 @@ MOTION_JS = """<script>
 
   /* 1. Scroll reveal: blocks rise in as they enter view, siblings staggered. Skips anything already on screen. */
   var SEL=['.sec .head-row','.panel.brands .cell','.sec .split > .main','.sec .split > .side','.sec .facts',
-           '.sec .rows:not(.ladder) .row','.for-row','.post-row','.sec .info-card','.sec .form-card','.post-cta','.closing .wrap > *'];
+           '.sec .rows:not(.ladder) .row','.for-row','.post-row','.sec .info-card','.sec .form-card','.post-cta','.closing .wrap > *','.pf-case','.pf-rc','.pf-soon'];
   var items=[].slice.call(document.querySelectorAll(SEL.join(','))).filter(function(el){
     return !el.closest('.hero') && !el.closest('.vs') && !el.closest('.ladder') && el.getBoundingClientRect().top > innerHeight*0.92;
   });

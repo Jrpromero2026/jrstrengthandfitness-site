@@ -10,6 +10,8 @@ import projects as PR  # noqa: E402
 import writing as W  # noqa: E402
 import newsletter as NL  # noqa: E402
 import seo as S  # noqa: E402
+import proof as PF  # noqa: E402
+import layout as L  # noqa: E402
 from PIL import Image, ImageDraw, ImageFilter  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,6 +44,10 @@ PAGES = [
          title="About JR Prieto-Romero, CSCS | JR Strength & Fitness",
          description="JR Prieto-Romero, CSCS: Director of Personal Training at Timberhill Athletic Club, Director of Performance at G3 Sports & Fitness, founder of four coaching products.",
          body=P.ABOUT),
+    dict(path="/proof", file="proof.html", active="proof", sitemap=PF.LIVE, noindex=not PF.LIVE,
+         title="Client Reviews & Results | JR Prieto-Romero, CSCS",
+         description=f"{PF.RATING} from {PF.REVIEW_COUNT} client reviews, posted as written, plus client case files on JR's Inadequate-to-Enhanced coaching scale.",
+         body=PF.BODY, script=PF.SCRIPT, head=S.ld(S.breadcrumbs([("Home", "/"), ("Proof", "/proof")]))),
     dict(path="/writing", file="writing.html", active="",
          title="Writing | JR Strength & Fitness",
          description="Research reviews and coaching notes from JR Prieto-Romero, CSCS: consultations, programming, strength and conditioning science, and training women.",
@@ -106,6 +112,8 @@ REDIRECTS = [
 
 
 def build_pages():
+    if PF.LIVE and not any(k == "proof" for _, _, k in L.NAV):
+        L.NAV.insert(3, ("/proof", "Proof", "proof"))
     for spec in PAGES:
         html = page(path=spec["path"], title=spec["title"].replace("&", "&amp;"),
                     description=spec["description"].replace("&", "&amp;"), body=spec["body"],
