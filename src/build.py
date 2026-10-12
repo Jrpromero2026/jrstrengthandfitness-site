@@ -46,7 +46,7 @@ PAGES = [
          body=P.ABOUT),
     dict(path="/proof", file="proof.html", active="proof", sitemap=PF.LIVE, noindex=not PF.LIVE,
          title="Client Reviews & Results | JR Prieto-Romero, CSCS",
-         description=f"{PF.RATING} from {PF.REVIEW_COUNT} client reviews, posted as written, plus client case files on JR's Inadequate-to-Enhanced coaching scale.",
+         description=f"{PF.NAMED_COUNT} client reviews name JR Prieto-Romero, CSCS, all five stars, posted word for word from Timberhill Athletic Club's booking page.",
          body=PF.BODY, script=PF.SCRIPT, head=S.ld(S.breadcrumbs([("Home", "/"), ("Proof", "/proof")]))),
     dict(path="/writing", file="writing.html", active="",
          title="Writing | JR Strength & Fitness",

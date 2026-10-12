@@ -786,3 +786,4 @@ a.post-row:hover .t { color: var(--red); }
 }
 #case-files .head-row > .h { flex-basis: 100%; }
 #case-files .head-row > p { flex: 0 1 720px; }
+.pf-rc blockquote p + p { margin-top: 12px; }
