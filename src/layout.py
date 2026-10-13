@@ -111,7 +111,7 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
 <div class="wrap">
-<a class="logo" href="/" aria-label="JR Strength &amp; Fitness home"><img src="/assets/jr-logo.png" alt="JR Strength &amp; Fitness" width="{LOGO_W}" height="{LOGO_H}"></a>
+<a class="logo" href="/" aria-label="JR Strength &amp; Fitness home"><img src="/assets/jr-logo.svg" alt="JR Strength &amp; Fitness" width="831" height="255"></a>
 <nav class="site-nav" aria-label="Main">
 {nav}
 <a class="btn btn-line" href="/projects/vault" data-track="For coaches (header)">For coaches</a>
@@ -126,7 +126,7 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <footer class="site-footer">
 <div class="wrap cols">
 <div class="brand">
-<img src="/assets/jr-logo.png" alt="JR Strength &amp; Fitness" width="{LOGO_W}" height="{LOGO_H}">
+<img src="/assets/jr-logo.svg" alt="JR Strength &amp; Fitness" width="831" height="255">
 <span class="motto">Built on standards. Proven through execution.</span>
 <a href="mailto:{EMAIL}" style="color:#fff">{EMAIL}</a>
 <address class="addr">{"<br>".join(ADDRESS_LINES)}</address>
