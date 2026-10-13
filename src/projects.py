@@ -152,7 +152,7 @@ SIG_LINE = {
     "credential-standard": '<span class="sig">Checked against NCCA<i>·</i>NBHWC<i>·</i>Woolf</span>',
 }
 # The Vault header lockup, built the same way vault.jrstrengthandfitness.com builds it (JR mark + type).
-VAULT_LOCKUP = ('<span class="v-lockup"><img src="/assets/jr-mark.svg" alt="" width="42" height="35">'
+VAULT_LOCKUP = ('<span class="v-lockup"><img src="/assets/jr-mark.svg" alt="" width="42" height="38">'
                 '<span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span>'
                 '<span class="v-name">The Trainer’s Coach</span><span class="v-vault">Vault</span></span></span>')
 
