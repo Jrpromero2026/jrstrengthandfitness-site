@@ -787,3 +787,9 @@ a.post-row:hover .t { color: var(--red); }
 #case-files .head-row > .h { flex-basis: 100%; }
 #case-files .head-row > p { flex: 0 1 720px; }
 .pf-rc blockquote p + p { margin-top: 12px; }
+
+/* Launch audit (Oct 2026): nav CTA keeps white text (4.96:1 on brand red); form focus ring is solid red (3:1+ on white). */
+.site-nav a.btn-red, .site-nav a.btn-red:hover { color: #fff; }
+input:focus, select:focus, textarea:focus { box-shadow: 0 0 0 2px var(--red); }
+input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.attest { margin-top: 4px; }

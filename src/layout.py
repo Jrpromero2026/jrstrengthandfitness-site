@@ -97,9 +97,9 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&amp;family=Montserrat:wght@700;800&amp;family=Inter:wght@600;800&amp;family=Geist:wght@700&amp;family=Geist+Mono:wght@500&amp;display=swap">
+<link rel="preload" href="/assets/fonts/jost-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/jost-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="/assets/styles.css?v={CSS_VER}">
 <script>window.va=window.va||function(){{(window.vaq=window.vaq||[]).push(arguments);}};</script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -165,6 +165,7 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <a href="/privacy-policy">Privacy Policy</a>
 <a href="/terms-of-service">Terms of Service</a>
 <a href="/refund-policy">Refund Policy</a>
+<a href="/accessibility">Accessibility</a>
 </div>
 </footer>
 {MOTION_JS}

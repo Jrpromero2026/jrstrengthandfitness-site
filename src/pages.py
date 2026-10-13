@@ -202,6 +202,14 @@ AUTORESPONSE = (
     "JR Prieto-Romero, CSCS"
 )
 
+# The Privacy Policy says applications come from adults, or a parent or guardian for a minor.
+# Every application form asks for exactly that: its own unticked, required checkbox. FORM_SCRIPT
+# records when it was ticked (age_confirmed_at) in the submission emailed to JR.
+AGE_ATTESTATION = ('<div class="field attest"><label class="choice"><input type="checkbox" name="age_confirmed" '
+                   'value="Yes" required> I’m 18 or older, or I’m a parent or guardian applying for my child. '
+                   '<span class="req">*</span></label></div>')
+
+
 def opt(values):
     return "".join(f'<option value="{v}">{v}</option>' for v in values)
 
@@ -249,6 +257,7 @@ APPLY = (
 </div>
 </fieldset>
 <div class="field"><label for="f-msg">Anything else I should know?</label><textarea id="f-msg" name="message"></textarea></div>
+{AGE_ATTESTATION}
 <p class="form-note">Your application is emailed to JR. By applying you agree to the <a href="/privacy-policy">Privacy Policy</a>. Health details are optional; we’ll cover them on our first call.</p>
 <div class="form-status" role="status" hidden></div>
 <div class="btns"><button class="btn btn-red" type="submit">Submit application</button></div>
@@ -272,6 +281,7 @@ document.querySelectorAll('form[data-form]').forEach(function(f){
     if(!f.checkValidity()){ st.textContent='Please fill in the required fields marked with *.'; st.hidden=false; f.reportValidity(); return; }
     var data={}; new FormData(f).forEach(function(v,k){ if(data[k]!==undefined){ data[k]=data[k]+', '+v; } else { data[k]=v; } });
     if(data._honey){ return; }
+    if(data.age_confirmed){ data.age_confirmed_at=new Date().toISOString(); }
     var who=((data.first_name||'')+' '+(data.last_name||'')).trim();
     if(who){ data._subject=(data._subject||'Website submission')+' — '+who; }
     data._template='table'; data._captcha='false'; data.page=location.href;
@@ -336,7 +346,6 @@ PRIVACY = legal("Legal", "Privacy Policy", f"""{DRAFT}{UPDATED}
 <h2>Who we share it with</h2>
 <ul>
 <li>Vercel, which hosts this website.</li>
-<li>Google Fonts, which serves the site’s typeface.</li>
 <li>FormSubmit, which delivers form submissions from this site to our email inbox.</li>
 <li>Kit, which stores the newsletter list and sends the newsletter.</li>
 <li>Vercel Web Analytics, which counts page visits without cookies.</li>
@@ -383,6 +392,28 @@ REFUND = legal("Legal", "Refund Policy", f"""{DRAFT}{UPDATED}
 <p>If an injury or medical issue stops you from training, contact us. We’ll work out the best option with you, such as a pause.</p>
 <h2>Contact</h2>
 <p>{ADDRESS} · <a href="mailto:{EMAIL}">{EMAIL}</a></p>""")
+
+ACCESSIBILITY = legal("Legal", "Accessibility", f"""{UPDATED}
+<p>I want everyone to be able to use this site, including people who use a screen reader, a keyboard instead of a mouse, zoom, or high-contrast settings. The target is the Web Content Accessibility Guidelines (WCAG) 2.2, level AA.</p>
+<p>This is a description of where the site stands, not a claim that it fully conforms.</p>
+<h2>How it was checked</h2>
+<ul>
+<li>October 2026: an automated scan (axe-core, WCAG 2.0, 2.1 and 2.2 A and AA rules) of every page at desktop and phone widths.</li>
+<li>A keyboard-only pass through the home page, Proof, Train, the application form, the newsletter form and the TRAINCND waitlist, checking that every link, button and field can be reached and shows where focus is.</li>
+</ul>
+<p>Automated tools catch roughly a third of real accessibility problems. Nobody who uses a screen reader every day has tested the site yet.</p>
+<h2>What was fixed</h2>
+<ul>
+<li>The “Book a free consult” button in the menu had grey text on red at 3.75:1. It’s now white at 4.96:1.</li>
+<li>Form fields now show a solid red focus ring instead of a faint glow.</li>
+</ul>
+<h2>Known issues</h2>
+<ul>
+<li>On the TRAINCND page, white text on the TRAINCND blue buttons measures 4.33:1, just under the 4.5:1 guideline for text that size.</li>
+<li>Pages on other sites I link to, such as Setmore booking, the Vault and the Built For Her app, aren’t covered here.</li>
+</ul>
+<h2>Tell me if something doesn’t work</h2>
+<p>If you hit a barrier on this site, email <a href="mailto:{EMAIL}">{EMAIL}</a> with the page and what happened. I’ll fix it or get you the information another way.</p>""")
 
 NOT_FOUND = hero("404", "Page not found.", "That page moved or never existed.",
                  '<a class="btn btn-red" href="/">Go home</a><a class="link-u" href="/train">Train with JR →</a>', short=True, size="h-display")

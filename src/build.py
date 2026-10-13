@@ -84,6 +84,10 @@ dict(path="/projects", file="projects.html", active="projects",
          head=S.ld(S.project_ld(p), S.breadcrumbs([("Home", "/"), ("Projects", "/projects"), (p["name"].replace("&amp;", "&"), f"/projects/{p['slug']}")])))
     for p in PR.PROJECTS
 ] + W.page_specs() + [
+    dict(path="/accessibility", file="accessibility.html", active="",
+         title="Accessibility | JR Strength & Fitness",
+         description="How jrstrengthandfitness.com is tested for accessibility, what was fixed and what is still known to be wrong.",
+         body=P.ACCESSIBILITY),
     dict(path="/404", file="404.html", active="", sitemap=False, noindex=True,
          title="Page not found | JR Strength & Fitness",
          description="That page moved or never existed.",
@@ -124,6 +128,39 @@ def build_pages():
         os.makedirs(os.path.dirname(os.path.join(OUT, spec["file"])), exist_ok=True)
         with open(os.path.join(OUT, spec["file"]), "w", encoding="utf-8") as fh:
             fh.write(html)
+
+
+# ---------------------------------------------------------------- Launch guard
+# Nothing on the built site may load from a third party at page load: no hosted fonts (GDPR),
+# no session replay or ad pixels (wiretap claims, cookie consent). Vercel Web Analytics is
+# first-party (/_vercel/insights) and cookieless. This scans the OUTPUT in public/, never src/,
+# so the names below can't match the guard itself. Links and form actions are fine; loads are not.
+THIRD_PARTY_LOADS = [
+    r'<script[^>]*\ssrc=["\'](?:https?:)?//',
+    r'<link[^>]*rel=["\'](?:stylesheet|preconnect|preload|modulepreload|dns-prefetch)["\'][^>]*href=["\'](?:https?:)?//',
+    r'<link[^>]*href=["\'](?:https?:)?//[^"\']*["\'][^>]*rel=["\'](?:stylesheet|preconnect|preload|modulepreload|dns-prefetch)',
+    r'<iframe[^>]*\ssrc=["\'](?:https?:)?//',
+    r'@import\s+url\(\s*["\']?(?:https?:)?//',
+    r'url\(\s*["\']?https?://',
+    r'fonts\.googleapis\.com|fonts\.gstatic\.com|use\.typekit\.net',
+    r'hotjar\.com|fullstory\.com|logrocket|rrweb|smartlook|mouseflow|clarity\.ms|posthog|mixpanel|cdn\.amplitude|googletagmanager|google-analytics\.com|connect\.facebook\.net|static\.ads-twitter',
+]
+
+
+def guard_no_third_party():
+    import re
+    bad = []
+    for d, _, files in os.walk(OUT):
+        for f in files:
+            if not f.endswith((".html", ".css", ".js")) or f.startswith("_"):
+                continue
+            path = os.path.join(d, f)
+            text = open(path, encoding="utf-8").read()
+            for pat in THIRD_PARTY_LOADS:
+                for m in re.finditer(pat, text, re.I):
+                    bad.append(f"{os.path.relpath(path, OUT)}: {m.group(0)[:90]}")
+    if bad:
+        raise SystemExit("Third-party load found in the built site:\n  " + "\n  ".join(sorted(set(bad))[:20]))
 
 
 LOGO_SOURCES = [
@@ -233,4 +270,5 @@ if __name__ == "__main__":
     build_pages()
     build_config()
     build_images()
+    guard_no_third_party()
     print("built", len(PAGES), "pages ->", OUT)
