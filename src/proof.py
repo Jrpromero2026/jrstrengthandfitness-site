@@ -120,7 +120,7 @@ def _track(a, b):
 
 def _case(c, n):
     photo = (f'<img src="{c["photo"]}" alt="{_h.escape(c["name"])}, client case file" loading="lazy">'
-             if c.get("photo") else '<img class="mark" src="/assets/jr-mark.png" alt="">')
+             if c.get("photo") else '<img class="mark" src="/assets/jr-mark.svg" alt="">')
     res = "".join(f"<li>{_h.escape(x)}</li>" for x in c["results"])
     return f"""<article class="pf-case">
 <div class="pf-case-ph">{photo}</div>

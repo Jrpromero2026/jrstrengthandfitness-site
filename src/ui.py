@@ -25,7 +25,7 @@ def hero(eyebrow, title, lead="", btns="", side="", short=False, size="h-hero"):
     side_html = f'<div class="side">{side}</div>' if side else ""
     return f"""<section class="hero dark{' short' if short else ''}">
 {GRAIN}
-<img class="watermark" src="/assets/jr-watermark.png" alt="" aria-hidden="true">
+<img class="watermark" src="/assets/jr-watermark.svg" alt="" aria-hidden="true">
 <div class="wrap split">
 {main}
 {side_html}
@@ -82,7 +82,7 @@ def frame(label, wide=False, card=""):
                  f'style="object-position:{pos}" fetchpriority="high"></div>')
     else:
         media = (f'<div class="media brand-fill{w}" aria-hidden="true"><!-- photo slot: {label} -->'
-                 f'<img src="/assets/jr-mark.png" alt=""></div>')
+                 f'<img src="/assets/jr-mark.svg" alt=""></div>')
     return f'<div class="{cls}">{media}{card}</div>'
 
 

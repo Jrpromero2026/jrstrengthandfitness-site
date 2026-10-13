@@ -47,7 +47,7 @@ FORM_ENDPOINT = "https://formsubmit.co/ajax/jr@jrstrengthandfitness.com"
 
 def closing_cta():
     return f"""<section class="closing" id="start" aria-label="Get started">
-<img class="watermark" src="/assets/jr-watermark.png" alt="" aria-hidden="true">
+<img class="watermark" src="/assets/jr-watermark.svg" alt="" aria-hidden="true">
 <div class="wrap">
 <div class="tagline"><b>Start training yesterday.</b><span>You’ll thank yourself tomorrow.</span>
 <a class="link-u" href="{VAULT}/signup" rel="noopener" data-track="Free Vault account (closing)" style="align-self:flex-start;margin-top:22px;color:#fff">Coach or trainer? Get a free Vault account →</a></div>
@@ -95,6 +95,7 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <meta name="twitter:description" content="{description}">
 <meta name="twitter:image" content="{OG_IMAGE}">
 <meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/jost-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
