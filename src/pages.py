@@ -406,10 +406,10 @@ ACCESSIBILITY = legal("Legal", "Accessibility", f"""{UPDATED}
 <ul>
 <li>The “Book a free consult” button in the menu had grey text on red at 3.75:1. It’s now white at 4.96:1.</li>
 <li>Form fields now show a solid red focus ring instead of a faint glow.</li>
+<li>The TRAINCND waitlist buttons had white text on blue at 4.33:1. The button blue is now slightly darker, at 5.06:1.</li>
 </ul>
 <h2>Known issues</h2>
 <ul>
-<li>On the TRAINCND page, white text on the TRAINCND blue buttons measures 4.33:1, just under the 4.5:1 guideline for text that size.</li>
 <li>Pages on other sites I link to, such as Setmore booking, the Vault and the Built For Her app, aren’t covered here.</li>
 </ul>
 <h2>Tell me if something doesn’t work</h2>

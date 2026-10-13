@@ -426,8 +426,8 @@ a.post-row:hover .t { color: var(--red); }
 .proj-vault .btn-pa:hover { filter: brightness(0.92); }
 .proj-built-for-her .btn-pa { background: #7B2FBE; border-color: #7B2FBE; border-radius: 999px; font-family: "Montserrat", sans-serif; font-weight: 700; text-transform: none; letter-spacing: 0.02em; font-size: 16px; padding: 0 32px; }
 .proj-built-for-her .btn-pa:hover { background: #6A27A6; border-color: #6A27A6; }
-.proj-traincnd .btn-pa { background: #4B6BFF; border-color: #4B6BFF; border-radius: 10px; font-family: "Inter", sans-serif; font-weight: 800; letter-spacing: 0.08em; font-size: 15px; }
-.proj-traincnd .btn-pa:hover { background: #3F5DE6; border-color: #3F5DE6; }
+.proj-traincnd .btn-pa { background: #4060F0; border-color: #4060F0; /* Signal Blue darkened for buttons only: white text 5.06:1 (WCAG AA); #4B6BFF is 4.33:1 */ border-radius: 10px; font-family: "Inter", sans-serif; font-weight: 800; letter-spacing: 0.08em; font-size: 15px; }
+.proj-traincnd .btn-pa:hover { background: #3654D6; border-color: #3654D6; }
 .proj-credential-standard .btn-pa { background: #087A5B; border-color: #087A5B; border-radius: 8px; font-family: "Geist", sans-serif; font-weight: 700; text-transform: none; letter-spacing: 0; font-size: 16px; }
 .proj-credential-standard .btn-pa:hover { background: #066449; border-color: #066449; }
 .proj .inline-form input[type=email] { border-radius: 0; }
