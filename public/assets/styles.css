@@ -882,3 +882,12 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2
   .byline { gap: 16px; }
 }
 @media (prefers-reduced-motion: reduce) { .pcard-media img, .pfeature-media img { transition: none; } .pcard a:hover .pcard-media img, .pfeature a:hover .pfeature-media img { transform: none; } }
+
+/* Case files with full client stories: stack the three steps so long text reads as prose */
+.pf-case.long .pf-steps { grid-template-columns: 1fr; gap: 22px; max-width: 760px; }
+.pf-case.long .pf-steps p { font-size: 16.5px; line-height: 1.7; }
+.pf-steps > div p + p { margin-top: 2px; }
+.pf-src { font-size: 13px; color: var(--muted); font-style: italic; }
+.pf-case.long .pf-case-ph { min-height: 420px; }
+.pf-case-ph img:not(.mark) { object-position: 50% 20%; }
+@media (min-width: 901px) { .pf-case.long .pf-case-ph { align-self: start; height: 560px; } }

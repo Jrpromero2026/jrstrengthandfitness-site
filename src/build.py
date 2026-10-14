@@ -280,6 +280,9 @@ if __name__ == "__main__":
     build_pages()
     build_config()
     build_images()
+    pending = [k for c in PF.CASES for k, v in c.items() if isinstance(v, PF.PENDING) or (isinstance(v, list) and any(isinstance(x, PF.PENDING) for x in v))]
+    if pending and os.environ.get("ALLOW_PENDING") != "1":
+        raise SystemExit("A case file still has placeholders JR must fill in: " + ", ".join(pending) + ". Set ALLOW_PENDING=1 only for a preview.")
     import sharecard
     sharecard.build_all(W.ALL)
     guard_no_third_party()
