@@ -132,6 +132,7 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <nav class="col" aria-label="Projects">
 <span class="head">Projects</span>
 <a href="/projects/vault">Trainer’s Coach Vault</a>
+<a href="/projects/vault/exam-prep">Exam Prep</a>
 <a href="/projects/built-for-her">Built For Her™</a>
 <a href="/projects/traincnd">TRAINCND</a>
 <a href="/projects/credential-standard">The Credential Standard</a>

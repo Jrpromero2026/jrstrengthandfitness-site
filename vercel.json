@@ -165,6 +165,21 @@
       "source": "/cart",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/exam-prep",
+      "destination": "/projects/vault/exam-prep",
+      "permanent": true
+    },
+    {
+      "source": "/nasm-cpt-exam-prep",
+      "destination": "/projects/vault/exam-prep",
+      "permanent": true
+    },
+    {
+      "source": "/projects/exam-prep",
+      "destination": "/projects/vault/exam-prep",
+      "permanent": true
     }
   ],
   "headers": [

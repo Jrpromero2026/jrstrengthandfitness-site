@@ -13,6 +13,7 @@ import seo as S  # noqa: E402
 import proof as PF  # noqa: E402
 import review as RV  # noqa: E402
 import layout as L  # noqa: E402
+import examprep as XP  # noqa: E402
 from PIL import Image, ImageDraw, ImageFilter  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -88,6 +89,12 @@ dict(path="/projects", file="projects.html", active="projects",
          body=PR.project_page(p), script=P.FORM_SCRIPT if p.get("waitlist") else "",
          head=S.ld(S.project_ld(p), S.breadcrumbs([("Home", "/"), ("Projects", "/projects"), (p["name"].replace("&amp;", "&"), f"/projects/{p['slug']}")])))
     for p in PR.PROJECTS
+] + [
+    dict(path=XP.PATH, file=XP.PATH.lstrip("/") + ".html", active="projects", closing=False,
+         title=XP.TITLE, description=XP.DESCRIPTION, body=XP.BODY,
+         head=S.ld(*XP.schema(SITE, S.PERSON_ID, S.ORG_ID),
+                   S.breadcrumbs([("Home", "/"), ("Projects", "/projects"), ("The Trainer's Coach Vault", "/projects/vault"),
+                                  ("NASM-CPT Exam Prep", XP.PATH)]))),
 ] + W.page_specs() + [
     dict(path="/accessibility", file="accessibility.html", active="",
          title="Accessibility | JR Strength & Fitness",
@@ -119,6 +126,8 @@ REDIRECTS = [
     ("/blog/introduction-to-personal-training-unveiling-the-role-benefits-and-opportunities", "/train"),
     ("/blog/:path*", "/notes"),
     ("/store", "/"), ("/store/:path*", "/"), ("/cart", "/"),
+    # Short links to NASM-CPT Exam Prep
+    ("/exam-prep", XP.PATH), ("/nasm-cpt-exam-prep", XP.PATH), ("/projects/exam-prep", XP.PATH),
 ]
 
 

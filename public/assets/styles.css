@@ -931,3 +931,31 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2
 /* Short lead-in that points to the full story; the toggle sits right under it. */
 .pf-lead { border-top: 1px solid rgba(255,255,255,0.18); padding-top: 18px; font-size: 16.5px; line-height: 1.65; color: var(--body); }
 .pf-story.led { border-top: 0; padding-top: 0; margin-top: -8px; }
+
+/* ---------- NASM-CPT Exam Prep (/projects/vault/exam-prep). Site brand only: no NASM marks or colours. */
+.link-inline { color: inherit; text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.xp-legal { font-size: 13px; line-height: 1.55; color: var(--muted); max-width: 620px; }
+.xp-legal-foot { margin-top: 32px; max-width: 900px; }
+.xp-offer .it b { font-size: 14px; }
+.xp-weights { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.xp-weights li { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+.xp-weights li:last-child { border-bottom: 1px solid var(--line); }
+.xp-d { font-size: 16px; color: var(--fg); }
+.xp-p { font-weight: 800; font-size: 18px; letter-spacing: 0.02em; color: var(--fg); }
+.xp-bar { grid-column: 1 / -1; height: 4px; background: rgba(255,255,255,0.1); }
+.xp-bar i { display: block; height: 100%; background: var(--red); }
+.xp-model .head-row { margin-bottom: 0; }
+.xp-model .ticks b { color: var(--fg); }
+.xp-price { display: flex; flex-direction: column; gap: 14px; padding: 32px; background: var(--cell); }
+.xp-amt { display: flex; align-items: baseline; gap: 10px; }
+.xp-amt b { font-weight: 800; font-size: 72px; line-height: 0.9; color: var(--fg); }
+.xp-amt span { font-weight: 600; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.xp-bundle { padding-top: 14px; border-top: 1px solid var(--line); font-size: 16px; }
+.xp-bundle .link-u { display: inline-block; margin-top: 10px; }
+.xp-note { font-size: 14px; }
+.xp-vault .lead { max-width: 760px; }
+@media (max-width: 600px) {
+  .xp-price { padding: 24px 20px; }
+  .xp-amt b { font-size: 60px; }
+  .xp-hero .btns .btn { width: 100%; justify-content: center; }
+}
