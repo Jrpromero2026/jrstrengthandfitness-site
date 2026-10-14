@@ -91,7 +91,8 @@ CASES = [
               "That’s the neat part. You don’t."),
          results=["Started at four sessions a week, now five", "Healthier eating habits", "3+ years of training, still getting stronger"],
          photo="/assets/photos/cases/yigit-o.webp", photo_alt="Yiğit O. standing on the training floor in a black long-sleeve shirt",
-         photo_pos="50% 20%"),
+         photo_pos="50% 20%",
+         quote="I just told him one thing: I wanted to be strong."),
 ]
 
 LIVE = len(REVIEWS) >= MIN_REVIEWS
@@ -176,21 +177,24 @@ def _case(c, n):
 <div class="pf-tags"><span>Case file {n:02d}</span><span>{_txt(c["where"])}</span><span>{_txt(c["mode"])}</span><span>{_txt(c["length"])}</span></div>
 <h3>{_h.escape(c["name"])}</h3>
 {_track(c["start_tier"], c["to_tier"])}
+{f'<blockquote class="pf-quote"><p>“{_h.escape(c["quote"])}”</p></blockquote>' if c.get("quote") else ""}
+<ul class="pf-res">{res}</ul>
+<details class="pf-story"><summary>Read {_h.escape(c["name"].split()[0])}’s full story</summary>
 <div class="pf-steps"><div><b>Starting point</b>{_paras(c["start"])}</div><div><b>The plan</b>{_paras(c["plan"])}</div><div><b>Where now</b>{_paras(c["now"])}</div></div>
 <p class="pf-src">In {_h.escape(c["name"].split()[0])}’s own words, as written.</p>
-<ul class="pf-res">{res}</ul>
+</details>
 </div></article>"""
 
 
-def _case_slot():
+def _case_slot(n=1):
     return f"""<article class="pf-case">
 <div class="pf-case-ph">{_slot("Client photo<br>(with consent)", "fill")}</div>
 <div class="pf-case-b">
-<div class="pf-tags"><span>Case file 01</span><span>Facility</span><span>In person / Online</span><span>Duration</span></div>
+<div class="pf-tags"><span>Case file {n:02d}</span><span>Facility</span><span>In person / Online</span><span>Duration</span></div>
 <h3>Client first name</h3>
 {_track("Adequate", "Optimal")}
 <div class="pf-steps"><div><b>Starting point</b>{_slot("Their words")}</div><div><b>The plan</b>{_slot("What we changed")}</div><div><b>Where now</b>{_slot("Their words")}</div></div>
-<div class="pf-res-slots">{_slot("Real result")}{_slot("Real result")}{_slot("Real result")}</div>
+{_slot("A line in their words")}<div class="pf-res-slots">{_slot("Real result")}{_slot("Real result")}{_slot("Real result")}</div>
 </div></article>"""
 
 
@@ -199,7 +203,9 @@ def _cases():
                     'Each client is placed on the same <a class="link-u" href="/#standard">Inadequate → Enhanced scale</a> I coach to. '
                     "Adequate is a real win, and it’s marked as one.")
     if CASES:
-        return head + "".join(_case(c, i + 1) for i, c in enumerate(CASES))
+        import os
+        extra = "".join(_case_slot(len(CASES) + k + 1) for k in range(int(os.environ.get("PREVIEW_CASE_SLOTS", "0"))))
+        return head + "".join(_case(c, i + 1) for i, c in enumerate(CASES)) + extra
     if not LIVE:
         return head + _case_slot()
     scale = "".join(f"<span>{t}</span>" for t in TIERS)
@@ -232,6 +238,6 @@ BODY = (
          f'<a class="btn btn-red" href="/consult">Book a free consult</a>'
          f'<a class="btn btn-line" href="{SETMORE}"{ext(SETMORE)} data-track="Setmore reviews (proof hero)">Read them on Setmore</a>',
          side=SEAL)
-    + sec("gray", _wall(), id="reviews")
     + sec("dark", _cases(), id="case-files")
+    + sec("gray", _wall(), id="reviews")
 )
