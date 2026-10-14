@@ -20,7 +20,7 @@ A program that worked for five weeks rarely stops working on its own. Something 
 So the order matters. Rule out the week first. Change the plan last.
 
 > If you change the program every time the week gets hard, you never learn whether the program worked.
-> — JR Prieto-Romero
+> — JR Romero
 
 ## What do I check before changing the plan?
 

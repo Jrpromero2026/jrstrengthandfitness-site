@@ -22,7 +22,7 @@ BODY = (
     + sec("light", f"""<form class="form-card" id="review-form" novalidate data-form="review" data-event="Review submitted"
  data-done="Thank you. Your review went straight to me. If you said it’s OK to post, it’ll be on the Proof page soon.">
 <input type="hidden" name="_subject" value="Client review">
-<input type="hidden" name="_autoresponse" value="Thanks for the review. I read every one myself, and I appreciate you taking the time. JR Prieto-Romero, JR Strength &amp; Fitness">
+<input type="hidden" name="_autoresponse" value="Thanks for the review. I read every one myself, and I appreciate you taking the time. JR Romero, JR Strength &amp; Fitness">
 <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
 <div class="row2">
 <div class="field"><label for="rv-first">First name <span class="req">*</span></label><input id="rv-first" name="first_name" type="text" autocomplete="given-name" required></div>

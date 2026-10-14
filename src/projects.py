@@ -196,7 +196,7 @@ def waitlist_block(p):
 <form class="inline-form" novalidate data-form="waitlist" data-done="You’re on the list. You’ll get an email when {name} opens.">
 <input type="hidden" name="_subject" value="Waitlist signup: {name}">
 <input type="hidden" name="project" value="{name}">
-<input type="hidden" name="_autoresponse" value="You’re on the {name} waitlist. I’ll email you as soon as it opens. JR Prieto-Romero, JR Strength &amp; Fitness">
+<input type="hidden" name="_autoresponse" value="You’re on the {name} waitlist. I’ll email you as soon as it opens. JR Romero, JR Strength &amp; Fitness">
 <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
 <label class="sr" for="wl-{p['slug']}">Email address</label>
 <input id="wl-{p['slug']}" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
@@ -258,7 +258,7 @@ def project_page(p):
 </div>""")
         + sec("dark", f"""<div class="split top">
 <div class="side stack" style="gap:18px"><span class="eyebrow">From the floor</span><h2 class="h-display">Why I built it</h2></div>
-<div class="main stack"><p class="quote">{p['why']}</p>{iaoe}<p class="muted">JR Prieto-Romero, CSCS</p></div>
+<div class="main stack"><p class="quote">{p['why']}</p>{iaoe}<p class="muted">JR Romero, CSCS</p></div>
 </div>""")
         + sec("gray", f"""<div class="split">
 {waitlist_block(p) if p.get('waitlist') else next_step(p, btns)}

@@ -7,14 +7,14 @@ import json
 
 from layout import SITE, EMAIL, LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK, ADDRESS_LINES
 
-OG_IMAGE = f"{SITE}/assets/og-jr.jpg"
+OG_IMAGE = f"{SITE}/assets/og-jr-romero.jpg"
 PORTRAIT = f"{SITE}/assets/photos/jr-portrait.webp"
 PERSON_ID = f"{SITE}/#jr"
 ORG_ID = f"{SITE}/#org"
 SAME_AS = [LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK]
 
 PERSON = {
-    "@type": "Person", "@id": PERSON_ID, "name": "JR Prieto-Romero", "alternateName": ["JR Romero", "JR Romero, CSCS"],
+    "@type": "Person", "@id": PERSON_ID, "name": "JR Romero", "alternateName": ["JR Romero, CSCS", "JR Prieto-Romero", "JR Prieto-Romero, CSCS"],
     "givenName": "JR", "familyName": "Prieto-Romero",
     "url": f"{SITE}/about", "image": PORTRAIT,
     "jobTitle": "Director of Personal Training, Timberhill Athletic Club; Director of Performance, G3 Sports & Fitness",
@@ -71,7 +71,7 @@ def _monthly(name, price):
 ONLINE_SERVICE = {
     "@type": "Service", "name": "Online training and nutrition coaching", "serviceType": "Online personal training",
     "provider": {"@id": PERSON_ID}, "url": f"{SITE}/online-training",
-    "description": "Individualized online training and nutrition coaching with JR Prieto-Romero, CSCS: assess, build, execute, refine. Every package includes training and nutrition.",
+    "description": "Individualized online training and nutrition coaching with JR Romero, CSCS: assess, build, execute, refine. Every package includes training and nutrition.",
     "offers": [_monthly("Essentials Coaching", 199), _monthly("Core Coaching", 249), _monthly("Premium Coaching", 319)],
 }
 IN_PERSON_SERVICE = {
@@ -98,8 +98,8 @@ FAQ = [
     ("How much does online coaching cost?",
      "Essentials is $199 a month, Core is $249 a month and Premium is $319 a month. Three- and six-month terms lower the monthly rate. "
      "Every package includes both training and nutrition coaching."),
-    ("Who is JR Prieto-Romero?",
-     "JR Prieto-Romero, CSCS, known on the floor as JR Romero, is Director of Personal Training at Timberhill Athletic Club and Director of Performance at "
+    ("Who is JR Romero?",
+     "JR Romero, CSCS, is Director of Personal Training at Timberhill Athletic Club and Director of Performance at "
      "G3 Sports &amp; Fitness in Corvallis, Oregon. He earned his degree in Exercise &amp; Sport Science at Oregon State and has roughly "
      "20,000 hours of coaching on the floor."),
 ]
@@ -152,7 +152,7 @@ def llms_txt(projects, posts):
     faq = "\n\n".join(f"### {_plain(q)}\n{_plain(a)}" for q, a in FAQ)
     return f"""# JR Strength & Fitness
 
-> JR Prieto-Romero, CSCS (known professionally as JR Romero), is a strength and conditioning coach in Corvallis, Oregon: Director of Personal Training at Timberhill Athletic Club and Director of Performance at G3 Sports & Fitness. Founder of four coaching products. He coaches in person in Corvallis and online, and builds tools for coaches and athletes.
+> JR Romero, CSCS (full name JR Prieto-Romero), is a strength and conditioning coach in Corvallis, Oregon: Director of Personal Training at Timberhill Athletic Club and Director of Performance at G3 Sports & Fitness. Founder of four coaching products. He coaches in person in Corvallis and online, and builds tools for coaches and athletes.
 
 - Credentials: Certified Strength and Conditioning Specialist (CSCS); B.S. in Exercise & Sport Science, Oregon State University; roughly 20,000 hours of coaching.
 - Coaching standard: IAOE (Inadequate, Adequate, Optimal, Enhanced). Match the intervention to the person; adequate is a legitimate target.

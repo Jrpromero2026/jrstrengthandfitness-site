@@ -21,13 +21,13 @@ ASSETS = os.path.join(OUT, "assets")
 
 PAGES = [
     dict(path="/", file="index.html", active="", schema=True,
-         title="JR Prieto-Romero, CSCS | Strength Coach in Corvallis, Oregon",
-         description="Strength coach JR Prieto-Romero, CSCS: personal training at Timberhill Athletic Club and G3 Sports & Fitness in Corvallis, online coaching, and tools for coaches.",
+         title="JR Romero, CSCS | Strength Coach in Corvallis, Oregon",
+         description="Strength coach JR Romero, CSCS: personal training at Timberhill Athletic Club and G3 Sports & Fitness in Corvallis, online coaching, and tools for coaches.",
          body=P.HOME),
     dict(path="/train", file="train.html", active="train",
          title="Personal Training in Corvallis, Oregon & Online | Train with JR",
          head=S.ld(S.IN_PERSON_SERVICE, S.FAQ_LD, S.breadcrumbs([("Home", "/"), ("Train with JR", "/train")])),
-         description="Train with JR Prieto-Romero, CSCS. Local clients start with a free consult at Timberhill Athletic Club or G3 Sports & Fitness in Corvallis; anywhere else, apply for online coaching.",
+         description="Train with JR Romero, CSCS. Local clients start with a free consult at Timberhill Athletic Club or G3 Sports & Fitness in Corvallis; anywhere else, apply for online coaching.",
          body=P.TRAIN),
     dict(path="/consult", file="consult.html", active="train",
          title="Book a Free Consult | Timberhill or G3 | JR Strength & Fitness",
@@ -35,31 +35,31 @@ PAGES = [
          body=P.CONSULT_PAGE, head=S.ld(S.IN_PERSON_SERVICE, S.breadcrumbs([("Home", "/"), ("Train with JR", "/train"), ("Free consult", "/consult")]))),
     dict(path="/online-training", file="online-training.html", active="train",
          title="Online Coaching | Training & Nutrition | JR Strength & Fitness",
-         description="Individualized online training and nutrition coaching from JR Prieto-Romero, CSCS. Essentials, Core and Premium packages from $199 a month.",
+         description="Individualized online training and nutrition coaching from JR Romero, CSCS. Essentials, Core and Premium packages from $199 a month.",
          body=P.ONLINE, head=S.ld(S.ONLINE_SERVICE, S.breadcrumbs([("Home", "/"), ("Train with JR", "/train"), ("Online coaching", "/online-training")]))),
     dict(path="/apply", file="apply.html", active="train",
          title="Apply for Online Coaching | JR Strength & Fitness",
-         description="Apply for online training and nutrition coaching with JR Prieto-Romero, CSCS. Applications go straight to JR.",
+         description="Apply for online training and nutrition coaching with JR Romero, CSCS. Applications go straight to JR.",
          body=P.APPLY, script=P.APPLY_SCRIPT + P.FORM_SCRIPT, closing=False),
     dict(path="/about", file="about.html", active="about",
-         title="About JR Prieto-Romero, CSCS | JR Strength & Fitness",
-         description="JR Prieto-Romero, CSCS: Director of Personal Training at Timberhill Athletic Club, Director of Performance at G3 Sports & Fitness, founder of four coaching products.",
+         title="About JR Romero, CSCS | JR Strength & Fitness",
+         description="JR Romero, CSCS: Director of Personal Training at Timberhill Athletic Club, Director of Performance at G3 Sports & Fitness, founder of four coaching products.",
          body=P.ABOUT),
     dict(path="/proof", file="proof.html", active="proof", sitemap=PF.LIVE, noindex=not PF.LIVE,
-         title="Client Reviews & Results | JR Prieto-Romero, CSCS",
-         description=f"{PF.NAMED_COUNT} client reviews name JR Prieto-Romero, CSCS, all five stars, posted word for word from Timberhill Athletic Club's booking page.",
+         title="Client Reviews & Results | JR Romero, CSCS",
+         description=f"{PF.NAMED_COUNT} client reviews of JR Romero, CSCS, all five stars, posted word for word from Timberhill Athletic Club's booking page.",
          body=PF.BODY, script=PF.SCRIPT, head=S.ld(S.breadcrumbs([("Home", "/"), ("Proof", "/proof")]))),
     dict(path="/review", file="review.html", active="", sitemap=False, noindex=True, closing=False,
          title="Leave a Review | JR Strength & Fitness",
-         description="Trained with JR Prieto-Romero, CSCS? Leave a review. JR reads every one and posts it only with your permission.",
+         description="Trained with JR Romero, CSCS? Leave a review. JR reads every one and posts it only with your permission.",
          body=RV.BODY, script=P.FORM_SCRIPT),
     dict(path="/notes", file="notes.html", active="",
          title="Notes from the Floor | JR Strength & Fitness",
-         description="Research reviews and coaching notes from JR Prieto-Romero, CSCS: consultations, programming, strength and conditioning science, and training women.",
+         description="Research reviews and coaching notes from JR Romero, CSCS: consultations, programming, strength and conditioning science, and training women.",
          body=W.index_body(), script=W.INDEX_SCRIPT, head=W.FEED_LINK),
     dict(path="/newsletter", file="newsletter.html", active="",
          title="Newsletter | Notes from the Floor | JR Strength & Fitness",
-         description="Notes from JR Prieto-Romero, CSCS: what he's testing with clients and coaches, new writing, and first word on TRAINCND and The Credential Standard.",
+         description="Notes from JR Romero, CSCS: what he's testing with clients and coaches, new writing, and first word on TRAINCND and The Credential Standard.",
          body=NL.PAGE),
     dict(path="/subscribed", file="subscribed.html", active="", sitemap=False, noindex=True,
          title="You're in | JR Strength & Fitness",
@@ -79,7 +79,7 @@ PAGES = [
          body=P.REFUND),
 dict(path="/projects", file="projects.html", active="projects",
          title="Projects | JR Strength & Fitness",
-         description="What JR Prieto-Romero is building: The Trainer’s Coach Vault, Built For Her™, TRAINCND and The Credential Standard.",
+         description="What JR Romero is building: The Trainer’s Coach Vault, Built For Her™, TRAINCND and The Credential Standard.",
          body=PR.projects_index()),
 ] + [
     dict(path=f"/projects/{p['slug']}", file=f"projects/{p['slug']}.html", active="projects",
@@ -132,7 +132,7 @@ def build_pages():
                     script=spec.get("script", "") + (NL.SCRIPT if "data-newsletter" in spec["body"] else "")
                     + (PR.VAULT_STATS_SCRIPT if "data-vault-stat" in spec["body"] else ""), closing=spec.get("closing", True),
                     og_type=spec.get("og_type", "website"), head=spec.get("head", ""), noindex=spec.get("noindex", False),
-                    og_image=spec.get("og_image"), og_image_alt=spec.get("og_image_alt"))
+                    og_image=spec.get("og_image"), og_image_alt=spec.get("og_image_alt"), og_image_size=spec.get("og_image_size"))
         os.makedirs(os.path.dirname(os.path.join(OUT, spec["file"])), exist_ok=True)
         with open(os.path.join(OUT, spec["file"]), "w", encoding="utf-8") as fh:
             fh.write(html)
@@ -280,5 +280,7 @@ if __name__ == "__main__":
     build_pages()
     build_config()
     build_images()
+    import sharecard
+    sharecard.build_all(W.ALL)
     guard_no_third_party()
     print("built", len(PAGES), "pages ->", OUT)

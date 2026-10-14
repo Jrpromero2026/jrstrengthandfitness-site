@@ -47,6 +47,7 @@ from email.utils import format_datetime
 from layout import VAULT, LINKEDIN, CONSULT, SITE
 from ui import hero, sec, head_row, _lines
 import newsletter as NL
+import sharecard
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONTENT = os.path.join(ROOT, "content", "writing")
@@ -378,7 +379,7 @@ def _byline(p):
 <div class="by">
 <img class="avatar" src="{PORTRAIT}" alt="" width="56" height="56">
 <div class="by-text">
-<span>By <a href="/about">JR Prieto-Romero, CSCS</a></span>
+<span>By <a href="/about">JR Romero, CSCS</a></span>
 <span class="by-meta">{_meta_line(p)}{upd}</span>
 </div>
 </div>
@@ -402,9 +403,9 @@ def _post_hero(p):
 
 def _author():
     return f"""<aside class="author" aria-label="About the author">
-<img class="author-photo" src="{PORTRAIT}" alt="JR Prieto-Romero" width="96" height="96" loading="lazy">
+<img class="author-photo" src="{PORTRAIT}" alt="JR Romero" width="96" height="96" loading="lazy">
 <div class="author-text">
-<p><strong>JR Prieto-Romero, CSCS</strong> is Director of Personal Training at Timberhill Athletic Club and Director of Performance at G3 Sports &amp; Fitness in Corvallis, Oregon. He has spent 10+ years and roughly 20,000 hours coaching on the floor, and builds The Trainer’s Coach Vault, Built For Her™, TRAINCND and The Credential Standard.</p>
+<p><strong>JR Romero, CSCS</strong> is Director of Personal Training at Timberhill Athletic Club and Director of Performance at G3 Sports &amp; Fitness in Corvallis, Oregon. He has spent 10+ years and roughly 20,000 hours coaching on the floor, and builds The Trainer’s Coach Vault, Built For Her™, TRAINCND and The Credential Standard.</p>
 <div class="btns"><a class="link-u" href="/about">About JR →</a><a class="link-u" href="/apply">Apply for coaching →</a><a class="link-u" href="{LINKEDIN}" rel="noopener">LinkedIn →</a></div>
 </div>
 </aside>"""
@@ -418,7 +419,7 @@ def _schema(p):
         "headline": p["title"], "description": p["excerpt"],
         "datePublished": p["date"], "dateModified": p.get("updated", p["date"]),
         "url": url, "mainEntityOfPage": url,
-        "image": SITE + p["image"] if p.get("image") else S.OG_IMAGE,
+        "image": SITE + sharecard.url_for(p["slug"]),
         "articleSection": p["category"], "wordCount": p["words"], "inLanguage": "en-US",
         "author": {"@id": S.PERSON_ID}, "publisher": {"@id": S.ORG_ID},
     }
@@ -504,8 +505,8 @@ def page_specs():
             path=f"/notes/{p['slug']}", file=f"notes/{p['slug']}.html", active="",
             title=title, description=p["excerpt"], body=post_body(p), script=POST_SCRIPT,
             og_type="article", head=_head(p), sitemap=not p["draft"], noindex=p["draft"],
-            og_image=SITE + p["image"] if p.get("image") else None,
-            og_image_alt=html.escape(p["image_alt"]) if p.get("image") else None))
+            og_image=SITE + sharecard.url_for(p["slug"]), og_image_size=(1200, 630),
+            og_image_alt=html.escape(f"{p['title']}: Notes from the Floor by JR Romero, CSCS")))
     return specs
 
 
@@ -525,7 +526,7 @@ def feed_xml():
 <title>Notes from the Floor | JR Strength &amp; Fitness</title>
 <link>{SITE}/notes</link>
 <atom:link href="{SITE}{FEED_PATH}" rel="self" type="application/rss+xml"/>
-<description>Notes from the Floor: what’s proven with real clients, and the research behind it, from JR Prieto-Romero, CSCS.</description>
+<description>Notes from the Floor: what’s proven with real clients, and the research behind it, from JR Romero, CSCS.</description>
 <language>en-us</language>
 <lastBuildDate>{built}</lastBuildDate>
 {"".join(items)}
