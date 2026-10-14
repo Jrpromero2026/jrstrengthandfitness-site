@@ -1,4 +1,5 @@
-"""Writing: long-form posts at /writing/<slug>.
+"""Notes from the Floor: the articles section, long-form posts at /writing/<slug>.
+The newsletter has the same name. "Proven" marks the tested takeaway at the end of a post (:::proven).
 
 Posts live in content/writing/<slug>.md with a front-matter block:
 
@@ -21,7 +22,11 @@ Markdown supported in the body: paragraphs, ## and ### headings, numbered and bu
     > A pull quote, one or more lines.
     > — Who said it (optional)
 
-    :::copy The check-in            (a dark "your move" box with a Copy button)
+    :::proven The check-in          (the "Proven" takeaway box: what you have tested and would do this week, with a Copy button)
+    1. First question
+    :::
+
+    :::copy The check-in            (the same dark box with your own label instead of "Proven")
     1. First question
     2. Second question
     :::
@@ -49,7 +54,7 @@ PUBLIC = os.path.join(ROOT, "public")
 BFH_TRIAL = "https://app.builtforher.io/pricing"
 PORTRAIT = "/assets/photos/jr-portrait.webp"
 FEED_PATH = "/writing/feed.xml"
-FEED_LINK = f'<link rel="alternate" type="application/rss+xml" title="JR Strength &amp; Fitness: Writing" href="{FEED_PATH}">'
+FEED_LINK = f'<link rel="alternate" type="application/rss+xml" title="Notes from the Floor | JR Strength &amp; Fitness" href="{FEED_PATH}">'
 WPM = 230
 
 
@@ -92,6 +97,8 @@ def _figure(src, alt, caption="", cls="post-img", eager=False):
 
 
 def _box(kind, label, inner_md, n):
+    if kind == "proven":  # the tested takeaway: always labelled Proven, always copyable
+        kind, label = "copy", (f"Proven · {label}" if label else "Proven")
     inner = md_to_html(inner_md, boxes=False)
     copy = ""
     if kind == "copy":
@@ -112,7 +119,7 @@ def md_to_html(md, boxes=True):
             key = f"@@BOX{len(stash)}@@"
             stash[key] = _box(m.group(1), m.group(2).strip(), m.group(3), len(stash))
             return f"\n\n{key}\n\n"
-        md = re.sub(r"^:::(copy|box)[ \t]*(.*?)\n(.*?)\n:::[ \t]*$", keep, md.strip(), flags=re.M | re.S)
+        md = re.sub(r"^:::(copy|box|proven)[ \t]*(.*?)\n(.*?)\n:::[ \t]*$", keep, md.strip(), flags=re.M | re.S)
     out, ids = [], set()
     for block in re.split(r"\n\s*\n", md.strip()):
         lines = [ln.rstrip() for ln in block.strip().splitlines()]
@@ -296,13 +303,13 @@ def index_body():
         + f'<p class="feed-link"><a class="link-u" href="{FEED_PATH}">RSS feed →</a></p>'
     )
     return (
-        hero("Writing", "Coaching,<br>with the receipts.",
-             "Research reviews and coaching notes. Every post lists its sources. Shorter posts go up on LinkedIn every weekday.",
+        hero("Articles &amp; newsletter", "Notes from<br>the floor.",
+             "What’s proven with real clients, and the research behind it. Every post lists its sources. Shorter posts go up on LinkedIn every weekday.",
              f'<a class="btn btn-red" href="{LINKEDIN}" rel="noopener">Follow JR on LinkedIn</a>'
              f'<a class="link-u" href="#coaches">For coaches →</a>',
              short=True, size="h-display")
         + sec("light", archive, mark=False, id="archive")
-        + NL.block("dark", uid="w")
+        + NL.block("dark", uid="w", title="Every note,<br>by email.")
         + sec("gray", coach, mark=True, id="coaches", tight=True, label="For coaches")
     )
 
@@ -384,7 +391,7 @@ def _post_hero(p):
 <img class="watermark" src="/assets/jr-watermark.svg" alt="" aria-hidden="true">
 <div class="wrap">
 <div class="post-head">
-<nav class="crumbs" aria-label="Breadcrumb"><a href="/writing">Writing</a><span aria-hidden="true">/</span><a href="/writing?topic={p["topic"]}">{html.escape(p["category"])}</a></nav>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/writing">Notes from the Floor</a><span aria-hidden="true">/</span><a href="/writing?topic={p["topic"]}">{html.escape(p["category"])}</a></nav>
 <h1 class="post-title">{_lines(html.escape(p["title"]))}</h1>
 <p class="lead">{html.escape(p["dek"])}</p>
 {_byline(p)}
@@ -415,7 +422,7 @@ def _schema(p):
         "articleSection": p["category"], "wordCount": p["words"], "inLanguage": "en-US",
         "author": {"@id": S.PERSON_ID}, "publisher": {"@id": S.ORG_ID},
     }
-    return S.ld(post, S.breadcrumbs([("Home", "/"), ("Writing", "/writing"), (p["title"], f"/writing/{p['slug']}")]))
+    return S.ld(post, S.breadcrumbs([("Home", "/"), ("Notes from the Floor", "/writing"), (p["title"], f"/writing/{p['slug']}")]))
 
 
 def post_body(p):
@@ -445,10 +452,10 @@ def post_body(p):
 </article>"""
     related = ""
     if picks:
-        related = sec("gray", head_row("Keep reading", "More writing", None, size="h-md")
+        related = sec("gray", head_row("Notes from the Floor", "Keep reading", None, size="h-md")
                       + f'<div class="pgrid">{"".join(card(q) for q in picks)}</div>'
-                      + '<div class="btns" style="padding-top:40px"><a class="link-u" href="/writing">All writing →</a></div>',
-                      mark=False, tight=True, label="More writing")
+                      + '<div class="btns" style="padding-top:40px"><a class="link-u" href="/writing">All notes →</a></div>',
+                      mark=False, tight=True, label="More notes from the floor")
     return (
         _post_hero(p)
         + sec("light", article, mark=False)
@@ -515,10 +522,10 @@ def feed_xml():
     built = format_datetime(dt.datetime.combine(POSTS[0]["date_obj"], dt.time(12, 0), tzinfo=dt.timezone.utc)) if POSTS else ""
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
-<title>JR Strength &amp; Fitness: Writing</title>
+<title>Notes from the Floor | JR Strength &amp; Fitness</title>
 <link>{SITE}/writing</link>
 <atom:link href="{SITE}{FEED_PATH}" rel="self" type="application/rss+xml"/>
-<description>Research reviews and coaching notes from JR Prieto-Romero, CSCS.</description>
+<description>Notes from the Floor: what’s proven with real clients, and the research behind it, from JR Prieto-Romero, CSCS.</description>
 <language>en-us</language>
 <lastBuildDate>{built}</lastBuildDate>
 {"".join(items)}
