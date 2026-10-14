@@ -401,6 +401,7 @@ ACCESSIBILITY = legal("Legal", "Accessibility", f"""{UPDATED}
 <ul>
 <li>October 2026: an automated scan (axe-core, WCAG 2.0, 2.1 and 2.2 A and AA rules) of every page at desktop and phone widths.</li>
 <li>A keyboard-only pass through the home page, Proof, Train, the application form, the newsletter form and the TRAINCND waitlist, checking that every link, button and field can be reached and shows where focus is.</li>
+<li>October 13, 2026, after the Writing section redesign: the same automated scan of every page at desktop and phone widths found no violations, and a keyboard-only pass through the article share buttons, the copy button and the topic filter on Writing confirmed each one can be reached, shows focus and is at least 44 pixels square.</li>
 </ul>
 <p>Automated tools catch roughly a third of real accessibility problems. Nobody who uses a screen reader every day has tested the site yet.</p>
 <h2>What was fixed</h2>
