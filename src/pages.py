@@ -7,6 +7,7 @@ import vault_showcase as VS
 import seo as S
 import iaoe as IAOE
 import newsletter as NL
+import proof as PF
 
 CONSULT_BTN = f'<a class="btn btn-red" href="{CONSULT}">Book a free consult</a>'
 
@@ -51,6 +52,7 @@ HOME = (
 <p class="lead">Goals, training history, limitations, barriers and preferences. Local clients start at Timberhill or G3, where I match you with the right coach and program. Sometimes that coach isn’t me.</p>
 <div class="facts"><div>In person · Corvallis</div><div>Online · from $199/mo</div><div>No membership needed</div></div>
 <div class="btns">{CONSULT_BTN}<a class="link-u" href="/train">How training works →</a></div>
+{PF.home_excerpt()}
 </div>
 </div>""", id="train")
     + VS.block()

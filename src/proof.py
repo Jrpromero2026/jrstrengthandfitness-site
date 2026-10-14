@@ -92,8 +92,17 @@ CASES = [
          results=["Started at four sessions a week, now five", "Healthier eating habits", "3+ years of training, still getting stronger"],
          photo="/assets/photos/cases/yigit-o.webp", photo_alt="Yiğit O. standing on the training floor in a black long-sleeve shirt",
          photo_pos="50% 20%",
-         quote="I just told him one thing: I wanted to be strong."),
+         quote="I just told him one thing: I wanted to be strong.",
+         # Home-page excerpt: two of his sentences, verbatim; `key` is the phrase highlighted inside it.
+         excerpt="I never asked him to make me look like a particular person. I just told him one thing: I wanted to be strong.",
+         key="I wanted to be strong."),
 ]
+
+# Every excerpt must be a word-for-word slice of the client's own story, and its key phrase must sit inside it.
+for _c in CASES:
+    if _c.get("excerpt"):
+        assert any(_c["excerpt"] in _c[f] for f in ("start", "plan", "now")), f'{_c["name"]}: excerpt is not verbatim'
+        assert _c.get("key") and _c["key"] in _c["excerpt"], f'{_c["name"]}: key phrase missing from excerpt'
 
 LIVE = len(REVIEWS) >= MIN_REVIEWS
 TIERS = ("Inadequate", "Adequate", "Optimal", "Enhanced")
@@ -184,6 +193,22 @@ def _case(c, n):
 <p class="pf-src">In {_h.escape(c["name"].split()[0])}’s own words, as written.</p>
 </details>
 </div></article>"""
+
+
+def home_excerpt():
+    """Small pull from the newest case file with an excerpt, for the home page. Empty if there isn't one."""
+    c = next((c for c in reversed(CASES) if c.get("excerpt")), None)
+    if not c:
+        return ""
+    ex, key = _h.escape(c["excerpt"]), _h.escape(c["key"])
+    ex = ex.replace(key, f"<mark>{key}</mark>", 1)
+    first = _h.escape(c["name"].split()[0])
+    meta = " · ".join(_h.escape(x) for x in (c["where"], c["length"]))
+    return f"""<figure class="hx">
+<blockquote><p>“{ex}”</p></blockquote>
+<figcaption><b>{_h.escape(c["name"])}</b><span>{meta}</span><span>{c["start_tier"]} → {c["to_tier"]}</span></figcaption>
+<a class="link-u" href="/proof#case-files">Read {first}’s case file →</a>
+</figure>"""
 
 
 def _case_slot(n=1):
