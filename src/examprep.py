@@ -51,7 +51,7 @@ FAQ = [
      "No. They are original practice questions written against NASM’s public exam blueprint."),
     ("How long do I have access?",
      f"{OFFER['days']} days from purchase. It doesn’t renew automatically. If you buy the Vault + Exam Prep bundle instead, "
-     "Exam Prep stays open for as long as the bundle is active."),
+     "Exam Prep stays open for as long as the bundle is active. The bundle is a recurring membership, billed monthly or yearly."),
     ("Does it work on my phone?",
      "Yes. It installs to your home screen and works offline. Your answers sync when the connection comes back."),
     ("What is the AI tutor?",
@@ -77,7 +77,7 @@ def _bundle_link(where):
 OFFER_CARD = f"""<div class="info-card xp-offer">
 <span class="k">Two ways to get it</span>
 <div class="it"><b>Exam Prep · ${OFFER['price']} one-time</b><span>{OFFER['days']} days of access. Pay once, no auto-renewal. AI study tutor included.</span></div>
-<div class="it"><b>The Vault + Exam Prep · ${OFFER['bundle_month']}/mo or ${OFFER['bundle_year']}/yr</b><span>The full Vault library too. Exam Prep stays open while the bundle is active.</span></div>
+<div class="it"><b>The Vault + Exam Prep · ${OFFER['bundle_month']}/mo or ${OFFER['bundle_year']}/yr</b><span>A recurring membership, billed monthly or yearly. The full Vault library too, and Exam Prep stays open while the bundle is active.</span></div>
 </div>"""
 
 HERO = f"""<section class="hero dark short xp-hero">
@@ -148,7 +148,7 @@ PRICE = f"""<div class="xp-price">
 <div class="xp-amt"><b>${OFFER['price']}</b><span>one-time</span></div>
 <p class="body">{OFFER['days']} days of access. Pay once, no auto-renewal.</p>
 <div class="btns">{_buy_btn("price")}</div>
-<p class="body xp-bundle">Already want the Vault? Get both for ${OFFER['bundle_month']} a month or ${OFFER['bundle_year']} a year, and Exam Prep stays open while the bundle is active. {_bundle_link("price")}</p>
+<p class="body xp-bundle">Already want the Vault? Get both for ${OFFER['bundle_month']} a month or ${OFFER['bundle_year']} a year. It’s a recurring membership, billed monthly or yearly, and Exam Prep stays open while it’s active. {_bundle_link("price")}</p>
 <p class="muted xp-note">Checkout and your account live in the Vault. If you aren’t signed in, you’ll create a free account first, then come straight back to Exam Prep.</p>
 </div>"""
 
