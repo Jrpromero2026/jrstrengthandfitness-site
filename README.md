@@ -18,6 +18,14 @@ To publish a post:
 3. Run `python3 src/build.py`, open the draft at `/notes/<slug>` on the Vercel preview and read it on your phone.
 4. Delete the `draft: true` line, rebuild, commit. The build also makes the post's share card (`public/assets/share/<slug>.jpg`, from `src/sharecard.py`), using the post's `image` when it has one, otherwise JR's portrait. The post then appears on /notes, in the sitemap, the RSS feed (`/notes/feed.xml`) and `llms.txt`.
 
+## NASM-CPT Exam Prep (/projects/vault/exam-prep)
+
+Marketing page only: checkout, accounts and the app live in the Vault. Every buy button goes to
+`vault.jrstrengthandfitness.com/pricing#exam-prep`. Copy, prices and the required NASM disclaimer are in
+`src/examprep.py`; the Vault pricing page is the source of truth for prices. The build fails if the page
+uses a banned claim (official, guarantee, real/leaked questions, pass rates). Short links: /exam-prep,
+/nasm-cpt-exam-prep.
+
 ## Build locally
     pip install pillow
     python3 src/build.py

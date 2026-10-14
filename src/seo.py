@@ -147,6 +147,7 @@ def robots_txt():
 
 
 def llms_txt(projects, posts):
+    from examprep import DISCLAIMER as XP_DISCLAIMER
     proj = "\n".join(f"- [{_plain(p['name'])}]({SITE}/projects/{p['slug']}): {_plain(p['card'])}" for p in projects)
     writing = "\n".join(f"- [{p['title']}]({SITE}/notes/{p['slug']}): {p['excerpt']}" for p in posts)
     faq = "\n\n".join(f"### {_plain(q)}\n{_plain(a)}" for q, a in FAQ)
@@ -168,6 +169,11 @@ def llms_txt(projects, posts):
 ## Projects
 
 {proj}
+
+### NASM-CPT Exam Prep (part of The Trainer's Coach Vault)
+
+- [NASM-CPT Exam Prep]({SITE}/projects/vault/exam-prep): independent practice for the NASM-CPT exam. 1,322 original practice questions written against NASM's public exam blueprint, a 60-question diagnostic, 120-question timed mocks, 150 concept cards and an AI study tutor (up to 15 questions a day; its answers can be wrong). $79 one-time for 180 days, no auto-renewal, or $39/month or $299/year bundled with the Vault. Sold at https://vault.jrstrengthandfitness.com/pricing#exam-prep. No pass guarantee; Practice Readiness is a study signal, not a score or prediction.
+- {XP_DISCLAIMER}
 
 ## Notes from the Floor (articles)
 

@@ -4,6 +4,7 @@ Facts come from each product's own live site. "Why" sections are drafts for JR t
 """
 from layout import VAULT, EMAIL, CONSULT, FORM_ENDPOINT
 from ui import hero, sec, ext
+import examprep as XP
 
 # Fallback Vault counts, as published on vault.jrstrengthandfitness.com/pricing (Oct 2026).
 # Pages show these first; VAULT_STATS_SCRIPT then swaps in the live counts from /api/vault-stats.
@@ -34,7 +35,7 @@ PROJECTS = [
     dict(
         slug="vault",
         name="The Trainer’s Coach Vault",
-        chip=("live", "Live · founding membership soon"),
+        chip=("live", "Live · founding membership open"),
         tag=("live", "Live"),
         audience="For trainers &amp; coaches",
         tagline="The operating library for professional trainers and coaches.",
@@ -50,10 +51,12 @@ PROJECTS = [
         iaoe="IAOE runs through the Vault’s frameworks, so coaches can match the intervention to the client in front of them.",
         status=[
             ("Free account", "Open now: selected resources, previews, search and saved favorites."),
-            ("Founding membership", "Opens soon: $29/month or $249/year for the full library."),
+            ("Founding membership", "Open now: $29/month or $249/year for the full library, at the founding rate."),
+            ("Exam Prep", f"${XP.OFFER['price']} one-time for {XP.OFFER['days']} days, or ${XP.OFFER['bundle_month']}/month bundled with the Vault."),
         ],
         cta=("Create a free account", VAULT + "/signup"),
         cta2=("Explore resources", VAULT + "/explore"),
+        extra=XP.VAULT_BLOCK,
     ),
     dict(
         slug="built-for-her",
@@ -260,6 +263,7 @@ def project_page(p):
 <div class="side stack" style="gap:18px"><span class="eyebrow">From the floor</span><h2 class="h-display">Why I built it</h2></div>
 <div class="main stack"><p class="quote">{p['why']}</p>{iaoe}<p class="muted">JR Romero, CSCS</p></div>
 </div>""")
+        + (sec("light", p["extra"], id="exam-prep") if p.get("extra") else "")
         + sec("gray", f"""<div class="split">
 {waitlist_block(p) if p.get('waitlist') else next_step(p, btns)}
 <div class="side"><span class="eyebrow" style="padding-bottom:16px">Next project</span><div class="panel brands next-one">{cell(nxt)}</div></div>
