@@ -32,7 +32,7 @@ HOME = (
     hero(
         "Coach · Builder · Corvallis, Oregon",
         "Built on<br>the floor.<br>Now built<br>for coaches.",
-        "I’m JR Prieto-Romero, CSCS. I’m Director of Personal Training at Timberhill Athletic Club and Director of Performance at G3 Sports &amp; Fitness. Now I’m turning what works on the floor into tools for coaches and athletes.",
+        "I’m JR Romero, CSCS. I’m Director of Personal Training at Timberhill Athletic Club and Director of Performance at G3 Sports &amp; Fitness. Now I’m turning what works on the floor into tools for coaches and athletes.",
         f'{CONSULT_BTN}<a class="link-u" href="#projects">See what I’m building ↓</a>',
         frame("Photo: JR coaching on the floor", card=CRED_CARD),
     )
@@ -199,7 +199,7 @@ AUTORESPONSE = (
     "If it looks like a fit, we’ll set up a short call (15–20 minutes, phone or video) to talk through your goals and pick the right package. "
     "After that you’ll get your coaching app invite and we’ll get to work. "
     "If you need me before then, email jr@jrstrengthandfitness.com. "
-    "JR Prieto-Romero, CSCS"
+    "JR Romero, CSCS"
 )
 
 # The Privacy Policy says applications come from adults, or a parent or guardian for a minor.
@@ -297,7 +297,7 @@ document.querySelectorAll('form[data-form]').forEach(function(f){
 # ---------------------------------------------------------------- About
 ABOUT = (
     hero("About JR", "Salem. Oregon State.<br>20,000 hours.",
-         "I’m JR Prieto-Romero, CSCS, though most people on the floor know me as JR Romero. I’m Director of Personal Training at Timberhill Athletic Club and Director of Performance at G3 Sports &amp; Fitness in Corvallis, Oregon.",
+         "I’m JR Romero, CSCS. I’m Director of Personal Training at Timberhill Athletic Club and Director of Performance at G3 Sports &amp; Fitness in Corvallis, Oregon.",
          f'{CONSULT_BTN}<a class="link-u" href="{LINKEDIN}" rel="noopener">Connect on LinkedIn →</a>',
          frame("Photo: JR portrait"), short=True, size="h-display")
     + sec("light", f"""<div class="split top">

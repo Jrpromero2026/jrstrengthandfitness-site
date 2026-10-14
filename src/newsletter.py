@@ -82,7 +82,7 @@ SCRIPT = """<script>
       e.preventDefault();
       var data={_subject:'Newsletter signup ('+interest+')', email:fd.get('email_address'), first_name:fd.get('fields[first_name]')||'', interest:interest,
         _template:'table', _captcha:'false', page:location.href,
-        _autoresponse:'You’re on the list. I’ll be in touch with notes from the floor, new writing and project launches. JR Prieto-Romero, JR Strength & Fitness'};
+        _autoresponse:'You’re on the list. I’ll be in touch with notes from the floor, new writing and project launches. JR Romero, JR Strength & Fitness'};
       btn.disabled=true; var label=btn.textContent; btn.textContent='Sending…'; st.hidden=true;
       fetch('""" + FORM_ENDPOINT + """',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
         .then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ if(!r.ok||String(j.success)==='false'){ throw new Error('send failed'); } }); })

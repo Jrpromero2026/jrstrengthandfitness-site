@@ -65,7 +65,7 @@ def rows(items):
 # Real photos go here as they come in: label -> (path under /assets, alt text).
 # label -> (src, alt, CSS object-position). Photos are JR's own, supplied by JR.
 _PORTRAIT = ("/assets/photos/jr-portrait.webp",
-             "JR Prieto-Romero, CSCS, arms crossed on the training floor", "50% 22%")
+             "JR Romero, CSCS, arms crossed on the training floor", "50% 22%")
 PHOTOS = {
     "Photo: JR coaching on the floor": _PORTRAIT,
     "Photo: JR portrait": _PORTRAIT,

@@ -27,7 +27,7 @@ SCHEMA = """<script type="application/ld+json">{
  "@context":"https://schema.org","@type":"LocalBusiness",
  "name":"JR Strength and Fitness","url":"%s","email":"%s",
  "image":"%s/assets/og-image.png",
- "founder":{"@type":"Person","name":"JR Prieto-Romero","jobTitle":"Strength and Conditioning Coach, CSCS"},
+ "founder":{"@type":"Person","name":"JR Romero","jobTitle":"Strength and Conditioning Coach, CSCS"},
  "address":{"@type":"PostalAddress","streetAddress":"5441 S Macadam Ave, Suite 6590","addressLocality":"Portland","addressRegion":"OR","postalCode":"97239","addressCountry":"US"},
  "areaServed":["Corvallis, OR","Online"],
  "sameAs":["%s","%s","%s","%s"]
@@ -60,10 +60,11 @@ from motion import MOTION_JS  # noqa: E402
 from seo import SITE_GRAPH, OG_IMAGE  # noqa: E402
 
 
-def page(*, path, title, description, body, active="", schema=False, script="", closing=True, og_type="website", head="", noindex=False, og_image=None, og_image_alt=None, **_):
+def page(*, path, title, description, body, active="", schema=False, script="", closing=True, og_type="website", head="", noindex=False, og_image=None, og_image_alt=None, og_image_size=None, **_):
     og_img = og_image or OG_IMAGE
-    og_alt = og_image_alt or "JR Prieto-Romero, CSCS, strength coach in Corvallis, Oregon"
-    og_dims = "" if og_image else '\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">'
+    og_alt = og_image_alt or "JR Romero, CSCS, strength coach in Corvallis, Oregon"
+    ow, oh = og_image_size or ((1200, 630) if not og_image else (None, None))
+    og_dims = f'\n<meta property="og:image:width" content="{ow}">\n<meta property="og:image:height" content="{oh}">' if ow else ""
     nav = "\n".join(
         f'<a href="{href}"{" aria-current=\"page\"" if key == active else ""}>{label}</a>'
         for href, label, key in NAV
