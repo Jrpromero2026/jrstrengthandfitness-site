@@ -10,7 +10,16 @@ REVIEWS has at least MIN_REVIEWS entries. Then it goes live automatically on the
 import html as _h
 
 from layout import TAC_PT
-from ui import hero, sec, head_row, ext
+from ui import hero, sec, head_row, ext, ph
+
+
+class PENDING(str):
+    """A fact JR still has to supply. Renders as a visible placeholder; the build refuses to ship one (see build.py)."""
+
+
+def _txt(v):
+    return ph(v) if isinstance(v, PENDING) else _h.escape(v)
+
 
 SETMORE = "https://timberhill-personal-training.setmore.com/reviews"  # Timberhill's Setmore reviews page
 # As shown on Setmore on 2026-10-12. Update when they move.
@@ -53,7 +62,37 @@ for r in REVIEWS:
 #      start_tier="Inadequate", to_tier="Optimal",      # two of: Inadequate, Adequate, Optimal, Enhanced
 #      start="...their words...", plan="...what we changed...", now="...their words...",
 #      results=["...", "...", "..."], photo="/assets/photos/....webp" (optional, with consent))
-CASES = []
+CASES = [
+    # Yiğit O. Words are his, sent to JR on Instagram (Oct 14, 2026), posted as written. Photo supplied by JR.
+    # Yiğit OK'd his name (first name + last initial), words and photo (confirmed by JR, Oct 14, 2026). Facts from JR.
+    dict(name="Yiğit O.", where="Timberhill", mode="In person", length="3+ years",
+         start_tier="Inadequate", to_tier="Enhanced",
+         start=("Before I started training with JR, I had little to no experience with the gym or living a healthy lifestyle. "
+                "I had worked with a few personal trainers back in my home country, but they never really pushed me into serious strength training.\n\n"
+                "I had never deadlifted before, couldn’t do a single pull-up without resistance bands, and I still remember my legs shaking during "
+                "lower-body exercises as I struggled just to keep my balance.\n\n"
+                "I wasn’t necessarily starting from zero, but I was pretty close to it."),
+         plan=("Our plan was simple: get stronger.\n\n"
+               "I never showed JR pictures of someone whose physique I wanted to achieve. I never asked him to make me look like a particular person. "
+               "I just told him one thing: I wanted to be strong.\n\n"
+               "And that happened to be one of his greatest strengths as a trainer: knowing how to build real strength through the right training, "
+               "proper technique, and consistent progression.\n\n"
+               "We started training four times a week, eventually increasing to five sessions a week about a year later. The goal was always the same: "
+               "keep getting stronger, keep pushing my limits, and keep improving.\n\n"
+               "The physical transformation, healthier eating habits, and everything else? Those came along as welcome bonuses."),
+         now=("These days, one of the first things I think about when I wake up is training. It has become such a natural part of my life "
+              "that I can’t really imagine my routine without it.\n\n"
+              "Of course, it comes with its own funny little downsides. Every time I eat, I find myself thinking about calories. But then again, "
+              "I train more so I can eat more. And the more I train, the stronger I get. So I guess it all works out!\n\n"
+              "But beyond the physical progress, training has completely changed my outlook on life.\n\n"
+              "I’ve come to realize that working out isn’t something you do for a few months or years and then quit once you’re happy with the results. "
+              "It’s a lifestyle. It’s about constantly challenging yourself, discovering what you’re capable of, and realizing that there’s always room to improve.\n\n"
+              "And if you’re wondering when you finally reach that point where you’re completely satisfied?\n\n"
+              "That’s the neat part. You don’t."),
+         results=["Started at four sessions a week, now five", "Healthier eating habits", "3+ years of training, still getting stronger"],
+         photo="/assets/photos/cases/yigit-o.webp", photo_alt="Yiğit O. standing on the training floor in a black long-sleeve shirt",
+         photo_pos="50% 20%"),
+]
 
 LIVE = len(REVIEWS) >= MIN_REVIEWS
 TIERS = ("Inadequate", "Adequate", "Optimal", "Enhanced")
@@ -120,17 +159,25 @@ def _track(a, b):
             + "".join(out) + "</div>")
 
 
+def _paras(text):
+    return "".join(f"<p>{_h.escape(x.strip())}</p>" for x in text.split("\n\n") if x.strip())
+
+
 def _case(c, n):
-    photo = (f'<img src="{c["photo"]}" alt="{_h.escape(c["name"])}, client case file" loading="lazy">'
+    alt = _h.escape(c.get("photo_alt") or f'{c["name"]}, client case file')
+    pos = f' style="object-position:{c["photo_pos"]}"' if c.get("photo_pos") else ""
+    photo = (f'<img src="{c["photo"]}" alt="{alt}" loading="lazy"{pos}>'
              if c.get("photo") else '<img class="mark" src="/assets/jr-mark.svg" alt="">')
-    res = "".join(f"<li>{_h.escape(x)}</li>" for x in c["results"])
-    return f"""<article class="pf-case">
+    res = "".join(f"<li>{_txt(x)}</li>" for x in c["results"])
+    long = " long" if max(len(c["start"]), len(c["plan"]), len(c["now"])) > 400 else ""
+    return f"""<article class="pf-case{long}">
 <div class="pf-case-ph">{photo}</div>
 <div class="pf-case-b">
-<div class="pf-tags"><span>Case file {n:02d}</span><span>{c["where"]}</span><span>{c["mode"]}</span><span>{c["length"]}</span></div>
+<div class="pf-tags"><span>Case file {n:02d}</span><span>{_txt(c["where"])}</span><span>{_txt(c["mode"])}</span><span>{_txt(c["length"])}</span></div>
 <h3>{_h.escape(c["name"])}</h3>
 {_track(c["start_tier"], c["to_tier"])}
-<div class="pf-steps"><div><b>Starting point</b><p>{_h.escape(c["start"])}</p></div><div><b>The plan</b><p>{_h.escape(c["plan"])}</p></div><div><b>Where now</b><p>{_h.escape(c["now"])}</p></div></div>
+<div class="pf-steps"><div><b>Starting point</b>{_paras(c["start"])}</div><div><b>The plan</b>{_paras(c["plan"])}</div><div><b>Where now</b>{_paras(c["now"])}</div></div>
+<p class="pf-src">In {_h.escape(c["name"].split()[0])}’s own words, as written.</p>
 <ul class="pf-res">{res}</ul>
 </div></article>"""
 
