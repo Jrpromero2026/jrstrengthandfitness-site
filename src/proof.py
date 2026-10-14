@@ -93,6 +93,10 @@ CASES = [
          photo="/assets/photos/cases/yigit-o.webp", photo_alt="Yiğit O. standing on the training floor in a black long-sleeve shirt",
          photo_pos="50% 20%",
          quote="I just told him one thing: I wanted to be strong.",
+         # Lead-in above "Read his full story". JR's voice; every fact comes from Yiğit's own story above.
+         lead=("When Yiğit started, he had never deadlifted and couldn’t do a pull-up without bands. "
+               "He didn’t bring photos of anyone’s physique, just one goal. More than three years later he trains five days a week, "
+               "and he wrote the story of how he got there himself."),
          # Home-page excerpt: two of his sentences, verbatim; `key` is the phrase highlighted inside it.
          excerpt="I never asked him to make me look like a particular person. I just told him one thing: I wanted to be strong.",
          key="I wanted to be strong."),
@@ -188,7 +192,8 @@ def _case(c, n):
 {_track(c["start_tier"], c["to_tier"])}
 {f'<blockquote class="pf-quote"><p>“{_h.escape(c["quote"])}”</p></blockquote>' if c.get("quote") else ""}
 <ul class="pf-res">{res}</ul>
-<details class="pf-story"><summary>Read {_h.escape(c["name"].split()[0])}’s full story</summary>
+{f'<p class="pf-lead">{_h.escape(c["lead"])}</p>' if c.get("lead") else ""}
+<details class="pf-story{' led' if c.get('lead') else ''}"><summary>Read {_h.escape(c["name"].split()[0])}’s full story</summary>
 <div class="pf-steps"><div><b>Starting point</b>{_paras(c["start"])}</div><div><b>The plan</b>{_paras(c["plan"])}</div><div><b>Where now</b>{_paras(c["now"])}</div></div>
 <p class="pf-src">In {_h.escape(c["name"].split()[0])}’s own words, as written.</p>
 </details>

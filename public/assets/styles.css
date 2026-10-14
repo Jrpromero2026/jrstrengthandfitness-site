@@ -913,7 +913,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2
 .pf-story > summary:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
 .pf-story[open] .pf-steps { margin-top: 12px; }
 .pf-story .pf-src { margin-top: 18px; }
-@media (min-width: 901px) { .pf-case .pf-case-ph { align-self: start; height: 440px; min-height: 0; } }
+@media (min-width: 901px) { .pf-case .pf-case-ph { align-self: stretch; max-height: 560px; min-height: 440px; } }
 
 /* Home: a short excerpt from the newest case file, with the key phrase marked like a highlighter. */
 .hx { margin: 14px 0 0; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px; max-width: 620px; }
@@ -928,3 +928,6 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2
   .pf-tags, .hx figcaption { gap: 6px 16px; }
   .pf-tags span + span::before, .hx figcaption span::before { content: none; }
 }
+/* Short lead-in that points to the full story; the toggle sits right under it. */
+.pf-lead { border-top: 1px solid rgba(255,255,255,0.18); padding-top: 18px; font-size: 16.5px; line-height: 1.65; color: var(--body); }
+.pf-story.led { border-top: 0; padding-top: 0; margin-top: -8px; }
