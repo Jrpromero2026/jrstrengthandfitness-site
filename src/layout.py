@@ -60,7 +60,10 @@ from motion import MOTION_JS  # noqa: E402
 from seo import SITE_GRAPH, OG_IMAGE  # noqa: E402
 
 
-def page(*, path, title, description, body, active="", schema=False, script="", closing=True, og_type="website", head="", noindex=False, **_):
+def page(*, path, title, description, body, active="", schema=False, script="", closing=True, og_type="website", head="", noindex=False, og_image=None, og_image_alt=None, **_):
+    og_img = og_image or OG_IMAGE
+    og_alt = og_image_alt or "JR Prieto-Romero, CSCS, strength coach in Corvallis, Oregon"
+    og_dims = "" if og_image else '\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">'
     nav = "\n".join(
         f'<a href="{href}"{" aria-current=\"page\"" if key == active else ""}>{label}</a>'
         for href, label, key in NAV
@@ -82,14 +85,12 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <meta property="og:description" content="{description}">
 <meta property="og:url" content="{canonical}">
 {'<meta name="robots" content="noindex, follow">' if noindex else '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">'}
-<meta property="og:image" content="{OG_IMAGE}">
-<meta property="og:image:alt" content="JR Prieto-Romero, CSCS, strength coach in Corvallis, Oregon">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image" content="{og_img}">
+<meta property="og:image:alt" content="{og_alt}">{og_dims}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{description}">
-<meta name="twitter:image" content="{OG_IMAGE}">
+<meta name="twitter:image" content="{og_img}">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">

@@ -56,7 +56,7 @@ PAGES = [
     dict(path="/writing", file="writing.html", active="",
          title="Writing | JR Strength & Fitness",
          description="Research reviews and coaching notes from JR Prieto-Romero, CSCS: consultations, programming, strength and conditioning science, and training women.",
-         body=W.index_body()),
+         body=W.index_body(), script=W.INDEX_SCRIPT, head=W.FEED_LINK),
     dict(path="/newsletter", file="newsletter.html", active="",
          title="Newsletter | Notes from the Floor | JR Strength & Fitness",
          description="Notes from JR Prieto-Romero, CSCS: what he's testing with clients and coaches, new writing, and first word on TRAINCND and The Credential Standard.",
@@ -129,7 +129,8 @@ def build_pages():
                     active=spec["active"], schema=spec.get("schema", False),
                     script=spec.get("script", "") + (NL.SCRIPT if "data-newsletter" in spec["body"] else "")
                     + (PR.VAULT_STATS_SCRIPT if "data-vault-stat" in spec["body"] else ""), closing=spec.get("closing", True),
-                    og_type=spec.get("og_type", "website"), head=spec.get("head", ""), noindex=spec.get("noindex", False))
+                    og_type=spec.get("og_type", "website"), head=spec.get("head", ""), noindex=spec.get("noindex", False),
+                    og_image=spec.get("og_image"), og_image_alt=spec.get("og_image_alt"))
         os.makedirs(os.path.dirname(os.path.join(OUT, spec["file"])), exist_ok=True)
         with open(os.path.join(OUT, spec["file"]), "w", encoding="utf-8") as fh:
             fh.write(html)
@@ -148,7 +149,7 @@ THIRD_PARTY_LOADS = [
     r'@import\s+url\(\s*["\']?(?:https?:)?//',
     r'url\(\s*["\']?https?://',
     r'fonts\.googleapis\.com|fonts\.gstatic\.com|use\.typekit\.net',
-    r'hotjar\.com|fullstory\.com|logrocket|rrweb|smartlook|mouseflow|clarity\.ms|posthog|mixpanel|cdn\.amplitude|googletagmanager|google-analytics\.com|connect\.facebook\.net|static\.ads-twitter',
+    r'platform\.twitter\.com|platform\.linkedin\.com|connect\.facebook\.net/[^"\']*sdk|addthis|sharethis|disqus|hotjar\.com|fullstory\.com|logrocket|rrweb|smartlook|mouseflow|clarity\.ms|posthog|mixpanel|cdn\.amplitude|googletagmanager|google-analytics\.com|connect\.facebook\.net|static\.ads-twitter',
 ]
 
 
@@ -230,6 +231,8 @@ def build_config():
         fh.write(S.robots_txt())
     with open(os.path.join(OUT, "llms.txt"), "w") as fh:
         fh.write(S.llms_txt(PR.PROJECTS, W.POSTS))
+    with open(os.path.join(OUT, "writing", "feed.xml"), "w", encoding="utf-8") as fh:
+        fh.write(W.feed_xml())
 
 
 def build_images():
