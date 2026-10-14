@@ -154,7 +154,7 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <a href="{INSTAGRAM}">Instagram</a>
 <a href="{YOUTUBE}">YouTube</a>
 <a href="{FACEBOOK}">Facebook</a>
-<a href="/writing">Notes from the Floor</a>
+<a href="/notes">Notes from the Floor</a>
 <a href="/newsletter">Newsletter</a>
 </nav>
 </div>

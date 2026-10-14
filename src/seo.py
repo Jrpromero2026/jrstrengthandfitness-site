@@ -148,7 +148,7 @@ def robots_txt():
 
 def llms_txt(projects, posts):
     proj = "\n".join(f"- [{_plain(p['name'])}]({SITE}/projects/{p['slug']}): {_plain(p['card'])}" for p in projects)
-    writing = "\n".join(f"- [{p['title']}]({SITE}/writing/{p['slug']}): {p['excerpt']}" for p in posts)
+    writing = "\n".join(f"- [{p['title']}]({SITE}/notes/{p['slug']}): {p['excerpt']}" for p in posts)
     faq = "\n\n".join(f"### {_plain(q)}\n{_plain(a)}" for q, a in FAQ)
     return f"""# JR Strength & Fitness
 

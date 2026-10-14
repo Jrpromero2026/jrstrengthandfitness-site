@@ -1,20 +1,20 @@
-"""Notes from the Floor: the articles section, long-form posts at /writing/<slug>.
+"""Notes from the Floor: the articles section, long-form posts at /notes/<slug>.
 The newsletter has the same name. "Proven" marks the tested takeaway at the end of a post (:::proven).
 
-Posts live in content/writing/<slug>.md with a front-matter block:
+Posts live in content/notes/<slug>.md with a front-matter block:
 
     title:     required
     date:      required, YYYY-MM-DD
-    category:  required (also the topic filter on /writing)
+    category:  required (also the topic filter on /notes)
     audience:  coach | bfh | client  (picks the call to action)
     excerpt:   required, one or two sentences (search snippet, cards, RSS)
     dek:       optional, the line under the headline (defaults to excerpt)
     updated:   optional, YYYY-MM-DD, shown as "Updated" and sent to search engines
-    image:     optional, a file under public/ such as /assets/writing/<slug>.webp (1600x900 is ideal)
+    image:     optional, a file under public/ such as /assets/notes/<slug>.webp (1600x900 is ideal)
     image_alt: required when image is set: what the photo shows
     caption:   optional line under the featured image
-    draft:     true keeps the post off /writing, the sitemap, RSS and llms.txt, and marks it noindex.
-               Its page still builds at /writing/<slug> so it can be reviewed. Delete the line to publish.
+    draft:     true keeps the post off /notes, the sitemap, RSS and llms.txt, and marks it noindex.
+               Its page still builds at /notes/<slug> so it can be reviewed. Delete the line to publish.
 
 Markdown supported in the body: paragraphs, ## and ### headings, numbered and bulleted lists,
 **bold**, *italic*, [links](url), images on their own line ![alt](/assets/...), and:
@@ -36,7 +36,7 @@ Markdown supported in the body: paragraphs, ## and ### headings, numbered and bu
     :::
 
 A "## References" (or "## Sources") heading starts the source list, shown after the call to action.
-The old /blog/<slug> URL redirects to /writing/<slug> (see build.py).
+The old /blog/<slug> URL redirects to /notes/<slug> (see build.py).
 """
 import datetime as dt
 import html
@@ -53,7 +53,7 @@ CONTENT = os.path.join(ROOT, "content", "writing")
 PUBLIC = os.path.join(ROOT, "public")
 BFH_TRIAL = "https://app.builtforher.io/pricing"
 PORTRAIT = "/assets/photos/jr-portrait.webp"
-FEED_PATH = "/writing/feed.xml"
+FEED_PATH = "/notes/feed.xml"
 FEED_LINK = f'<link rel="alternate" type="application/rss+xml" title="Notes from the Floor | JR Strength &amp; Fitness" href="{FEED_PATH}">'
 WPM = 230
 
@@ -252,7 +252,7 @@ def _meta_line(p):
 
 def card(p, level="h3"):
     return f"""<article class="pcard" data-topic="{p["topic"]}">
-<a href="/writing/{p["slug"]}">
+<a href="/notes/{p["slug"]}">
 {_media(p, "pcard-media")}
 <span class="pcard-k">{html.escape(p["category"])}</span>
 <{level} class="pcard-t">{html.escape(p["title"])}</{level}>
@@ -263,7 +263,7 @@ def card(p, level="h3"):
 
 def feature(p):
     return f"""<article class="pfeature" data-topic="{p["topic"]}">
-<a href="/writing/{p["slug"]}">
+<a href="/notes/{p["slug"]}">
 {_media(p, "pfeature-media")}
 <div class="pfeature-text">
 <span class="pcard-k">Latest · {html.escape(p["category"])}</span>
@@ -315,7 +315,7 @@ def index_body():
 
 
 INDEX_SCRIPT = """<script>
-/* Topic filter on /writing. Without JavaScript every post shows and the buttons stay hidden. */
+/* Topic filter on /notes. Without JavaScript every post shows and the buttons stay hidden. */
 (function(){
   var box=document.querySelector('[data-topics]'); if(!box) return;
   var items=document.querySelectorAll('.pcard,.pfeature'), status=document.querySelector('[data-topic-status]');
@@ -355,7 +355,7 @@ def _icon(name):
 
 def _share(p):
     from urllib.parse import quote
-    url = quote(f"{SITE}/writing/{p['slug']}", safe="")
+    url = quote(f"{SITE}/notes/{p['slug']}", safe="")
     title = quote(p["title"], safe="")
     links = [
         ("linkedin", "Share on LinkedIn", f"https://www.linkedin.com/sharing/share-offsite/?url={url}"),
@@ -391,7 +391,7 @@ def _post_hero(p):
 <img class="watermark" src="/assets/jr-watermark.svg" alt="" aria-hidden="true">
 <div class="wrap">
 <div class="post-head">
-<nav class="crumbs" aria-label="Breadcrumb"><a href="/writing">Notes from the Floor</a><span aria-hidden="true">/</span><a href="/writing?topic={p["topic"]}">{html.escape(p["category"])}</a></nav>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/notes">Notes from the Floor</a><span aria-hidden="true">/</span><a href="/notes?topic={p["topic"]}">{html.escape(p["category"])}</a></nav>
 <h1 class="post-title">{_lines(html.escape(p["title"]))}</h1>
 <p class="lead">{html.escape(p["dek"])}</p>
 {_byline(p)}
@@ -412,7 +412,7 @@ def _author():
 
 def _schema(p):
     import seo as S
-    url = f"{SITE}/writing/{p['slug']}"
+    url = f"{SITE}/notes/{p['slug']}"
     post = {
         "@type": "BlogPosting", "@id": f"{url}#post",
         "headline": p["title"], "description": p["excerpt"],
@@ -422,7 +422,7 @@ def _schema(p):
         "articleSection": p["category"], "wordCount": p["words"], "inLanguage": "en-US",
         "author": {"@id": S.PERSON_ID}, "publisher": {"@id": S.ORG_ID},
     }
-    return S.ld(post, S.breadcrumbs([("Home", "/"), ("Notes from the Floor", "/writing"), (p["title"], f"/writing/{p['slug']}")]))
+    return S.ld(post, S.breadcrumbs([("Home", "/"), ("Notes from the Floor", "/notes"), (p["title"], f"/notes/{p['slug']}")]))
 
 
 def post_body(p):
@@ -447,14 +447,14 @@ def post_body(p):
 </div>
 {audience_cta(p["audience"])}
 {refs}
-<p class="post-topic"><a class="pill" href="/writing?topic={p["topic"]}">More on {html.escape(p["category"])}</a></p>
+<p class="post-topic"><a class="pill" href="/notes?topic={p["topic"]}">More on {html.escape(p["category"])}</a></p>
 {_author()}
 </article>"""
     related = ""
     if picks:
         related = sec("gray", head_row("Notes from the Floor", "Keep reading", None, size="h-md")
                       + f'<div class="pgrid">{"".join(card(q) for q in picks)}</div>'
-                      + '<div class="btns" style="padding-top:40px"><a class="link-u" href="/writing">All notes →</a></div>',
+                      + '<div class="btns" style="padding-top:40px"><a class="link-u" href="/notes">All notes →</a></div>',
                       mark=False, tight=True, label="More notes from the floor")
     return (
         _post_hero(p)
@@ -501,7 +501,7 @@ def page_specs():
     for p in ALL:
         title = p["title"] if len(p["title"]) > 42 else f"{p['title']} | JR Strength & Fitness"
         specs.append(dict(
-            path=f"/writing/{p['slug']}", file=f"writing/{p['slug']}.html", active="",
+            path=f"/notes/{p['slug']}", file=f"notes/{p['slug']}.html", active="",
             title=title, description=p["excerpt"], body=post_body(p), script=POST_SCRIPT,
             og_type="article", head=_head(p), sitemap=not p["draft"], noindex=p["draft"],
             og_image=SITE + p["image"] if p.get("image") else None,
@@ -516,14 +516,14 @@ def feed_xml():
     items = []
     for p in POSTS[:30]:
         when = dt.datetime.combine(p["date_obj"], dt.time(12, 0), tzinfo=dt.timezone.utc)
-        url = f"{SITE}/writing/{p['slug']}"
+        url = f"{SITE}/notes/{p['slug']}"
         items.append(f"""<item><title>{esc(p["title"])}</title><link>{url}</link><guid isPermaLink="true">{url}</guid>
 <pubDate>{format_datetime(when)}</pubDate><category>{esc(p["category"])}</category><description>{esc(p["excerpt"])}</description></item>""")
     built = format_datetime(dt.datetime.combine(POSTS[0]["date_obj"], dt.time(12, 0), tzinfo=dt.timezone.utc)) if POSTS else ""
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>Notes from the Floor | JR Strength &amp; Fitness</title>
-<link>{SITE}/writing</link>
+<link>{SITE}/notes</link>
 <atom:link href="{SITE}{FEED_PATH}" rel="self" type="application/rss+xml"/>
 <description>Notes from the Floor: what’s proven with real clients, and the research behind it, from JR Prieto-Romero, CSCS.</description>
 <language>en-us</language>
