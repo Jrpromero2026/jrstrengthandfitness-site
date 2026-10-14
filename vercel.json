@@ -73,42 +73,52 @@
     },
     {
       "source": "/blog",
-      "destination": "/writing",
+      "destination": "/notes",
       "permanent": true
     },
     {
       "source": "/blog-1",
-      "destination": "/writing",
+      "destination": "/notes",
+      "permanent": true
+    },
+    {
+      "source": "/writing",
+      "destination": "/notes",
+      "permanent": true
+    },
+    {
+      "source": "/writing/:path*",
+      "destination": "/notes/:path*",
       "permanent": true
     },
     {
       "source": "/blog/5-questions-to-ask-during-a-personal-training-consultation",
-      "destination": "/writing/5-questions-to-ask-during-a-personal-training-consultation",
+      "destination": "/notes/5-questions-to-ask-during-a-personal-training-consultation",
       "permanent": true
     },
     {
       "source": "/blog/should-men-and-women-train-differently",
-      "destination": "/writing/should-men-and-women-train-differently",
+      "destination": "/notes/should-men-and-women-train-differently",
       "permanent": true
     },
     {
       "source": "/blog/what-happens-when-you-combine-strength-and-endurance-training",
-      "destination": "/writing/what-happens-when-you-combine-strength-and-endurance-training",
+      "destination": "/notes/what-happens-when-you-combine-strength-and-endurance-training",
       "permanent": true
     },
     {
       "source": "/blog/is-constantly-varied-exercise-worthwhile",
-      "destination": "/writing/is-constantly-varied-exercise-worthwhile",
+      "destination": "/notes/is-constantly-varied-exercise-worthwhile",
       "permanent": true
     },
     {
       "source": "/blog/how-quickly-you-lose-strength-gains",
-      "destination": "/writing/how-quickly-you-lose-strength-gains",
+      "destination": "/notes/how-quickly-you-lose-strength-gains",
       "permanent": true
     },
     {
       "source": "/blog/mastering-client-assessment-and-goal-setting-for-effective-progress",
-      "destination": "/writing/5-questions-to-ask-during-a-personal-training-consultation",
+      "destination": "/notes/5-questions-to-ask-during-a-personal-training-consultation",
       "permanent": true
     },
     {
@@ -133,7 +143,7 @@
     },
     {
       "source": "/blog/:path*",
-      "destination": "/writing",
+      "destination": "/notes",
       "permanent": true
     },
     {
