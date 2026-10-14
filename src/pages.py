@@ -281,14 +281,14 @@ document.querySelectorAll('form[data-form]').forEach(function(f){
     if(!f.checkValidity()){ st.textContent='Please fill in the required fields marked with *.'; st.hidden=false; f.reportValidity(); return; }
     var data={}; new FormData(f).forEach(function(v,k){ if(data[k]!==undefined){ data[k]=data[k]+', '+v; } else { data[k]=v; } });
     if(data._honey){ return; }
-    if(data.age_confirmed){ data.age_confirmed_at=new Date().toISOString(); }
+    var now=new Date().toISOString(); Object.keys(data).forEach(function(k){ if(/_(confirmed|ok)$/.test(k)){ data[k+'_at']=now; } });
     var who=((data.first_name||'')+' '+(data.last_name||'')).trim();
     if(who){ data._subject=(data._subject||'Website submission')+' — '+who; }
     data._template='table'; data._captcha='false'; data.page=location.href;
     btn.disabled=true; var label=btn.textContent; btn.textContent='Sending…'; st.hidden=true;
     fetch('""" + FORM_ENDPOINT + """',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
       .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ if(!r.ok || String(j.success)==='false'){ throw new Error(j.message||'send failed'); } }); })
-      .then(function(){ if(window.va){ window.va('event',{name:(f.getAttribute('data-form')==='apply'?'Application submitted':'Waitlist signup'),data:{project:(data.project||data.level||''),page:location.pathname}}); } f.reset(); st.textContent=f.getAttribute('data-done')||'Thanks, it’s in. You’ll hear back by email.'; st.hidden=false; btn.textContent=label; btn.disabled=false; })
+      .then(function(){ if(window.va){ window.va('event',{name:(f.getAttribute('data-event')||(f.getAttribute('data-form')==='apply'?'Application submitted':'Waitlist signup')),data:{project:(data.project||data.level||''),page:location.pathname}}); } f.reset(); st.textContent=f.getAttribute('data-done')||'Thanks, it’s in. You’ll hear back by email.'; st.hidden=false; btn.textContent=label; btn.disabled=false; })
       .catch(function(){ st.textContent='Something went wrong sending this. Please email jr@jrstrengthandfitness.com directly.'; st.hidden=false; btn.textContent=label; btn.disabled=false; });
   });
 });
@@ -333,6 +333,7 @@ PRIVACY = legal("Legal", "Privacy Policy", f"""{DRAFT}{UPDATED}
 <ul>
 <li><strong>Online coaching applications:</strong> your name, email, phone (optional), training goals, experience, equipment access, and anything else you choose to tell us.</li>
 <li><strong>Waitlist sign-ups:</strong> your email address and the project you’re interested in.</li>
+<li><strong>Reviews:</strong> your name, email, where you trained, your rating and review, and whether we may post it. A review is posted only if you say so, with your first name and last initial. Your email is never posted.</li>
 <li><strong>Newsletter sign-ups:</strong> your email address, first name (optional) and the topic you picked.</li>
 <li><strong>Basic technical data:</strong> our hosting provider records standard server logs (such as IP address and browser type) to run and secure the site.</li>
 </ul>

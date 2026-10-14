@@ -793,3 +793,15 @@ a.post-row:hover .t { color: var(--red); }
 input:focus, select:focus, textarea:focus { box-shadow: 0 0 0 2px var(--red); }
 input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
 .attest { margin-top: 4px; }
+
+/* Review form (/review): star rating as an accessible radio group */
+.stars { display: inline-flex; gap: 2px; }
+.stars input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.stars label { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; font-size: 38px; line-height: 1; color: #8A8A8A; cursor: pointer; transition: color .12s, transform .12s; }
+/* stars in reading order (1 to 5), so arrow keys move the expected way; fill up to the checked or hovered star */
+.stars label:has(~ input:checked), .stars input:checked + label, .stars:hover label { color: var(--red); }
+.stars:hover label:hover ~ label { color: #8A8A8A; }
+.stars label:hover { transform: scale(1.08); }
+.stars input:focus-visible + label { outline: 2px solid var(--red); outline-offset: 2px; }
+.field .hint { font-size: 14px; color: #5E5E5E; }
+@media (prefers-reduced-motion: reduce) { .stars label { transition: none; } .stars label:hover { transform: none; } }

@@ -11,6 +11,7 @@ import writing as W  # noqa: E402
 import newsletter as NL  # noqa: E402
 import seo as S  # noqa: E402
 import proof as PF  # noqa: E402
+import review as RV  # noqa: E402
 import layout as L  # noqa: E402
 from PIL import Image, ImageDraw, ImageFilter  # noqa: E402
 
@@ -48,6 +49,10 @@ PAGES = [
          title="Client Reviews & Results | JR Prieto-Romero, CSCS",
          description=f"{PF.NAMED_COUNT} client reviews name JR Prieto-Romero, CSCS, all five stars, posted word for word from Timberhill Athletic Club's booking page.",
          body=PF.BODY, script=PF.SCRIPT, head=S.ld(S.breadcrumbs([("Home", "/"), ("Proof", "/proof")]))),
+    dict(path="/review", file="review.html", active="", sitemap=False, noindex=True, closing=False,
+         title="Leave a Review | JR Strength & Fitness",
+         description="Trained with JR Prieto-Romero, CSCS? Leave a review. JR reads every one and posts it only with your permission.",
+         body=RV.BODY, script=P.FORM_SCRIPT),
     dict(path="/writing", file="writing.html", active="",
          title="Writing | JR Strength & Fitness",
          description="Research reviews and coaching notes from JR Prieto-Romero, CSCS: consultations, programming, strength and conditioning science, and training women.",

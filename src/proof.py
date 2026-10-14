@@ -18,7 +18,8 @@ CLUB_RATING, CLUB_COUNT = "5.0", 160  # Timberhill Athletic Club overall (every 
 NAMED_COUNT = 20                       # reviews that name JR; every one is 5 stars
 MIN_REVIEWS = 6
 
-# dict(name="First L.", where="Timberhill" | "G3" | "Online", date="YYYY-MM", text="...as written...", tag="Training" | "Consult")
+# dict(name="First L.", where="Timberhill" | "G3" | "Online", date="YYYY-MM", text="...as written...", tag="Training" | "Consult",
+#      source="site" for reviews from /review; only post those where the client ticked publish_ok)
 # Copied word for word from Timberhill's Setmore reviews (all 160 checked 2026-10-12; these name JR).
 # Paragraph breaks kept; typos kept. Name = first name + last initial as the reviewer gave it.
 # All 20 that name JR are here; JR is reviewing which to keep.
@@ -101,7 +102,8 @@ def _wall():
     filt = (f'<div class="pf-chips" role="group" aria-label="Filter reviews">'
             f'<button type="button" data-f="" aria-pressed="true">All</button>{chips}</div>') if len(places + tags) > 1 else ""
     more = (f'<p class="pf-more">Every Timberhill review is public on Setmore. '
-            f'<a class="link-u" href="{SETMORE}"{ext(SETMORE)} data-track="Setmore reviews (proof wall)">Read them all →</a></p>')
+            f'<a class="link-u" href="{SETMORE}"{ext(SETMORE)} data-track="Setmore reviews (proof wall)">Read them all →</a></p>'
+            '<p class="pf-more">Trained with me? <a class="link-u" href="/review">Leave a review →</a></p>')
     return head_row("Client reviews", "In their words.",
                     "Copied word for word from Timberhill’s booking page, typos and all. Last names shortened to an initial.") + \
         f'{filt}<div class="pf-wall" data-pf-wall>{cards}</div>{more}'
@@ -177,7 +179,9 @@ BODY = (
     ("" if LIVE else '<div class="pf-preview" role="note">Preview: dashed boxes are slots for real reviews and case files. '
      'This page stays hidden until they are filled.</div>')
     + hero("Proof", "Don’t take<br>my word<br>for it.",
-         "Every review here names me, was written by a client on Timberhill’s booking page, and is posted as written.",
+         ("Every review here names me, was written by a client on Timberhill’s booking page or my review form, and is posted as written."
+          if any(r.get("source") == "site" for r in REVIEWS) else
+          "Every review here names me, was written by a client on Timberhill’s booking page, and is posted as written."),
          f'<a class="btn btn-red" href="/consult">Book a free consult</a>'
          f'<a class="btn btn-line" href="{SETMORE}"{ext(SETMORE)} data-track="Setmore reviews (proof hero)">Read them on Setmore</a>',
          side=SEAL)
