@@ -92,6 +92,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/why-your-training-program-stops-working",
+      "destination": "/notes/why-your-training-program-stops-working",
+      "permanent": true
+    },
+    {
       "source": "/blog/5-questions-to-ask-during-a-personal-training-consultation",
       "destination": "/notes/5-questions-to-ask-during-a-personal-training-consultation",
       "permanent": true
