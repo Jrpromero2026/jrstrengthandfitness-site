@@ -53,7 +53,7 @@ PAGES = [
          title="Leave a Review | JR Strength & Fitness",
          description="Trained with JR Prieto-Romero, CSCS? Leave a review. JR reads every one and posts it only with your permission.",
          body=RV.BODY, script=P.FORM_SCRIPT),
-    dict(path="/writing", file="writing.html", active="",
+    dict(path="/notes", file="notes.html", active="",
          title="Notes from the Floor | JR Strength & Fitness",
          description="Research reviews and coaching notes from JR Prieto-Romero, CSCS: consultations, programming, strength and conditioning science, and training women.",
          body=W.index_body(), script=W.INDEX_SCRIPT, head=W.FEED_LINK),
@@ -106,16 +106,18 @@ REDIRECTS = [
     ("/train-with-me", "/consult"), ("/contact", "/consult"), ("/waiver", "/terms-of-service"),
     ("/mentorship", "/"), ("/trainer-mentorship", "/"), ("/mentorship-program-application", "/"),
     ("/resources", "/"), ("/new-gallery", "/"),
-    ("/blog", "/writing"), ("/blog-1", "/writing"),
-] + [(f"/blog/{p['slug']}", f"/writing/{p['slug']}") for p in W.POSTS] + [
+    ("/blog", "/notes"), ("/blog-1", "/notes"),
+    # Oct 2026: the articles section moved from /writing to /notes (Notes from the Floor)
+    ("/writing", "/notes"), ("/writing/:path*", "/notes/:path*"),
+] + [(f"/blog/{p['slug']}", f"/notes/{p['slug']}") for p in W.POSTS] + [
     # 2023 posts that were retired: send each to its closest match
     ("/blog/mastering-client-assessment-and-goal-setting-for-effective-progress",
-     "/writing/5-questions-to-ask-during-a-personal-training-consultation"),
+     "/notes/5-questions-to-ask-during-a-personal-training-consultation"),
     ("/blog/creating-effective-workout-programs-a-step-by-step-guide-to-tailored-fitness-routines", "/projects/vault"),
     ("/blog/anatomy-and-exercise-science-basics-fundamentals-every-personal-trainer-should-know", "/projects/vault"),
     ("/blog/essential-qualities-of-personal-trainers", "/projects/vault"),
     ("/blog/introduction-to-personal-training-unveiling-the-role-benefits-and-opportunities", "/train"),
-    ("/blog/:path*", "/writing"),
+    ("/blog/:path*", "/notes"),
     ("/store", "/"), ("/store/:path*", "/"), ("/cart", "/"),
 ]
 
@@ -231,7 +233,7 @@ def build_config():
         fh.write(S.robots_txt())
     with open(os.path.join(OUT, "llms.txt"), "w") as fh:
         fh.write(S.llms_txt(PR.PROJECTS, W.POSTS))
-    with open(os.path.join(OUT, "writing", "feed.xml"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(OUT, "notes", "feed.xml"), "w", encoding="utf-8") as fh:
         fh.write(W.feed_xml())
 
 
