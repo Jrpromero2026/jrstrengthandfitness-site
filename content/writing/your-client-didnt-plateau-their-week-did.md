@@ -39,7 +39,7 @@ Clients stop seeing their training as a pile of programs that didn't work. They 
 
 ## Your move: run the check-in this week
 
-:::copy The check-in
+:::proven The check-in
 1. How many of this week's sessions did you get in as written?
 2. How has your sleep compared to a normal week for you?
 3. Anything new outside the gym taking up your energy right now?

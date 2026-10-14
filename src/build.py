@@ -54,7 +54,7 @@ PAGES = [
          description="Trained with JR Prieto-Romero, CSCS? Leave a review. JR reads every one and posts it only with your permission.",
          body=RV.BODY, script=P.FORM_SCRIPT),
     dict(path="/writing", file="writing.html", active="",
-         title="Writing | JR Strength & Fitness",
+         title="Notes from the Floor | JR Strength & Fitness",
          description="Research reviews and coaching notes from JR Prieto-Romero, CSCS: consultations, programming, strength and conditioning science, and training women.",
          body=W.index_body(), script=W.INDEX_SCRIPT, head=W.FEED_LINK),
     dict(path="/newsletter", file="newsletter.html", active="",

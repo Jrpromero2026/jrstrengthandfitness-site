@@ -8,8 +8,9 @@ Static site for JR Strength & Fitness, hosted on Vercel.
 - `src/build.py` — builds HTML, sitemap, share image and favicons into `public/`, and writes `vercel.json` (redirects from the old Squarespace URLs).
 - `public/assets/styles.css` — brand styles (Jost, #E10612, charcoal texture).
 
-## Writing (/writing)
-Each post is one Markdown file in `content/writing/<slug>.md`; the slug is the URL. Front matter and the supported Markdown (pull quotes, the copyable "your move" box, images) are documented at the top of `src/writing.py`.
+## Notes from the Floor (/writing)
+The articles section and the newsletter share one name: Notes from the Floor. The URL stays /writing.
+Each post is one Markdown file in `content/writing/<slug>.md`; the slug is the URL. Front matter and the supported Markdown (pull quotes, the copyable Proven box, images) are documented at the top of `src/writing.py`.
 
 To publish a post:
 1. Copy an existing post, change the front matter and write the body. Keep `draft: true` while it's in progress.

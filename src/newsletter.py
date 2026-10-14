@@ -20,7 +20,7 @@ INTERESTS = [
     ("training", "My own training"),
     ("women", "Strength training for women"),
 ]
-PITCH = ("What I’m testing with clients and coaches, new writing, and first word when TRAINCND "
+PITCH = ("What I’m testing with clients and coaches, new articles, and first word when TRAINCND "
          "and The Credential Standard open. No spam. Unsubscribe anytime.")
 
 
@@ -62,7 +62,7 @@ THANKS = (
     hero("You’re in", "Check your<br>inbox.",
          "One last step: open the email I just sent and confirm your subscription. "
          "If it isn’t there in a few minutes, check your spam or promotions folder.",
-         '<a class="btn btn-red" href="/writing">Read the writing</a>'
+         '<a class="btn btn-red" href="/writing">Read Notes from the Floor</a>'
          '<a class="link-u" href="/projects">See what I’m building →</a>',
          short=True, size="h-display")
 )

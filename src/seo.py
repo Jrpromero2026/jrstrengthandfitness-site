@@ -169,7 +169,7 @@ def llms_txt(projects, posts):
 
 {proj}
 
-## Writing
+## Notes from the Floor (articles)
 
 {writing}
 
