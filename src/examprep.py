@@ -80,6 +80,29 @@ OFFER_CARD = f"""<div class="info-card xp-offer">
 <div class="it"><b>The Vault + Exam Prep · ${OFFER['bundle_month']}/mo or ${OFFER['bundle_year']}/yr</b><span>A recurring membership, billed monthly or yearly. The full Vault library too, and Exam Prep stays open while the bundle is active.</span></div>
 </div>"""
 
+# App screenshots: live Vault, test account, 390x844 at 3x (captured by the Vault chat, 2026-10-14).
+# Demo data only: the account's history came from a scripted diagnostic. Never present the numbers as a member's results.
+# Resized to 640px wide WebP with all metadata stripped. Alt text is the Vault chat's, word for word.
+SHOTS = {
+    "question": "A practice question on a phone about using a 30-minute session well, with answer B marked correct and the explanation below it.",
+    "readiness": "The Exam Prep progress screen on a phone, showing a Practice Readiness study signal of 55 and accuracy for each of the six exam domains.",
+    "sort": "A sort activity on a phone where \"a sprinter trains short maximal efforts\" is placed under Specificity and marked as the right place, with the reason shown.",
+    "concept": "A concept card on a phone for \"Overload and the other training principles\", with its summary, an Ask the tutor button and the learner's level of understanding.",
+}
+
+
+def _phone(key, lazy=True):
+    return (f'<div class="xp-phone"><img src="/assets/exam-prep/{key}.webp" width="640" height="1385" '
+            f'alt="{_h.escape(SHOTS[key])}"{" loading=\"lazy\"" if lazy else ""} decoding="async"></div>')
+
+
+GALLERY = f"""<div class="xp-gallery" role="region" aria-label="Exam Prep screens" tabindex="0">
+<figure>{_phone("readiness")}<figcaption><b>Progress</b><span>Practice Readiness and accuracy by domain</span></figcaption></figure>
+<figure>{_phone("sort")}<figcaption><b>Sort</b><span>Place each idea where it belongs</span></figcaption></figure>
+<figure>{_phone("concept")}<figcaption><b>Concept cards</b><span>Repetition, Categorization, Association</span></figcaption></figure>
+</div>
+<p class="muted xp-demo">Screens from the live app, using a demo account. Practice Readiness is a study signal, not a score.</p>"""
+
 HERO = f"""<section class="hero dark short xp-hero">
 {GRAIN}
 <img class="watermark" src="/assets/jr-watermark.svg" alt="" aria-hidden="true">
@@ -91,7 +114,7 @@ HERO = f"""<section class="hero dark short xp-hero">
 <div class="btns" style="padding-top:6px">{_buy_btn("hero")}{_bundle_link("hero")}</div>
 <p class="xp-legal">{DISCLAIMER}</p>
 </div>
-<div class="side">{OFFER_CARD}</div>
+<div class="side xp-hero-side">{_phone("question", lazy=False)}</div>
 </div>
 </section>"""
 
@@ -161,7 +184,7 @@ def _faq():
 BODY = (
     HERO
     + sec("light", head_row("What’s inside", "What you<br>study with.",
-                            "Original practice questions, written against NASM’s public exam blueprint.") + INSIDE)
+                            "Original practice questions, written against NASM’s public exam blueprint.") + GALLERY + INSIDE)
     + sec("dark", MODEL)
     + sec("light", f"""<div class="split top">
 <div class="main stack" style="gap:22px">{head_row("How it works", "Diagnose.<br>Practice. Mock.", level="h2")}{STEPS}</div>
@@ -213,7 +236,7 @@ VAULT_BLOCK = f"""<div class="split xp-vault">
 _BANNED = ("official", "guarantee", "pass first", "real exam question", "actual exam", "recalled", "leaked",
            "endorsed by nasm", "nasm-approved", "approved by nasm", "pass rate", "what's on the test", "what’s on the test")
 # The FAQ is checked by hand: it has to name these things in order to deny them.
-_check = (HERO + INSIDE + MODEL + STEPS + PRICE + VAULT_BLOCK + TITLE + DESCRIPTION).lower().replace(DISCLAIMER.lower(), "")
+_check = (HERO + GALLERY + INSIDE + MODEL + STEPS + PRICE + VAULT_BLOCK + TITLE + DESCRIPTION).lower().replace(DISCLAIMER.lower(), "")
 for _w in _BANNED:
     assert _w not in _check, f"Exam Prep copy uses a banned phrase: {_w!r}"
 assert BODY.count(DISCLAIMER) >= 1 and DISCLAIMER in VAULT_BLOCK

@@ -959,3 +959,21 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2
   .xp-amt b { font-size: 60px; }
   .xp-hero .btns .btn { width: 100%; justify-content: center; }
 }
+/* Exam Prep app screenshots in a plain phone frame. */
+.xp-phone { width: 100%; max-width: 300px; border: 8px solid #262626; border-radius: 34px; overflow: hidden; background: #0d0d0d; box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
+.xp-phone img { display: block; width: 100%; height: auto; }
+.xp-hero-side { display: flex; justify-content: center; }
+.xp-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin: 8px 0 18px; }
+.xp-gallery figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.xp-gallery .xp-phone { max-width: 280px; }
+.xp-gallery figcaption { display: flex; flex-direction: column; gap: 4px; text-align: center; }
+.xp-gallery figcaption b { font-weight: 700; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg); }
+.xp-gallery figcaption span { font-size: 15px; color: var(--body); }
+.xp-gallery:focus-visible { outline: 2px solid var(--red); outline-offset: 6px; }
+.xp-demo { font-size: 14px; text-align: center; margin-bottom: 40px; }
+@media (max-width: 900px) {
+  .xp-hero-side .xp-phone { max-width: 260px; }
+  .xp-gallery { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; margin-right: -20px; padding-right: 20px; }
+  .xp-gallery figure { flex: 0 0 72%; max-width: 280px; scroll-snap-align: start; }
+}
+@media (max-width: 900px) { .xp-gallery .xp-phone { box-shadow: none; } }
