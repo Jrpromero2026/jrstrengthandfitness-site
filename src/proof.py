@@ -24,7 +24,6 @@ def _txt(v):
 SETMORE = "https://timberhill-personal-training.setmore.com/reviews"  # Timberhill's Setmore reviews page
 # As shown on Setmore on 2026-10-12. Update when they move.
 CLUB_RATING, CLUB_COUNT = "5.0", 160  # Timberhill Athletic Club overall (every trainer)
-NAMED_COUNT = 20                       # reviews that name JR; every one is 5 stars
 MIN_REVIEWS = 6
 
 # dict(name="First L.", where="Timberhill" | "G3" | "Online", date="YYYY-MM", text="...as written...", tag="Training" | "Consult",
@@ -34,6 +33,9 @@ MIN_REVIEWS = 6
 # All 20 that name JR are here; JR is reviewing which to keep.
 T, C = "Training", "Consult"
 REVIEWS = [
+    # From /review (FormSubmit, 2026-10-15). Client ticked publish_ok; text as submitted.
+    dict(name="María M.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
+         text="Through all the exercises I’ve done so far, I’ve seen a major change in my strength, balance, and muscle"),
     dict(name="Jen A.", date="2026-03", tag=T, text="I can’t say enough good things about JR as a personal trainer.\n\nAfter a hamstring rupture and surgical repair, I wasn’t sure what my recovery—or future strength—would look like. JR has been instrumental in not only helping me recover safely, but in building strength and confidence beyond where I was before the injury.\n\nHe brings a rare combination of deep knowledge, professionalism, and genuine respect for his clients. JR is patient, attentive, and highly intentional in how he programs and coaches. As someone who has been an athlete my entire life, I value being coached—and that’s exactly what this feels like. Every session has purpose, progression, and accountability.\n\nWhat’s been most impressive is his expertise in muscle building and strength development. Thanks to his guidance, I’ve been able to rebuild and even improve my physique—something I didn’t think was possible at age 50, especially after such a significant injury.\n\nIf you’re looking for someone who truly understands how to help you recover, get stronger, and perform at your best, JR is exceptional."),
     dict(name="North", date="2024-05", tag=T, text="JR is a well educated and top notch strength and conditioning coach. He is iterating over a custom strength training plan for me that will fit into my endurance cycling workouts. He understands the difficulties and nuance of combining strength training and endurance training while providing enough recovery. He knows all about progressive overload, training stress scores, macro and micro periodization, block training, and other concepts that many coaches don't understand. I feel lucky to have such a good coach."),
     dict(name="Walt P.", date="2024-11", tag=T, text="I am writing this review of my interactions and training with JR \n\nI have been very impressed with his evaluation of my age, condition, goals for a program to achieve better fitness. \nHis training regimen is focused on making sure my technique is correct to avoid issues and he brings excellent knowledge and encouragement while I ramp into this new phase. \n\nWalt"),
@@ -56,7 +58,15 @@ REVIEWS = [
     dict(name="Veronica J.", date="2025-04", tag=T, text="JR and Rebecca listened to my goals and the training (one year now) is fantastic! Rebecca listened and adapted exercises and also inspired me to continue my fitness journey! The best thing is I never felt too sore or there was never an exercise that caused any problems. Super!"),
 ]
 for r in REVIEWS:
-    r["where"] = "Timberhill"
+    r.setdefault("where", "Timberhill")
+    r.setdefault("source", "setmore")
+    r.setdefault("rating", 5)
+
+# Counted from the list, so the badge updates itself when a review is added or removed.
+REVIEW_COUNT = len(REVIEWS)
+ALL_FIVE = all(r["rating"] == 5 for r in REVIEWS)
+AVG = f"{sum(r['rating'] for r in REVIEWS) / max(1, REVIEW_COUNT):.1f}"
+FROM_SITE = any(r["source"] == "site" for r in REVIEWS)
 
 # dict(name="First", where="Timberhill", mode="In person", length="6 months",
 #      start_tier="Inadequate", to_tier="Optimal",      # two of: Inadequate, Adequate, Optimal, Enhanced
@@ -119,9 +129,9 @@ def _slot(label, cls=""):
 
 # ---------------------------------------------------------------- Review wall
 SEAL = f"""<a class="pf-seal" href="{SETMORE}"{ext(SETMORE)} data-track="Setmore reviews (proof seal)">
-<span class="pf-seal-n">5.0</span>{STARS}
-<span class="pf-seal-c">{NAMED_COUNT} reviews name me</span>
-<span class="pf-seal-s">Every one of them 5 stars. Timberhill overall: {CLUB_RATING} from {CLUB_COUNT}. See them on Setmore →</span></a>"""
+<span class="pf-seal-n">{AVG}</span>{STARS}
+<span class="pf-seal-c">{REVIEW_COUNT} client reviews</span>
+<span class="pf-seal-s">{"Every one of them 5 stars. " if ALL_FIVE else ""}Timberhill overall on Setmore: {CLUB_RATING} from {CLUB_COUNT} →</span></a>"""
 
 
 def _review(r):
@@ -158,7 +168,9 @@ def _wall():
             f'<a class="link-u" href="{SETMORE}"{ext(SETMORE)} data-track="Setmore reviews (proof wall)">Read them all →</a></p>'
             '<p class="pf-more">Trained with me? <a class="link-u" href="/review">Leave a review →</a></p>')
     return head_row("Client reviews", "In their words.",
-                    "Copied word for word from Timberhill’s booking page, typos and all. Last names shortened to an initial.") + \
+                    ("Copied word for word from Timberhill’s booking page and my review form, typos and all. Last names shortened to an initial."
+                     if FROM_SITE else
+                     "Copied word for word from Timberhill’s booking page, typos and all. Last names shortened to an initial.")) + \
         f'{filt}<div class="pf-wall" data-pf-wall>{cards}</div>{more}'
 
 
@@ -264,7 +276,7 @@ BODY = (
      'This page stays hidden until they are filled.</div>')
     + hero("Proof", "Don’t take<br>my word<br>for it.",
          ("Every review here names me, was written by a client on Timberhill’s booking page or my review form, and is posted as written."
-          if any(r.get("source") == "site" for r in REVIEWS) else
+          if FROM_SITE else
           "Every review here names me, was written by a client on Timberhill’s booking page, and is posted as written."),
          f'<a class="btn btn-red" href="/consult">Book a free consult</a>'
          f'<a class="btn btn-line" href="{SETMORE}"{ext(SETMORE)} data-track="Setmore reviews (proof hero)">Read them on Setmore</a>',
