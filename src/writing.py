@@ -233,7 +233,7 @@ def audience_cta(aud):
             '<a class="link-u" href="/projects/built-for-her" style="color:#fff">About Built For Her™ →</a>')
     return _cta_block(
         "Train with JR", "Want this applied to your training?",
-        "Local to Corvallis? Start with a free consult at Timberhill or G3. Anywhere else, apply for online coaching.",
+        'Local to Corvallis? Start with a free consult for <a href="/train" style="color:#fff;text-decoration:underline;text-decoration-color:var(--red)">personal training in Corvallis</a> at Timberhill or G3. Anywhere else, apply for online coaching.',
         f'<a class="btn btn-red" href="{CONSULT}" data-track="Book a free consult (post)">Book a free consult</a>',
         '<a class="link-u" href="/apply" style="color:#fff" data-track="Apply (post)">Apply for online coaching →</a>')
 

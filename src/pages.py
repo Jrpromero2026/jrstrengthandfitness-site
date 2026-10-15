@@ -68,9 +68,12 @@ HOME = (
 )
 
 # ---------------------------------------------------------------- Train with JR
+# Three short reviews for /train (full set on /proof). Picked by name from proof.REVIEWS.
+TRAIN_REVIEWS = [r for n in ("Steve", "Maria", "Jess") for r in PF.REVIEWS if r["name"] == n][:3]
+
 TRAIN = (
-    hero("Train with JR", "Every client starts with a free consult.",
-         "Local to Corvallis? Book a free consult at Timberhill Athletic Club or G3 Sports &amp; Fitness. You don’t need to be a member. Anywhere else, apply for online coaching.",
+    hero("Train with JR", "Personal training<br>in Corvallis.",
+         "Every client starts with a free consult at Timberhill Athletic Club or G3 Sports &amp; Fitness. You don’t need to be a member. Not in Corvallis? Apply for online coaching.",
          f'{CONSULT_BTN}<a class="link-u" href="/online-training">Online coaching →</a>',
          frame("Photo: consult at TAC or G3"), short=True, size="h-display")
     + sec("light", head_row("How it works", "Consult. Match.<br>Train.",
@@ -83,9 +86,12 @@ TRAIN = (
     + sec("dark", head_row("Where you’ll train", "Two facilities.<br>One standard.",
                            "Families often split: a parent trains at TAC while their kid trains at G3. One consult covers both.")
           + f"""<div class="panel">
-<div class="cell"><div class="bar"></div><span class="tag live">In person · Corvallis</span><h3 class="h-cell">Timberhill Athletic Club</h3><ul class="ticks"><li>Health and general fitness</li><li>Longevity and staying capable</li><li>Adults at every starting point</li></ul><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{TAC_PT}" rel="noopener">Book at Timberhill</a></div></div>
-<div class="cell"><div class="bar"></div><span class="tag live">In person · Corvallis</span><h3 class="h-cell">G3 Sports &amp; Fitness</h3><ul class="ticks"><li>Youth athletic development</li><li>Adult human performance</li><li>Tactical, teams and organizations</li></ul><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{G3_PT}" rel="noopener">Book at G3</a></div></div>
+<div class="cell"><div class="bar"></div><span class="tag live">In person · Corvallis</span><h3 class="h-cell">Timberhill Athletic Club</h3><ul class="ticks"><li>Health and general fitness</li><li>Longevity and staying capable</li><li>Adults at every starting point</li></ul><p class="addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Timberhill+Athletic+Club,+2855+NW+29th+St,+Corvallis,+OR+97330" rel="noopener">2855 NW 29th St, Corvallis</a></p><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{TAC_PT}" rel="noopener">Book at Timberhill</a></div></div>
+<div class="cell"><div class="bar"></div><span class="tag live">In person · Corvallis</span><h3 class="h-cell">G3 Sports &amp; Fitness</h3><ul class="ticks"><li>Youth athletic development</li><li>Adult human performance</li><li>Tactical, teams and organizations</li></ul><p class="addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=G3+Sports+%26+Fitness,+5520+NW+Highway+99W,+Corvallis,+OR+97330" rel="noopener">5520 NW Highway 99W, Corvallis</a></p><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{G3_PT}" rel="noopener">Book at G3</a></div></div>
 </div>""")
+    + sec("gray", head_row("Client reviews", "In their<br>words.",
+                           f'Posted as written by clients at Timberhill. <a class="link-u" href="/proof">Read all {PF.REVIEW_COUNT} reviews →</a>')
+          + '<div class="pf-wall pf-wall-3">' + "".join(PF._review(r) for r in TRAIN_REVIEWS) + '</div>', label="Client reviews")
     + sec("light", f"""<div class="split">
 <div class="side">{frame("Photo: an online coaching check-in", wide=True)}</div>
 <div class="main stack">

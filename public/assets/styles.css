@@ -996,3 +996,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2
 .rv-sec-h { padding: 0; margin-bottom: 4px; font-weight: 800; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; color: #121212; }
 @media (max-width: 640px) { .rv-modes { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .rv-mode span { transition: none; } }
+
+/* /train: facility addresses and the three-review row */
+.cell .addr { margin-top: 14px; font-size: 15px; }
+.cell .addr a { color: inherit; border-bottom: 1px solid var(--red); padding-bottom: 1px; }
+.pf-wall-3 { columns: 3 260px; }

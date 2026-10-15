@@ -13,6 +13,12 @@ PERSON_ID = f"{SITE}/#jr"
 ORG_ID = f"{SITE}/#org"
 SAME_AS = [LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK]
 
+# Facility addresses: Timberhill from its Setmore booking page; G3 from its Google listing (Oct 2026).
+TAC_PLACE = {"@type": "SportsActivityLocation", "name": "Timberhill Athletic Club", "url": "https://timberhillac.com/",
+             "address": {"@type": "PostalAddress", "streetAddress": "2855 NW 29th St", "addressLocality": "Corvallis", "addressRegion": "OR", "postalCode": "97330", "addressCountry": "US"}}
+G3_PLACE = {"@type": "SportsActivityLocation", "name": "G3 Sports & Fitness", "url": "https://www.gthreesports.com/",
+            "telephone": "+1-541-207-3508", "address": {"@type": "PostalAddress", "streetAddress": "5520 NW Highway 99W", "addressLocality": "Corvallis", "addressRegion": "OR", "postalCode": "97330", "addressCountry": "US"}}
+
 PERSON = {
     "@type": "Person", "@id": PERSON_ID, "name": "JR Romero", "alternateName": ["JR Romero, CSCS", "JR Prieto-Romero", "JR Prieto-Romero, CSCS"],
     "givenName": "JR", "familyName": "Prieto-Romero",
@@ -20,8 +26,7 @@ PERSON = {
     "jobTitle": "Director of Personal Training, Timberhill Athletic Club; Director of Performance, G3 Sports & Fitness",
     "description": "Strength and conditioning coach (CSCS) in Corvallis, Oregon, with roughly 20,000 hours of coaching. "
                    "Builder of The Trainer's Coach Vault, Built For Her, TRAINCND and The Credential Standard.",
-    "worksFor": [{"@type": "SportsActivityLocation", "name": "Timberhill Athletic Club", "address": {"@type": "PostalAddress", "addressLocality": "Corvallis", "addressRegion": "OR", "addressCountry": "US"}},
-                 {"@type": "SportsActivityLocation", "name": "G3 Sports & Fitness", "address": {"@type": "PostalAddress", "addressLocality": "Corvallis", "addressRegion": "OR", "addressCountry": "US"}}],
+    "worksFor": [TAC_PLACE, G3_PLACE],
     "alumniOf": {"@type": "CollegeOrUniversity", "name": "Oregon State University"},
     "hasCredential": [
         {"@type": "EducationalOccupationalCredential", "name": "Certified Strength and Conditioning Specialist (CSCS)",
@@ -77,7 +82,10 @@ ONLINE_SERVICE = {
 IN_PERSON_SERVICE = {
     "@type": "Service", "name": "Personal training in Corvallis, Oregon", "serviceType": "Personal training",
     "provider": {"@id": PERSON_ID}, "url": f"{SITE}/train",
-    "areaServed": {"@type": "City", "name": "Corvallis", "containedInPlace": {"@type": "State", "name": "Oregon"}},
+    "areaServed": [{"@type": "City", "name": "Corvallis", "containedInPlace": {"@type": "State", "name": "Oregon"}},
+                   {"@type": "City", "name": "Albany"}, {"@type": "City", "name": "Philomath"}],
+    "availableChannel": [{"@type": "ServiceChannel", "name": f"Personal training at {pl['name']}", "serviceLocation": pl,
+                          "serviceUrl": f"{SITE}/consult"} for pl in (TAC_PLACE, G3_PLACE)],
     "description": "In-person personal training at Timberhill Athletic Club and G3 Sports & Fitness in Corvallis. Every client starts with a free 30-minute consult; no membership needed.",
     "offers": {"@type": "Offer", "name": "Free 30-minute consult", "price": "0", "priceCurrency": "USD", "url": f"{SITE}/consult"},
 }
