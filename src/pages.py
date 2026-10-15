@@ -335,7 +335,7 @@ PRIVACY = legal("Legal", "Privacy Policy", f"""{DRAFT}{UPDATED}
 <ul>
 <li><strong>Online coaching applications:</strong> your name, email, phone (optional), training goals, experience, equipment access, and anything else you choose to tell us.</li>
 <li><strong>Waitlist sign-ups:</strong> your email address and the project you’re interested in.</li>
-<li><strong>Reviews:</strong> your name, email, where you trained, your rating and review, and whether we may post it. A review is posted only if you say so, with your first name and last initial. Your email is never posted.</li>
+<li><strong>Reviews and case files:</strong> your name, email, where you trained, and what you tell us: a rating and review, or your story and results for a case file. A review is posted only if you say so, with your first name and last initial. A case file is posted only after you approve the final version. Your email is never posted.</li>
 <li><strong>Newsletter sign-ups:</strong> your email address, first name (optional) and the topic you picked.</li>
 <li><strong>Basic technical data:</strong> our hosting provider records standard server logs (such as IP address and browser type) to run and secure the site.</li>
 </ul>

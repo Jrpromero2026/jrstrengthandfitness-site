@@ -53,7 +53,7 @@ PAGES = [
     dict(path="/review", file="review.html", active="", sitemap=False, noindex=True, closing=False,
          title="Leave a Review | JR Strength & Fitness",
          description="Trained with JR Romero, CSCS? Leave a review. JR reads every one and posts it only with your permission.",
-         body=RV.BODY, script=P.FORM_SCRIPT),
+         body=RV.BODY, script=RV.SCRIPT + P.FORM_SCRIPT),
     dict(path="/notes", file="notes.html", active="",
          title="Notes from the Floor | JR Strength & Fitness",
          description="Research reviews and coaching notes from JR Romero, CSCS: consultations, programming, strength and conditioning science, and training women.",

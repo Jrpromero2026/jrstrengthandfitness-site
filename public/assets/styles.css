@@ -977,3 +977,22 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2
   .xp-gallery figure { flex: 0 0 72%; max-width: 280px; scroll-snap-align: start; }
 }
 @media (max-width: 900px) { .xp-gallery .xp-phone { box-shadow: none; } }
+
+/* Review form: choose review or case file */
+.rv-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.rv-mode { position: relative; display: block; cursor: pointer; }
+.rv-mode input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.rv-mode span { display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 18px 20px; border: 1.6px solid #8A8A8A; background: #fff; transition: border-color .12s, box-shadow .12s; }
+.rv-mode b, .rv-mode em { text-transform: none; }
+.rv-mode b { font-weight: 700; font-size: 16px; letter-spacing: 0.06em; text-transform: uppercase; color: #121212; }
+.rv-mode b { text-transform: uppercase; }
+.rv-mode em { font-style: normal; font-weight: 400; font-size: 15px; letter-spacing: 0.01em; text-transform: none; color: #4A4A4A; line-height: 1.45; }
+.rv-mode:hover span { border-color: #121212; }
+.rv-mode input:checked + span { border-color: var(--red); box-shadow: inset 0 0 0 1px var(--red); background: #FFF6F6; }
+.rv-mode input:checked + span b::before { content: "● "; color: var(--red); }
+.rv-mode input:focus-visible + span { outline: 2px solid var(--red); outline-offset: 3px; }
+.rv-sec { border: 0; margin: 0; padding: 22px 0 0; border-top: 1px solid #E2E2E2; display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.rv-sec[hidden] { display: none; }
+.rv-sec-h { padding: 0; margin-bottom: 4px; font-weight: 800; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; color: #121212; }
+@media (max-width: 640px) { .rv-modes { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .rv-mode span { transition: none; } }

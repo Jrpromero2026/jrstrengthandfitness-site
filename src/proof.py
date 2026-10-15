@@ -242,7 +242,8 @@ def _cases():
     return head + f"""<div class="pf-soon">
 <div class="pf-track pf-track-static" aria-hidden="true">{scale}</div>
 <p><b>The first case files are being written now.</b> Each one is told in the client’s own words and published only with their sign-off.
-Training with me now and want yours told? Ask at your next session.</p></div>"""
+Training with me now and want yours told?</p>
+<a class="link-u" href="/review?type=case">Share your story →</a></div>"""
 
 
 SCRIPT = """<script>
