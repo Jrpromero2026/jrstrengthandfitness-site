@@ -275,7 +275,7 @@ BODY = (
     ("" if LIVE else '<div class="pf-preview" role="note">Preview: dashed boxes are slots for real reviews and case files. '
      'This page stays hidden until they are filled.</div>')
     + hero("Proof", "Don’t take<br>my word<br>for it.",
-         ("Every review here names me, was written by a client on Timberhill’s booking page or my review form, and is posted as written."
+         ("Every review here is about my coaching, was written by a client on Timberhill’s booking page or my review form, and is posted as written."
           if FROM_SITE else
           "Every review here names me, was written by a client on Timberhill’s booking page, and is posted as written."),
          f'<a class="btn btn-red" href="/consult">Book a free consult</a>'
