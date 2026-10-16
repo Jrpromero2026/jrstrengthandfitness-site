@@ -73,7 +73,7 @@ TRAIN_REVIEWS = [r for n in ("Elizabeth C.", "Maria", "Jess") for r in PF.REVIEW
 
 TRAIN = (
     hero("Train with JR", "Personal training<br>in Corvallis.",
-         "Every client starts with a free consult at Timberhill Athletic Club or G3 Sports &amp; Fitness. You don’t need to be a member. Not in Corvallis? Apply for online coaching.",
+         "I’m JR Romero, CSCS, a personal trainer and strength coach in Corvallis. Every client starts with a free consult at Timberhill Athletic Club or G3 Sports &amp; Fitness. You don’t need to be a member. Not in Corvallis? Apply for online coaching.",
          f'{CONSULT_BTN}<a class="link-u" href="/online-training">Online coaching →</a>',
          frame("Photo: consult at TAC or G3"), short=True, size="h-display")
     + sec("light", head_row("How it works", "Consult. Match.<br>Train.",
@@ -90,7 +90,7 @@ TRAIN = (
 <div class="cell"><div class="bar"></div><span class="tag live">In person · Corvallis</span><h3 class="h-cell">G3 Sports &amp; Fitness</h3><ul class="ticks"><li>Youth athletic development</li><li>Adult human performance</li><li>Tactical, teams and organizations</li></ul><p class="addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=G3+Sports+%26+Fitness,+5520+NW+Highway+99W,+Corvallis,+OR+97330" rel="noopener">5520 NW Highway 99W, Corvallis</a></p><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{G3_PT}" rel="noopener">Book at G3</a></div></div>
 </div>""")
     + sec("gray", head_row("Client reviews", "In their<br>words.",
-                           f'Posted as written by clients at Timberhill. <a class="link-u" href="/proof">Read all {PF.REVIEW_COUNT} reviews →</a>')
+                           f'Posted word for word. <a class="link-u" href="/proof">Read all {PF.REVIEW_COUNT} reviews →</a>')
           + '<div class="pf-wall pf-wall-3">' + "".join(PF._review(r) for r in TRAIN_REVIEWS) + '</div>', label="Client reviews")
     + sec("light", f"""<div class="split">
 <div class="side">{frame("Photo: an online coaching check-in", wide=True)}</div>

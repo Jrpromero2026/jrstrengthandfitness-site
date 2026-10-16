@@ -11,7 +11,8 @@ OG_IMAGE = f"{SITE}/assets/og-jr-romero.jpg"
 PORTRAIT = f"{SITE}/assets/photos/jr-portrait.webp"
 PERSON_ID = f"{SITE}/#jr"
 ORG_ID = f"{SITE}/#org"
-SAME_AS = [LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK]
+G3_BIO = "https://www.gthreesports.com/coaches/jr-romero"
+SAME_AS = [LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK, G3_BIO]
 
 # Facility addresses: Timberhill from its Setmore booking page; G3 from its Google listing (Oct 2026).
 TAC_PLACE = {"@type": "SportsActivityLocation", "name": "Timberhill Athletic Club", "url": "https://timberhillac.com/",
@@ -37,7 +38,7 @@ PERSON = {
     "knowsAbout": ["Strength and conditioning", "Personal training", "Hypertrophy training", "Youth athletic development",
                    "Strength training for women", "Online coaching", "Coaching systems and consultations"],
     "homeLocation": {"@type": "Place", "name": "Corvallis, Oregon"},
-    "sameAs": SAME_AS,
+    "sameAs": [u for u in SAME_AS if u != G3_BIO],
 }
 ORG = {
     "@type": "Organization", "@id": ORG_ID, "name": "JR Strength and Fitness LLC", "alternateName": "JR Strength & Fitness",
