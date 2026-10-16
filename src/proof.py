@@ -37,15 +37,29 @@ REVIEWS = [
     dict(name="María M.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
          text="Through all the exercises I’ve done so far, I’ve seen a major change in my strength, balance, and muscle"),
     # From G3's personal-training page (gthreesports.com/personal-training, checked 2026-10-15). G3 shows first names
-    # only, with no star rating or date, so none is shown here.
-    dict(name="Dana", where="G3", source="g3", rating=None, tag=T,
+    # only and no date. The site doesn't show ratings; JR confirmed these are 5-star reviews (2026-10-15).
+    dict(name="Dana", where="G3", source="g3", rating=5, tag=T,
          text="Training with JR changed my life. He took me from a place of weakness after a prolonged health crisis and helped me build strength back into my body to where I felt healthy, strong and back in control of a strength building, healthy lifestyle."),
-    dict(name="David", where="G3", source="g3", rating=None, tag=T,
+    dict(name="David", where="G3", source="g3", rating=5, tag=T,
          text="I’ve never been stronger, more flexible, or more energetic than when training with JR."),
-    dict(name="John", where="G3", source="g3", rating=None, tag=T,
+    dict(name="John", where="G3", source="g3", rating=5, tag=T,
          text="JR is a great trainer and a lot of fun to work with! He listened to what my goals were and implemented a training program that achieved my desired goals. I would recommend JR to anyone looking for a trainer"),
-    dict(name="Brandon", where="G3", source="g3", rating=None, tag=T,
+    dict(name="Brandon", where="G3", source="g3", rating=5, tag=T,
          text="JR was pivotal to the progression of my performance."),
+    # Athlete reviews from G3's Athletic Training & Sports Performance page
+    # (gthreesports.com/athletic-training-sports-performance, checked 2026-10-15). Only the ones that name JR.
+    # G3 shows the athlete's name and college; last names shortened to an initial here. JR confirmed 5 stars.
+    dict(name="Maverick L.", where="G3", note="Saint Anselm College", source="g3", rating=5, tag="Athlete",
+         text="JR’s training prepared me for training at one of the highest levels mentally and physically. He provided me with the opportunity to become the best athlete I can be and I couldn’t be more grateful."),
+    dict(name="Nathan", where="G3", note="Eastern Illinois / Corvallis Knights", source="g3", rating=5, tag="Athlete",
+         text="JR’s training has helped me tremendously with my performance in volleyball and alongside this has helped me make great progress in my weaker areas of strength. He is a phenomenal trainer and pushes you to be the best and strongest athlete you can be."),
+    dict(name="Kassie", where="G3", note="George Fox University", source="g3", rating=5, tag="Athlete",
+         text="G3 has been the go-to place to train for me. JR put together amazing workouts to help me be physically ready to play college baseball. I recommend G3 to any athlete looking to play at the next level."),
+    dict(name="Campbell H.", where="G3", note="George Fox University", source="g3", rating=5, tag="Athlete",
+         text="JR has pushed me further than any other person and is the best trainer around."),
+    # No name is shown with this one on G3's site.
+    dict(name="College athlete", where="G3", source="g3", rating=5, tag="Athlete",
+         text="I went to G3 going into freshman year of college at 180, I can say coming into my junior year I have put on 15lbs of muscle growth over the last two years and counting. Working with JR is so easy and efficient with whatever you are looking to get out of training at G3, they have all the equipment you can think of and an all-around great environment to workout in. If you’re looking to become a better athlete 100% look into JR over at G3 in Corvallis."),
     dict(name="Jen A.", date="2026-03", tag=T, text="I can’t say enough good things about JR as a personal trainer.\n\nAfter a hamstring rupture and surgical repair, I wasn’t sure what my recovery—or future strength—would look like. JR has been instrumental in not only helping me recover safely, but in building strength and confidence beyond where I was before the injury.\n\nHe brings a rare combination of deep knowledge, professionalism, and genuine respect for his clients. JR is patient, attentive, and highly intentional in how he programs and coaches. As someone who has been an athlete my entire life, I value being coached—and that’s exactly what this feels like. Every session has purpose, progression, and accountability.\n\nWhat’s been most impressive is his expertise in muscle building and strength development. Thanks to his guidance, I’ve been able to rebuild and even improve my physique—something I didn’t think was possible at age 50, especially after such a significant injury.\n\nIf you’re looking for someone who truly understands how to help you recover, get stronger, and perform at your best, JR is exceptional."),
     dict(name="North", date="2024-05", tag=T, text="JR is a well educated and top notch strength and conditioning coach. He is iterating over a custom strength training plan for me that will fit into my endurance cycling workouts. He understands the difficulties and nuance of combining strength training and endurance training while providing enough recovery. He knows all about progressive overload, training stress scores, macro and micro periodization, block training, and other concepts that many coaches don't understand. I feel lucky to have such a good coach."),
     dict(name="Walt P.", date="2024-11", tag=T, text="I am writing this review of my interactions and training with JR \n\nI have been very impressed with his evaluation of my age, condition, goals for a program to achieve better fitness. \nHis training regimen is focused on making sure my technique is correct to avoid issues and he brings excellent knowledge and encouragement while I ramp into this new phase. \n\nWalt"),
@@ -145,13 +159,13 @@ def _slot(label, cls=""):
 SEAL = f"""<a class="pf-seal" href="{SETMORE}"{ext(SETMORE)} data-track="Setmore reviews (proof seal)">
 <span class="pf-seal-n">{AVG}</span>{STARS}
 <span class="pf-seal-c">{REVIEW_COUNT} client reviews</span>
-<span class="pf-seal-s">{"Every star rating is 5 stars. " if ALL_FIVE else ""}Timberhill overall on Setmore: {CLUB_RATING} from {CLUB_COUNT} →</span></a>"""
+<span class="pf-seal-s">{("Every one of them 5 stars. " if len(RATED) == REVIEW_COUNT else "Every star rating is 5 stars. ") if ALL_FIVE else ""}Timberhill overall on Setmore: {CLUB_RATING} from {CLUB_COUNT} →</span></a>"""
 
 
 def _review(r):
     tag = f' data-where="{r["where"]}"' + (f' data-tag="{r["tag"]}"' if r.get("tag") else "")
     paras = "".join(f"<p>{_h.escape(' '.join(x.split()))}</p>" for x in r["text"].split("\n\n") if x.strip())
-    meta = r["where"]
+    meta = r["where"] + (f' · {_h.escape(r["note"])}' if r.get("note") else "")
     if r.get("date"):
         y, m = r["date"].split("-")
         meta += f' · {("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")[int(m) - 1]} {y}'
@@ -177,7 +191,7 @@ def _wall():
         places, tags = ["Timberhill", "G3", "Online"], []
     if len(places) < 2:
         places = []
-    names = {"Training": "Training with JR", "Consult": "Consults"}
+    names = {"Training": "Training with JR", "Consult": "Consults", "Athlete": "Athletes"}
     chips = "".join(f'<button type="button" data-f="{f}" aria-pressed="false">{names.get(f, f)}</button>' for f in places + tags)
     filt = (f'<div class="pf-chips" role="group" aria-label="Filter reviews">'
             f'<button type="button" data-f="" aria-pressed="true">All</button>{chips}</div>') if len(places + tags) > 1 else ""
