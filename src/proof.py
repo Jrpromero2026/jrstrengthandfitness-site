@@ -36,6 +36,16 @@ REVIEWS = [
     # From /review (FormSubmit, 2026-10-15). Client ticked publish_ok; text as submitted.
     dict(name="María M.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
          text="Through all the exercises I’ve done so far, I’ve seen a major change in my strength, balance, and muscle"),
+    # From G3's personal-training page (gthreesports.com/personal-training, checked 2026-10-15). G3 shows first names
+    # only, with no star rating or date, so none is shown here.
+    dict(name="Dana", where="G3", source="g3", rating=None, tag=T,
+         text="Training with JR changed my life. He took me from a place of weakness after a prolonged health crisis and helped me build strength back into my body to where I felt healthy, strong and back in control of a strength building, healthy lifestyle."),
+    dict(name="David", where="G3", source="g3", rating=None, tag=T,
+         text="I’ve never been stronger, more flexible, or more energetic than when training with JR."),
+    dict(name="John", where="G3", source="g3", rating=None, tag=T,
+         text="JR is a great trainer and a lot of fun to work with! He listened to what my goals were and implemented a training program that achieved my desired goals. I would recommend JR to anyone looking for a trainer"),
+    dict(name="Brandon", where="G3", source="g3", rating=None, tag=T,
+         text="JR was pivotal to the progression of my performance."),
     dict(name="Jen A.", date="2026-03", tag=T, text="I can’t say enough good things about JR as a personal trainer.\n\nAfter a hamstring rupture and surgical repair, I wasn’t sure what my recovery—or future strength—would look like. JR has been instrumental in not only helping me recover safely, but in building strength and confidence beyond where I was before the injury.\n\nHe brings a rare combination of deep knowledge, professionalism, and genuine respect for his clients. JR is patient, attentive, and highly intentional in how he programs and coaches. As someone who has been an athlete my entire life, I value being coached—and that’s exactly what this feels like. Every session has purpose, progression, and accountability.\n\nWhat’s been most impressive is his expertise in muscle building and strength development. Thanks to his guidance, I’ve been able to rebuild and even improve my physique—something I didn’t think was possible at age 50, especially after such a significant injury.\n\nIf you’re looking for someone who truly understands how to help you recover, get stronger, and perform at your best, JR is exceptional."),
     dict(name="North", date="2024-05", tag=T, text="JR is a well educated and top notch strength and conditioning coach. He is iterating over a custom strength training plan for me that will fit into my endurance cycling workouts. He understands the difficulties and nuance of combining strength training and endurance training while providing enough recovery. He knows all about progressive overload, training stress scores, macro and micro periodization, block training, and other concepts that many coaches don't understand. I feel lucky to have such a good coach."),
     dict(name="Walt P.", date="2024-11", tag=T, text="I am writing this review of my interactions and training with JR \n\nI have been very impressed with his evaluation of my age, condition, goals for a program to achieve better fitness. \nHis training regimen is focused on making sure my technique is correct to avoid issues and he brings excellent knowledge and encouragement while I ramp into this new phase. \n\nWalt"),
@@ -64,9 +74,13 @@ for r in REVIEWS:
 
 # Counted from the list, so the badge updates itself when a review is added or removed.
 REVIEW_COUNT = len(REVIEWS)
-ALL_FIVE = all(r["rating"] == 5 for r in REVIEWS)
-AVG = f"{sum(r['rating'] for r in REVIEWS) / max(1, REVIEW_COUNT):.1f}"
+RATED = [r for r in REVIEWS if r["rating"]]  # G3's testimonials carry no star rating; they count as reviews, not as stars
+ALL_FIVE = all(r["rating"] == 5 for r in RATED)
+AVG = f"{sum(r['rating'] for r in RATED) / max(1, len(RATED)):.1f}"
 FROM_SITE = any(r["source"] == "site" for r in REVIEWS)
+_SRC = {"setmore": "Timberhill’s booking page", "g3": "G3’s website", "site": "my review form"}
+_srcs = [v for k, v in _SRC.items() if any(r["source"] == k for r in REVIEWS)]
+SOURCES = _srcs[0] if len(_srcs) == 1 else ", ".join(_srcs[:-1]) + " and " + _srcs[-1]
 
 # dict(name="First", where="Timberhill", mode="In person", length="6 months",
 #      start_tier="Inadequate", to_tier="Optimal",      # two of: Inadequate, Adequate, Optimal, Enhanced
@@ -131,16 +145,19 @@ def _slot(label, cls=""):
 SEAL = f"""<a class="pf-seal" href="{SETMORE}"{ext(SETMORE)} data-track="Setmore reviews (proof seal)">
 <span class="pf-seal-n">{AVG}</span>{STARS}
 <span class="pf-seal-c">{REVIEW_COUNT} client reviews</span>
-<span class="pf-seal-s">{"Every one of them 5 stars. " if ALL_FIVE else ""}Timberhill overall on Setmore: {CLUB_RATING} from {CLUB_COUNT} →</span></a>"""
+<span class="pf-seal-s">{"Every star rating is 5 stars. " if ALL_FIVE else ""}Timberhill overall on Setmore: {CLUB_RATING} from {CLUB_COUNT} →</span></a>"""
 
 
 def _review(r):
     tag = f' data-where="{r["where"]}"' + (f' data-tag="{r["tag"]}"' if r.get("tag") else "")
     paras = "".join(f"<p>{_h.escape(' '.join(x.split()))}</p>" for x in r["text"].split("\n\n") if x.strip())
-    y, m = r["date"].split("-")
-    when = f'{("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")[int(m) - 1]} {y}'
-    return (f'<figure class="pf-rc"{tag}>{STARS}<blockquote>{paras}</blockquote>'
-            f'<figcaption><b>{_h.escape(r["name"])}</b><span>{r["where"]} · {when}</span></figcaption></figure>')
+    meta = r["where"]
+    if r.get("date"):
+        y, m = r["date"].split("-")
+        meta += f' · {("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")[int(m) - 1]} {y}'
+    stars = STARS if r.get("rating") else ""
+    return (f'<figure class="pf-rc"{tag}>{stars}<blockquote>{paras}</blockquote>'
+            f'<figcaption><b>{_h.escape(r["name"])}</b><span>{meta}</span></figcaption></figure>')
 
 
 def _review_slot(i, where):
@@ -168,9 +185,7 @@ def _wall():
             f'<a class="link-u" href="{SETMORE}"{ext(SETMORE)} data-track="Setmore reviews (proof wall)">Read them all →</a></p>'
             '<p class="pf-more">Trained with me? <a class="link-u" href="/review">Leave a review →</a></p>')
     return head_row("Client reviews", "In their words.",
-                    ("Copied word for word from Timberhill’s booking page and my review form, typos and all. Last names shortened to an initial."
-                     if FROM_SITE else
-                     "Copied word for word from Timberhill’s booking page, typos and all. Last names shortened to an initial.")) + \
+                    f"Copied word for word from {SOURCES}, typos and all. Last names shortened to an initial.") + \
         f'{filt}<div class="pf-wall" data-pf-wall>{cards}</div>{more}'
 
 
@@ -275,9 +290,7 @@ BODY = (
     ("" if LIVE else '<div class="pf-preview" role="note">Preview: dashed boxes are slots for real reviews and case files. '
      'This page stays hidden until they are filled.</div>')
     + hero("Proof", "Don’t take<br>my word<br>for it.",
-         ("Every review here is about my coaching, was written by a client on Timberhill’s booking page or my review form, and is posted as written."
-          if FROM_SITE else
-          "Every review here names me, was written by a client on Timberhill’s booking page, and is posted as written."),
+         f"Every review here is about my coaching, was written by a client on {SOURCES.replace(' and ', ' or ')}, and is posted as written.",
          f'<a class="btn btn-red" href="/consult">Book a free consult</a>'
          f'<a class="btn btn-line" href="{SETMORE}"{ext(SETMORE)} data-track="Setmore reviews (proof hero)">Read them on Setmore</a>',
          side=SEAL)

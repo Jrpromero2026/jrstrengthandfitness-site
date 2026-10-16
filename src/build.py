@@ -48,7 +48,7 @@ PAGES = [
          body=P.ABOUT),
     dict(path="/proof", file="proof.html", active="proof", sitemap=PF.LIVE, noindex=not PF.LIVE,
          title="Client Reviews & Results | JR Romero, CSCS",
-         description=f"{PF.REVIEW_COUNT} client reviews of JR Romero, CSCS, all five stars, posted word for word from Timberhill Athletic Club's booking page and JR's review form.",
+         description=f"{PF.REVIEW_COUNT} client reviews of JR Romero, CSCS, posted word for word from {PF.SOURCES}.",
          body=PF.BODY, script=PF.SCRIPT, head=S.ld(S.breadcrumbs([("Home", "/"), ("Proof", "/proof")]))),
     dict(path="/review", file="review.html", active="", sitemap=False, noindex=True, closing=False,
          title="Leave a Review | JR Strength & Fitness",
