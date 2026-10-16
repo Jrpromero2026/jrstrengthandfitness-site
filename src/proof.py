@@ -33,6 +33,13 @@ MIN_REVIEWS = 6
 # All 20 that name JR are here; JR is reviewing which to keep.
 T, C = "Training", "Consult"
 REVIEWS = [
+    # From /review (FormSubmit, 2026-10-16). Client ticked publish_ok; text and paragraph breaks as submitted.
+    dict(name="Elizabeth C.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
+         text="Training with JR has been a life-changing experience. As a 64-year-old woman who has always valued fitness, I suddenly faced daunting health challenges—weight gain, high cholesterol, and osteopenia. No matter how hard I tried, nothing worked until I started working with JR and following his expertly crafted, individualized training plans.\n\n"
+              "Unlike generic workouts, JR’s approach is truly personal. He takes the time to understand your needs and adapts his program to motivate and challenge you at every step.\n\n"
+              "I never thought I needed a trainer, but JR’s support, encouragement, and attention to detail made all the difference.\n\n"
+              "Thanks to JR, my health has improved dramatically—cholesterol is down, osteopenia has reversed, and my energy is at an all-time high. I lost 10 lbs, gained lean muscle, and feel stronger and more confident than ever. JR’s knowledge and dedication deliver real, lasting results.\n\n"
+              "JR is the best trainer I’ve ever worked with—professional, inspiring, and fully invested in his clients’ success. If you want transformative results and a coach who truly cares, JR is the one to trust."),
     # From /review (FormSubmit, 2026-10-15). Client ticked publish_ok; text as submitted.
     dict(name="María M.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
          text="Through all the exercises I’ve done so far, I’ve seen a major change in my strength, balance, and muscle"),
