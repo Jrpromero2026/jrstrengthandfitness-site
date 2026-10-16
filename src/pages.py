@@ -69,7 +69,7 @@ HOME = (
 
 # ---------------------------------------------------------------- Train with JR
 # Three short reviews for /train (full set on /proof). Picked by name from proof.REVIEWS.
-TRAIN_REVIEWS = [r for n in ("Steve", "Maria", "Jess") for r in PF.REVIEWS if r["name"] == n][:3]
+TRAIN_REVIEWS = [r for n in ("Elizabeth C.", "Maria", "Jess") for r in PF.REVIEWS if r["name"] == n][:3]
 
 TRAIN = (
     hero("Train with JR", "Personal training<br>in Corvallis.",
