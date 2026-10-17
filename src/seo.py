@@ -156,10 +156,15 @@ def robots_txt():
 
 
 def llms_txt(projects, posts):
-    from examprep import DISCLAIMER as XP_DISCLAIMER
+    import examprep as XP
     proj = "\n".join(f"- [{_plain(p['name'])}]({SITE}/projects/{p['slug']}): {_plain(p['card'])}" for p in projects)
     writing = "\n".join(f"- [{p['title']}]({SITE}/notes/{p['slug']}): {p['excerpt']}" for p in posts)
     faq = "\n\n".join(f"### {_plain(q)}\n{_plain(a)}" for q, a in FAQ)
+    xp_lines = "\n".join(
+        f"- [{p['name']}]({SITE}{p['path']}): {p['llms']} (up to 15 questions a day; its answers can be wrong). "
+        f"$79 one-time for 180 days, no auto-renewal, or $39/month or $299/year bundled with the Vault. Sold at {p['buy']}. "
+        f"No pass guarantee; Practice Readiness is a study signal, not a score or prediction.\n- {p['disclaimer']}"
+        for p in (XP.NASM, XP.ACE))
     return f"""# JR Strength & Fitness
 
 > JR Romero, CSCS (full name JR Prieto-Romero), is a strength and conditioning coach in Corvallis, Oregon: Director of Personal Training at Timberhill Athletic Club and Director of Performance at G3 Sports & Fitness. Founder of four coaching products. He coaches in person in Corvallis and online, and builds tools for coaches and athletes.
@@ -179,10 +184,10 @@ def llms_txt(projects, posts):
 
 {proj}
 
-### NASM-CPT Exam Prep (part of The Trainer's Coach Vault)
+### Personal Trainer Exam Prep (part of The Trainer's Coach Vault)
 
-- [NASM-CPT Exam Prep]({SITE}/projects/vault/exam-prep): independent practice for the NASM-CPT exam. 1,322 original practice questions written against NASM's public exam blueprint, a 60-question diagnostic, 120-question timed mocks, 150 concept cards and an AI study tutor (up to 15 questions a day; its answers can be wrong). $79 one-time for 180 days, no auto-renewal, or $39/month or $299/year bundled with the Vault. Sold at https://vault.jrstrengthandfitness.com/pricing#exam-prep. No pass guarantee; Practice Readiness is a study signal, not a score or prediction.
-- {XP_DISCLAIMER}
+- [Personal Trainer Exam Prep]({SITE}{XP.HUB}): lists both exam-prep products.
+{xp_lines}
 
 ## Notes from the Floor (articles)
 

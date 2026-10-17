@@ -52,7 +52,7 @@ PROJECTS = [
         status=[
             ("Free account", "Open now: selected resources, previews, search and saved favorites."),
             ("Founding membership", "Open now: $29/month or $249/year for the full library, at the founding rate."),
-            ("Exam Prep", f"${XP.OFFER['price']} one-time for {XP.OFFER['days']} days, or ${XP.OFFER['bundle_month']}/month bundled with the Vault."),
+            ("Exam Prep", f"NASM-CPT and ACE-CPT Exam Prep: ${XP.OFFER['price']} each for {XP.OFFER['days']} days, or ${XP.OFFER['bundle_month']}/month bundled with the Vault."),
         ],
         cta=("Create a free account", VAULT + "/signup"),
         cta2=("Explore resources", VAULT + "/explore"),

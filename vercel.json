@@ -167,18 +167,28 @@
       "permanent": true
     },
     {
-      "source": "/exam-prep",
-      "destination": "/projects/vault/exam-prep",
-      "permanent": true
-    },
-    {
       "source": "/nasm-cpt-exam-prep",
       "destination": "/projects/vault/exam-prep",
       "permanent": true
     },
     {
-      "source": "/projects/exam-prep",
+      "source": "/nasm-exam-prep",
       "destination": "/projects/vault/exam-prep",
+      "permanent": true
+    },
+    {
+      "source": "/projects/exam-prep",
+      "destination": "/exam-prep",
+      "permanent": true
+    },
+    {
+      "source": "/ace-cpt-exam-prep",
+      "destination": "/projects/vault/ace-cpt-exam-prep",
+      "permanent": true
+    },
+    {
+      "source": "/ace-exam-prep",
+      "destination": "/projects/vault/ace-cpt-exam-prep",
       "permanent": true
     }
   ],

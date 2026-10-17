@@ -90,11 +90,19 @@ dict(path="/projects", file="projects.html", active="projects",
          head=S.ld(S.project_ld(p), S.breadcrumbs([("Home", "/"), ("Projects", "/projects"), (p["name"].replace("&amp;", "&"), f"/projects/{p['slug']}")])))
     for p in PR.PROJECTS
 ] + [
-    dict(path=XP.PATH, file=XP.PATH.lstrip("/") + ".html", active="projects", closing=False,
-         title=XP.TITLE, description=XP.DESCRIPTION, body=XP.BODY,
-         head=S.ld(*XP.schema(SITE, S.PERSON_ID, S.ORG_ID),
+] + [
+    dict(path=p["path"], file=p["path"].lstrip("/") + ".html", active="projects", closing=False,
+         title=p["title"], description=p["description"], body=XP.body(p),
+         head=S.ld(*XP.schema(p, SITE, S.PERSON_ID, S.ORG_ID),
                    S.breadcrumbs([("Home", "/"), ("Projects", "/projects"), ("The Trainer's Coach Vault", "/projects/vault"),
-                                  ("NASM-CPT Exam Prep", XP.PATH)]))),
+                                  ("Exam Prep", XP.HUB), (p["name"], p["path"])])))
+    for p in (XP.NASM, XP.ACE)
+] + [
+    dict(path=XP.HUB, file=XP.HUB.lstrip("/") + ".html", active="projects", closing=False,
+         title=XP.HUB_TITLE, description=XP.HUB_DESCRIPTION, body=XP.HUB_BODY,
+         head=S.ld(*XP.hub_schema(SITE),
+                   S.breadcrumbs([("Home", "/"), ("Projects", "/projects"), ("The Trainer's Coach Vault", "/projects/vault"),
+                                  ("Exam Prep", XP.HUB)]))),
 ] + W.page_specs() + [
     dict(path="/accessibility", file="accessibility.html", active="",
          title="Accessibility | JR Strength & Fitness",
@@ -126,8 +134,9 @@ REDIRECTS = [
     ("/blog/introduction-to-personal-training-unveiling-the-role-benefits-and-opportunities", "/train"),
     ("/blog/:path*", "/notes"),
     ("/store", "/"), ("/store/:path*", "/"), ("/cart", "/"),
-    # Short links to NASM-CPT Exam Prep
-    ("/exam-prep", XP.PATH), ("/nasm-cpt-exam-prep", XP.PATH), ("/projects/exam-prep", XP.PATH),
+    # Short links to Exam Prep. /exam-prep is now the hub page that lists both exams (Oct 17 2026).
+    ("/nasm-cpt-exam-prep", XP.NASM["path"]), ("/nasm-exam-prep", XP.NASM["path"]), ("/projects/exam-prep", XP.HUB),
+    ("/ace-cpt-exam-prep", XP.ACE["path"]), ("/ace-exam-prep", XP.ACE["path"]),
 ]
 
 

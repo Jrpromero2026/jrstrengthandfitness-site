@@ -20,10 +20,13 @@
 - [TRAINCND](https://www.jrstrengthandfitness.com/projects/traincnd): One platform to run a coaching business, from the first invitation to the season’s last session.
 - [The Credential Standard](https://www.jrstrengthandfitness.com/projects/credential-standard): Which fitness credentials are accredited, what they require and what renewal takes, with every fact cited to its source.
 
-### NASM-CPT Exam Prep (part of The Trainer's Coach Vault)
+### Personal Trainer Exam Prep (part of The Trainer's Coach Vault)
 
+- [Personal Trainer Exam Prep](https://www.jrstrengthandfitness.com/exam-prep): lists both exam-prep products.
 - [NASM-CPT Exam Prep](https://www.jrstrengthandfitness.com/projects/vault/exam-prep): independent practice for the NASM-CPT exam. 1,322 original practice questions written against NASM's public exam blueprint, a 60-question diagnostic, 120-question timed mocks, 150 concept cards and an AI study tutor (up to 15 questions a day; its answers can be wrong). $79 one-time for 180 days, no auto-renewal, or $39/month or $299/year bundled with the Vault. Sold at https://vault.jrstrengthandfitness.com/pricing#exam-prep. No pass guarantee; Practice Readiness is a study signal, not a score or prediction.
 - This independent exam-preparation product is not affiliated with, endorsed by, or sponsored by the National Academy of Sports Medicine (NASM). NASM and NASM-CPT are used only to identify the certification exam this product is designed to help users prepare for.
+- [ACE-CPT Exam Prep](https://www.jrstrengthandfitness.com/projects/vault/ace-cpt-exam-prep): independent practice for the ACE Certified Personal Trainer exam. 1,300 original practice questions written against ACE's public exam content outline, a 75-question diagnostic, a 150-question timed practice mock, 150 concept cards and an AI study tutor (up to 15 questions a day; its answers can be wrong). $79 one-time for 180 days, no auto-renewal, or $39/month or $299/year bundled with the Vault. Sold at https://vault.jrstrengthandfitness.com/pricing#ace-cpt-exam-prep. No pass guarantee; Practice Readiness is a study signal, not a score or prediction.
+- This independent exam-preparation product is not affiliated with, endorsed by, or sponsored by the American Council on Exercise (ACE). ACE and ACE Certified Personal Trainer are used only to identify the certification exam this product is designed to help users prepare for.
 
 ## Notes from the Floor (articles)
 
