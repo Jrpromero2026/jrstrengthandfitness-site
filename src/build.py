@@ -85,7 +85,7 @@ dict(path="/projects", file="projects.html", active="projects",
 ] + [
     dict(path=f"/projects/{p['slug']}", file=f"projects/{p['slug']}.html", active="projects",
          title=f"{p['name']} | Projects | JR Strength & Fitness".replace("&amp;", "&"),
-         description=(p['tagline'] + " " + p['card']).replace("&amp;", "&"),
+         description=p.get('meta') or (p['tagline'] + " " + p['card']).replace("&amp;", "&"),
          body=PR.project_page(p), script=P.FORM_SCRIPT if p.get("waitlist") else "",
          head=S.ld(S.project_ld(p), S.breadcrumbs([("Home", "/"), ("Projects", "/projects"), (p["name"].replace("&amp;", "&"), f"/projects/{p['slug']}")])))
     for p in PR.PROJECTS

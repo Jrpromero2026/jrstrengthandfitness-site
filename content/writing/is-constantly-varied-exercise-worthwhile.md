@@ -4,6 +4,7 @@ date: 2020-12-07
 category: Programming
 audience: coach
 excerpt: Muscle confusion, CrossFit and P90x made exercise variation a hot topic. A look at the research on constantly varied versus fixed exercise selection, and how to program structured variation.
+description: Muscle confusion, CrossFit and P90x made variation popular. What the research says about varied versus fixed exercises, and how to program it.
 ---
 The utilization of exercise variation has been a hot topic in the exercise science world especially with programs and training philosophies such as P90x and CrossFit. There are advocates of constant exercise variation that claim muscle confusion is the key to progress. On the same side, there is an emergence of CrossFit that values this constantly varied style to expand the capacity of fitness. What that means is they want to train people, so they can squat a lot yet be able to run a 5K. There is also an argument for fixed-exercise selection to maximize strength and muscle hypertrophy. This article will review the literature and establish the efficacy of constantly varied exercise selection versus fixed exercise selection.
 

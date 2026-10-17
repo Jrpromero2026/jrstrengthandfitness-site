@@ -4,6 +4,7 @@ date: 2022-02-02
 category: Personal Training
 audience: coach
 excerpt: For personal trainers, the initial consultation is the first time you meet a potential client, and likely the only chance you'll have to sign them. Here are the five questions I use to run it.
+description: The five questions I use to run a personal training consultation, the first meeting and likely your only chance to sign a new client.
 ---
 For personal trainers, the initial consultation is the first time you are meeting with a potential client and likely the only chance you will have to sign them on as a client. This part of the job might be the most stressful part if you have no sales training or even natural sales skills. You are anxious because you are not sure how to convince this person to sign with you. Do not focus on the result. Focus on the conversation because not only are you trying to sell yourself as a trainer, but you are also seeing if this person is right for you. You do not need to sign everyone you talk to especially if they will be more of a headache for you than what you can handle. But the main problem new trainers run into is what questions they should ask. Here are five questions to ask in the initial consultation:
 

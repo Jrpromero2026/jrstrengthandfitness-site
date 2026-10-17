@@ -503,7 +503,7 @@ def page_specs():
         title = p["title"] if len(p["title"]) > 42 else f"{p['title']} | JR Strength & Fitness"
         specs.append(dict(
             path=f"/notes/{p['slug']}", file=f"notes/{p['slug']}.html", active="",
-            title=title, description=p["excerpt"], body=post_body(p), script=POST_SCRIPT,
+            title=title, description=p.get("description") or p["excerpt"], body=post_body(p), script=POST_SCRIPT,
             og_type="article", head=_head(p), sitemap=not p["draft"], noindex=p["draft"],
             og_image=SITE + sharecard.url_for(p["slug"]), og_image_size=(1200, 630),
             og_image_alt=html.escape(f"{p['title']}: Notes from the Floor by JR Romero, CSCS")))

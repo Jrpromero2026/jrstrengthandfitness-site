@@ -52,7 +52,7 @@ PRODUCTS = {
         buy=VAULT + "/pricing#exam-prep",
         btn="Get Exam Prep",
         disclaimer=NASM_DISCLAIMER,
-        title="NASM-CPT Exam Prep: NASM Personal Trainer Practice Questions | The Trainer's Coach",
+        title="NASM-CPT Exam Prep: Practice Questions | The Trainer's Coach",
         description=("Independent NASM-CPT exam practice: 1,322 original questions, timed 120-question mocks, concept cards "
                      "and an AI study tutor. 180 days for $79."),
         hero_lead="Independent practice for the NASM-CPT exam. 1,322 original questions, timed mocks, concept cards and an AI study tutor, on your phone.",
@@ -116,7 +116,7 @@ PRODUCTS = {
         buy=VAULT + "/pricing#ace-cpt-exam-prep",
         btn="Get ACE-CPT Exam Prep",
         disclaimer=ACE_DISCLAIMER,
-        title="ACE-CPT Exam Prep: ACE Personal Trainer Practice Questions | The Trainer's Coach",
+        title="ACE-CPT Exam Prep: Practice Questions | The Trainer's Coach",
         description=("Independent ACE-CPT exam practice: 1,300 original questions, a timed 150-question mock, concept cards "
                      "and an AI study tutor. 180 days for $79."),
         hero_lead=("Independent practice for the ACE Certified Personal Trainer exam. 1,300 original questions, a timed "
@@ -342,9 +342,9 @@ def schema(p, site, person_id, org_id):
 
 
 # ------------------------------------------------------------------ /exam-prep hub (names both certifiers: both disclaimers)
-HUB_TITLE = "Personal Trainer Exam Prep: NASM-CPT and ACE-CPT | The Trainer's Coach"
-HUB_DESCRIPTION = ("Independent practice for the NASM-CPT and ACE-CPT personal trainer exams: original practice questions, "
-                   "timed mocks, concept cards and an AI study tutor. $79 each for 180 days.")
+HUB_TITLE = "Personal Trainer Exam Prep: NASM & ACE | The Trainer's Coach"
+HUB_DESCRIPTION = ("Independent practice for the NASM-CPT and ACE-CPT exams: original questions, timed mocks, concept cards "
+                   "and an AI study tutor. $79 each for 180 days.")
 
 
 def _hub_cell(p):

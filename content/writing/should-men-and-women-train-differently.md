@@ -4,6 +4,7 @@ date: 2021-01-11
 category: Exercise Science
 audience: bfh
 excerpt: There are biological differences between men and women in body composition, fat distribution, muscle fiber and hormones, yet exercise prescription is mostly the same. What do the differences mean for training?
+description: Men and women differ in body composition, muscle fiber and hormones, yet most programs are the same. What those differences mean for training.
 ---
 This question may cause controversy, but it is something that should be considered. Contrary to modern belief, there are biological differences between men and women such as body composition, fat distribution, muscle fiber count, hormonal influence, etc. Yet exercise prescription is relatively the same between the two sexes. This article will seek to establish what differences there are between men and women that could impact training performances or outcomes. It will also establish if any differences warrant any exercise prescription modifications. As a side note, this article is not meant to discourage either sex from any type of exercise training or poke the woke bubble. This is a legitimate question I, myself have pondered through my years of training both men and women at various ages. My focus as a coach has always been to establish optimal training methods for better performance and results.
 

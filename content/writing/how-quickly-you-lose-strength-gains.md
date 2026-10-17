@@ -4,6 +4,7 @@ date: 2020-11-23
 category: Exercise Science
 audience: client
 excerpt: Injured, traveling or stuck without a gym? What the research says about how fast strength and muscle actually decline when you stop training, and how fast they come back.
+description: What the research says about how fast strength and muscle decline when you stop training, and how fast they come back.
 ---
 Every person that gets into strength training or an exercise regimen will eventually find themselves slightly paranoid about losing their progress. Maybe they have been hitting recent PR's lately and now they find themselves with a troubling injury or maybe they have gained several pounds of muscle over the last several months and find themselves without access to a gym for an extended amount of time. One of the main questions people have is how quickly do I lose my gains? For context for this article, we are focusing on strength training and its physiological effects during detraining specifically on strength and muscle mass.
 

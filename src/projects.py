@@ -34,6 +34,7 @@ VAULT_STATS_SCRIPT = """<script>
 PROJECTS = [
     dict(
         slug="vault",
+        meta="The operating library for trainers and coaches: consultation systems, programming frameworks and client tools built from real coaching practice.",
         name="The Trainer’s Coach Vault",
         chip=("live", "Live · founding membership open"),
         tag=("live", "Live"),
@@ -60,6 +61,7 @@ PROJECTS = [
     ),
     dict(
         slug="built-for-her",
+        meta="A coach-built strength training app for women: structured programs, set-by-set logging, nutrition targets and progress tracking.",
         name="Built For Her™",
         chip=("live", "Live · 7-day free trial"),
         tag=("live", "Live · free trial"),
@@ -87,6 +89,7 @@ PROJECTS = [
     ),
     dict(
         slug="traincnd",
+        meta="One platform to run a coaching business, from the first invitation to the season’s last session. Built for modern fitness coaches.",
         name="TRAINCND",
         chip=("dev", "In pilot · signups soon"),
         tag=("", "In pilot"),
@@ -113,6 +116,7 @@ PROJECTS = [
     ),
     dict(
         slug="credential-standard",
+        meta="Which fitness credentials are accredited, what they require and what renewal takes, with every fact cited to its source.",
         name="The Credential Standard",
         chip=("dev", "In development"),
         tag=("", "In development"),

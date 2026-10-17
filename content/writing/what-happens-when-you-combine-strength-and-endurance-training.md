@@ -4,6 +4,7 @@ date: 2020-12-21
 category: Exercise Science
 audience: client
 excerpt: Do you still get the benefits of both, or is one prioritized over the other? A review of the research on concurrent strength and endurance training, and how to apply it to your goal.
+description: Can you build strength and endurance at the same time? A review of the research on concurrent training, and how to apply it to your goal.
 ---
 Strength training and endurance training both have their benefits, but they have different mechanisms and effects. We know strength training causes neurological and muscular adaptations beneficial for increasing strength and lean muscle mass. Endurance training increases cardiovascular and metabolic efficiency. Sometimes it is done for performance or leisure. Other times it is used to burn excess calories to lose weight. But what happens when you combine the two? Do you still get the benefits of both or is one prioritized over the other? This article will review the literature on the effects of concurrent strength and endurance training and the possible optimal applications.
 
