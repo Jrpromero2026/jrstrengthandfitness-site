@@ -92,6 +92,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/what-to-look-for-personal-trainer-corvallis",
+      "destination": "/notes/what-to-look-for-personal-trainer-corvallis",
+      "permanent": true
+    },
+    {
       "source": "/blog/why-your-training-program-stops-working",
       "destination": "/notes/why-your-training-program-stops-working",
       "permanent": true
@@ -164,6 +169,11 @@
     {
       "source": "/cart",
       "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/notes/how-to-choose-a-personal-trainer-in-corvallis",
+      "destination": "/notes/what-to-look-for-personal-trainer-corvallis",
       "permanent": true
     },
     {

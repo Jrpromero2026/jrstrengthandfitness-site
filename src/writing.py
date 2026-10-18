@@ -9,6 +9,7 @@ Posts live in content/notes/<slug>.md with a front-matter block:
     audience:  coach | bfh | client  (picks the call to action)
     excerpt:   required, one or two sentences (search snippet, cards, RSS)
     dek:       optional, the line under the headline (defaults to excerpt)
+    seo_title: optional, the browser-tab and search title if it should differ from the headline (under ~60 characters)
     updated:   optional, YYYY-MM-DD, shown as "Updated" and sent to search engines
     image:     optional, a file under public/ such as /assets/notes/<slug>.webp (1600x900 is ideal)
     image_alt: required when image is set: what the photo shows
@@ -500,7 +501,7 @@ def _head(p):
 def page_specs():
     specs = []
     for p in ALL:
-        title = p["title"] if len(p["title"]) > 42 else f"{p['title']} | JR Strength & Fitness"
+        title = p.get("seo_title") or (p["title"] if len(p["title"]) > 42 else f"{p['title']} | JR Strength & Fitness")
         specs.append(dict(
             path=f"/notes/{p['slug']}", file=f"notes/{p['slug']}.html", active="",
             title=title, description=p.get("description") or p["excerpt"], body=post_body(p), script=POST_SCRIPT,

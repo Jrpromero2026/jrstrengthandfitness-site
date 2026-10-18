@@ -134,6 +134,8 @@ REDIRECTS = [
     ("/blog/introduction-to-personal-training-unveiling-the-role-benefits-and-opportunities", "/train"),
     ("/blog/:path*", "/notes"),
     ("/store", "/"), ("/store/:path*", "/"), ("/cart", "/"),
+    # Oct 2026: the unpublished draft "How to Choose a Personal Trainer in Corvallis" was retired for this article
+    ("/notes/how-to-choose-a-personal-trainer-in-corvallis", "/notes/what-to-look-for-personal-trainer-corvallis"),
     # Short links to Exam Prep. /exam-prep is now the hub page that lists both exams (Oct 17 2026).
     ("/nasm-cpt-exam-prep", XP.NASM["path"]), ("/nasm-exam-prep", XP.NASM["path"]), ("/projects/exam-prep", XP.HUB),
     ("/ace-cpt-exam-prep", XP.ACE["path"]), ("/ace-exam-prep", XP.ACE["path"]),
