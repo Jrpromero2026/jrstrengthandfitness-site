@@ -58,6 +58,9 @@ def closing_cta():
 
 from motion import MOTION_JS  # noqa: E402
 from seo import SITE_GRAPH, HOME_PAGE, OG_IMAGE  # noqa: E402
+# Google Search Console ownership (URL-prefix property https://www.jrstrengthandfitness.com/, added Oct 18 2026).
+# Keep it: removing it un-verifies the site.
+GSC_TAG = '<meta name="google-site-verification" content="hX39ZyHoObHflbpdaJvBcX_g0w21RrZhiazY-T0aCy4">\n'
 
 
 def page(*, path, title, description, body, active="", schema=False, script="", closing=True, og_type="website", head="", noindex=False, og_image=None, og_image_alt=None, og_image_size=None, **_):
@@ -85,7 +88,7 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
 <meta property="og:url" content="{canonical}">
-{'<meta name="robots" content="noindex, follow">' if noindex else '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">'}
+{GSC_TAG if path == "/" else ""}{'<meta name="robots" content="noindex, follow">' if noindex else '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">'}
 <meta property="og:image" content="{og_img}">
 <meta property="og:image:alt" content="{og_alt}">{og_dims}
 <meta name="twitter:card" content="summary_large_image">
