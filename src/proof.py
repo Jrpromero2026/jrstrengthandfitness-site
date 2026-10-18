@@ -33,6 +33,16 @@ MIN_REVIEWS = 6
 # All 20 that name JR are here; JR is reviewing which to keep.
 T, C = "Training", "Consult"
 REVIEWS = [
+    # From /review (FormSubmit, 2026-10-18). Client ticked publish_ok; text and paragraph breaks as submitted.
+    dict(name="Cath K.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
+         text="I have been working with JR for one year, I wanted to increase my overall strength but was nervous about injury. He listened to me and started me on a program that I could manage. I have become stronger, which has really helped in many aspects of my life, and I have really appreciated JR's input, I ask him questions when we meet, and he makes suggestions on how to tweak what I am doing.\n\n"
+              "I enjoy my time with him, and admire his breadth of knowledge, plus he is fun."),
+    # From /review (FormSubmit, 2026-10-16). Client ticked publish_ok; text as submitted.
+    dict(name="Talia S.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
+         text="JR is excellent! I have seen so much progress in the time I have been working with him. I'm stronger than I have ever been. JR takes the time to understand my needs and goals. Training with him has been a wonderful experience."),
+    # From /review (FormSubmit, 2026-10-16). Client ticked publish_ok; text as submitted.
+    dict(name="Stephen R.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
+         text="JR is a great trainer! Super knowledgeable and helpful. He has helped me with advice about strength training, fitness, nutrition, recovery, and so much more."),
     # From /review (FormSubmit, 2026-10-16). Client ticked publish_ok; text and paragraph breaks as submitted.
     dict(name="Elizabeth C.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
          text="Training with JR has been a life-changing experience. As a 64-year-old woman who has always valued fitness, I suddenly faced daunting health challenges—weight gain, high cholesterol, and osteopenia. No matter how hard I tried, nothing worked until I started working with JR and following his expertly crafted, individualized training plans.\n\n"
