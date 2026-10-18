@@ -67,6 +67,29 @@ HOME = (
     + NL.block("light", uid="h")
 )
 
+# The two facilities. Address links open each gym's own Google listing (place IDs from Google Maps,
+# Oct 17 2026), where clients can also read and leave reviews. No embedded map: the site loads nothing
+# from other companies.
+FACILITIES = {
+    "tac": dict(name="Timberhill Athletic Club", street="2855 NW 29th St, Corvallis", site="https://timberhillac.com/",
+                label="timberhillac.com", place_id="ChIJPSGRNnI_wFQR961D-CQzDxg"),
+    "g3": dict(name="G3 Sports & Fitness", street="5520 NW Highway 99W, Corvallis", site="https://www.gthreesports.com/",
+               label="gthreesports.com", place_id="ChIJIaXvKtY_wFQRP2aDGqS60kE"),
+}
+
+
+def maps_url(key):
+    f = FACILITIES[key]
+    from urllib.parse import quote_plus
+    return f"https://www.google.com/maps/search/?api=1&amp;query={quote_plus(f['name'])}&amp;query_place_id={f['place_id']}"
+
+
+def _facility_links(key):
+    f = FACILITIES[key]
+    return (f'<p class="addr"><a href="{maps_url(key)}" rel="noopener">{f["street"]}</a></p>'
+            f'<p class="addr site"><a href="{f["site"]}" rel="noopener">{f["label"]}</a></p>')
+
+
 # ---------------------------------------------------------------- Train with JR
 # "Who I train" on /train. Every quote is a sentence from that client's review on /proof, word for word,
 # looked up by name so it can't drift from the source. Descriptions describe the work, not outcomes.
@@ -118,8 +141,8 @@ TRAIN = (
     + sec("dark", head_row("Where you’ll train", "Two facilities.<br>One standard.",
                            "Families often split: a parent trains at TAC while their kid trains at G3. One consult covers both.")
           + f"""<div class="panel">
-<div class="cell"><div class="bar"></div><span class="tag live">In person · Corvallis</span><h3 class="h-cell">Timberhill Athletic Club</h3><ul class="ticks"><li>Health and general fitness</li><li>Longevity and staying capable</li><li>Adults at every starting point</li></ul><p class="addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Timberhill+Athletic+Club,+2855+NW+29th+St,+Corvallis,+OR+97330" rel="noopener">2855 NW 29th St, Corvallis</a></p><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{TAC_PT}" rel="noopener">Book at Timberhill</a></div></div>
-<div class="cell"><div class="bar"></div><span class="tag live">In person · Corvallis</span><h3 class="h-cell">G3 Sports &amp; Fitness</h3><ul class="ticks"><li>Youth athletic development</li><li>Adult human performance</li><li>Tactical, teams and organizations</li></ul><p class="addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=G3+Sports+%26+Fitness,+5520+NW+Highway+99W,+Corvallis,+OR+97330" rel="noopener">5520 NW Highway 99W, Corvallis</a></p><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{G3_PT}" rel="noopener">Book at G3</a></div></div>
+<div class="cell"><div class="bar"></div><span class="tag live">In person · Corvallis</span><h3 class="h-cell">Timberhill Athletic Club</h3><ul class="ticks"><li>Health and general fitness</li><li>Longevity and staying capable</li><li>Adults at every starting point</li></ul>{_facility_links("tac")}<div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{TAC_PT}" rel="noopener">Book at Timberhill</a></div></div>
+<div class="cell"><div class="bar"></div><span class="tag live">In person · Corvallis</span><h3 class="h-cell">G3 Sports &amp; Fitness</h3><ul class="ticks"><li>Youth athletic development</li><li>Adult human performance</li><li>Tactical, teams and organizations</li></ul>{_facility_links("g3")}<div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{G3_PT}" rel="noopener">Book at G3</a></div></div>
 </div>""")
     + sec("gray", head_row("Client reviews", "In their<br>words.",
                            f'Posted word for word. <a class="link-u" href="/proof">Read all {PF.REVIEW_COUNT} reviews →</a>')
@@ -146,8 +169,8 @@ CONSULT_PAGE = (
     + sec("light", head_row("Choose your facility", "Two facilities.<br>One standard.",
                             "Not sure? Pick either one. Families often split: a parent trains at Timberhill while their kid trains at G3.")
           + f"""<div class="panel">
-<div class="cell"><div class="bar"></div><span class="tag live">Health · fitness · longevity</span><h2 class="h-cell">Timberhill Athletic Club</h2><ul class="ticks"><li>Health and general fitness</li><li>Longevity and staying capable</li><li>Adults at every starting point</li><li>Free initial consultation with personal training</li></ul><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{TAC_PT}" rel="noopener">Book at Timberhill</a></div></div>
-<div class="cell"><div class="bar"></div><span class="tag live">Performance · athletes · teams</span><h2 class="h-cell">G3 Sports &amp; Fitness</h2><ul class="ticks"><li>Youth athletic development</li><li>Adult human performance</li><li>Tactical, teams and organizations</li><li>Personal training with the G3 coaching staff</li></ul><div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{G3_PT}" rel="noopener">Book at G3</a></div></div>
+<div class="cell"><div class="bar"></div><span class="tag live">Health · fitness · longevity</span><h2 class="h-cell">Timberhill Athletic Club</h2><ul class="ticks"><li>Health and general fitness</li><li>Longevity and staying capable</li><li>Adults at every starting point</li><li>Free initial consultation with personal training</li></ul>{_facility_links("tac")}<div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{TAC_PT}" rel="noopener">Book at Timberhill</a></div></div>
+<div class="cell"><div class="bar"></div><span class="tag live">Performance · athletes · teams</span><h2 class="h-cell">G3 Sports &amp; Fitness</h2><ul class="ticks"><li>Youth athletic development</li><li>Adult human performance</li><li>Tactical, teams and organizations</li><li>Personal training with the G3 coaching staff</li></ul>{_facility_links("g3")}<div class="grow"></div><div class="btns" style="padding-top:10px"><a class="btn btn-red" href="{G3_PT}" rel="noopener">Book at G3</a></div></div>
 </div>""", id="choose")
     + sec("dark", """<div class="split">
 <div class="main stack"><span class="eyebrow">Not in Corvallis?</span><h2 class="h-md">Train with me online.</h2><p class="lead">Individualized training and nutrition through the app, with check-ins and adjustments. Packages start at $199 a month.</p></div>

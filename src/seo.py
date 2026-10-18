@@ -16,8 +16,10 @@ SAME_AS = [LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK, G3_BIO]
 
 # Facility addresses: Timberhill from its Setmore booking page; G3 from its Google listing (Oct 2026).
 TAC_PLACE = {"@type": "SportsActivityLocation", "name": "Timberhill Athletic Club", "url": "https://timberhillac.com/",
+             "hasMap": "https://www.google.com/maps/search/?api=1&query=Timberhill+Athletic+Club&query_place_id=ChIJPSGRNnI_wFQR961D-CQzDxg",
              "address": {"@type": "PostalAddress", "streetAddress": "2855 NW 29th St", "addressLocality": "Corvallis", "addressRegion": "OR", "postalCode": "97330", "addressCountry": "US"}}
 G3_PLACE = {"@type": "SportsActivityLocation", "name": "G3 Sports & Fitness", "url": "https://www.gthreesports.com/",
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=G3+Sports+%26+Fitness&query_place_id=ChIJIaXvKtY_wFQRP2aDGqS60kE",
             "telephone": "+1-541-207-3508", "address": {"@type": "PostalAddress", "streetAddress": "5520 NW Highway 99W", "addressLocality": "Corvallis", "addressRegion": "OR", "postalCode": "97330", "addressCountry": "US"}}
 
 PERSON = {
