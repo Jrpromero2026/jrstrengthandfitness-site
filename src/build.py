@@ -142,6 +142,22 @@ REDIRECTS = [
 ]
 
 
+# Share cards for the pages people send most (Oct 17 2026). Same design as the article cards.
+PAGE_CARDS = [
+    ("page-train", "Personal training in Corvallis", "TRAIN WITH JR"),
+    ("page-consult", "Book a free 30-minute consult", "TIMBERHILL OR G3"),
+    ("page-proof", f"{PF.REVIEW_COUNT} client reviews" + (", all five stars" if PF.ALL_FIVE and len(PF.RATED) == PF.REVIEW_COUNT else ""), "CLIENT REVIEWS"),
+    ("page-online", "Online training and nutrition coaching", "ONLINE COACHING"),
+]
+_CARD_FOR = {"/train": "page-train", "/consult": "page-consult", "/proof": "page-proof", "/online-training": "page-online"}
+for _spec in PAGES:
+    _name = _CARD_FOR.get(_spec["path"])
+    if _name:
+        _head = next(h for n, h, _ in PAGE_CARDS if n == _name)
+        _spec.update(og_image=SITE + f"/assets/share/{_name}.jpg", og_image_size=(1200, 630),
+                     og_image_alt=f"{_head}: JR Romero, CSCS")
+
+
 def build_pages():
     if PF.LIVE and not any(k == "proof" for _, _, k in L.NAV):
         L.NAV.insert(3, ("/proof", "Proof", "proof"))
@@ -242,11 +258,22 @@ def build_config():
         "trailingSlash": False,
         # Redirects to other sites stay temporary (307), so changing the target later is never stuck in browser caches.
         "redirects": [{"source": s, "destination": d, "permanent": not d.startswith("http")} for s, d in REDIRECTS],
-        "headers": [{"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=3600, must-revalidate"}]}],
+        "headers": [
+            {"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=3600, must-revalidate"}]},
+            # Basic hardening. No CSP yet: the pages use inline scripts and styles.
+            {"source": "/(.*)", "headers": [
+                {"key": "X-Content-Type-Options", "value": "nosniff"},
+                {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"},
+                {"key": "X-Frame-Options", "value": "SAMEORIGIN"},
+                {"key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()"},
+            ]},
+        ],
     }
     with open(os.path.join(ROOT, "vercel.json"), "w") as fh:
         json.dump(cfg, fh, indent=2)
-    urls = "".join(f"<url><loc>{SITE}{p['path'] if p['path'] != '/' else '/'}</loc></url>"
+    _mod = {f"/notes/{p['slug']}": (p.get("updated_obj") or p["date_obj"]).isoformat() for p in W.ALL}
+    urls = "".join(f"<url><loc>{SITE}{p['path'] if p['path'] != '/' else '/'}</loc>"
+                   + (f"<lastmod>{_mod[p['path']]}</lastmod>" if p["path"] in _mod else "") + "</url>"
                    for p in PAGES if p.get("sitemap", True))
     with open(os.path.join(OUT, "sitemap.xml"), "w") as fh:
         fh.write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
@@ -305,6 +332,6 @@ if __name__ == "__main__":
     if pending and os.environ.get("ALLOW_PENDING") != "1":
         raise SystemExit("A case file still has placeholders JR must fill in: " + ", ".join(pending) + ". Set ALLOW_PENDING=1 only for a preview.")
     import sharecard
-    sharecard.build_all(W.ALL)
+    sharecard.build_all(W.ALL, PAGE_CARDS)
     guard_no_third_party()
     print("built", len(PAGES), "pages ->", OUT)

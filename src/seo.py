@@ -40,6 +40,10 @@ PERSON = {
     "knowsAbout": ["Strength and conditioning", "Personal training", "Hypertrophy training", "Youth athletic development",
                    "Strength training for women", "Online coaching", "Coaching systems and consultations"],
     "homeLocation": {"@type": "Place", "name": "Corvallis, Oregon"},
+    "hasOccupation": [
+        {"@type": "Occupation", "name": "Personal trainer", "occupationLocation": {"@type": "City", "name": "Corvallis, Oregon"}},
+        {"@type": "Occupation", "name": "Strength and conditioning coach", "occupationLocation": {"@type": "City", "name": "Corvallis, Oregon"}},
+    ],
     "sameAs": [u for u in SAME_AS if u != G3_BIO],
 }
 ORG = {
@@ -109,6 +113,16 @@ FAQ = [
     ("How much does online coaching cost?",
      "Essentials is $199 a month, Core is $249 a month and Premium is $319 a month. Three- and six-month terms lower the monthly rate. "
      "Every package includes both training and nutrition coaching."),
+    ("Do you train beginners?",
+     "Yes. Plenty of my clients had never worked with a trainer. We start with technique and a plan you can follow on your own schedule."),
+    ("Can you help me get strong again after an injury?",
+     "Yes. Once rehab is done, I build a plan around the injury that rebuilds strength and confidence, progressed as you’re ready."),
+    ("Do you train high school and college athletes?",
+     "Yes, at G3 Sports &amp; Fitness: strength, speed and conditioning for athletes heading into college sport. Athletes I’ve coached have "
+     "gone on to play at the University of Oregon, the University of Nevada, George Fox, Houston Christian, Saint Anselm and Eastern Illinois."),
+    ("Where are the sessions?",
+     "In person at Timberhill Athletic Club, 2855 NW 29th St, or G3 Sports &amp; Fitness, 5520 NW Highway 99W, both in Corvallis. "
+     "Online coaching works anywhere."),
     ("Who is JR Romero?",
      "JR Romero, CSCS, is Director of Personal Training at Timberhill Athletic Club and Director of Performance at "
      "G3 Sports &amp; Fitness in Corvallis, Oregon. He earned his degree in Exercise &amp; Sport Science at Oregon State and has roughly "
@@ -178,6 +192,8 @@ def llms_txt(projects, posts):
 ## Train with JR
 
 - [Train with JR]({SITE}/train): in-person personal training in Corvallis at Timberhill Athletic Club or G3 Sports & Fitness. Every client starts with a free 30-minute consult; no membership needed.
+- Who JR trains in person: people rebuilding strength after an injury, adults 50 and up, endurance athletes, high school and college athletes (at G3), and first-time lifters.
+- Leave a review: {SITE}/review (Google reviews of the gyms: {SITE}/review/timberhill and {SITE}/review/g3).
 - [Book a free consult]({SITE}/consult): choose Timberhill (health, fitness, longevity) or G3 (youth development, adult performance, tactical and teams).
 - [Online coaching]({SITE}/online-training): individualized training and nutrition. Essentials $199/month, Core $249/month, Premium $319/month; 3- and 6-month terms lower the rate.
 - [Apply for online coaching]({SITE}/apply): JR replies within 2 business days; if it's a fit, a short call, then the coaching app invite.

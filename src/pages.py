@@ -126,7 +126,8 @@ TRAIN_REVIEWS = [r for n in ("Elizabeth C.", "Maria", "Jess") for r in PF.REVIEW
 TRAIN = (
     hero("Train with JR", "Personal training<br>in Corvallis.",
          "I’m JR Romero, CSCS, a personal trainer and strength coach in Corvallis. Every client starts with a free consult at Timberhill Athletic Club or G3 Sports &amp; Fitness. You don’t need to be a member. Not in Corvallis? Apply for online coaching.",
-         f'{CONSULT_BTN}<a class="link-u" href="/online-training">Online coaching →</a>',
+         f'{CONSULT_BTN}<a class="link-u" href="/online-training">Online coaching →</a>'
+         f'<a class="link-u hero-proof" href="/proof">{PF.REVIEW_COUNT} client reviews{", all five stars" if PF.ALL_FIVE and len(PF.RATED) == PF.REVIEW_COUNT else ""} →</a>',
          frame("Photo: consult at TAC or G3"), short=True, size="h-display")
     + sec("light", head_row("How it works", "Consult. Match.<br>Train.",
                             "One coaching standard at both facilities, whoever your coach is.")

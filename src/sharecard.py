@@ -92,7 +92,7 @@ def _fit_headline(title, max_w, max_h):
     return font, _wrap(words, font, max_w)[:5], 41
 
 
-def render(title, photo_path=None, photo_focus=(0.5, 0.16)):
+def render(title, photo_path=None, photo_focus=(0.5, 0.16), tag=TAG_TEXT):
     card = Image.new("RGB", (W, H), BG)
 
     # photo on the right, fading into the black ground
@@ -111,10 +111,10 @@ def render(title, photo_path=None, photo_focus=(0.5, 0.16)):
 
     # red tag
     tf = _font(700, 19)
-    tw = _spaced_width(TAG_TEXT, tf, 0.18)
+    tw = _spaced_width(tag, tf, 0.18)
     top = 60
     d.rectangle((LEFT, top, LEFT + 32 + round(tw), top + 44), fill=RED)
-    _spaced(d, (LEFT + 16, top + 8), TAG_TEXT, tf, (255, 255, 255), 0.18)
+    _spaced(d, (LEFT + 16, top + 8), tag, tf, (255, 255, 255), 0.18)
 
     # logo and byline
     logo = Image.open(LOGO).convert("RGBA")
@@ -138,9 +138,13 @@ def render(title, photo_path=None, photo_focus=(0.5, 0.16)):
     return card
 
 
-def build_all(posts):
+def build_all(posts, pages=()):
+    """pages: (name, headline, tag) for site pages that get their own card (same design, JR's portrait)."""
     os.makedirs(OUT_DIR, exist_ok=True)
     keep = set()
+    for name, headline, tag in pages:
+        render(headline, tag=tag).save(os.path.join(OUT_DIR, name + ".jpg"), "JPEG", quality=86, optimize=True)
+        keep.add(name + ".jpg")
     for p in posts:
         photo = os.path.join(PUBLIC, p["image"].lstrip("/")) if p.get("image") else None
         focus = (0.5, 0.4) if photo else (0.5, 0.16)
