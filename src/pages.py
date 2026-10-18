@@ -68,6 +68,35 @@ HOME = (
 )
 
 # ---------------------------------------------------------------- Train with JR
+# "Who I train" on /train. Every quote is a sentence from that client's review on /proof, word for word,
+# looked up by name so it can't drift from the source. Descriptions describe the work, not outcomes.
+WHO_I_TRAIN = [
+    ("01", "After an injury", "Strength after rehab",
+     "Once rehab is done, a plan built around the injury that rebuilds strength and confidence, progressed as you’re ready.",
+     ("Jen A.", "JR has been instrumental in not only helping me recover safely, but in building strength and confidence beyond where I was before the injury.")),
+    ("02", "Adults 50 and up", "Strong for the decades ahead",
+     "Strength, balance and technique first, matched to your age, condition and goals.",
+     ("Elizabeth C.", "I lost 10 lbs, gained lean muscle, and feel stronger and more confident than ever.")),
+    ("03", "Endurance athletes", "Lifting that fits your season",
+     'Strength work planned around your rides, runs and races, with enough recovery for both. <a class="link-inline" href="/notes/what-happens-when-you-combine-strength-and-endurance-training">What the research says</a>.',
+     ("North", "He understands the difficulties and nuance of combining strength training and endurance training while providing enough recovery.")),
+    ("04", "High school and college athletes", "Ready for the next level",
+     "Strength, speed and conditioning at G3 for athletes heading into college sport.",
+     ("Bella G.", "JR’s training prepared me for training at one of the highest levels mentally and physically.")),
+    ("05", "First-time lifters", "Start with the basics",
+     "Never worked with a trainer? We start with technique and a plan you can follow on your own schedule.",
+     ("Steve", "He’s the first trainer I’ve worked with and wish I had started sooner.")),
+]
+
+
+def _who_quote(item):
+    name, line = item
+    src = next(r for r in PF.REVIEWS if r["name"] == name)
+    text = " ".join(src["text"]) if isinstance(src["text"], list) else src["text"]
+    assert line in text, f"Who I train: quote not found word for word in {name}'s review"
+    note = f", {src['note']}" if src.get("note") else ""
+    return f'<span class="who-q">“{line}” <b>{name}{note}</b></span>'
+
 # Three short reviews for /train (full set on /proof). Picked by name from proof.REVIEWS.
 TRAIN_REVIEWS = [r for n in ("Elizabeth C.", "Maria", "Jess") for r in PF.REVIEWS if r["name"] == n][:3]
 
@@ -83,6 +112,9 @@ TRAIN = (
               ("02", "Match", "The right coach and facility", "I choose the facility, the coach and the program. Sometimes the best coach for you isn’t me."),
               ("03", "Train", "A plan built for you", "You start with a program built around you, held to the same standard at both locations."),
           ]))
+    + sec("gray", head_row("Who I train", "Built around<br>the person.",
+                           "Most of my clients start from one of these places. If you don’t, the consult is where we work it out.")
+          + rows([(n, k, t, d + _who_quote(name)) for n, k, t, d, name in WHO_I_TRAIN]), id="who", label="Who I train")
     + sec("dark", head_row("Where you’ll train", "Two facilities.<br>One standard.",
                            "Families often split: a parent trains at TAC while their kid trains at G3. One consult covers both.")
           + f"""<div class="panel">

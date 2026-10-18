@@ -1010,3 +1010,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2
 @media (max-width: 900px) { .xp-gallery.n2 { display: flex; justify-content: flex-start; gap: 20px; } }
 .xp-legal-foot + .xp-legal-foot { margin-top: 10px; }
 .xp-price .btns .btn { width: 100%; justify-content: center; text-align: center; }
+
+/* /train: Who I train quotes (Oct 17 2026) */
+.who-q { display: block; margin-top: 12px; padding-left: 14px; border-left: 2px solid var(--line); color: var(--fg); font-style: italic; font-weight: 400; }
+.who-q b { display: block; margin-top: 6px; font-style: normal; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
