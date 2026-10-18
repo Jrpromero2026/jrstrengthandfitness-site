@@ -9,6 +9,9 @@ from layout import SITE, EMAIL, LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK, ADDRESS_
 
 OG_IMAGE = f"{SITE}/assets/og-jr-romero.jpg"
 PORTRAIT = f"{SITE}/assets/photos/jr-portrait.webp"
+# Square (1:1) version for Google's search thumbnail, which crops to a square; built by sharecard.render_square.
+SQUARE_IMAGE = f"{SITE}/assets/og-jr-romero-square.jpg"
+LOGO_SQUARE = f"{SITE}/assets/icon-512.png"
 PERSON_ID = f"{SITE}/#jr"
 ORG_ID = f"{SITE}/#org"
 G3_BIO = "https://www.gthreesports.com/coaches/jr-romero"
@@ -25,7 +28,7 @@ G3_PLACE = {"@type": "SportsActivityLocation", "name": "G3 Sports & Fitness", "u
 PERSON = {
     "@type": "Person", "@id": PERSON_ID, "name": "JR Romero", "alternateName": ["JR Romero, CSCS", "JR Prieto-Romero", "JR Prieto-Romero, CSCS"],
     "givenName": "JR", "familyName": "Prieto-Romero",
-    "url": f"{SITE}/about", "image": PORTRAIT,
+    "url": f"{SITE}/about", "image": [SQUARE_IMAGE, PORTRAIT],
     "jobTitle": "Director of Personal Training, Timberhill Athletic Club; Director of Performance, G3 Sports & Fitness",
     "description": "Strength and conditioning coach (CSCS) in Corvallis, Oregon, with roughly 20,000 hours of coaching. "
                    "Builder of The Trainer's Coach Vault, Built For Her, TRAINCND and The Credential Standard.",
@@ -48,7 +51,7 @@ PERSON = {
 }
 ORG = {
     "@type": "Organization", "@id": ORG_ID, "name": "JR Strength and Fitness LLC", "alternateName": "JR Strength & Fitness",
-    "url": SITE + "/", "email": EMAIL, "logo": f"{SITE}/assets/jr-logo.png", "image": OG_IMAGE,
+    "url": SITE + "/", "email": EMAIL, "logo": LOGO_SQUARE, "image": [SQUARE_IMAGE, OG_IMAGE],
     "founder": {"@id": PERSON_ID},
     "address": {"@type": "PostalAddress", "streetAddress": ADDRESS_LINES[1], "addressLocality": "Portland",
                 "addressRegion": "OR", "postalCode": "97239", "addressCountry": "US"},
@@ -64,6 +67,9 @@ def ld(*nodes):
 
 
 SITE_GRAPH = ld(WEBSITE, ORG, PERSON)
+HOME_PAGE = ld({"@type": "WebPage", "@id": f"{SITE}/#home", "url": SITE + "/", "isPartOf": {"@id": f"{SITE}/#site"},
+                "about": {"@id": PERSON_ID}, "primaryImageOfPage": {"@type": "ImageObject", "url": SQUARE_IMAGE, "width": 1200, "height": 1200},
+                "image": [SQUARE_IMAGE, OG_IMAGE]})
 
 
 def breadcrumbs(trail):

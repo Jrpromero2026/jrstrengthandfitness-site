@@ -316,13 +316,25 @@ def build_images():
     bg.convert("RGB").save(os.path.join(ASSETS, "og-image.png"), optimize=True)
 
     # Favicons from the JR mark on black
-    for size, name in ((32, "favicon-32.png"), (180, "apple-touch-icon.png")):
-        tile = Image.new("RGBA", (size, size), (10, 10, 10, 255))
+    # Google wants a favicon that is a multiple of 48px; Bing and older tools ask for /favicon.ico at the root.
+    def tile(size):
+        t = Image.new("RGBA", (size, size), (10, 10, 10, 255))
         pad = int(size * 0.12)
         m = mark.copy()
         m.thumbnail((size - 2 * pad, size - 2 * pad), Image.LANCZOS)
-        tile.alpha_composite(m, ((size - m.width) // 2, (size - m.height) // 2))
-        tile.convert("RGB").save(os.path.join(ASSETS, name), optimize=True)
+        t.alpha_composite(m, ((size - m.width) // 2, (size - m.height) // 2))
+        return t.convert("RGB")
+
+    for size, name in ((32, "favicon-32.png"), (48, "favicon-48.png"), (96, "favicon-96.png"),
+                       (180, "apple-touch-icon.png"), (192, "icon-192.png"), (512, "icon-512.png")):
+        tile(size).save(os.path.join(ASSETS, name), optimize=True)
+    tile(48).save(os.path.join(OUT, "favicon.ico"), sizes=[(16, 16), (32, 32), (48, 48)])
+    tile(180).save(os.path.join(OUT, "apple-touch-icon.png"), optimize=True)
+    with open(os.path.join(OUT, "site.webmanifest"), "w") as fh:
+        json.dump({"name": "JR Strength & Fitness", "short_name": "JR S&F", "start_url": "/", "display": "browser",
+                   "background_color": "#0a0a0a", "theme_color": "#0a0a0a",
+                   "icons": [{"src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png"},
+                             {"src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png"}]}, fh)
 
 
 if __name__ == "__main__":

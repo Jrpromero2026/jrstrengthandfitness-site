@@ -138,7 +138,34 @@ def render(title, photo_path=None, photo_focus=(0.5, 0.16), tag=TAG_TEXT):
     return card
 
 
+SQUARE = os.path.join(PUBLIC, "assets", "og-jr-romero-square.jpg")
+
+
+def render_square(size=1200):
+    """Square image for Google's search thumbnail (it crops to 1:1). JR's portrait fills the frame,
+    face in the upper half, with the logo and byline on a fade at the bottom."""
+    src = Image.open(PORTRAIT).convert("RGB")
+    card = _cover(src, size, size, 0.5, 0.06)
+    fade = Image.new("L", (1, size))
+    start = round(size * 0.68)
+    for y in range(size):
+        fade.putpixel((0, y), 0 if y < start else min(235, round(235 * (y - start) / (size * 0.22))))
+    card.paste(Image.new("RGB", (size, size), BG), (0, 0), fade.resize((size, size)))
+    d = ImageDraw.Draw(card)
+    foot_mid = size - 84
+    logo = Image.open(LOGO).convert("RGBA")
+    lw = 190
+    logo = logo.resize((lw, round(logo.height * lw / logo.width)), Image.LANCZOS)
+    card.paste(logo, (LEFT, foot_mid - logo.height // 2), logo)
+    bx = LEFT + lw + 26
+    d.rectangle((bx, foot_mid - 22, bx + 1, foot_mid + 22), fill=RULE_GREY)
+    bf = _font(600, 26)
+    _spaced(d, (bx + 28, foot_mid - 18), BYLINE, bf, WHITE, 0.12)
+    return card
+
+
 def build_all(posts, pages=()):
+    render_square().save(SQUARE, "JPEG", quality=86, optimize=True)
     """pages: (name, headline, tag) for site pages that get their own card (same design, JR's portrait)."""
     os.makedirs(OUT_DIR, exist_ok=True)
     keep = set()

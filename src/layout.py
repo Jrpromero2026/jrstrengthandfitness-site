@@ -26,12 +26,12 @@ GRAIN = ""
 SCHEMA = """<script type="application/ld+json">{
  "@context":"https://schema.org","@type":"LocalBusiness",
  "name":"JR Strength and Fitness","url":"%s","email":"%s",
- "image":"%s/assets/og-image.png",
+ "image":["%s/assets/og-jr-romero-square.jpg","%s/assets/og-jr-romero.jpg"],"logo":"%s/assets/icon-512.png",
  "founder":{"@type":"Person","name":"JR Romero","jobTitle":"Strength and Conditioning Coach, CSCS"},
  "address":{"@type":"PostalAddress","streetAddress":"5441 S Macadam Ave, Suite 6590","addressLocality":"Portland","addressRegion":"OR","postalCode":"97239","addressCountry":"US"},
  "areaServed":["Corvallis, OR","Online"],
  "sameAs":["%s","%s","%s","%s"]
-}</script>""" % (SITE, EMAIL, SITE, LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK)
+}</script>""" % (SITE, EMAIL, SITE, SITE, SITE, LINKEDIN, INSTAGRAM, YOUTUBE, FACEBOOK)
 
 
 CONSULT = "/consult"
@@ -57,7 +57,7 @@ def closing_cta():
 
 
 from motion import MOTION_JS  # noqa: E402
-from seo import SITE_GRAPH, OG_IMAGE  # noqa: E402
+from seo import SITE_GRAPH, HOME_PAGE, OG_IMAGE  # noqa: E402
 
 
 def page(*, path, title, description, body, active="", schema=False, script="", closing=True, og_type="website", head="", noindex=False, og_image=None, og_image_alt=None, og_image_size=None, **_):
@@ -93,16 +93,19 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <meta name="twitter:description" content="{description}">
 <meta name="twitter:image" content="{og_img}">
 <meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="/assets/favicon-48.png" sizes="48x48" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/assets/fonts/jost-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/jost-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="/assets/styles.css?v={CSS_VER}">
 <script>window.va=window.va||function(){{(window.vaq=window.vaq||[]).push(arguments);}};</script>
 <script defer src="/_vercel/insights/script.js"></script>
-{SITE_GRAPH}
+{SITE_GRAPH}{HOME_PAGE if path == "/" else ""}
 {head}
 </head>
 <body>
