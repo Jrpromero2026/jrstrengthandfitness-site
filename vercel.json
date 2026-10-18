@@ -62,11 +62,6 @@
       "permanent": true
     },
     {
-      "source": "/resources",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/new-gallery",
       "destination": "/",
       "permanent": true

@@ -121,7 +121,7 @@ REDIRECTS = [
     ("/online-coaching", "/online-training"), ("/onlinetraining-1", "/online-training"), ("/programs", "/online-training"),
     ("/train-with-me", "/consult"), ("/contact", "/consult"), ("/waiver", "/terms-of-service"),
     ("/mentorship", "/"), ("/trainer-mentorship", "/"), ("/mentorship-program-application", "/"),
-    ("/resources", "/"), ("/new-gallery", "/"),
+    ("/new-gallery", "/"),
     ("/blog", "/notes"), ("/blog-1", "/notes"),
     # Oct 2026: the articles section moved from /writing to /notes (Notes from the Floor)
     ("/writing", "/notes"), ("/writing/:path*", "/notes/:path*"),
