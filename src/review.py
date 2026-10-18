@@ -14,6 +14,22 @@ import json
 
 from ui import hero, sec
 
+# Google "write a review" links for the two facilities (place IDs from Google Maps, Oct 17 2026).
+# Short, editable addresses on this site point at them: /review/timberhill and /review/g3 (see build.REDIRECTS).
+GOOGLE_REVIEW = {
+    "timberhill": "https://search.google.com/local/writereview?placeid=ChIJPSGRNnI_wFQR961D-CQzDxg",
+    "g3": "https://search.google.com/local/writereview?placeid=ChIJIaXvKtY_wFQRP2aDGqS60kE",
+}
+# Google's rules: ask every client, never only the happy ones, and never offer anything in return.
+GOOGLE_BLOCK = """<div class="split rv-google">
+<div class="main stack" style="gap:16px">
+<span class="eyebrow">Also on Google</span>
+<h2 class="h-md">Train at Timberhill or G3?</h2>
+<p class="lead">A Google review of the gym helps people in Corvallis find good training. If you mention who coached you, they’ll know where to start.</p>
+<div class="btns"><a class="btn btn-line" href="/review/timberhill" rel="noopener" data-track="Google review (Timberhill)">Review Timberhill on Google</a><a class="btn btn-line" href="/review/g3" rel="noopener" data-track="Google review (G3)">Review G3 on Google</a></div>
+</div>
+</div>"""
+
 STARS = "".join(
     f'<input type="radio" id="rv-{n}" name="rating" value="{n}" required>'
     f'<label for="rv-{n}" title="{n} star{"s" if n > 1 else ""}"><span class="sr">{n} star{"s" if n > 1 else ""}</span>'
@@ -26,10 +42,10 @@ AGE = ('<div class="field attest"><label class="choice"><input type="checkbox" n
 MODES = {
     "review": dict(subject="Client review", event="Review submitted",
                    done="Thank you. Your review went straight to me. If you said it’s OK to post, it’ll be on the Proof page soon.",
-                   reply="Thanks for the review. I read every one myself, and I appreciate you taking the time. JR Prieto-Romero, JR Strength &amp; Fitness"),
+                   reply="Thanks for the review. I read every one myself, and I appreciate you taking the time. JR Romero, CSCS, JR Strength &amp; Fitness"),
     "case": dict(subject="Case file submission", event="Case file submitted",
                  done="Thank you for sharing your story. I’ll write a draft and send it to you. Nothing is posted until you approve it.",
-                 reply="Thanks for sharing your story. I’ll write a draft of your case file and send it to you to approve. Nothing goes on the site until you say it’s right. JR Prieto-Romero, JR Strength &amp; Fitness"),
+                 reply="Thanks for sharing your story. I’ll write a draft of your case file and send it to you to approve. Nothing goes on the site until you say it’s right. JR Romero, CSCS, JR Strength &amp; Fitness"),
 }
 R, C = MODES["review"], MODES["case"]
 
@@ -95,6 +111,7 @@ BODY = (
 <div class="form-status" role="status" hidden></div>
 <div class="btns"><button class="btn btn-red" type="submit">Send</button></div>
 </form>""", mark=False)
+    + sec("gray", GOOGLE_BLOCK, mark=False)
 )
 
 SCRIPT = """<script>

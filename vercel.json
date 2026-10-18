@@ -190,6 +190,16 @@
       "source": "/ace-exam-prep",
       "destination": "/projects/vault/ace-cpt-exam-prep",
       "permanent": true
+    },
+    {
+      "source": "/review/timberhill",
+      "destination": "https://search.google.com/local/writereview?placeid=ChIJPSGRNnI_wFQR961D-CQzDxg",
+      "permanent": false
+    },
+    {
+      "source": "/review/g3",
+      "destination": "https://search.google.com/local/writereview?placeid=ChIJIaXvKtY_wFQRP2aDGqS60kE",
+      "permanent": false
     }
   ],
   "headers": [

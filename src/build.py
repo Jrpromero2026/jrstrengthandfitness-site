@@ -137,6 +137,8 @@ REDIRECTS = [
     # Short links to Exam Prep. /exam-prep is now the hub page that lists both exams (Oct 17 2026).
     ("/nasm-cpt-exam-prep", XP.NASM["path"]), ("/nasm-exam-prep", XP.NASM["path"]), ("/projects/exam-prep", XP.HUB),
     ("/ace-cpt-exam-prep", XP.ACE["path"]), ("/ace-exam-prep", XP.ACE["path"]),
+    # Review card QR codes land on /review; these send clients straight to Google's review form for each gym.
+    ("/review/timberhill", RV.GOOGLE_REVIEW["timberhill"]), ("/review/g3", RV.GOOGLE_REVIEW["g3"]),
 ]
 
 
@@ -238,7 +240,8 @@ def build_config():
         "framework": None,
         "cleanUrls": True,
         "trailingSlash": False,
-        "redirects": [{"source": s, "destination": d, "permanent": True} for s, d in REDIRECTS],
+        # Redirects to other sites stay temporary (307), so changing the target later is never stuck in browser caches.
+        "redirects": [{"source": s, "destination": d, "permanent": not d.startswith("http")} for s, d in REDIRECTS],
         "headers": [{"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=3600, must-revalidate"}]}],
     }
     with open(os.path.join(ROOT, "vercel.json"), "w") as fh:

@@ -66,7 +66,7 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 </div>
 </section><section class="sec light"><div class="wrap"><form class="form-card" id="review-form" novalidate data-form="review" data-event="Review submitted" data-done="Thank you. Your review went straight to me. If you said it’s OK to post, it’ll be on the Proof page soon.">
 <input type="hidden" name="_subject" value="Client review">
-<input type="hidden" name="_autoresponse" value="Thanks for the review. I read every one myself, and I appreciate you taking the time. JR Prieto-Romero, JR Strength &amp; Fitness">
+<input type="hidden" name="_autoresponse" value="Thanks for the review. I read every one myself, and I appreciate you taking the time. JR Romero, CSCS, JR Strength &amp; Fitness">
 <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
 
 <fieldset class="field rv-pick">
@@ -121,7 +121,14 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <p class="form-note">See the <a href="/privacy-policy">Privacy Policy</a> for how this is handled.</p>
 <div class="form-status" role="status" hidden></div>
 <div class="btns"><button class="btn btn-red" type="submit">Send</button></div>
-</form></div></section>
+</form></div></section><section class="sec gray"><div class="wrap"><div class="split rv-google">
+<div class="main stack" style="gap:16px">
+<span class="eyebrow">Also on Google</span>
+<h2 class="h-md">Train at Timberhill or G3?</h2>
+<p class="lead">A Google review of the gym helps people in Corvallis find good training. If you mention who coached you, they’ll know where to start.</p>
+<div class="btns"><a class="btn btn-line" href="/review/timberhill" rel="noopener" data-track="Google review (Timberhill)">Review Timberhill on Google</a><a class="btn btn-line" href="/review/g3" rel="noopener" data-track="Google review (G3)">Review G3 on Google</a></div>
+</div>
+</div></div></section>
 </main>
 
 <footer class="site-footer">
@@ -212,7 +219,7 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <script>
 (function(){
   var f=document.getElementById('review-form'); if(!f) return;
-  var M={"review": {"subject": "Client review", "event": "Review submitted", "done": "Thank you. Your review went straight to me. If you said it’s OK to post, it’ll be on the Proof page soon.", "reply": "Thanks for the review. I read every one myself, and I appreciate you taking the time. JR Prieto-Romero, JR Strength & Fitness"}, "case": {"subject": "Case file submission", "event": "Case file submitted", "done": "Thank you for sharing your story. I’ll write a draft and send it to you. Nothing is posted until you approve it.", "reply": "Thanks for sharing your story. I’ll write a draft of your case file and send it to you to approve. Nothing goes on the site until you say it’s right. JR Prieto-Romero, JR Strength & Fitness"}};
+  var M={"review": {"subject": "Client review", "event": "Review submitted", "done": "Thank you. Your review went straight to me. If you said it’s OK to post, it’ll be on the Proof page soon.", "reply": "Thanks for the review. I read every one myself, and I appreciate you taking the time. JR Romero, CSCS, JR Strength & Fitness"}, "case": {"subject": "Case file submission", "event": "Case file submitted", "done": "Thank you for sharing your story. I’ll write a draft and send it to you. Nothing is posted until you approve it.", "reply": "Thanks for sharing your story. I’ll write a draft of your case file and send it to you to approve. Nothing goes on the site until you say it’s right. JR Romero, CSCS, JR Strength & Fitness"}};
   var secs=f.querySelectorAll('.rv-sec');
   function set(kind){
     secs.forEach(function(s){ var on=s.getAttribute('data-mode')===kind; s.hidden=!on; s.disabled=!on; });
