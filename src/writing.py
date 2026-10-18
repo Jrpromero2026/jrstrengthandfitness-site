@@ -48,6 +48,7 @@ from email.utils import format_datetime
 from layout import VAULT, LINKEDIN, CONSULT, SITE
 from ui import hero, sec, head_row, _lines
 import newsletter as NL
+import resources as RS
 import sharecard
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -447,6 +448,7 @@ def post_body(p):
 <div class="prose post-body">
 {p["body_html"]}
 </div>
+{RS.article_box(p["slug"])}
 {audience_cta(p["audience"])}
 {refs}
 <p class="post-topic"><a class="pill" href="/notes?topic={p["topic"]}">More on {html.escape(p["category"])}</a></p>

@@ -14,6 +14,7 @@ import proof as PF  # noqa: E402
 import review as RV  # noqa: E402
 import layout as L  # noqa: E402
 import examprep as XP  # noqa: E402
+import resources as RS  # noqa: E402
 from PIL import Image, ImageDraw, ImageFilter  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -142,6 +143,7 @@ REDIRECTS = [
     # Review card QR codes land on /review; these send clients straight to Google's review form for each gym.
     ("/review/timberhill", RV.GOOGLE_REVIEW["timberhill"]), ("/review/g3", RV.GOOGLE_REVIEW["g3"]),
 ]
+PAGES += RS.PAGES
 
 
 # Share cards for the pages people send most (Oct 17 2026). Same design as the article cards.
@@ -168,7 +170,8 @@ def build_pages():
                     description=spec["description"].replace("&", "&amp;"), body=spec["body"],
                     active=spec["active"], schema=spec.get("schema", False),
                     script=spec.get("script", "") + (NL.SCRIPT if "data-newsletter" in spec["body"] else "")
-                    + (PR.VAULT_STATS_SCRIPT if "data-vault-stat" in spec["body"] else ""), closing=spec.get("closing", True),
+                    + (PR.VAULT_STATS_SCRIPT if "data-vault-stat" in spec["body"] else "")
+                    + (RS.SCRIPT if "rs-form" in spec["body"] else ""), closing=spec.get("closing", True),
                     og_type=spec.get("og_type", "website"), head=spec.get("head", ""), noindex=spec.get("noindex", False),
                     og_image=spec.get("og_image"), og_image_alt=spec.get("og_image_alt"), og_image_size=spec.get("og_image_size"))
         os.makedirs(os.path.dirname(os.path.join(OUT, spec["file"])), exist_ok=True)

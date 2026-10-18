@@ -26,6 +26,13 @@ Marketing page only: checkout, accounts and the app live in the Vault. Every buy
 uses a banned claim (official, guarantee, real/leaked questions, pass rates). Short links: /exam-prep,
 /nasm-cpt-exam-prep.
 
+## Free resources (/resources)
+
+Lead magnets live in `src/resources.py`: the /resources hub, one landing page per resource and a thanks page with the
+download. PDFs are in `public/resources/`, page images in `public/assets/resources/`. Each resource needs a Kit form ID
+(`kit_form`); until it's filled in, requests are emailed to JR through FormSubmit and the visitor still gets the download.
+The Kit setup steps are at the top of `src/resources.py`. A matching resource box appears at the end of its article.
+
 ## Build locally
     pip install pillow
     python3 src/build.py

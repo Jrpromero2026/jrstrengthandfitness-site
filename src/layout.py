@@ -158,6 +158,7 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <a href="{FACEBOOK}">Facebook</a>
 <a href="/notes">Notes from the Floor</a>
 <a href="/newsletter">Newsletter</a>
+<a href="/resources">Free resources</a>
 </nav>
 </div>
 <div class="wrap legal">
