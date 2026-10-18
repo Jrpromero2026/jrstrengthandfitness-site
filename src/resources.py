@@ -197,7 +197,7 @@ PAGES = (
             og_image_alt=f"Cover of {r['title']}", og_image_size=(600, 776))
        for r in LIVE]
     + [dict(path=path(r) + "/thanks", file=path(r).lstrip("/") + "/thanks.html", active="", sitemap=False, noindex=True,
-            title=f"Your {r['title']} | JR Strength & Fitness", description="Your download is ready.", body=thanks_body(r))
+            title=f"{r['title']}: Your Download | JR Strength & Fitness", description="Your download is ready.", body=thanks_body(r))
        for r in LIVE]
 )
 
