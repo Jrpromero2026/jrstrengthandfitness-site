@@ -37,6 +37,9 @@ REVIEWS = [
     dict(name="Cath K.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
          text="I have been working with JR for one year, I wanted to increase my overall strength but was nervous about injury. He listened to me and started me on a program that I could manage. I have become stronger, which has really helped in many aspects of my life, and I have really appreciated JR's input, I ask him questions when we meet, and he makes suggestions on how to tweak what I am doing.\n\n"
               "I enjoy my time with him, and admire his breadth of knowledge, plus he is fun."),
+    # From /review (FormSubmit, 2026-10-17). John didn't tick publish_ok; JR approved posting it (2026-10-18). Text as submitted.
+    dict(name="John C.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
+         text="JR has my wife and I on great programs. It has really helped our overall fitness"),
     # From /review (FormSubmit, 2026-10-16). Client ticked publish_ok; text as submitted.
     dict(name="Talia S.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
          text="JR is excellent! I have seen so much progress in the time I have been working with him. I'm stronger than I have ever been. JR takes the time to understand my needs and goals. Training with him has been a wonderful experience."),
