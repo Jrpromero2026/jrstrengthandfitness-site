@@ -11,6 +11,8 @@ import writing as W  # noqa: E402
 import newsletter as NL  # noqa: E402
 import seo as S  # noqa: E402
 import proof as PF  # noqa: E402
+
+INDEXNOW_KEY = "56104907287d3a6e9553e37ffe6a0415"
 import review as RV  # noqa: E402
 import layout as L  # noqa: E402
 import examprep as XP  # noqa: E402
@@ -284,6 +286,10 @@ def build_config():
         fh.write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     with open(os.path.join(OUT, "robots.txt"), "w") as fh:
         fh.write(S.robots_txt())
+    # IndexNow (Bing, Yandex, Seznam, Naver): the key file proves the site owns the key used to ping
+    # https://api.indexnow.org/indexnow when pages change. Set up Oct 18 2026. Do not change the key.
+    with open(os.path.join(OUT, INDEXNOW_KEY + ".txt"), "w") as fh:
+        fh.write(INDEXNOW_KEY)
     with open(os.path.join(OUT, "llms.txt"), "w") as fh:
         fh.write(S.llms_txt(PR.PROJECTS, W.POSTS))
     with open(os.path.join(OUT, "notes", "feed.xml"), "w", encoding="utf-8") as fh:
