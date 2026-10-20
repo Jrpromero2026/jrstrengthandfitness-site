@@ -16,7 +16,7 @@ I'm Director of Personal Training at Timberhill Athletic Club and Director of Pe
 
 There's no single rate. You might be looking at individual sessions, session packages, small-group training, hybrid coaching, or a bigger arrangement that includes programming and regular check-ins.
 
-Here's a real local example instead of a made-up average. As of October 2026, G3 Sports & Fitness lists a single 60-minute personal training session at $70. Eight 60-minute sessions are $528, which works out to $66 a session, and 20 sessions are $1,200, or $60 a session. G3 also lists hybrid training at $225 a month, which includes one 60-minute check-in session a month, nutrition coaching and access to the training app.
+Here's a real local example instead of a made-up average. As of October 2026, G3 Sports & Fitness lists a single 60-minute personal training session at $70. Eight 60-minute sessions are $528, which works out to $66 a session, and 20 sessions are $1,200, or $60 a session. G3's hybrid training, which pairs its training app and nutrition coaching with 60-minute check-ins, is $225 a month with one check-in, $291 with two, and $419 with a check-in every week.
 
 That's one facility, not a market average, and prices and what's included can change. Check the current offer before you buy.
 
