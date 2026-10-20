@@ -2,7 +2,7 @@
 
 SITE = "https://www.jrstrengthandfitness.com"
 EMAIL = "jr@jrstrengthandfitness.com"
-LINKEDIN = "https://www.linkedin.com/in/jr-prieto-romero-cscs-33850a126/"
+LINKEDIN = "https://www.linkedin.com/in/jr-romero-cscs-33850a126/"
 INSTAGRAM = "https://www.instagram.com/jrstrengthandfitness/"
 YOUTUBE = "https://www.youtube.com/channel/UC3gQzznf26wawqKAFj_yuzQ"
 FACEBOOK = "https://www.facebook.com/jrstrengthandfitness"
