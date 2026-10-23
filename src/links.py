@@ -3,20 +3,22 @@
 Not in the main nav and noindex: it exists for the bio link only, so Search keeps sending people to the real pages.
 Bio link: https://www.jrstrengthandfitness.com/links?utm_source=ig&utm_medium=social&utm_content=link_in_bio
 
-Layout: full-bleed photo of JR with his name, the Sunday email, then three groups of tiles. Each group is built
-differently: training is two text tiles, the free downloads show their real covers, the coach tools show their
-real screens. Only real offers and facts from the rest of the site; when an offer changes there, change it here.
+Layout: full-bleed photo of JR with his name, the Sunday email, two training tiles, then branded cards for the
+free resources and projects. Each card carries its own brand (JRSF red, or the Vault's gold and lockup), the real
+cover or screen, and reads in one order: name, what it is, price and format, action. Only real offers and facts from the rest of the site; when an offer changes there, change it here.
 """
 import os
+import re
 from PIL import Image
 
 import layout as L
 import examprep as XP
+from projects import VAULT_LOCKUP
 
-# source (under public/assets) -> crop box in source pixels. Output is 4:5, never upscaled.
+# source (under public/assets) -> crop box in source pixels (None = whole image). Never upscaled.
 PICS = {
-    "audit": ("resources/training-progress-audit-p1.webp", (0, 0, 600, 750)),
-    "guide": ("resources/program-troubleshooting-field-guide-p1.webp", (0, 0, 600, 750)),
+    "audit": ("resources/training-progress-audit-p1.webp", None),
+    "guide": ("resources/program-troubleshooting-field-guide-p1.webp", None),
     "vault": ("vault/home-body.webp", (0, 0, 585, 731)),
     "exam": ("exam-prep/question.webp", (0, 0, 640, 800)),
 }
@@ -26,7 +28,9 @@ def build_thumbs(assets):
     out = os.path.join(assets, "links")
     os.makedirs(out, exist_ok=True)
     for key, (src, box) in PICS.items():
-        im = Image.open(os.path.join(assets, src)).convert("RGB").crop(box)
+        im = Image.open(os.path.join(assets, src)).convert("RGB")
+        if box:
+            im = im.crop(box)
         im.save(os.path.join(out, f"{key}.webp"), "WEBP", quality=86)
     for old in ("consult", "online"):  # used by an earlier draft
         p = os.path.join(out, f"{old}.webp")
@@ -39,11 +43,28 @@ def text_tile(href, title, desc, act, track):
             f'<b>{title}</b><span>{desc}</span><em>{act}</em></a>')
 
 
-def pic_tile(href, pic, alt, title, desc, ext=False):
+# Brand marks. JRSF uses its own logo file; Vault products use the Vault's header lockup (same build as projects.py).
+BRAND = {
+    "jrsf": '<img class="lk-jrsf" src="/assets/jr-logo.svg" alt="JR Strength &amp; Fitness" width="845" height="268">',
+    "vault": VAULT_LOCKUP,
+    "exam": VAULT_LOCKUP.replace('<span class="v-vault">Vault</span>', '<span class="v-vault">Exam Prep</span>'),
+}
+
+
+def card(href, brand, pic, alt, title, desc, price, fmt, cta, ext=False, track=None):
     rel = ' rel="noopener"' if ext else ""
-    return (f'<a class="lk-tile lk-p" href="{href}"{rel} data-track="{title} (links)">'
-            f'<img src="/assets/links/{pic}.webp" alt="{alt}" width="600" height="750" loading="lazy">'
-            f'<b>{title}</b><span>{desc}</span></a>')
+    skin = "j" if brand == "jrsf" else "v"
+    w, h = {"audit": (600, 776), "guide": (600, 776), "vault": (585, 731), "exam": (640, 800)}[pic]
+    track = track or re.sub(r"<[^>]+>|&shy;", "", title).replace("&amp;", "&")
+    return (f'<a class="lk-card {skin}" href="{href}"{rel} data-track="{track} (links)">'
+            f'<span class="lk-brand">{BRAND[brand]}</span>'
+            f'<span class="lk-cbody"><img src="/assets/links/{pic}.webp" alt="{alt}" width="{w}" height="{h}" loading="lazy">'
+            f'<span class="lk-ctxt"><b class="t">{title}</b><span class="d">{desc}</span>'
+            f'<span class="m"><strong>{price}</strong> · {fmt}</span><em class="c">{cta}</em></span></span></a>')
+
+
+def cards(title, *items):
+    return f'<section class="lk-group" aria-label="{title}"><h2>{title}</h2><div class="lk-cards">{"".join(items)}</div></section>'
 
 
 def group(title, *tiles):
@@ -110,11 +131,36 @@ body.lk-page { --ground: #0a0a0a; --step: #151515; --step2: #222; --ink: #F6F6F6
 .lk-t { padding: 18px 16px 16px; gap: 8px; min-height: 196px; }
 .lk-t em { margin-top: auto; padding-top: 10px; font-style: normal; font-weight: 600; font-size: 15px; align-self: flex-start;
   text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 5px; }
-.lk-p { overflow: hidden; }
-.lk-p img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 0; display: block; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
-.lk-p:hover img { transform: scale(1.03); }
-.lk-p b { padding: 14px 14px 0; }
-.lk-p span { padding: 6px 14px 16px; }
+
+/* Resource and project cards: brand mark, then the real cover or screen beside name > what > price > action */
+.lk-cards { display: grid; gap: 10px; }
+.lk-card { position: relative; display: block; overflow: hidden; padding: 16px 16px 18px; background: var(--step); color: var(--ink); transition: background .15s, transform .15s; }
+.lk-card:hover { background: #1c1c1c; }
+.lk-card:active { transform: scale(.99); }
+.lk-brand { display: flex; align-items: center; min-height: 34px; margin-bottom: 14px; }
+.lk-jrsf { width: 92px; height: auto; display: block; }
+.lk-card .v-lockup { display: inline-flex; align-items: center; gap: 9px; }
+.lk-card .v-lockup img { width: 30px; height: auto; }
+.lk-card .v-stack { display: flex; flex-direction: column; gap: 2px; }
+.lk-card .v-brand { font-family: "Inter", sans-serif; font-weight: 600; font-size: 8px; letter-spacing: .2em; text-transform: uppercase; color: #C9A24B; }
+.lk-card .v-name { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 11px; text-transform: uppercase; color: #CFCFCB; line-height: 1; }
+.lk-card .v-vault { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 17px; text-transform: uppercase; color: #C9A24B; line-height: .95; }
+.lk-cbody { display: grid; grid-template-columns: 108px 1fr; gap: 16px; align-items: start; }
+.lk-cbody img { width: 100%; height: auto; display: block; outline: 1px solid rgba(255,255,255,.14); outline-offset: -1px; }
+.lk-ctxt { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.lk-ctxt .t { font-weight: 800; font-size: 20px; line-height: 1.05; text-transform: uppercase; letter-spacing: .01em; hyphens: manual; }
+.lk-ctxt .nw { white-space: nowrap; }
+.lk-ctxt .d { font-size: 15px; line-height: 1.45; color: var(--soft); }
+.lk-ctxt .m { margin-top: 4px; font-size: 15px; color: var(--soft); }
+.lk-ctxt .m strong { font-weight: 700; color: #FF6B70; }
+.lk-ctxt .c { margin-top: 6px; align-self: flex-start; font-style: normal; font-weight: 600; font-size: 15px;
+  text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 5px; }
+/* Vault products: the Vault's own card (#141414, #262626 edge, gold folded corner, gold accents) */
+.lk-card.v { background: #141414; box-shadow: inset 0 0 0 1px #262626; }
+.lk-card.v:hover { background: #181818; }
+.lk-card.v::after { content: ""; position: absolute; top: 0; right: 0; width: 46px; height: 46px; background: linear-gradient(225deg, #C9A24B 0%, #C9A24B 48%, rgba(0,0,0,0) 48%); opacity: .3; pointer-events: none; }
+.lk-card.v .m strong { color: #C9A24B; }
+.lk-card.v .c { text-decoration-color: #C9A24B; }
 
 .lk-full { display: block; margin-top: 44px; padding: 22px 20px; background: var(--step); }
 .lk-full b { display: block; font-weight: 700; font-size: 18px; }
@@ -136,6 +182,10 @@ body.lk-page { --ground: #0a0a0a; --step: #151515; --step2: #222; --ink: #F6F6F6
   .lk-col { padding: 64px 56px 48px; margin: 0; max-width: 640px; }
   .lk-nl { margin-top: 0; padding: 32px 28px 26px; }
   .lk-nl h2 { font-size: 44px; }
+  .lk-card { padding: 20px 20px 22px; }
+  .lk-cbody { grid-template-columns: 150px 1fr; gap: 22px; }
+  .lk-ctxt .t { font-size: 24px; hyphens: none; }
+  .lk-ctxt .d, .lk-ctxt .m, .lk-ctxt .c { font-size: 16px; }
 }
 
 /* Motion: content is visible without it; html.m is set only when it can finish and isn't unwanted */
@@ -148,8 +198,8 @@ html.m .lk-up { opacity: 0; transform: translateY(22px); transition: opacity .6s
 html.m .lk-up.in { opacity: 1; transform: none; }
 .btn:active { transform: scale(.98); }
 @media (prefers-reduced-motion: reduce) {
-  .lk-tile, .lk-p img, .lk-lane span { transition: none; }
-  .lk-tile:active, .lk-p:hover img, .lk-lane:active span, .btn:active { transform: none; }
+  .lk-tile, .lk-card, .lk-lane span { transition: none; }
+  .lk-tile:active, .lk-card:active, .lk-lane:active span, .btn:active { transform: none; }
 }
 </style>"""
 
@@ -157,11 +207,11 @@ SCRIPT = """<script>
 (function(){
   var root=document.documentElement; if(!root.classList.contains('m')) return;
   /* Groups rise in as they arrive, tiles one after another. */
-  var ups=[].slice.call(document.querySelectorAll('.lk-nl, .lk-group h2, .lk-tile, .lk-full'))
+  var ups=[].slice.call(document.querySelectorAll('.lk-nl, .lk-group h2, .lk-tile, .lk-card, .lk-full'))
     .filter(function(el){ return el.getBoundingClientRect().top > innerHeight*0.92; });
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return;
     var el=e.target, i=[].indexOf.call(el.parentNode.children, el);
-    el.style.transitionDelay=(el.classList.contains('lk-tile')? i*80 : 0)+'ms'; el.classList.add('in'); io.unobserve(el); }); },{rootMargin:'0px 0px -6% 0px'});
+    el.style.transitionDelay=(el.classList.contains('lk-tile')||el.classList.contains('lk-card')? i*80 : 0)+'ms'; el.classList.add('in'); io.unobserve(el); }); },{rootMargin:'0px 0px -6% 0px'});
   ups.forEach(function(el){ el.classList.add('lk-up'); io.observe(el); });
 })();
 </script>"""
@@ -194,16 +244,20 @@ def body():
 {group("Train with me",
     text_tile(L.CONSULT, "Free consult", "30 minutes, in person at Timberhill or G3 in Corvallis.", "Book a time", "Book a free consult"),
     text_tile("/online-training", "Online coaching", "Training and nutrition coaching, wherever you are.", "Apply", "Online coaching"))}
-{group("Free downloads",
-    pic_tile("/resources/training-progress-audit", "audit", "Cover of the Training Progress Audit",
-             "Training Progress Audit", "For when your progress stalls."),
-    pic_tile("/resources/program-troubleshooting-field-guide", "guide", "Cover of the Program Troubleshooting Field Guide",
-             "The Field Guide", "For coaches with a stalled client."))}
-{group("For coaches",
-    pic_tile(L.VAULT, "vault", "The Trainer’s Coach Vault home screen",
-             "The Trainer’s Coach Vault", "Systems and tools for trainers. Free account.", ext=True),
-    pic_tile(XP.HUB, "exam", "A practice question in the exam prep app",
-             "CPT exam prep", f"NASM and ACE practice. ${XP.OFFER['price']} for {XP.OFFER['days']} days."))}
+{cards("Free resources",
+    card("/resources/training-progress-audit", "jrsf", "audit", "Cover of the Training Progress Audit",
+         "Training Progress Audit", "Six short worksheets for when your progress stalls. Work out what happened before you change the plan.",
+         "Free", "PDF, 7 pages", "Get the audit"),
+    card("/resources/program-troubleshooting-field-guide", "vault", "guide", "Cover of the Program Troubleshooting Field Guide",
+         "Program Trouble&shy;shooting Field Guide", "For coaches: the review I run before changing a stalled client’s program.",
+         "Free", "PDF, 8 pages", "Get the Field Guide"))}
+{cards("Projects",
+    card(L.VAULT, "vault", "vault", "The Trainer’s Coach Vault home screen",
+         "Resources. Systems. Standards.", "The library I built for professional trainers and coaches: systems, methods and tools from real coaching practice.",
+         "Free", "account", "Open the Vault", ext=True, track="The Trainer’s Coach Vault"),
+    card(XP.HUB, "exam", "exam", "A practice question in the exam prep app",
+         "<span class=nw>NASM-CPT</span> &amp; <span class=nw>ACE-CPT</span>", "Independent exam practice: original questions, timed mocks and concept cards, on your phone.",
+         f"${XP.OFFER['price']}", f"{XP.OFFER['days']} days", "See exam prep", track="Exam prep"))}
 <a class="lk-full" href="/"><b>Visit the full site</b><span>My writing, what I’m building and how I coach.</span></a>
 <footer class="lk-foot">
 <a href="/notes">Articles</a><a href="{L.INSTAGRAM}" rel="noopener">Instagram</a><a href="{L.YOUTUBE}" rel="noopener">YouTube</a><a href="{L.LINKEDIN}" rel="noopener">LinkedIn</a><a href="{L.FACEBOOK}" rel="noopener">Facebook</a><a href="mailto:{L.EMAIL}">Email</a>

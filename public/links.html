@@ -90,11 +90,36 @@ body.lk-page { --ground: #0a0a0a; --step: #151515; --step2: #222; --ink: #F6F6F6
 .lk-t { padding: 18px 16px 16px; gap: 8px; min-height: 196px; }
 .lk-t em { margin-top: auto; padding-top: 10px; font-style: normal; font-weight: 600; font-size: 15px; align-self: flex-start;
   text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 5px; }
-.lk-p { overflow: hidden; }
-.lk-p img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 0; display: block; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
-.lk-p:hover img { transform: scale(1.03); }
-.lk-p b { padding: 14px 14px 0; }
-.lk-p span { padding: 6px 14px 16px; }
+
+/* Resource and project cards: brand mark, then the real cover or screen beside name > what > price > action */
+.lk-cards { display: grid; gap: 10px; }
+.lk-card { position: relative; display: block; overflow: hidden; padding: 16px 16px 18px; background: var(--step); color: var(--ink); transition: background .15s, transform .15s; }
+.lk-card:hover { background: #1c1c1c; }
+.lk-card:active { transform: scale(.99); }
+.lk-brand { display: flex; align-items: center; min-height: 34px; margin-bottom: 14px; }
+.lk-jrsf { width: 92px; height: auto; display: block; }
+.lk-card .v-lockup { display: inline-flex; align-items: center; gap: 9px; }
+.lk-card .v-lockup img { width: 30px; height: auto; }
+.lk-card .v-stack { display: flex; flex-direction: column; gap: 2px; }
+.lk-card .v-brand { font-family: "Inter", sans-serif; font-weight: 600; font-size: 8px; letter-spacing: .2em; text-transform: uppercase; color: #C9A24B; }
+.lk-card .v-name { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 11px; text-transform: uppercase; color: #CFCFCB; line-height: 1; }
+.lk-card .v-vault { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 17px; text-transform: uppercase; color: #C9A24B; line-height: .95; }
+.lk-cbody { display: grid; grid-template-columns: 108px 1fr; gap: 16px; align-items: start; }
+.lk-cbody img { width: 100%; height: auto; display: block; outline: 1px solid rgba(255,255,255,.14); outline-offset: -1px; }
+.lk-ctxt { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.lk-ctxt .t { font-weight: 800; font-size: 20px; line-height: 1.05; text-transform: uppercase; letter-spacing: .01em; hyphens: manual; }
+.lk-ctxt .nw { white-space: nowrap; }
+.lk-ctxt .d { font-size: 15px; line-height: 1.45; color: var(--soft); }
+.lk-ctxt .m { margin-top: 4px; font-size: 15px; color: var(--soft); }
+.lk-ctxt .m strong { font-weight: 700; color: #FF6B70; }
+.lk-ctxt .c { margin-top: 6px; align-self: flex-start; font-style: normal; font-weight: 600; font-size: 15px;
+  text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 5px; }
+/* Vault products: the Vault's own card (#141414, #262626 edge, gold folded corner, gold accents) */
+.lk-card.v { background: #141414; box-shadow: inset 0 0 0 1px #262626; }
+.lk-card.v:hover { background: #181818; }
+.lk-card.v::after { content: ""; position: absolute; top: 0; right: 0; width: 46px; height: 46px; background: linear-gradient(225deg, #C9A24B 0%, #C9A24B 48%, rgba(0,0,0,0) 48%); opacity: .3; pointer-events: none; }
+.lk-card.v .m strong { color: #C9A24B; }
+.lk-card.v .c { text-decoration-color: #C9A24B; }
 
 .lk-full { display: block; margin-top: 44px; padding: 22px 20px; background: var(--step); }
 .lk-full b { display: block; font-weight: 700; font-size: 18px; }
@@ -116,6 +141,10 @@ body.lk-page { --ground: #0a0a0a; --step: #151515; --step2: #222; --ink: #F6F6F6
   .lk-col { padding: 64px 56px 48px; margin: 0; max-width: 640px; }
   .lk-nl { margin-top: 0; padding: 32px 28px 26px; }
   .lk-nl h2 { font-size: 44px; }
+  .lk-card { padding: 20px 20px 22px; }
+  .lk-cbody { grid-template-columns: 150px 1fr; gap: 22px; }
+  .lk-ctxt .t { font-size: 24px; hyphens: none; }
+  .lk-ctxt .d, .lk-ctxt .m, .lk-ctxt .c { font-size: 16px; }
 }
 
 /* Motion: content is visible without it; html.m is set only when it can finish and isn't unwanted */
@@ -128,8 +157,8 @@ html.m .lk-up { opacity: 0; transform: translateY(22px); transition: opacity .6s
 html.m .lk-up.in { opacity: 1; transform: none; }
 .btn:active { transform: scale(.98); }
 @media (prefers-reduced-motion: reduce) {
-  .lk-tile, .lk-p img, .lk-lane span { transition: none; }
-  .lk-tile:active, .lk-p:hover img, .lk-lane:active span, .btn:active { transform: none; }
+  .lk-tile, .lk-card, .lk-lane span { transition: none; }
+  .lk-tile:active, .lk-card:active, .lk-lane:active span, .btn:active { transform: none; }
 }
 </style>
 </head>
@@ -160,8 +189,8 @@ html.m .lk-up.in { opacity: 1; transform: none; }
 </form>
 </section>
 <section class="lk-group" aria-label="Train with me"><h2>Train with me</h2><div class="lk-tiles"><a class="lk-tile lk-t" href="/consult" data-track="Book a free consult (links)"><b>Free consult</b><span>30 minutes, in person at Timberhill or G3 in Corvallis.</span><em>Book a time</em></a><a class="lk-tile lk-t" href="/online-training" data-track="Online coaching (links)"><b>Online coaching</b><span>Training and nutrition coaching, wherever you are.</span><em>Apply</em></a></div></section>
-<section class="lk-group" aria-label="Free downloads"><h2>Free downloads</h2><div class="lk-tiles"><a class="lk-tile lk-p" href="/resources/training-progress-audit" data-track="Training Progress Audit (links)"><img src="/assets/links/audit.webp" alt="Cover of the Training Progress Audit" width="600" height="750" loading="lazy"><b>Training Progress Audit</b><span>For when your progress stalls.</span></a><a class="lk-tile lk-p" href="/resources/program-troubleshooting-field-guide" data-track="The Field Guide (links)"><img src="/assets/links/guide.webp" alt="Cover of the Program Troubleshooting Field Guide" width="600" height="750" loading="lazy"><b>The Field Guide</b><span>For coaches with a stalled client.</span></a></div></section>
-<section class="lk-group" aria-label="For coaches"><h2>For coaches</h2><div class="lk-tiles"><a class="lk-tile lk-p" href="https://vault.jrstrengthandfitness.com" rel="noopener" data-track="The Trainer’s Coach Vault (links)"><img src="/assets/links/vault.webp" alt="The Trainer’s Coach Vault home screen" width="600" height="750" loading="lazy"><b>The Trainer’s Coach Vault</b><span>Systems and tools for trainers. Free account.</span></a><a class="lk-tile lk-p" href="/exam-prep" data-track="CPT exam prep (links)"><img src="/assets/links/exam.webp" alt="A practice question in the exam prep app" width="600" height="750" loading="lazy"><b>CPT exam prep</b><span>NASM and ACE practice. $79 for 180 days.</span></a></div></section>
+<section class="lk-group" aria-label="Free resources"><h2>Free resources</h2><div class="lk-cards"><a class="lk-card j" href="/resources/training-progress-audit" data-track="Training Progress Audit (links)"><span class="lk-brand"><img class="lk-jrsf" src="/assets/jr-logo.svg" alt="JR Strength &amp; Fitness" width="845" height="268"></span><span class="lk-cbody"><img src="/assets/links/audit.webp" alt="Cover of the Training Progress Audit" width="600" height="776" loading="lazy"><span class="lk-ctxt"><b class="t">Training Progress Audit</b><span class="d">Six short worksheets for when your progress stalls. Work out what happened before you change the plan.</span><span class="m"><strong>Free</strong> · PDF, 7 pages</span><em class="c">Get the audit</em></span></span></a><a class="lk-card v" href="/resources/program-troubleshooting-field-guide" data-track="Program Troubleshooting Field Guide (links)"><span class="lk-brand"><span class="v-lockup"><img src="/assets/jr-mark.svg" alt="" width="42" height="38"><span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span><span class="v-name">The Trainer’s Coach</span><span class="v-vault">Vault</span></span></span></span><span class="lk-cbody"><img src="/assets/links/guide.webp" alt="Cover of the Program Troubleshooting Field Guide" width="600" height="776" loading="lazy"><span class="lk-ctxt"><b class="t">Program Trouble&shy;shooting Field Guide</b><span class="d">For coaches: the review I run before changing a stalled client’s program.</span><span class="m"><strong>Free</strong> · PDF, 8 pages</span><em class="c">Get the Field Guide</em></span></span></a></div></section>
+<section class="lk-group" aria-label="Projects"><h2>Projects</h2><div class="lk-cards"><a class="lk-card v" href="https://vault.jrstrengthandfitness.com" rel="noopener" data-track="The Trainer’s Coach Vault (links)"><span class="lk-brand"><span class="v-lockup"><img src="/assets/jr-mark.svg" alt="" width="42" height="38"><span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span><span class="v-name">The Trainer’s Coach</span><span class="v-vault">Vault</span></span></span></span><span class="lk-cbody"><img src="/assets/links/vault.webp" alt="The Trainer’s Coach Vault home screen" width="585" height="731" loading="lazy"><span class="lk-ctxt"><b class="t">Resources. Systems. Standards.</b><span class="d">The library I built for professional trainers and coaches: systems, methods and tools from real coaching practice.</span><span class="m"><strong>Free</strong> · account</span><em class="c">Open the Vault</em></span></span></a><a class="lk-card v" href="/exam-prep" data-track="Exam prep (links)"><span class="lk-brand"><span class="v-lockup"><img src="/assets/jr-mark.svg" alt="" width="42" height="38"><span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span><span class="v-name">The Trainer’s Coach</span><span class="v-vault">Exam Prep</span></span></span></span><span class="lk-cbody"><img src="/assets/links/exam.webp" alt="A practice question in the exam prep app" width="640" height="800" loading="lazy"><span class="lk-ctxt"><b class="t"><span class=nw>NASM-CPT</span> &amp; <span class=nw>ACE-CPT</span></b><span class="d">Independent exam practice: original questions, timed mocks and concept cards, on your phone.</span><span class="m"><strong>$79</strong> · 180 days</span><em class="c">See exam prep</em></span></span></a></div></section>
 <a class="lk-full" href="/"><b>Visit the full site</b><span>My writing, what I’m building and how I coach.</span></a>
 <footer class="lk-foot">
 <a href="/notes">Articles</a><a href="https://www.instagram.com/jrstrengthandfitness/" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UC3gQzznf26wawqKAFj_yuzQ" rel="noopener">YouTube</a><a href="https://www.linkedin.com/in/jr-romero-cscs-33850a126/" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/jrstrengthandfitness" rel="noopener">Facebook</a><a href="mailto:jr@jrstrengthandfitness.com">Email</a>
@@ -213,11 +242,11 @@ html.m .lk-up.in { opacity: 1; transform: none; }
 (function(){
   var root=document.documentElement; if(!root.classList.contains('m')) return;
   /* Groups rise in as they arrive, tiles one after another. */
-  var ups=[].slice.call(document.querySelectorAll('.lk-nl, .lk-group h2, .lk-tile, .lk-full'))
+  var ups=[].slice.call(document.querySelectorAll('.lk-nl, .lk-group h2, .lk-tile, .lk-card, .lk-full'))
     .filter(function(el){ return el.getBoundingClientRect().top > innerHeight*0.92; });
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return;
     var el=e.target, i=[].indexOf.call(el.parentNode.children, el);
-    el.style.transitionDelay=(el.classList.contains('lk-tile')? i*80 : 0)+'ms'; el.classList.add('in'); io.unobserve(el); }); },{rootMargin:'0px 0px -6% 0px'});
+    el.style.transitionDelay=(el.classList.contains('lk-tile')||el.classList.contains('lk-card')? i*80 : 0)+'ms'; el.classList.add('in'); io.unobserve(el); }); },{rootMargin:'0px 0px -6% 0px'});
   ups.forEach(function(el){ el.classList.add('lk-up'); io.observe(el); });
 })();
 </script><script>
