@@ -37,170 +37,137 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://www.jrstrengthandfitness.com/#site", "name": "JR Strength & Fitness", "url": "https://www.jrstrengthandfitness.com/", "publisher": {"@id": "https://www.jrstrengthandfitness.com/#org"}, "inLanguage": "en-US"}, {"@type": "Organization", "@id": "https://www.jrstrengthandfitness.com/#org", "name": "JR Strength and Fitness LLC", "alternateName": "JR Strength & Fitness", "url": "https://www.jrstrengthandfitness.com/", "email": "jr@jrstrengthandfitness.com", "logo": "https://www.jrstrengthandfitness.com/assets/icon-512.png", "image": ["https://www.jrstrengthandfitness.com/assets/og-jr-romero-square.jpg", "https://www.jrstrengthandfitness.com/assets/og-jr-romero.jpg"], "founder": {"@id": "https://www.jrstrengthandfitness.com/#jr"}, "address": {"@type": "PostalAddress", "streetAddress": "5441 S Macadam Ave, Suite 6590", "addressLocality": "Portland", "addressRegion": "OR", "postalCode": "97239", "addressCountry": "US"}, "sameAs": ["https://www.linkedin.com/in/jr-romero-cscs-33850a126/", "https://www.instagram.com/jrstrengthandfitness/", "https://www.youtube.com/channel/UC3gQzznf26wawqKAFj_yuzQ", "https://www.facebook.com/jrstrengthandfitness", "https://www.gthreesports.com/coaches/jr-romero"]}, {"@type": "Person", "@id": "https://www.jrstrengthandfitness.com/#jr", "name": "JR Romero", "alternateName": ["JR Romero, CSCS", "JR Prieto-Romero", "JR Prieto-Romero, CSCS"], "givenName": "JR", "familyName": "Prieto-Romero", "url": "https://www.jrstrengthandfitness.com/about", "image": ["https://www.jrstrengthandfitness.com/assets/og-jr-romero-square.jpg", "https://www.jrstrengthandfitness.com/assets/photos/jr-portrait.webp"], "jobTitle": "Director of Personal Training, Timberhill Athletic Club; Director of Performance, G3 Sports & Fitness", "description": "Strength and conditioning coach (CSCS) in Corvallis, Oregon, with roughly 20,000 hours of coaching. Builder of The Trainer's Coach Vault, Built For Her, TRAINCND and The Credential Standard.", "worksFor": [{"@type": "SportsActivityLocation", "name": "Timberhill Athletic Club", "url": "https://timberhillac.com/", "hasMap": "https://www.google.com/maps/search/?api=1&query=Timberhill+Athletic+Club&query_place_id=ChIJPSGRNnI_wFQR961D-CQzDxg", "address": {"@type": "PostalAddress", "streetAddress": "2855 NW 29th St", "addressLocality": "Corvallis", "addressRegion": "OR", "postalCode": "97330", "addressCountry": "US"}}, {"@type": "SportsActivityLocation", "name": "G3 Sports & Fitness", "url": "https://www.gthreesports.com/", "hasMap": "https://www.google.com/maps/search/?api=1&query=G3+Sports+%26+Fitness&query_place_id=ChIJIaXvKtY_wFQRP2aDGqS60kE", "telephone": "+1-541-207-3508", "address": {"@type": "PostalAddress", "streetAddress": "5520 NW Highway 99W", "addressLocality": "Corvallis", "addressRegion": "OR", "postalCode": "97330", "addressCountry": "US"}}], "alumniOf": {"@type": "CollegeOrUniversity", "name": "Oregon State University"}, "hasCredential": [{"@type": "EducationalOccupationalCredential", "name": "Certified Strength and Conditioning Specialist (CSCS)", "credentialCategory": "certification", "recognizedBy": {"@type": "Organization", "name": "National Strength and Conditioning Association"}}, {"@type": "EducationalOccupationalCredential", "name": "B.S., Exercise and Sport Science", "credentialCategory": "degree", "recognizedBy": {"@type": "CollegeOrUniversity", "name": "Oregon State University"}}], "knowsAbout": ["Strength and conditioning", "Personal training", "Hypertrophy training", "Youth athletic development", "Strength training for women", "Online coaching", "Coaching systems and consultations"], "homeLocation": {"@type": "Place", "name": "Corvallis, Oregon"}, "hasOccupation": [{"@type": "Occupation", "name": "Personal trainer", "occupationLocation": {"@type": "City", "name": "Corvallis, Oregon"}}, {"@type": "Occupation", "name": "Strength and conditioning coach", "occupationLocation": {"@type": "City", "name": "Corvallis, Oregon"}}], "sameAs": ["https://www.linkedin.com/in/jr-romero-cscs-33850a126/", "https://www.instagram.com/jrstrengthandfitness/", "https://www.youtube.com/channel/UC3gQzznf26wawqKAFj_yuzQ", "https://www.facebook.com/jrstrengthandfitness"]}]}</script>
 <style>
-body.lk-page { --ground: #0a0a0a; --step: #161616; --step2: #222; --ink: #F6F6F6; --soft: #B9B9B6;
-  background: var(--ground); color: var(--ink); font-size: 17px; line-height: 1.6; }
-.lk-wrap { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+body.lk-page { --ground: #0a0a0a; --step: #151515; --step2: #222; --ink: #F6F6F6; --soft: #BDBDBA; background: var(--ground); }
+.lk { min-height: 100svh; }
 .lk-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-/* Top bar: the logo and one way out */
-.lk-bar { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; }
-.lk-bar img { width: 104px; height: auto; display: block; }
-.lk-bar a.out { font-size: 17px; font-weight: 500; color: var(--ink); padding: 10px 0; text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+/* Hero: the photo is the page's first screen, name set into its lower edge */
+.lk-hero { position: relative; height: min(70svh, 620px); min-height: 480px; overflow: hidden; background: #111; }
+.lk-hero img.ph { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 16%; filter: grayscale(1) contrast(1.08) brightness(.95); }
+.lk-hero::after { content: ""; position: absolute; inset: 0;  /* scrim so the name reads on the photo */
+  background: linear-gradient(180deg, rgba(10,10,10,.5) 0%, rgba(10,10,10,0) 20%, rgba(10,10,10,0) 48%, rgba(10,10,10,.9) 84%, #0a0a0a 100%); }
+.lk-top { position: absolute; z-index: 2; top: 18px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: center; }
+.lk-top img { width: 112px; height: auto; display: block; }
+.lk-top a.site { font-weight: 500; font-size: 16px; color: #fff; padding: 8px 0; text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.lk-id { position: absolute; z-index: 2; left: 20px; right: 20px; bottom: 24px; }
+.lk-id h1 { font-weight: 800; font-size: clamp(46px, 14vw, 72px); line-height: .92; letter-spacing: -.01em; }
+.lk-id .cred { margin-top: 10px; font-size: 16px; font-weight: 500; color: var(--ink); }
+.lk-id .cred span { color: var(--red); padding: 0 6px; }
+.lk-id p.say { margin-top: 8px; font-size: 17px; line-height: 1.45; color: var(--soft); max-width: 32ch; }
 
-/* Hero: one lit photograph, the name under it */
-.lk-hero { text-align: center; padding: 28px 0 0; }
-.lk-photo { width: min(70vw, 300px); aspect-ratio: 4 / 5; margin: 0 auto; overflow: hidden; background: #111; }
-.lk-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 14%; display: block; filter: brightness(.92) contrast(1.04); }
-.lk-hero h1 { margin-top: 22px; font-weight: 800; font-size: clamp(44px, 14.5vw, 88px); line-height: .92; letter-spacing: -.01em; }
-.lk-hero .say { margin: 14px auto 0; font-size: 22px; line-height: 1.4; max-width: 24ch; }
-.lk-row3 { margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px 0; font-size: 14px; color: var(--soft); }
-.lk-row3 .btn { order: -1; flex-basis: 100%; max-width: 300px; margin: 0 calc(50% - 150px); }
-.lk-row3 .c1::after { content: "  ·  "; }
+.lk-col { padding: 6px 20px 40px; max-width: 580px; margin: 0 auto; }
 
-/* The Sunday email */
-.lk-notes { padding-top: 96px; display: grid; gap: 26px; }
-.lk-notes > div:first-child { display: grid; gap: 18px; }
-.lk-notes h2 { font-weight: 800; font-size: clamp(40px, 10vw, 56px); line-height: .95; letter-spacing: -.01em; }
-.lk-notes .say { font-size: 22px; line-height: 1.55; max-width: 34ch; }
-.lk-form { background: var(--step); padding: 22px 20px 20px; display: flex; flex-direction: column; gap: 14px; }
-.lk-form label.em { font-size: 17px; font-weight: 500; }
-.lk-form input[type=email] { background: var(--ground); color: var(--ink); border: 1px solid #4a4a4a; min-height: 54px; font-size: 17px; }
-.lk-form input[type=email]:focus { border-color: var(--ink); }
-.lk-form legend { font-size: 17px; font-weight: 500; margin-bottom: 8px; }
-.lk-lanes { display: grid; gap: 6px; }
+/* The Sunday email: a solid panel, nothing drawn around it */
+.lk-nl { margin-top: 6px; padding: 24px 20px 20px; background: var(--step); }
+.lk-nl h2 { font-weight: 800; font-size: 34px; line-height: .98; }
+.lk-nl > p { margin-top: 12px; color: var(--ink); font-size: 17px; line-height: 1.5; }
+.lk-nl form { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+.lk-nl input[type=email] { background: var(--ground); color: var(--ink); border: 1px solid #454545; min-height: 54px; }
+.lk-nl input[type=email]::placeholder { color: #8d8d8a; }
+.lk-nl input[type=email]:focus { border-color: var(--ink); }
+.lk-lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 .lk-lane { position: relative; cursor: pointer; }
 .lk-lane input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
-.lk-lane span { display: flex; align-items: center; min-height: 48px; padding: 0 16px; background: var(--step2); color: var(--soft); font-size: 17px; transition: background .15s, color .15s, transform .12s; }
-.lk-lane span::before { content: ""; width: 10px; height: 10px; border-radius: 50%; margin-right: 12px; background: #555; flex-shrink: 0; }
-.lk-lane input:checked + span { background: #343434; color: var(--ink); font-weight: 500; }
-.lk-lane input:checked + span::before { background: var(--red); }
-.lk-lane input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 2px; }
-.lk-lane:active span { transform: scale(.985); }
-.lk-form .btn { width: 100%; margin-top: 4px; }
-.lk-form .fine { font-size: 14px; color: var(--soft); }
-.lk-form .fine a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 3px; }
-.lk-form .form-status { background: var(--step2); color: var(--ink); }
+.lk-lane span { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 48px; padding: 4px 6px;
+  background: var(--step2); color: var(--soft); font-size: 14px; font-weight: 500; line-height: 1.2; transition: background .15s, color .15s, transform .12s; }
+.lk-lane input:checked + span { background: #f6f6f6; color: #0a0a0a; font-weight: 600; }
+.lk-lane input:focus-visible + span { outline: 2px solid var(--red); outline-offset: 2px; }
+.lk-lane:active span { transform: scale(.97); }
+.lk-nl .btn { width: 100%; margin-top: 4px; }
+.lk-fine { font-size: 14px; color: var(--soft); }
+.lk-fine a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 3px; }
+.lk-nl .form-status { background: var(--step2); color: var(--ink); }
 
-/* Everything else: a list, and the real thing behind the row you're on */
-.lk-list { padding-top: 110px; }
-.lk-list h2 { font-weight: 800; font-size: clamp(40px, 10vw, 56px); line-height: .95; letter-spacing: -.01em; margin-bottom: 18px; }
-.lk-stage { position: sticky; top: 0; z-index: 2; height: 38svh; margin: 0 -20px; background: var(--ground); overflow: hidden; }
-.lk-pic { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; opacity: 0; transition: opacity .3s ease; }
-.lk-pic[data-pic=consult], .lk-pic[data-pic=online] { object-position: 50% 20%; }
-.lk-pic.on { opacity: 1; }
-.lk-items { list-style: none; margin: 0; padding: 10px 0 0; }
-.lk-row { display: grid; grid-template-columns: 1fr auto; column-gap: 16px; align-items: baseline; padding: 15px 0; min-height: 56px; }
-.lk-name { font-size: 22px; font-weight: 500; line-height: 1.25; color: var(--soft); transition: color .2s, transform .2s; }
-.lk-detail { font-size: 14px; color: var(--soft); white-space: nowrap; }
-.lk-desc { grid-column: 1 / -1; font-size: 17px; line-height: 1.5; color: var(--ink); max-width: 36ch; margin-top: 8px; }
-.lk-row.on .lk-name, .lk-row:hover .lk-name, .lk-row:focus-visible .lk-name { color: var(--ink); }
-.lk-row.on .lk-detail { color: var(--ink); }
-html.js .lk-row .lk-desc { display: none; }
-html.js .lk-row.on .lk-desc { display: block; }
-.lk-row:active .lk-name { transform: translateX(4px); }
+/* Groups of tiles */
+.lk-group { margin-top: 44px; }
+.lk-group h2 { font-weight: 800; font-size: 22px; line-height: 1.1; margin-bottom: 14px; }
+.lk-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.lk-tile { display: flex; flex-direction: column; background: var(--step); color: var(--ink); transition: background .15s, transform .15s; }
+.lk-tile:hover { background: #1d1d1d; }
+.lk-tile:active { transform: scale(.985); }
+.lk-tile b { font-weight: 700; font-size: 18px; line-height: 1.2; }
+.lk-tile span { font-size: 15px; line-height: 1.45; color: var(--soft); }
+.lk-t { padding: 18px 16px 16px; gap: 8px; min-height: 196px; }
+.lk-t em { margin-top: auto; padding-top: 10px; font-style: normal; font-weight: 600; font-size: 15px; align-self: flex-start;
+  text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 5px; }
+.lk-p { overflow: hidden; }
+.lk-p img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 0; display: block; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.lk-p:hover img { transform: scale(1.03); }
+.lk-p b { padding: 14px 14px 0; }
+.lk-p span { padding: 6px 14px 16px; }
 
-/* The close */
-.lk-close { padding: 24svh 0 12svh; }
-.lk-close p { font-size: 22px; line-height: 1.5; max-width: 34ch; }
-.lk-close a { display: inline-block; margin-top: 20px; font-size: 17px; font-weight: 600; padding: 8px 0; text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 7px; }
-.lk-foot { padding: 0 0 40px; display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: 17px; }
+.lk-full { display: block; margin-top: 44px; padding: 22px 20px; background: var(--step); }
+.lk-full b { display: block; font-weight: 700; font-size: 18px; }
+.lk-full span { display: block; margin-top: 4px; font-size: 15px; color: var(--soft); }
+.lk-full:hover { background: #1d1d1d; }
+.lk-foot { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 16px; }
 .lk-foot a { color: var(--ink); padding: 6px 0; }
-.lk-foot small { flex-basis: 100%; margin-top: 18px; font-size: 14px; color: var(--soft); }
+.lk-foot small { flex-basis: 100%; margin-top: 12px; font-size: 14px; color: var(--soft); }
 
-@media (min-width: 900px) {
-  .lk-wrap { padding: 0 32px; }
-  .lk-bar { padding-top: 32px; }
-  .lk-bar img { width: 132px; }
-  .lk-hero { padding-top: 8px; }
-  .lk-photo { width: auto; height: 56svh; max-height: 640px; }
-  .lk-hero h1 { font-size: clamp(64px, 7vw, 104px); margin-top: 26px; }
-  .lk-hero .say { max-width: none; }
-  .lk-row3 { flex-wrap: nowrap; gap: 48px; }
-  .lk-row3 .btn { order: 0; flex-basis: auto; margin: 0; }
-  .lk-row3 .c1::after { content: none; }
-  .lk-notes { padding-top: 180px; grid-template-columns: 5fr 1fr 6fr; align-items: start; }
-  .lk-notes > div:first-child { grid-column: 1; gap: 24px; }
-  .lk-form { grid-column: 3; padding: 32px; }
-  .lk-list { padding-top: 200px; display: grid; grid-template-columns: 5fr 1fr 6fr; }
-  .lk-list h2 { grid-column: 3; grid-row: 1; }
-  .lk-stage { grid-column: 1; grid-row: 1 / span 2; position: sticky; top: 12vh; height: auto; aspect-ratio: 4 / 5; margin: 0; align-self: start; }
-  .lk-items { grid-column: 3; grid-row: 2; padding: 0; }
-  .lk-row { padding: 16px 0; }
-  .lk-close { padding: 30svh 0 16svh; }
+@media (min-width: 960px) {
+  .lk { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .lk-hero { position: sticky; top: 0; height: 100svh; max-height: none; }
+  .lk-top { top: 32px; left: 40px; right: 40px; }
+  .lk-top img { width: 140px; }
+  .lk-id { left: 40px; right: 40px; bottom: 48px; }
+  .lk-id h1 { font-size: 88px; }
+  .lk-id .cred { font-size: 18px; }
+  .lk-id p.say { font-size: 18px; }
+  .lk-col { padding: 64px 56px 48px; margin: 0; max-width: 640px; }
+  .lk-nl { margin-top: 0; padding: 32px 28px 26px; }
+  .lk-nl h2 { font-size: 44px; }
 }
 
-/* Motion: everything is visible without it; html.m is set only when it can finish and isn't unwanted */
-@keyframes lk-in { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
-@keyframes lk-settle { from { transform: scale(1.07); } to { transform: scale(1); } }
-html.m .lk-photo img { animation: lk-settle 2.4s cubic-bezier(.2,.7,.2,1) both; }
-html.m .lk-hero h1, html.m .lk-hero .say, html.m .lk-row3 { animation: lk-in .8s cubic-bezier(.2,.7,.2,1) both; }
-html.m .lk-hero h1 { animation-delay: .15s; } html.m .lk-hero .say { animation-delay: .23s; } html.m .lk-row3 { animation-delay: .31s; }
-html.m .lk-up { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+/* Motion: content is visible without it; html.m is set only when it can finish and isn't unwanted */
+@keyframes lk-settle { from { transform: scale(1.06); } to { transform: scale(1); } }
+@keyframes lk-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+html.m .lk-hero img.ph { animation: lk-settle 2.4s cubic-bezier(.2,.7,.2,1) both; }
+html.m .lk-id > * { animation: lk-in .7s cubic-bezier(.2,.7,.2,1) both; }
+html.m .lk-id .cred { animation-delay: .08s; } html.m .lk-id .say { animation-delay: .16s; }
+html.m .lk-up { opacity: 0; transform: translateY(22px); transition: opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1); }
 html.m .lk-up.in { opacity: 1; transform: none; }
 .btn:active { transform: scale(.98); }
 @media (prefers-reduced-motion: reduce) {
-  .lk-pic, .lk-name, .lk-lane span { transition: none; }
-  .btn:active, .lk-row:active .lk-name, .lk-lane:active span { transform: none; }
+  .lk-tile, .lk-p img, .lk-lane span { transition: none; }
+  .lk-tile:active, .lk-p:hover img, .lk-lane:active span, .btn:active { transform: none; }
 }
 </style>
 </head>
 <body class="lk-page">
 <a class="skip" href="#main">Skip to content</a>
 <main id="main">
-<div class="lk-wrap">
-<div class="lk-bar"><a href="/" aria-label="JR Strength &amp; Fitness home"><img src="/assets/jr-logo.svg" alt="JR Strength &amp; Fitness" width="845" height="268"></a>
-<a class="out" href="/">Full site</a></div>
-
-<section class="lk-hero" aria-label="JR Romero">
-<div class="lk-photo"><img src="/assets/photos/jr-portrait.webp" alt="JR Romero, arms crossed, in the gym" width="832" height="1248" fetchpriority="high"></div>
-<h1>JR Romero</h1>
-<p class="say">Strength coach in Corvallis, Oregon, and online.</p>
-<div class="lk-row3"><span class="c1">CSCS</span><a class="btn btn-red" href="#notes">Get the Sunday email</a><span class="c2">20,000 hours on the floor</span></div>
-</section>
-
-<section class="lk-notes" id="notes" aria-labelledby="lk-notes-h">
-<div><h2 id="lk-notes-h">Notes from the&nbsp;Floor</h2>
-<p class="say">One email every Sunday: something I keep seeing with clients and coaches, and a tool you can use that week.</p></div>
-<form class="lk-form" method="post" action="/newsletter" novalidate data-newsletter>
+<div class="lk">
+<header class="lk-hero">
+<img class="ph" src="/assets/photos/jr-portrait.webp" alt="JR Romero, arms crossed, in the gym" width="832" height="1248" fetchpriority="high">
+<div class="lk-top"><a href="/" aria-label="JR Strength &amp; Fitness home"><img src="/assets/jr-logo.svg" alt="JR Strength &amp; Fitness" width="845" height="268"></a>
+<a class="site" href="/">Full site</a></div>
+<div class="lk-id"><h1>JR Romero</h1>
+<p class="cred">CSCS<span aria-hidden="true">/</span>20,000 hours on the floor</p>
+<p class="say">I coach at Timberhill and G3 in Corvallis, Oregon, and online.</p></div>
+</header>
+<div class="lk-col">
+<section class="lk-nl" aria-labelledby="lk-nl-h">
+<h2 id="lk-nl-h">Notes from<br>the Floor</h2>
+<p>My email, every Sunday morning. What I keep seeing with clients and coaches, plus one tool you can use that week.</p>
+<form method="post" action="/newsletter" novalidate data-newsletter>
 <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
-<label class="em" for="lk-email">Your email</label>
-<input id="lk-email" name="email_address" type="email" autocomplete="email" required>
-<fieldset><legend>Send me the version for</legend><div class="lk-lanes"><label class="lk-lane"><input type="radio" name="interest" value="training" checked><span>My own training</span></label><label class="lk-lane"><input type="radio" name="interest" value="coach"><span>Coaching others</span></label><label class="lk-lane"><input type="radio" name="interest" value="women"><span>Women’s strength</span></label></div></fieldset>
+<label class="lk-sr" for="lk-email">Email</label>
+<input id="lk-email" name="email_address" type="email" autocomplete="email" placeholder="Your email" required>
+<fieldset><legend class="lk-sr">Send me the version for</legend><div class="lk-lanes"><label class="lk-lane"><input type="radio" name="interest" value="training" checked><span>My training</span></label><label class="lk-lane"><input type="radio" name="interest" value="coach"><span>I coach</span></label><label class="lk-lane"><input type="radio" name="interest" value="women"><span>Women’s strength</span></label></div></fieldset>
 <div class="form-status" role="status" hidden></div>
 <button class="btn btn-red" type="submit">Join the list</button>
-<p class="fine">Free. Unsubscribe anytime. <a href="/privacy-policy">Privacy Policy</a></p>
+<p class="lk-fine">Free. Unsubscribe anytime. <a href="/privacy-policy">Privacy Policy</a></p>
 </form>
 </section>
-
-<section class="lk-list" aria-labelledby="lk-list-h">
-<h2 id="lk-list-h">Everything else</h2>
-<div class="lk-stage" aria-hidden="true">
-<img class="lk-pic on" data-pic="consult" src="/assets/links/consult.webp" alt="JR Romero in the gym, arms crossed" width="800" height="1000">
-<img class="lk-pic" data-pic="online" src="/assets/links/online.webp" alt="JR Romero, close up" width="800" height="1000" loading="lazy">
-<img class="lk-pic" data-pic="audit" src="/assets/links/audit.webp" alt="Cover of the Training Progress Audit" width="800" height="1000" loading="lazy">
-<img class="lk-pic" data-pic="guide" src="/assets/links/guide.webp" alt="Cover of the Program Troubleshooting Field Guide" width="800" height="1000" loading="lazy">
-<img class="lk-pic" data-pic="vault" src="/assets/links/vault.webp" alt="The Trainer’s Coach Vault home screen" width="800" height="1000" loading="lazy">
-<img class="lk-pic" data-pic="exam" src="/assets/links/exam.webp" alt="A practice question in the exam prep app" width="800" height="1000" loading="lazy">
-</div>
-<ul class="lk-items">
-<li><a class="lk-row on" href="/consult" data-pic="consult" data-track="Book a free consult (links)"><span class="lk-name">Free consult</span><span class="lk-detail">30 min</span><span class="lk-desc">In person at Timberhill Athletic Club or G3 Sports &amp; Fitness in Corvallis. Every client starts here.</span></a></li>
-<li><a class="lk-row" href="/online-training" data-pic="online" data-track="Online coaching (links)"><span class="lk-name">Online coaching</span><span class="lk-detail">Apply</span><span class="lk-desc">Training and nutrition coaching wherever you are. It starts with a short application.</span></a></li>
-<li><a class="lk-row" href="/resources/training-progress-audit" data-pic="audit" data-track="Training Progress Audit (links)"><span class="lk-name">Training Progress Audit</span><span class="lk-detail">Free</span><span class="lk-desc">Six short worksheets for when progress stalls: what you expected, what you did, and what to do next.</span></a></li>
-<li><a class="lk-row" href="/resources/program-troubleshooting-field-guide" data-pic="guide" data-track="Program Troubleshooting Field Guide (links)"><span class="lk-name">Program Troubleshooting Field Guide</span><span class="lk-detail">Free</span><span class="lk-desc">For coaches. The review I run before changing a stalled client’s program. Ends with one written adjustment.</span></a></li>
-<li><a class="lk-row" href="https://vault.jrstrengthandfitness.com" rel="noopener" data-pic="vault" data-track="The Trainer’s Coach Vault (links)"><span class="lk-name">The Trainer’s Coach Vault</span><span class="lk-detail">Free account</span><span class="lk-desc">Systems, methods and tools for professional trainers and coaches.</span></a></li>
-<li><a class="lk-row" href="/exam-prep" data-pic="exam" data-track="NASM-CPT and ACE-CPT exam prep (links)"><span class="lk-name">NASM-CPT and ACE-CPT exam prep</span><span class="lk-detail">$79</span><span class="lk-desc">Independent practice: 1,300+ original questions, timed mocks and concept cards, on your phone. 180 days of access.</span></a></li>
-</ul>
-</section>
-
-<section class="lk-close" aria-label="The full site">
-<p>Want the longer version? The full site has my writing, what I’m building and how I coach.</p>
-<a href="/">Visit jrstrengthandfitness.com</a>
-</section>
-
+<section class="lk-group" aria-label="Train with me"><h2>Train with me</h2><div class="lk-tiles"><a class="lk-tile lk-t" href="/consult" data-track="Book a free consult (links)"><b>Free consult</b><span>30 minutes, in person at Timberhill or G3 in Corvallis.</span><em>Book a time</em></a><a class="lk-tile lk-t" href="/online-training" data-track="Online coaching (links)"><b>Online coaching</b><span>Training and nutrition coaching, wherever you are.</span><em>Apply</em></a></div></section>
+<section class="lk-group" aria-label="Free downloads"><h2>Free downloads</h2><div class="lk-tiles"><a class="lk-tile lk-p" href="/resources/training-progress-audit" data-track="Training Progress Audit (links)"><img src="/assets/links/audit.webp" alt="Cover of the Training Progress Audit" width="600" height="750" loading="lazy"><b>Training Progress Audit</b><span>For when your progress stalls.</span></a><a class="lk-tile lk-p" href="/resources/program-troubleshooting-field-guide" data-track="The Field Guide (links)"><img src="/assets/links/guide.webp" alt="Cover of the Program Troubleshooting Field Guide" width="600" height="750" loading="lazy"><b>The Field Guide</b><span>For coaches with a stalled client.</span></a></div></section>
+<section class="lk-group" aria-label="For coaches"><h2>For coaches</h2><div class="lk-tiles"><a class="lk-tile lk-p" href="https://vault.jrstrengthandfitness.com" rel="noopener" data-track="The Trainer’s Coach Vault (links)"><img src="/assets/links/vault.webp" alt="The Trainer’s Coach Vault home screen" width="600" height="750" loading="lazy"><b>The Trainer’s Coach Vault</b><span>Systems and tools for trainers. Free account.</span></a><a class="lk-tile lk-p" href="/exam-prep" data-track="CPT exam prep (links)"><img src="/assets/links/exam.webp" alt="A practice question in the exam prep app" width="600" height="750" loading="lazy"><b>CPT exam prep</b><span>NASM and ACE practice. $79 for 180 days.</span></a></div></section>
+<a class="lk-full" href="/"><b>Visit the full site</b><span>My writing, what I’m building and how I coach.</span></a>
 <footer class="lk-foot">
 <a href="/notes">Articles</a><a href="https://www.instagram.com/jrstrengthandfitness/" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UC3gQzznf26wawqKAFj_yuzQ" rel="noopener">YouTube</a><a href="https://www.linkedin.com/in/jr-romero-cscs-33850a126/" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/jrstrengthandfitness" rel="noopener">Facebook</a><a href="mailto:jr@jrstrengthandfitness.com">Email</a>
 <small>© 2026 JR Strength and Fitness LLC</small>
 </footer>
+</div>
 </div>
 </main>
 
@@ -244,26 +211,13 @@ html.m .lk-up.in { opacity: 1; transform: none; }
 </script>
 <script>
 (function(){
-  var root=document.documentElement; root.classList.add('js');
-  /* The list: one row is "on"; its picture is lit. Hover or focus picks a row; on a phone, scrolling does. */
-  var rows=[].slice.call(document.querySelectorAll('.lk-row')), pics=document.querySelectorAll('.lk-pic');
-  function pick(r){ if(r.classList.contains('on')) return;
-    rows.forEach(function(x){ x.classList.toggle('on', x===r); });
-    pics.forEach(function(p){ p.classList.toggle('on', p.getAttribute('data-pic')===r.getAttribute('data-pic')); }); }
-  rows.forEach(function(r){ r.addEventListener('mouseenter',function(){ pick(r); }); r.addEventListener('focus',function(){ pick(r); }); });
-  var stage=document.querySelector('.lk-stage');
-  function onScroll(){ if(innerWidth>=900||!stage) return;
-    var line=stage.getBoundingClientRect().bottom+70, best=null, d=1e9;
-    rows.forEach(function(r){ var b=r.getBoundingClientRect(), x=Math.abs(b.top-line); if(x<d){ d=x; best=r; } });
-    if(best) pick(best); }
-  var t=0; addEventListener('scroll',function(){ if(!t){ t=requestAnimationFrame(function(){ t=0; onScroll(); }); } },{passive:true});
-  /* Entrances: the parts of each section rise in, in order, once. */
-  if(!root.classList.contains('m')) return;
-  var ups=[].slice.call(document.querySelectorAll('.lk-notes h2, .lk-notes .say, .lk-form, .lk-list h2, .lk-items li, .lk-close > *'))
-    .filter(function(el){ return el.getBoundingClientRect().top > innerHeight*0.9; });
+  var root=document.documentElement; if(!root.classList.contains('m')) return;
+  /* Groups rise in as they arrive, tiles one after another. */
+  var ups=[].slice.call(document.querySelectorAll('.lk-nl, .lk-group h2, .lk-tile, .lk-full'))
+    .filter(function(el){ return el.getBoundingClientRect().top > innerHeight*0.92; });
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return;
-    var el=e.target, sib=[].slice.call(el.parentNode.children).filter(function(c){ return c.classList.contains('lk-up'); });
-    el.style.transitionDelay=Math.min(Math.max(sib.indexOf(el),0),6)*70+'ms'; el.classList.add('in'); io.unobserve(el); }); },{rootMargin:'0px 0px -6% 0px'});
+    var el=e.target, i=[].indexOf.call(el.parentNode.children, el);
+    el.style.transitionDelay=(el.classList.contains('lk-tile')? i*80 : 0)+'ms'; el.classList.add('in'); io.unobserve(el); }); },{rootMargin:'0px 0px -6% 0px'});
   ups.forEach(function(el){ el.classList.add('lk-up'); io.observe(el); });
 })();
 </script><script>
