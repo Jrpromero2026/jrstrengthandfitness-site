@@ -74,9 +74,12 @@ def exam_cell():
 
 
 def projects():
-    """All four projects, in the same branded cards the site's Projects page uses, plus Exam Prep under the Vault."""
-    cells = [cell(BY_SLUG["vault"]), exam_cell()] + [cell(BY_SLUG[k]) for k in ("built-for-her", "traincnd", "credential-standard")]
-    return f'<section class="lk-group" aria-label="Projects"><h2>Projects</h2><div class="panel brands lk-proj">{"".join(cells)}</div></section>'
+    """For coaches: the Vault and Exam Prep, in the same branded cards the site's Projects page uses.
+    Built For Her, TRAINCND and The Credential Standard stay on the full site (/projects) until JR promotes them
+    on Instagram; add them back here with cell(BY_SLUG[slug])."""
+    cells = [cell(BY_SLUG["vault"]), exam_cell()]
+    return (f'<section class="lk-group" aria-label="For coaches"><h2>For coaches</h2><div class="panel brands lk-proj">{"".join(cells)}</div>'
+            f'<a class="lk-more" href="/projects">See everything I’m building</a></section>')
 
 
 def cards(title, *items):
@@ -184,6 +187,9 @@ body.lk-page { --cell: #151515; --cell-hover: #1c1c1c; --fg: #F6F6F6; --body: rg
 .lk-proj .cell { padding: 22px 20px 20px; gap: 10px; min-height: 0; }
 .lk-proj .cell p { font-size: 16px; line-height: 1.5; }
 .lk-proj .cell .tag { white-space: nowrap; }
+
+.lk-more { display: inline-block; margin-top: 14px; padding: 6px 0; font-size: 16px; font-weight: 600;
+  text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 6px; }
 
 .lk-full { display: block; margin-top: 44px; padding: 22px 20px; background: var(--step); }
 .lk-full b { display: block; font-weight: 700; font-size: 18px; }
