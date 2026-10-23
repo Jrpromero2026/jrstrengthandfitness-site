@@ -1,8 +1,12 @@
-"""Free resources (lead magnets): the /resources hub, one landing page per resource, and a thanks page with the download.
+"""Free resources (lead magnets): the /resources hub, one landing page per resource, and a "check your inbox" page.
+
+The PDF is only ever delivered by email (the first email in the resource's Kit sequence). Nothing on the site links
+to it: the thanks page sends people to their inbox, which is the point of collecting the email.
 
 How a request flows:
   landing page form -> Kit form (adds the resource tag; Kit automation starts that resource's sequence)
-                    -> Kit redirects to /resources/<slug>/thanks, which has the download and an optional newsletter sign-up.
+                    -> Kit redirects to /resources/<slug>/thanks, which tells them to check their inbox (no download link)
+                       and offers the newsletter as a separate choice.
 Until a resource's Kit form ID is filled in below, requests are emailed to JR through FormSubmit (with an
 auto-reply that carries the download link) and the visitor goes straight to the thanks page. Nobody is lost.
 
@@ -29,6 +33,7 @@ RESOURCES = [
         slug="training-progress-audit", live=True, lane="training",
         title="The Training Progress Audit", short="the audit", brand="JR Strength &amp; Fitness",
         kit_form="10061495",               # Kit form "LM: Training Progress Audit"
+        email_subject="Your Training Progress Audit",  # subject of sequence 2933412's first email (shown on the thanks page)
         tag="lm-training-audit", sequence="LM01 Training Progress Audit: delivery + follow-ups",
         interest="training", article="why-your-training-program-stops-working",
         pages=7,
@@ -55,6 +60,7 @@ RESOURCES = [
         slug="program-troubleshooting-field-guide", live=True, lane="coaching",
         title="The Program Troubleshooting Field Guide", short="the Field Guide", brand="The Trainer&rsquo;s Coach Vault",
         kit_form="10061497",               # Kit form "LM: Program Troubleshooting Field Guide"
+        email_subject="Your Program Troubleshooting Field Guide",  # subject of sequence 2933413's first email
         tag="lm-field-guide", sequence="LM02 Program Troubleshooting Field Guide: delivery + follow-ups",
         interest="coach", article="your-client-didnt-plateau-their-week-did",
         pages=8,
@@ -128,7 +134,7 @@ def hub_body():
 # ---------------------------------------------------------------- Landing page
 def _form(r):
     return f"""<form class="form-card rs-form" method="post" action="#" novalidate data-resource="{r['slug']}"
- data-kit="{r['kit_form']}" data-thanks="{path(r)}/thanks" data-title="{html.escape(r['title'])}" data-pdf="{SITE}{pdf(r)}">
+ data-kit="{r['kit_form']}" data-thanks="{path(r)}/thanks" data-title="{html.escape(r['title'])}"{"" if r['kit_form'] else f' data-pdf="{SITE}{pdf(r)}"'}>
 <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
 <div class="field"><label for="rs-first-{r['slug']}">First name <span class="hint">optional</span></label>
 <input id="rs-first-{r['slug']}" name="fields[first_name]" type="text" autocomplete="given-name"></div>
@@ -136,7 +142,7 @@ def _form(r):
 <input id="rs-email-{r['slug']}" name="email_address" type="email" autocomplete="email" required></div>
 <div class="form-status" role="status" hidden></div>
 <div class="btns"><button class="btn btn-red" type="submit">{r['button']}</button></div>
-<p class="form-note">You'll get the download right away, plus four short emails over two weeks on using it.
+<p class="form-note">I'll email it to you right away, plus four short emails over two weeks on using it.
 It doesn't sign you up for the newsletter. Unsubscribe anytime. See the <a href="/privacy-policy">Privacy Policy</a>.</p>
 </form>"""
 
@@ -158,13 +164,21 @@ def landing_body(r):
     )
 
 
-# ---------------------------------------------------------------- Thanks page (download + optional newsletter)
+# ---------------------------------------------------------------- Thanks page: check your inbox (no download here)
+SENDER = "jr@jrstrengthandfitness.com"
+INBOX_LINKS = (
+    ("Open Gmail", "https://mail.google.com/mail/u/0/#search/from%3Ajr%40jrstrengthandfitness.com"),
+    ("Open Outlook", "https://outlook.live.com/mail/0/"),
+)
+
+
 def thanks_body(r):
-    btns = (f'<a class="btn btn-red" href="{pdf(r)}" download data-track="Download {html.escape(r["title"])}">Download the PDF</a>'
-            f'<a class="link-u" href="{path(r)}">Back to the resource →</a>')
+    btns = "".join(f'<a class="btn {"btn-red" if i == 0 else "btn-line"}" href="{u}" rel="noopener" data-track="{t} (resource thanks)">{t}</a>'
+                   for i, (t, u) in enumerate(INBOX_LINKS))
     return (
-        hero("Your resource is ready", f"Here's {r['short']}.",
-             f"<strong>Start here:</strong> {r['first_action']} A copy is also on its way to your inbox.",
+        hero("Almost there", "Check your<br>inbox.",
+             f"I just emailed you {r['short']}. Look for <strong>“{r['email_subject']}”</strong> from JR Romero, CSCS "
+             f"and tap the download button inside. Not there in a few minutes? Check spam or promotions.",
              btns, short=True, size="h-display")
         + NL.block("light", uid=f"rs-{r['slug']}", default=r["interest"], eyebrow="Want more like this?")
     )
@@ -197,7 +211,7 @@ PAGES = (
             og_image_alt=f"Cover of {r['title']}", og_image_size=(600, 776))
        for r in LIVE]
     + [dict(path=path(r) + "/thanks", file=path(r).lstrip("/") + "/thanks.html", active="", sitemap=False, noindex=True,
-            title=f"{r['title']}: Your Download | JR Strength & Fitness", description="Your download is ready.", body=thanks_body(r))
+            title=f"Check your inbox | {r['title']} | JR Strength & Fitness", description="Your free resource is on its way to your inbox.", body=thanks_body(r))
        for r in LIVE]
 )
 

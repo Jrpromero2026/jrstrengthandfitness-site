@@ -131,6 +131,24 @@ body.lk-page { --cell: #151515; --cell-hover: #1c1c1c; --fg: #F6F6F6; --body: rg
 .lk-more { display: inline-block; margin-top: 14px; padding: 6px 0; font-size: 16px; font-weight: 600;
   text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 6px; }
 
+/* Consult tile: one tap to each gym's booking page */
+.lk-pick { margin-top: auto; padding-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.lk-pick a { display: flex; align-items: center; justify-content: center; min-height: 44px; background: var(--red); color: #fff; font-weight: 600; font-size: 15px; transition: background .15s, transform .12s; }
+.lk-pick a:hover { background: var(--red-dark); }
+.lk-pick a:active { transform: scale(.97); }
+/* Audience sections: free download, project, then a short reading list */
+.lk-stack { display: grid; gap: 10px; }
+.lk-stack .lk-cards, .lk-stack .lk-proj.panel { gap: 10px; }
+.lk-reads { background: var(--step); padding: 16px 16px 6px; }
+.lk-reads h3 { font-weight: 800; font-size: 15px; letter-spacing: .04em; color: var(--soft); margin-bottom: 4px; }
+.lk-reads a { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding: 12px 0; }
+.lk-reads a + a { box-shadow: inset 0 1px 0 #262626; }
+.lk-reads b { font-weight: 600; font-size: 16px; line-height: 1.35; }
+.lk-reads span { flex: none; font-size: 14px; color: var(--soft); }
+.lk-reads a:hover b { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 4px; }
+.lk-all { display: inline-block; margin-top: 30px; padding: 6px 0; font-size: 16px; font-weight: 600;
+  text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+
 .lk-full { display: block; margin-top: 44px; padding: 22px 20px; background: var(--step); }
 .lk-full b { display: block; font-weight: 700; font-size: 18px; }
 .lk-full span { display: block; margin-top: 4px; font-size: 15px; color: var(--soft); }
@@ -198,9 +216,17 @@ html.m .lk-up.in { opacity: 1; transform: none; }
 <p class="lk-fine">Free. Unsubscribe anytime. <a href="/privacy-policy">Privacy Policy</a></p>
 </form>
 </section>
-<section class="lk-group" aria-label="Train with me"><h2>Train with me</h2><div class="lk-tiles"><a class="lk-tile lk-t" href="/consult" data-track="Book a free consult (links)"><b>Free consult</b><span>30 minutes, in person at Timberhill or G3 in Corvallis.</span><em>Book a time</em></a><a class="lk-tile lk-t" href="/online-training" data-track="Online coaching (links)"><b>Online coaching</b><span>Training and nutrition coaching, wherever you are.</span><em>Apply</em></a></div></section>
-<section class="lk-group" aria-label="Free resources"><h2>Free resources</h2><div class="lk-cards"><a class="lk-card j" href="/resources/training-progress-audit" data-track="Training Progress Audit (links)"><span class="lk-brand"><img class="lk-jrsf" src="/assets/jr-logo.svg" alt="JR Strength &amp; Fitness" width="845" height="268"></span><span class="lk-cbody"><img src="/assets/links/audit.webp" alt="Cover of the Training Progress Audit" width="600" height="776" loading="lazy"><span class="lk-ctxt"><b class="t">Training Progress Audit</b><span class="d">Six short worksheets for when your progress stalls. Work out what happened before you change the plan.</span><span class="m"><strong>Free</strong> · PDF, 7 pages</span><em class="c">Get the audit</em></span></span></a><a class="lk-card v" href="/resources/program-troubleshooting-field-guide" data-track="Program Troubleshooting Field Guide (links)"><span class="lk-brand"><span class="v-lockup"><img src="/assets/jr-mark.svg" alt="" width="42" height="38"><span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span><span class="v-name">The Trainer’s Coach</span><span class="v-vault">Vault</span></span></span></span><span class="lk-cbody"><img src="/assets/links/guide.webp" alt="Cover of the Program Troubleshooting Field Guide" width="600" height="776" loading="lazy"><span class="lk-ctxt"><b class="t">Program Trouble&shy;shooting Field Guide</b><span class="d">For coaches: the review I run before changing a stalled client’s program.</span><span class="m"><strong>Free</strong> · PDF, 8 pages</span><em class="c">Get the Field Guide</em></span></span></a></div></section>
-<section class="lk-group" aria-label="For coaches"><h2>For coaches</h2><div class="panel brands lk-proj"><a class="cell brand-vault" href="/projects/vault">
+<section class="lk-group" aria-label="Train with me"><h2>Train with me</h2><div class="lk-tiles"><div class="lk-tile lk-t"><b>Free consult</b><span>30 minutes, in person in Corvallis. Pick your gym:</span><span class="lk-pick"><a href="https://timberhill-personal-training.setmore.com/jrprietoromero?step=time-slot&amp;products=8aff2d32-3927-4531-a6ba-f12c9e5ab214&amp;type=service&amp;staff=91f71610-48fd-4e00-bd4e-2017f4f4a65b&amp;staffSelected=false" rel="noopener" data-track="Book at Timberhill (links)">Timberhill</a><a href="https://www.gthreesports.com/personal-training" rel="noopener" data-track="Book at G3 (links)">G3</a></span></div><a class="lk-tile lk-t" href="/apply" data-track="Apply for online coaching (links)"><b>Online coaching</b><span>Training and nutrition coaching, wherever you are. I reply to every application within 2 business days.</span><em>Apply now</em></a></div></section>
+<section class="lk-group" aria-label="For your own training"><h2>For your own training</h2><div class="lk-stack"><a class="lk-card j" href="/resources/training-progress-audit" data-track="Training Progress Audit (links)"><span class="lk-brand"><img class="lk-jrsf" src="/assets/jr-logo.svg" alt="JR Strength &amp; Fitness" width="845" height="268"></span><span class="lk-cbody"><img src="/assets/links/audit.webp" alt="Cover of the Training Progress Audit" width="600" height="776" loading="lazy"><span class="lk-ctxt"><b class="t">Training Progress Audit</b><span class="d">Six short worksheets for when your progress stalls. Work out what happened before you change the plan.</span><span class="m"><strong>Free</strong> · PDF by email, 7 pages</span><em class="c">Email me the audit</em></span></span></a><div class="panel brands lk-proj"><a class="cell brand-built-for-her" href="/projects/built-for-her">
+<div class="bar"></div>
+<div class="top"><h3 class="h-cell"><span class="lockup-wrap"><img class="lockup" src="/assets/brands/bfh-lockup-on-dark.svg" width="1045" height="535" alt="Built For Her"><span class="tm" aria-label="trademark">™</span></span></h3><span class="tag live">Live · free trial</span></div>
+
+<p>A coach-built training app for women: structured programs, set-by-set logging, nutrition targets and progress tracking.</p>
+<div class="grow"></div>
+<span class="more">Learn more</span>
+
+</a></div><div class="lk-reads"><h3>Read</h3><a href="/notes/why-your-training-program-stops-working" data-track="Article: Why Your Training Program Stops Working—and What to Fix First (links)"><b>Why Your Training Program Stops Working—and What to Fix First</b><span>7 min read</span></a><a href="/notes/how-quickly-you-lose-strength-gains" data-track="Article: How Quickly You Lose Strength Gains (links)"><b>How Quickly You Lose Strength Gains</b><span>8 min read</span></a><a href="/notes/what-happens-when-you-combine-strength-and-endurance-training" data-track="Article: What Happens When You Combine Strength and Endurance Training? (links)"><b>What Happens When You Combine Strength and Endurance Training?</b><span>5 min read</span></a></div></div></section>
+<section class="lk-group" aria-label="For coaches"><h2>For coaches</h2><div class="lk-stack"><a class="lk-card v" href="/resources/program-troubleshooting-field-guide" data-track="Program Troubleshooting Field Guide (links)"><span class="lk-brand"><span class="v-lockup"><img src="/assets/jr-mark.svg" alt="" width="42" height="38"><span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span><span class="v-name">The Trainer’s Coach</span><span class="v-vault">Vault</span></span></span></span><span class="lk-cbody"><img src="/assets/links/guide.webp" alt="Cover of the Program Troubleshooting Field Guide" width="600" height="776" loading="lazy"><span class="lk-ctxt"><b class="t">Program Trouble&shy;shooting Field Guide</b><span class="d">The review I run before changing a stalled client’s program.</span><span class="m"><strong>Free</strong> · PDF by email, 8 pages</span><em class="c">Email me the Field Guide</em></span></span></a><div class="panel brands lk-proj"><a class="cell brand-vault" href="/projects/vault">
 <div class="bar"></div>
 <div class="top"><h3 class="h-cell"><span class="v-lockup"><img src="/assets/jr-mark.svg" alt="" width="42" height="38"><span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span><span class="v-name">The Trainer’s Coach</span><span class="v-vault">Vault</span></span></span></h3><span class="tag live">Live</span></div>
 <span class="sig">Resources<i>.</i> Systems<i>.</i> Standards<i>.</i></span>
@@ -215,7 +241,8 @@ html.m .lk-up.in { opacity: 1; transform: none; }
 <p>Independent exam practice: original questions, timed mocks and concept cards, on your phone.</p>
 <div class="grow"></div>
 <span class="more">Learn more</span>
-</a></div><a class="lk-more" href="/projects">See everything I’m building</a></section>
+</a></div><div class="lk-reads"><h3>Read</h3><a href="/notes/5-questions-to-ask-during-a-personal-training-consultation" data-track="Article: 5 Questions To Ask During A Personal Training Consultation (links)"><b>5 Questions To Ask During A Personal Training Consultation</b><span>4 min read</span></a><a href="/notes/is-constantly-varied-exercise-worthwhile" data-track="Article: Is Constantly Varied Exercise Worthwhile? (links)"><b>Is Constantly Varied Exercise Worthwhile?</b><span>10 min read</span></a></div></div></section>
+<a class="lk-all" href="/projects">See everything I’m building</a>
 <a class="lk-full" href="/"><b>Visit the full site</b><span>My writing, what I’m building and how I coach.</span></a>
 <footer class="lk-foot">
 <a href="/notes">Articles</a><a href="https://www.instagram.com/jrstrengthandfitness/" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UC3gQzznf26wawqKAFj_yuzQ" rel="noopener">YouTube</a><a href="https://www.linkedin.com/in/jr-romero-cscs-33850a126/" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/jrstrengthandfitness" rel="noopener">Facebook</a><a href="mailto:jr@jrstrengthandfitness.com">Email</a>
@@ -267,7 +294,7 @@ html.m .lk-up.in { opacity: 1; transform: none; }
 (function(){
   var root=document.documentElement; if(!root.classList.contains('m')) return;
   /* Groups rise in as they arrive, tiles one after another. */
-  var ups=[].slice.call(document.querySelectorAll('.lk-nl, .lk-group h2, .lk-tile, .lk-card, .lk-proj .cell, .lk-full'))
+  var ups=[].slice.call(document.querySelectorAll('.lk-nl, .lk-group h2, .lk-tile, .lk-card, .lk-proj .cell, .lk-reads, .lk-full'))
     .filter(function(el){ return el.getBoundingClientRect().top > innerHeight*0.92; });
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return;
     var el=e.target, i=[].indexOf.call(el.parentNode.children, el);
