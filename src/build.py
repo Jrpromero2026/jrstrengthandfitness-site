@@ -17,6 +17,7 @@ import review as RV  # noqa: E402
 import layout as L  # noqa: E402
 import examprep as XP  # noqa: E402
 import resources as RS  # noqa: E402
+import links as LK  # noqa: E402
 from PIL import Image, ImageDraw, ImageFilter  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -69,6 +70,10 @@ PAGES = [
          title="You're in | JR Strength & Fitness",
          description="Confirm your newsletter subscription from the email JR just sent.",
          body=NL.THANKS),
+    dict(path="/links", file="links.html", active="", sitemap=False, noindex=True, closing=False, bare=True,
+         title="JR Romero, CSCS | Links",
+         description="Newsletter, free downloads, training with JR in Corvallis or online, and tools for coaches.",
+         body=LK.body(), head=LK.CSS, script=LK.SCRIPT),
     dict(path="/privacy-policy", file="privacy-policy.html", active="",
          title="Privacy Policy | JR Strength & Fitness",
          description="How JR Strength and Fitness LLC collects and uses information on jrstrengthandfitness.com.",
@@ -175,7 +180,7 @@ def build_pages():
                     + (PR.VAULT_STATS_SCRIPT if "data-vault-stat" in spec["body"] else "")
                     + (RS.SCRIPT if "rs-form" in spec["body"] else ""), closing=spec.get("closing", True),
                     og_type=spec.get("og_type", "website"), head=spec.get("head", ""), noindex=spec.get("noindex", False),
-                    og_image=spec.get("og_image"), og_image_alt=spec.get("og_image_alt"), og_image_size=spec.get("og_image_size"))
+                    og_image=spec.get("og_image"), og_image_alt=spec.get("og_image_alt"), og_image_size=spec.get("og_image_size"), bare=spec.get("bare", False))
         os.makedirs(os.path.dirname(os.path.join(OUT, spec["file"])), exist_ok=True)
         with open(os.path.join(OUT, spec["file"]), "w", encoding="utf-8") as fh:
             fh.write(html)
@@ -351,6 +356,7 @@ if __name__ == "__main__":
     build_pages()
     build_config()
     build_images()
+    LK.build_thumbs(ASSETS)
     pending = [k for c in PF.CASES for k, v in c.items() if isinstance(v, PF.PENDING) or (isinstance(v, list) and any(isinstance(x, PF.PENDING) for x in v))]
     if pending and os.environ.get("ALLOW_PENDING") != "1":
         raise SystemExit("A case file still has placeholders JR must fill in: " + ", ".join(pending) + ". Set ALLOW_PENDING=1 only for a preview.")

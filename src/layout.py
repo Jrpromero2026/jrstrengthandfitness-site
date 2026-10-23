@@ -63,7 +63,7 @@ from seo import SITE_GRAPH, HOME_PAGE, OG_IMAGE  # noqa: E402
 GSC_TAG = '<meta name="google-site-verification" content="hX39ZyHoObHflbpdaJvBcX_g0w21RrZhiazY-T0aCy4">\n'
 
 
-def page(*, path, title, description, body, active="", schema=False, script="", closing=True, og_type="website", head="", noindex=False, og_image=None, og_image_alt=None, og_image_size=None, **_):
+def page(*, path, title, description, body, active="", schema=False, script="", closing=True, og_type="website", head="", noindex=False, og_image=None, og_image_alt=None, og_image_size=None, bare=False, **_):
     og_img = og_image or OG_IMAGE
     og_alt = og_image_alt or "JR Romero, CSCS, strength coach in Corvallis, Oregon"
     ow, oh = og_image_size or ((1200, 630) if not og_image else (None, None))
@@ -73,7 +73,7 @@ def page(*, path, title, description, body, active="", schema=False, script="", 
         for href, label, key in NAV
     )
     canonical = SITE + (path if path != "/" else "/")
-    return f"""<!doctype html>
+    html = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -191,3 +191,9 @@ document.addEventListener('click',function(e){{
 </body>
 </html>
 """
+    if bare:  # standalone page (e.g. /links): no site header, closing CTA or footer
+        import re
+        html = re.sub(r'<header class="site-header">.*?</header>\n', "", html, count=1, flags=re.S)
+        html = re.sub(r'<footer class="site-footer">.*?</footer>\n', "", html, count=1, flags=re.S)
+        html = html.replace("<body>", '<body class="lk-page">', 1)
+    return html
