@@ -325,7 +325,7 @@ def body():
 <a class="lk-all" href="/projects">See everything I’m building</a>
 <a class="lk-full" href="/"><b>Visit the full site</b><span>My writing, what I’m building and how I coach.</span></a>
 <footer class="lk-foot">
-<a href="/notes">Articles</a><a href="{L.INSTAGRAM}" rel="noopener">Instagram</a><a href="{L.YOUTUBE}" rel="noopener">YouTube</a><a href="{L.LINKEDIN}" rel="noopener">LinkedIn</a><a href="{L.FACEBOOK}" rel="noopener">Facebook</a><a href="mailto:{L.EMAIL}">Email</a>
+<a href="/notes">Articles</a><a href="{L.INSTAGRAM}" rel="noopener">Instagram</a><a href="{L.LINKEDIN}" rel="noopener">LinkedIn</a><a href="{L.FACEBOOK}" rel="noopener">Facebook</a><a href="mailto:{L.EMAIL}">Email</a>
 <small>© 2026 JR Strength and Fitness LLC</small>
 </footer>
 </div>
