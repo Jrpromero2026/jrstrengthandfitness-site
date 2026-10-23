@@ -3,9 +3,10 @@
 Not in the main nav and noindex: it exists for the bio link only, so Search keeps sending people to the real pages.
 Bio link: https://www.jrstrengthandfitness.com/links?utm_source=ig&utm_medium=social&utm_content=link_in_bio
 
-Layout: full-bleed photo of JR with his name, the Sunday email, two training tiles, branded cards for the free
-resources (real cover, then name > what it is > price and format > action), then every project in the same branded
-card the site's Projects page uses (projects.cell), plus Exam Prep in the Vault's card. Only real offers and facts from the rest of the site; when an offer changes there, change it here.
+Layout: full-bleed photo of JR with his name, the Sunday email, "Train with me" (one tap to each gym's booking
+page, or straight to the online coaching application), then one section per audience, "For your own training" and
+"For coaches". Each holds its free download (delivered by email only), its projects in the same branded cards as the
+site's Projects page (projects.cell), and a short reading list of published articles. Only real offers and facts from the rest of the site; when an offer changes there, change it here.
 """
 import os
 import re
@@ -13,6 +14,8 @@ from PIL import Image
 
 import layout as L
 import examprep as XP
+import writing as W
+import pages as P
 from projects import VAULT_LOCKUP, BY_SLUG, cell
 
 # source (under public/assets) -> crop box in source pixels (None = whole image). Never upscaled.
@@ -34,6 +37,25 @@ def build_thumbs(assets):
         p = os.path.join(out, f"{old}.webp")
         if os.path.exists(p):
             os.remove(p)
+
+
+def consult_tile():
+    """Free consult: straight to each gym's booking page (no stop at /consult on the way)."""
+    return ('<div class="lk-tile lk-t"><b>Free consult</b><span>30 minutes, in person in Corvallis. Pick your gym:</span>'
+            f'<span class="lk-pick"><a href="{L.TAC_PT}" rel="noopener" data-track="Book at Timberhill (links)">Timberhill</a>'
+            f'<a href="{L.G3_PT}" rel="noopener" data-track="Book at G3 (links)">G3</a></span></div>')
+
+
+def reads(slugs):
+    """A short reading list of published Notes from the Floor articles."""
+    posts = {p["slug"]: p for p in W.ALL if not p.get("draft")}
+    rows = "".join(f'<a href="/notes/{k}" data-track="Article: {posts[k]["title"]} (links)"><b>{posts[k]["title"]}</b>'
+                   f'<span>{posts[k]["mins"]} min read</span></a>' for k in slugs if k in posts)
+    return f'<div class="lk-reads"><h3>Read</h3>{rows}</div>' if rows else ""
+
+
+def audience(title, *parts):
+    return f'<section class="lk-group" aria-label="{title}"><h2>{title}</h2><div class="lk-stack">{"".join(parts)}</div></section>'
 
 
 def text_tile(href, title, desc, act, track):
@@ -73,13 +95,9 @@ def exam_cell():
 </a>"""
 
 
-def projects():
-    """For coaches: the Vault and Exam Prep, in the same branded cards the site's Projects page uses.
-    Built For Her, TRAINCND and The Credential Standard stay on the full site (/projects) until JR promotes them
-    on Instagram; add them back here with cell(BY_SLUG[slug])."""
-    cells = [cell(BY_SLUG["vault"]), exam_cell()]
-    return (f'<section class="lk-group" aria-label="For coaches"><h2>For coaches</h2><div class="panel brands lk-proj">{"".join(cells)}</div>'
-            f'<a class="lk-more" href="/projects">See everything I’m building</a></section>')
+def project_cells(*slugs):
+    """Projects in the same branded cards the site's Projects page uses. Add one with its slug; "exam" is Exam Prep."""
+    return '<div class="panel brands lk-proj">' + "".join(exam_cell() if k == "exam" else cell(BY_SLUG[k]) for k in slugs) + '</div>'
 
 
 def cards(title, *items):
@@ -191,6 +209,24 @@ body.lk-page { --cell: #151515; --cell-hover: #1c1c1c; --fg: #F6F6F6; --body: rg
 .lk-more { display: inline-block; margin-top: 14px; padding: 6px 0; font-size: 16px; font-weight: 600;
   text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 6px; }
 
+/* Consult tile: one tap to each gym's booking page */
+.lk-pick { margin-top: auto; padding-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.lk-pick a { display: flex; align-items: center; justify-content: center; min-height: 44px; background: var(--red); color: #fff; font-weight: 600; font-size: 15px; transition: background .15s, transform .12s; }
+.lk-pick a:hover { background: var(--red-dark); }
+.lk-pick a:active { transform: scale(.97); }
+/* Audience sections: free download, project, then a short reading list */
+.lk-stack { display: grid; gap: 10px; }
+.lk-stack .lk-cards, .lk-stack .lk-proj.panel { gap: 10px; }
+.lk-reads { background: var(--step); padding: 16px 16px 6px; }
+.lk-reads h3 { font-weight: 800; font-size: 15px; letter-spacing: .04em; color: var(--soft); margin-bottom: 4px; }
+.lk-reads a { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding: 12px 0; }
+.lk-reads a + a { box-shadow: inset 0 1px 0 #262626; }
+.lk-reads b { font-weight: 600; font-size: 16px; line-height: 1.35; }
+.lk-reads span { flex: none; font-size: 14px; color: var(--soft); }
+.lk-reads a:hover b { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 4px; }
+.lk-all { display: inline-block; margin-top: 30px; padding: 6px 0; font-size: 16px; font-weight: 600;
+  text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+
 .lk-full { display: block; margin-top: 44px; padding: 22px 20px; background: var(--step); }
 .lk-full b { display: block; font-weight: 700; font-size: 18px; }
 .lk-full span { display: block; margin-top: 4px; font-size: 15px; color: var(--soft); }
@@ -236,7 +272,7 @@ SCRIPT = """<script>
 (function(){
   var root=document.documentElement; if(!root.classList.contains('m')) return;
   /* Groups rise in as they arrive, tiles one after another. */
-  var ups=[].slice.call(document.querySelectorAll('.lk-nl, .lk-group h2, .lk-tile, .lk-card, .lk-proj .cell, .lk-full'))
+  var ups=[].slice.call(document.querySelectorAll('.lk-nl, .lk-group h2, .lk-tile, .lk-card, .lk-proj .cell, .lk-reads, .lk-full'))
     .filter(function(el){ return el.getBoundingClientRect().top > innerHeight*0.92; });
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return;
     var el=e.target, i=[].indexOf.call(el.parentNode.children, el);
@@ -271,16 +307,22 @@ def body():
 </form>
 </section>
 {group("Train with me",
-    text_tile(L.CONSULT, "Free consult", "30 minutes, in person at Timberhill or G3 in Corvallis.", "Book a time", "Book a free consult"),
-    text_tile("/online-training", "Online coaching", "Training and nutrition coaching, wherever you are.", "Apply", "Online coaching"))}
-{cards("Free resources",
+    consult_tile(),
+    text_tile("/apply", "Online coaching", f"Training and nutrition coaching, wherever you are. I reply to every application within {P.REPLY_TIME}.", "Apply now", "Apply for online coaching"))}
+{audience("For your own training",
     card("/resources/training-progress-audit", "jrsf", "audit", "Cover of the Training Progress Audit",
          "Training Progress Audit", "Six short worksheets for when your progress stalls. Work out what happened before you change the plan.",
-         "Free", "PDF, 7 pages", "Get the audit"),
+         "Free", "PDF by email, 7 pages", "Email me the audit"),
+    project_cells("built-for-her"),
+    reads(["why-your-training-program-stops-working", "how-quickly-you-lose-strength-gains",
+           "what-happens-when-you-combine-strength-and-endurance-training"]))}
+{audience("For coaches",
     card("/resources/program-troubleshooting-field-guide", "vault", "guide", "Cover of the Program Troubleshooting Field Guide",
-         "Program Trouble&shy;shooting Field Guide", "For coaches: the review I run before changing a stalled client’s program.",
-         "Free", "PDF, 8 pages", "Get the Field Guide"))}
-{projects()}
+         "Program Trouble&shy;shooting Field Guide", "The review I run before changing a stalled client’s program.",
+         "Free", "PDF by email, 8 pages", "Email me the Field Guide"),
+    project_cells("vault", "exam"),
+    reads(["5-questions-to-ask-during-a-personal-training-consultation", "is-constantly-varied-exercise-worthwhile"]))}
+<a class="lk-all" href="/projects">See everything I’m building</a>
 <a class="lk-full" href="/"><b>Visit the full site</b><span>My writing, what I’m building and how I coach.</span></a>
 <footer class="lk-foot">
 <a href="/notes">Articles</a><a href="{L.INSTAGRAM}" rel="noopener">Instagram</a><a href="{L.YOUTUBE}" rel="noopener">YouTube</a><a href="{L.LINKEDIN}" rel="noopener">LinkedIn</a><a href="{L.FACEBOOK}" rel="noopener">Facebook</a><a href="mailto:{L.EMAIL}">Email</a>

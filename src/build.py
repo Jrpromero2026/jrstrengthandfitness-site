@@ -272,6 +272,8 @@ def build_config():
         "redirects": [{"source": s, "destination": d, "permanent": not d.startswith("http")} for s, d in REDIRECTS],
         "headers": [
             {"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=3600, must-revalidate"}]},
+            # Resource PDFs are delivered by email only: keep them out of search results.
+            *[{"source": f"/resources/{r['slug']}.pdf", "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow"}]} for r in RS.LIVE],
             # Basic hardening. No CSP yet: the pages use inline scripts and styles.
             {"source": "/(.*)", "headers": [
                 {"key": "X-Content-Type-Options", "value": "nosniff"},
