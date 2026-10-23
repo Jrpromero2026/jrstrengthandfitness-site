@@ -3,9 +3,9 @@
 Not in the main nav and noindex: it exists for the bio link only, so Search keeps sending people to the real pages.
 Bio link: https://www.jrstrengthandfitness.com/links?utm_source=ig&utm_medium=social&utm_content=link_in_bio
 
-Layout: full-bleed photo of JR with his name, the Sunday email, two training tiles, then branded cards for the
-free resources and projects. Each card carries its own brand (JRSF red, or the Vault's gold and lockup), the real
-cover or screen, and reads in one order: name, what it is, price and format, action. Only real offers and facts from the rest of the site; when an offer changes there, change it here.
+Layout: full-bleed photo of JR with his name, the Sunday email, two training tiles, branded cards for the free
+resources (real cover, then name > what it is > price and format > action), then every project in the same branded
+card the site's Projects page uses (projects.cell), plus Exam Prep in the Vault's card. Only real offers and facts from the rest of the site; when an offer changes there, change it here.
 """
 import os
 import re
@@ -13,14 +13,12 @@ from PIL import Image
 
 import layout as L
 import examprep as XP
-from projects import VAULT_LOCKUP
+from projects import VAULT_LOCKUP, BY_SLUG, cell
 
 # source (under public/assets) -> crop box in source pixels (None = whole image). Never upscaled.
 PICS = {
     "audit": ("resources/training-progress-audit-p1.webp", None),
     "guide": ("resources/program-troubleshooting-field-guide-p1.webp", None),
-    "vault": ("vault/home-body.webp", (0, 0, 585, 731)),
-    "exam": ("exam-prep/question.webp", (0, 0, 640, 800)),
 }
 
 
@@ -32,7 +30,7 @@ def build_thumbs(assets):
         if box:
             im = im.crop(box)
         im.save(os.path.join(out, f"{key}.webp"), "WEBP", quality=86)
-    for old in ("consult", "online"):  # used by an earlier draft
+    for old in ("consult", "online", "vault", "exam"):  # used by earlier drafts
         p = os.path.join(out, f"{old}.webp")
         if os.path.exists(p):
             os.remove(p)
@@ -54,13 +52,31 @@ BRAND = {
 def card(href, brand, pic, alt, title, desc, price, fmt, cta, ext=False, track=None):
     rel = ' rel="noopener"' if ext else ""
     skin = "j" if brand == "jrsf" else "v"
-    w, h = {"audit": (600, 776), "guide": (600, 776), "vault": (585, 731), "exam": (640, 800)}[pic]
+    w, h = {"audit": (600, 776), "guide": (600, 776)}[pic]
     track = track or re.sub(r"<[^>]+>|&shy;", "", title).replace("&amp;", "&")
     return (f'<a class="lk-card {skin}" href="{href}"{rel} data-track="{track} (links)">'
             f'<span class="lk-brand">{BRAND[brand]}</span>'
             f'<span class="lk-cbody"><img src="/assets/links/{pic}.webp" alt="{alt}" width="{w}" height="{h}" loading="lazy">'
             f'<span class="lk-ctxt"><b class="t">{title}</b><span class="d">{desc}</span>'
             f'<span class="m"><strong>{price}</strong> · {fmt}</span><em class="c">{cta}</em></span></span></a>')
+
+
+def exam_cell():
+    """Exam Prep is sold inside the Vault, so it wears the Vault's card with its own app name in the lockup."""
+    return f"""<a class="cell brand-vault" href="{XP.HUB}">
+<div class="bar"></div>
+<div class="top"><h3 class="h-cell">{BRAND['exam']}</h3><span class="tag live">${XP.OFFER['price']} · {XP.OFFER['days']} days</span></div>
+<span class="sig">NASM-CPT<i> · </i>ACE-CPT</span>
+<p>Independent exam practice: original questions, timed mocks and concept cards, on your phone.</p>
+<div class="grow"></div>
+<span class="more">Learn more</span>
+</a>"""
+
+
+def projects():
+    """All four projects, in the same branded cards the site's Projects page uses, plus Exam Prep under the Vault."""
+    cells = [cell(BY_SLUG["vault"]), exam_cell()] + [cell(BY_SLUG[k]) for k in ("built-for-her", "traincnd", "credential-standard")]
+    return f'<section class="lk-group" aria-label="Projects"><h2>Projects</h2><div class="panel brands lk-proj">{"".join(cells)}</div></section>'
 
 
 def cards(title, *items):
@@ -78,7 +94,8 @@ def lanes():
 
 
 CSS = """<style>
-body.lk-page { --ground: #0a0a0a; --step: #151515; --step2: #222; --ink: #F6F6F6; --soft: #BDBDBA; background: var(--ground); }
+body.lk-page { --cell: #151515; --cell-hover: #1c1c1c; --fg: #F6F6F6; --body: rgba(255,255,255,.84); --muted: rgba(255,255,255,.62);
+  --line: rgba(255,255,255,.14); --eyebrow: #FF5A5F; --ground: #0a0a0a; --step: #151515; --step2: #222; --ink: #F6F6F6; --soft: #BDBDBA; background: var(--ground); }
 .lk { min-height: 100svh; }
 .lk-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
@@ -162,6 +179,12 @@ body.lk-page { --ground: #0a0a0a; --step: #151515; --step2: #222; --ink: #F6F6F6
 .lk-card.v .m strong { color: #C9A24B; }
 .lk-card.v .c { text-decoration-color: #C9A24B; }
 
+/* Projects: the site's own branded project cards, tightened for a phone */
+.lk-proj.panel { grid-template-columns: 1fr; gap: 10px; }
+.lk-proj .cell { padding: 22px 20px 20px; gap: 10px; min-height: 0; }
+.lk-proj .cell p { font-size: 16px; line-height: 1.5; }
+.lk-proj .cell .tag { white-space: nowrap; }
+
 .lk-full { display: block; margin-top: 44px; padding: 22px 20px; background: var(--step); }
 .lk-full b { display: block; font-weight: 700; font-size: 18px; }
 .lk-full span { display: block; margin-top: 4px; font-size: 15px; color: var(--soft); }
@@ -207,11 +230,11 @@ SCRIPT = """<script>
 (function(){
   var root=document.documentElement; if(!root.classList.contains('m')) return;
   /* Groups rise in as they arrive, tiles one after another. */
-  var ups=[].slice.call(document.querySelectorAll('.lk-nl, .lk-group h2, .lk-tile, .lk-card, .lk-full'))
+  var ups=[].slice.call(document.querySelectorAll('.lk-nl, .lk-group h2, .lk-tile, .lk-card, .lk-proj .cell, .lk-full'))
     .filter(function(el){ return el.getBoundingClientRect().top > innerHeight*0.92; });
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return;
     var el=e.target, i=[].indexOf.call(el.parentNode.children, el);
-    el.style.transitionDelay=(el.classList.contains('lk-tile')||el.classList.contains('lk-card')? i*80 : 0)+'ms'; el.classList.add('in'); io.unobserve(el); }); },{rootMargin:'0px 0px -6% 0px'});
+    el.style.transitionDelay=(el.classList.contains('lk-tile')||el.classList.contains('lk-card')||el.classList.contains('cell')? Math.min(i,4)*80 : 0)+'ms'; el.classList.add('in'); io.unobserve(el); }); },{rootMargin:'0px 0px -6% 0px'});
   ups.forEach(function(el){ el.classList.add('lk-up'); io.observe(el); });
 })();
 </script>"""
@@ -251,13 +274,7 @@ def body():
     card("/resources/program-troubleshooting-field-guide", "vault", "guide", "Cover of the Program Troubleshooting Field Guide",
          "Program Trouble&shy;shooting Field Guide", "For coaches: the review I run before changing a stalled client’s program.",
          "Free", "PDF, 8 pages", "Get the Field Guide"))}
-{cards("Projects",
-    card(L.VAULT, "vault", "vault", "The Trainer’s Coach Vault home screen",
-         "Resources. Systems. Standards.", "The library I built for professional trainers and coaches: systems, methods and tools from real coaching practice.",
-         "Free", "account", "Open the Vault", ext=True, track="The Trainer’s Coach Vault"),
-    card(XP.HUB, "exam", "exam", "A practice question in the exam prep app",
-         "<span class=nw>NASM-CPT</span> &amp; <span class=nw>ACE-CPT</span>", "Independent exam practice: original questions, timed mocks and concept cards, on your phone.",
-         f"${XP.OFFER['price']}", f"{XP.OFFER['days']} days", "See exam prep", track="Exam prep"))}
+{projects()}
 <a class="lk-full" href="/"><b>Visit the full site</b><span>My writing, what I’m building and how I coach.</span></a>
 <footer class="lk-foot">
 <a href="/notes">Articles</a><a href="{L.INSTAGRAM}" rel="noopener">Instagram</a><a href="{L.YOUTUBE}" rel="noopener">YouTube</a><a href="{L.LINKEDIN}" rel="noopener">LinkedIn</a><a href="{L.FACEBOOK}" rel="noopener">Facebook</a><a href="mailto:{L.EMAIL}">Email</a>

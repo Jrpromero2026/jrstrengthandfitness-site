@@ -37,7 +37,8 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://www.jrstrengthandfitness.com/#site", "name": "JR Strength & Fitness", "url": "https://www.jrstrengthandfitness.com/", "publisher": {"@id": "https://www.jrstrengthandfitness.com/#org"}, "inLanguage": "en-US"}, {"@type": "Organization", "@id": "https://www.jrstrengthandfitness.com/#org", "name": "JR Strength and Fitness LLC", "alternateName": "JR Strength & Fitness", "url": "https://www.jrstrengthandfitness.com/", "email": "jr@jrstrengthandfitness.com", "logo": "https://www.jrstrengthandfitness.com/assets/icon-512.png", "image": ["https://www.jrstrengthandfitness.com/assets/og-jr-romero-square.jpg", "https://www.jrstrengthandfitness.com/assets/og-jr-romero.jpg"], "founder": {"@id": "https://www.jrstrengthandfitness.com/#jr"}, "address": {"@type": "PostalAddress", "streetAddress": "5441 S Macadam Ave, Suite 6590", "addressLocality": "Portland", "addressRegion": "OR", "postalCode": "97239", "addressCountry": "US"}, "sameAs": ["https://www.linkedin.com/in/jr-romero-cscs-33850a126/", "https://www.instagram.com/jrstrengthandfitness/", "https://www.youtube.com/channel/UC3gQzznf26wawqKAFj_yuzQ", "https://www.facebook.com/jrstrengthandfitness", "https://www.gthreesports.com/coaches/jr-romero"]}, {"@type": "Person", "@id": "https://www.jrstrengthandfitness.com/#jr", "name": "JR Romero", "alternateName": ["JR Romero, CSCS", "JR Prieto-Romero", "JR Prieto-Romero, CSCS"], "givenName": "JR", "familyName": "Prieto-Romero", "url": "https://www.jrstrengthandfitness.com/about", "image": ["https://www.jrstrengthandfitness.com/assets/og-jr-romero-square.jpg", "https://www.jrstrengthandfitness.com/assets/photos/jr-portrait.webp"], "jobTitle": "Director of Personal Training, Timberhill Athletic Club; Director of Performance, G3 Sports & Fitness", "description": "Strength and conditioning coach (CSCS) in Corvallis, Oregon, with roughly 20,000 hours of coaching. Builder of The Trainer's Coach Vault, Built For Her, TRAINCND and The Credential Standard.", "worksFor": [{"@type": "SportsActivityLocation", "name": "Timberhill Athletic Club", "url": "https://timberhillac.com/", "hasMap": "https://www.google.com/maps/search/?api=1&query=Timberhill+Athletic+Club&query_place_id=ChIJPSGRNnI_wFQR961D-CQzDxg", "address": {"@type": "PostalAddress", "streetAddress": "2855 NW 29th St", "addressLocality": "Corvallis", "addressRegion": "OR", "postalCode": "97330", "addressCountry": "US"}}, {"@type": "SportsActivityLocation", "name": "G3 Sports & Fitness", "url": "https://www.gthreesports.com/", "hasMap": "https://www.google.com/maps/search/?api=1&query=G3+Sports+%26+Fitness&query_place_id=ChIJIaXvKtY_wFQRP2aDGqS60kE", "telephone": "+1-541-207-3508", "address": {"@type": "PostalAddress", "streetAddress": "5520 NW Highway 99W", "addressLocality": "Corvallis", "addressRegion": "OR", "postalCode": "97330", "addressCountry": "US"}}], "alumniOf": {"@type": "CollegeOrUniversity", "name": "Oregon State University"}, "hasCredential": [{"@type": "EducationalOccupationalCredential", "name": "Certified Strength and Conditioning Specialist (CSCS)", "credentialCategory": "certification", "recognizedBy": {"@type": "Organization", "name": "National Strength and Conditioning Association"}}, {"@type": "EducationalOccupationalCredential", "name": "B.S., Exercise and Sport Science", "credentialCategory": "degree", "recognizedBy": {"@type": "CollegeOrUniversity", "name": "Oregon State University"}}], "knowsAbout": ["Strength and conditioning", "Personal training", "Hypertrophy training", "Youth athletic development", "Strength training for women", "Online coaching", "Coaching systems and consultations"], "homeLocation": {"@type": "Place", "name": "Corvallis, Oregon"}, "hasOccupation": [{"@type": "Occupation", "name": "Personal trainer", "occupationLocation": {"@type": "City", "name": "Corvallis, Oregon"}}, {"@type": "Occupation", "name": "Strength and conditioning coach", "occupationLocation": {"@type": "City", "name": "Corvallis, Oregon"}}], "sameAs": ["https://www.linkedin.com/in/jr-romero-cscs-33850a126/", "https://www.instagram.com/jrstrengthandfitness/", "https://www.youtube.com/channel/UC3gQzznf26wawqKAFj_yuzQ", "https://www.facebook.com/jrstrengthandfitness"]}]}</script>
 <style>
-body.lk-page { --ground: #0a0a0a; --step: #151515; --step2: #222; --ink: #F6F6F6; --soft: #BDBDBA; background: var(--ground); }
+body.lk-page { --cell: #151515; --cell-hover: #1c1c1c; --fg: #F6F6F6; --body: rgba(255,255,255,.84); --muted: rgba(255,255,255,.62);
+  --line: rgba(255,255,255,.14); --eyebrow: #FF5A5F; --ground: #0a0a0a; --step: #151515; --step2: #222; --ink: #F6F6F6; --soft: #BDBDBA; background: var(--ground); }
 .lk { min-height: 100svh; }
 .lk-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
@@ -121,6 +122,12 @@ body.lk-page { --ground: #0a0a0a; --step: #151515; --step2: #222; --ink: #F6F6F6
 .lk-card.v .m strong { color: #C9A24B; }
 .lk-card.v .c { text-decoration-color: #C9A24B; }
 
+/* Projects: the site's own branded project cards, tightened for a phone */
+.lk-proj.panel { grid-template-columns: 1fr; gap: 10px; }
+.lk-proj .cell { padding: 22px 20px 20px; gap: 10px; min-height: 0; }
+.lk-proj .cell p { font-size: 16px; line-height: 1.5; }
+.lk-proj .cell .tag { white-space: nowrap; }
+
 .lk-full { display: block; margin-top: 44px; padding: 22px 20px; background: var(--step); }
 .lk-full b { display: block; font-weight: 700; font-size: 18px; }
 .lk-full span { display: block; margin-top: 4px; font-size: 15px; color: var(--soft); }
@@ -190,7 +197,46 @@ html.m .lk-up.in { opacity: 1; transform: none; }
 </section>
 <section class="lk-group" aria-label="Train with me"><h2>Train with me</h2><div class="lk-tiles"><a class="lk-tile lk-t" href="/consult" data-track="Book a free consult (links)"><b>Free consult</b><span>30 minutes, in person at Timberhill or G3 in Corvallis.</span><em>Book a time</em></a><a class="lk-tile lk-t" href="/online-training" data-track="Online coaching (links)"><b>Online coaching</b><span>Training and nutrition coaching, wherever you are.</span><em>Apply</em></a></div></section>
 <section class="lk-group" aria-label="Free resources"><h2>Free resources</h2><div class="lk-cards"><a class="lk-card j" href="/resources/training-progress-audit" data-track="Training Progress Audit (links)"><span class="lk-brand"><img class="lk-jrsf" src="/assets/jr-logo.svg" alt="JR Strength &amp; Fitness" width="845" height="268"></span><span class="lk-cbody"><img src="/assets/links/audit.webp" alt="Cover of the Training Progress Audit" width="600" height="776" loading="lazy"><span class="lk-ctxt"><b class="t">Training Progress Audit</b><span class="d">Six short worksheets for when your progress stalls. Work out what happened before you change the plan.</span><span class="m"><strong>Free</strong> · PDF, 7 pages</span><em class="c">Get the audit</em></span></span></a><a class="lk-card v" href="/resources/program-troubleshooting-field-guide" data-track="Program Troubleshooting Field Guide (links)"><span class="lk-brand"><span class="v-lockup"><img src="/assets/jr-mark.svg" alt="" width="42" height="38"><span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span><span class="v-name">The Trainer’s Coach</span><span class="v-vault">Vault</span></span></span></span><span class="lk-cbody"><img src="/assets/links/guide.webp" alt="Cover of the Program Troubleshooting Field Guide" width="600" height="776" loading="lazy"><span class="lk-ctxt"><b class="t">Program Trouble&shy;shooting Field Guide</b><span class="d">For coaches: the review I run before changing a stalled client’s program.</span><span class="m"><strong>Free</strong> · PDF, 8 pages</span><em class="c">Get the Field Guide</em></span></span></a></div></section>
-<section class="lk-group" aria-label="Projects"><h2>Projects</h2><div class="lk-cards"><a class="lk-card v" href="https://vault.jrstrengthandfitness.com" rel="noopener" data-track="The Trainer’s Coach Vault (links)"><span class="lk-brand"><span class="v-lockup"><img src="/assets/jr-mark.svg" alt="" width="42" height="38"><span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span><span class="v-name">The Trainer’s Coach</span><span class="v-vault">Vault</span></span></span></span><span class="lk-cbody"><img src="/assets/links/vault.webp" alt="The Trainer’s Coach Vault home screen" width="585" height="731" loading="lazy"><span class="lk-ctxt"><b class="t">Resources. Systems. Standards.</b><span class="d">The library I built for professional trainers and coaches: systems, methods and tools from real coaching practice.</span><span class="m"><strong>Free</strong> · account</span><em class="c">Open the Vault</em></span></span></a><a class="lk-card v" href="/exam-prep" data-track="Exam prep (links)"><span class="lk-brand"><span class="v-lockup"><img src="/assets/jr-mark.svg" alt="" width="42" height="38"><span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span><span class="v-name">The Trainer’s Coach</span><span class="v-vault">Exam Prep</span></span></span></span><span class="lk-cbody"><img src="/assets/links/exam.webp" alt="A practice question in the exam prep app" width="640" height="800" loading="lazy"><span class="lk-ctxt"><b class="t"><span class=nw>NASM-CPT</span> &amp; <span class=nw>ACE-CPT</span></b><span class="d">Independent exam practice: original questions, timed mocks and concept cards, on your phone.</span><span class="m"><strong>$79</strong> · 180 days</span><em class="c">See exam prep</em></span></span></a></div></section>
+<section class="lk-group" aria-label="Projects"><h2>Projects</h2><div class="panel brands lk-proj"><a class="cell brand-vault" href="/projects/vault">
+<div class="bar"></div>
+<div class="top"><h3 class="h-cell"><span class="v-lockup"><img src="/assets/jr-mark.svg" alt="" width="42" height="38"><span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span><span class="v-name">The Trainer’s Coach</span><span class="v-vault">Vault</span></span></span></h3><span class="tag live">Live</span></div>
+<span class="sig">Resources<i>.</i> Systems<i>.</i> Standards<i>.</i></span>
+<p>Consultation systems, programming frameworks and client-management tools built from real coaching practice.</p>
+<div class="grow"></div>
+<span class="more">Learn more</span>
+
+</a><a class="cell brand-vault" href="/exam-prep">
+<div class="bar"></div>
+<div class="top"><h3 class="h-cell"><span class="v-lockup"><img src="/assets/jr-mark.svg" alt="" width="42" height="38"><span class="v-stack"><span class="v-brand">JR Strength &amp; Fitness</span><span class="v-name">The Trainer’s Coach</span><span class="v-vault">Exam Prep</span></span></span></h3><span class="tag live">$79 · 180 days</span></div>
+<span class="sig">NASM-CPT<i> · </i>ACE-CPT</span>
+<p>Independent exam practice: original questions, timed mocks and concept cards, on your phone.</p>
+<div class="grow"></div>
+<span class="more">Learn more</span>
+</a><a class="cell brand-built-for-her" href="/projects/built-for-her">
+<div class="bar"></div>
+<div class="top"><h3 class="h-cell"><span class="lockup-wrap"><img class="lockup" src="/assets/brands/bfh-lockup-on-dark.svg" width="1045" height="535" alt="Built For Her"><span class="tm" aria-label="trademark">™</span></span></h3><span class="tag live">Live · free trial</span></div>
+
+<p>A coach-built training app for women: structured programs, set-by-set logging, nutrition targets and progress tracking.</p>
+<div class="grow"></div>
+<span class="more">Learn more</span>
+
+</a><a class="cell brand-traincnd" href="/projects/traincnd">
+<div class="bar"></div>
+<div class="top"><h3 class="h-cell"><img class="lockup" src="/assets/brands/traincnd-lockup-dark.png" width="363" height="67" alt="TRAINCND, the coaching operating platform"></h3><span class="tag ">In pilot</span></div>
+<span class="tc-line">PLAN<i>/</i>COACH<i>/</i>TRACK<i>/</i>SCALE</span>
+<p>One platform to run a coaching business, from the first invitation to the season’s last session.</p>
+<div class="grow"></div>
+<span class="more">Learn more</span>
+
+</a><a class="cell brand-credential-standard" href="/projects/credential-standard">
+<div class="bar"></div>
+<div class="top"><h3 class="h-cell"><svg class="seal" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10.5"></circle><circle cx="12" cy="12" r="6.8" stroke-dasharray="1.6 2.05"></circle></g><path d="M8.6 12.2l2.3 2.4 4.5-4.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>The Credential Standard</h3><span class="tag ">In development</span></div>
+<span class="sig">Checked against NCCA<i>·</i>NBHWC<i>·</i>Woolf</span>
+<p>Which fitness credentials are accredited, what they require and what renewal takes, with every fact cited to its source.</p>
+<div class="grow"></div>
+<span class="more">Learn more</span>
+<svg class="seal-mark" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10.5"></circle><circle cx="12" cy="12" r="6.8" stroke-dasharray="1.6 2.05"></circle></g><path d="M8.6 12.2l2.3 2.4 4.5-4.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a></div></section>
 <a class="lk-full" href="/"><b>Visit the full site</b><span>My writing, what I’m building and how I coach.</span></a>
 <footer class="lk-foot">
 <a href="/notes">Articles</a><a href="https://www.instagram.com/jrstrengthandfitness/" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UC3gQzznf26wawqKAFj_yuzQ" rel="noopener">YouTube</a><a href="https://www.linkedin.com/in/jr-romero-cscs-33850a126/" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/jrstrengthandfitness" rel="noopener">Facebook</a><a href="mailto:jr@jrstrengthandfitness.com">Email</a>
@@ -242,11 +288,11 @@ html.m .lk-up.in { opacity: 1; transform: none; }
 (function(){
   var root=document.documentElement; if(!root.classList.contains('m')) return;
   /* Groups rise in as they arrive, tiles one after another. */
-  var ups=[].slice.call(document.querySelectorAll('.lk-nl, .lk-group h2, .lk-tile, .lk-card, .lk-full'))
+  var ups=[].slice.call(document.querySelectorAll('.lk-nl, .lk-group h2, .lk-tile, .lk-card, .lk-proj .cell, .lk-full'))
     .filter(function(el){ return el.getBoundingClientRect().top > innerHeight*0.92; });
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return;
     var el=e.target, i=[].indexOf.call(el.parentNode.children, el);
-    el.style.transitionDelay=(el.classList.contains('lk-tile')||el.classList.contains('lk-card')? i*80 : 0)+'ms'; el.classList.add('in'); io.unobserve(el); }); },{rootMargin:'0px 0px -6% 0px'});
+    el.style.transitionDelay=(el.classList.contains('lk-tile')||el.classList.contains('lk-card')||el.classList.contains('cell')? Math.min(i,4)*80 : 0)+'ms'; el.classList.add('in'); io.unobserve(el); }); },{rootMargin:'0px 0px -6% 0px'});
   ups.forEach(function(el){ el.classList.add('lk-up'); io.observe(el); });
 })();
 </script><script>
