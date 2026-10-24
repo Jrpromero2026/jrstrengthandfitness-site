@@ -5,7 +5,6 @@ category: Personal Training
 audience: coach
 excerpt: Before you rewrite a client's program, check what changed outside the gym. The four-question check I run before I touch a single set or rep.
 dek: Before you rewrite the program, check what changed outside the gym. Here's the four-question check I run before I touch a single set or rep.
-draft: true
 ---
 Week six. Your client's squat hasn't moved, the scale hasn't moved, and their energy in session is flat. The reflex is to rewrite the program: a new split, a new rep scheme, something to shake it loose.
 
