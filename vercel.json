@@ -102,6 +102,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/your-client-didnt-plateau-their-week-did",
+      "destination": "/notes/your-client-didnt-plateau-their-week-did",
+      "permanent": true
+    },
+    {
       "source": "/blog/5-questions-to-ask-during-a-personal-training-consultation",
       "destination": "/notes/5-questions-to-ask-during-a-personal-training-consultation",
       "permanent": true
