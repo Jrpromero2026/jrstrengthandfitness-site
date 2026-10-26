@@ -61,6 +61,8 @@ from seo import SITE_GRAPH, HOME_PAGE, OG_IMAGE  # noqa: E402
 # Google Search Console ownership (URL-prefix property https://www.jrstrengthandfitness.com/, added Oct 18 2026).
 # Keep it: removing it un-verifies the site.
 GSC_TAG = '<meta name="google-site-verification" content="hX39ZyHoObHflbpdaJvBcX_g0w21RrZhiazY-T0aCy4">\n'
+# Metricool web analytics (brand: JR Strength & Fitness, added Oct 26 2026). Loads on every page.
+METRICOOL_TAG = '<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"6e23c396049dfb5eabc7a7bfc5dcd0f3"})});</script>'
 
 
 def page(*, path, title, description, body, active="", schema=False, script="", closing=True, og_type="website", head="", noindex=False, og_image=None, og_image_alt=None, og_image_size=None, bare=False, **_):
@@ -108,6 +110,7 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <link rel="stylesheet" href="/assets/styles.css?v={CSS_VER}">
 <script>window.va=window.va||function(){{(window.vaq=window.vaq||[]).push(arguments);}};</script>
 <script defer src="/_vercel/insights/script.js"></script>
+{METRICOOL_TAG}
 {SITE_GRAPH}{HOME_PAGE if path == "/" else ""}
 {head}
 </head>
