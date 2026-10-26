@@ -66,16 +66,18 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 
 </div>
 <div class="side"><form class="form-card rs-form" method="post" action="#" novalidate data-resource="training-progress-audit"
- data-kit="10061495" data-thanks="/resources/training-progress-audit/thanks" data-title="The Training Progress Audit">
+ data-kit="10061495" data-nl="10028379" data-source="src-lm-audit" data-thanks="/resources/training-progress-audit/thanks" data-title="The Training Progress Audit">
 <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
 <div class="field"><label for="rs-first-training-progress-audit">First name <span class="hint">optional</span></label>
 <input id="rs-first-training-progress-audit" name="fields[first_name]" type="text" autocomplete="given-name"></div>
 <div class="field"><label for="rs-email-training-progress-audit">Email <span class="req">*</span></label>
 <input id="rs-email-training-progress-audit" name="email_address" type="email" autocomplete="email" required></div>
+<input type="hidden" name="fields[signup_source]" value="src-lm-audit">
+<div class="field attest"><label class="choice"><input type="checkbox" name="nl_optin" value="yes"> Also send me Notes from the Floor, my weekly email. You’ll get an email to confirm. Unsubscribe anytime.</label></div>
 <div class="form-status" role="status" hidden></div>
 <div class="btns"><button class="btn btn-red" type="submit">Email me the audit</button></div>
 <p class="form-note">I'll email it to you right away, plus four short emails over two weeks on using it.
-It doesn't sign you up for the newsletter. Unsubscribe anytime. See the <a href="/privacy-policy">Privacy Policy</a>.</p>
+Unsubscribe anytime. See the <a href="/privacy-policy">Privacy Policy</a>.</p>
 </form></div>
 </div>
 </section><section class="sec light mark"><div class="wrap"><div class="split top">
@@ -189,16 +191,22 @@ It doesn't sign you up for the newsletter. Unsubscribe anytime. See the <a href=
 </script>
 <script>
 (function(){
+  function kitOptin(formId,email,first,source){ if(!formId||!email){ return; }
+  var b=new URLSearchParams(); b.append('email_address',email); if(first){ b.append('fields[first_name]',first); } if(source){ b.append('fields[signup_source]',source); }
+  try{ fetch('https://app.kit.com/forms/'+formId+'/subscriptions',{method:'POST',mode:'no-cors',keepalive:true,body:b}).catch(function(){}); }catch(err){} }
   document.querySelectorAll('form.rs-form').forEach(function(f){
     f.addEventListener('submit',function(e){
       var st=f.querySelector('.form-status'), btn=f.querySelector('button[type=submit]');
       if(!f.checkValidity()){ e.preventDefault(); st.textContent='Enter a valid email address so I can send it.'; st.hidden=false; f.reportValidity(); return; }
       var fd=new FormData(f); if(fd.get('_honey')){ e.preventDefault(); return; }
-      if(window.va){ window.va('event',{name:'Resource request',data:{resource:f.dataset.resource}}); }
+      var optin=fd.get('nl_optin')==='yes';
+      if(window.va){ window.va('event',{name:'Resource request',data:{resource:f.dataset.resource,newsletter:optin?'yes':'no'}}); }
+      if(optin){ kitOptin(f.dataset.nl, fd.get('email_address'), fd.get('fields[first_name]')||'', f.dataset.source); }
+      var ob=f.querySelector('[name=nl_optin]'); if(ob){ ob.disabled=true; }
       if(f.dataset.kit){ f.action='https://app.kit.com/forms/'+f.dataset.kit+'/subscriptions'; f.querySelector('[name=_honey]').disabled=true; btn.disabled=true; btn.textContent='Sending…'; return; }
       e.preventDefault();
       var data={_subject:'Resource request: '+f.dataset.title, email:fd.get('email_address'), first_name:fd.get('fields[first_name]')||'',
-        resource:f.dataset.resource, _template:'table', _captcha:'false', page:location.href,
+        resource:f.dataset.resource, newsletter:optin?'yes (Kit confirm sent)':'no', _template:'table', _captcha:'false', page:location.href,
         _autoresponse:'Here is '+f.dataset.title+': '+f.dataset.pdf+'  JR Romero, CSCS, JR Strength & Fitness'};
       btn.disabled=true; btn.textContent='Sending…'; st.hidden=true;
       fetch('https://formsubmit.co/ajax/jr@jrstrengthandfitness.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})

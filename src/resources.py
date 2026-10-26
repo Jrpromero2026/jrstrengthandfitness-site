@@ -7,6 +7,12 @@ How a request flows:
   landing page form -> Kit form (adds the resource tag; Kit automation starts that resource's sequence)
                     -> Kit redirects to /resources/<slug>/thanks, which tells them to check their inbox (no download link)
                        and offers the newsletter as a separate choice.
+  If the visitor ticks the unticked "Also send me Notes from the Floor" box, the same submit also subscribes them to the
+  matching double opt-in newsletter form (training -> Newsletter: Training 10028379, coach -> Newsletter: Coaches
+  10028376) with signup_source set, so they land in segment 599537. Unticked, the request never joins the newsletter.
+  Why a box and not automatic (tested 2026-10-26): the LM forms have double opt-in off, so a requester is already an
+  active Kit subscriber, and Kit then puts an active subscriber straight onto a newsletter form without waiting for the
+  confirm click. The confirm email could not be the consent, so the tick is.
 Until a resource's Kit form ID is filled in below, requests are emailed to JR through FormSubmit (with an
 auto-reply that carries the download link) and the visitor goes straight to the thanks page. Nobody is lost.
 
@@ -15,7 +21,6 @@ Kit setup per resource (done once, in Kit):
   2. In the form's settings: success action -> redirect to https://www.jrstrengthandfitness.com/resources/<slug>/thanks
      and turn OFF "send incentive email" (the sequence's first email delivers the file).
   3. Visual automation: "Joins form LM: <title>" -> "Add tag <tag>" -> "Subscribe to sequence <sequence>".
-Resource requests never join the newsletter on their own. The newsletter is a separate choice on the thanks page.
 
 To launch the next resource: add its PDF to public/resources/, its two page images to public/assets/resources/,
 an entry below with live=True, rebuild.
@@ -34,7 +39,7 @@ RESOURCES = [
         title="The Training Progress Audit", short="the audit", brand="JR Strength &amp; Fitness",
         kit_form="10061495",               # Kit form "LM: Training Progress Audit"
         email_subject="Your Training Progress Audit",  # subject of sequence 2933412's first email (shown on the thanks page)
-        tag="lm-training-audit", sequence="LM01 Training Progress Audit: delivery + follow-ups",
+        tag="lm-training-audit", source="src-lm-audit", sequence="LM01 Training Progress Audit: delivery + follow-ups",
         interest="training", article="why-your-training-program-stops-working",
         pages=7,
         h1="Before you change<br>the plan.",
@@ -61,7 +66,7 @@ RESOURCES = [
         title="The Program Troubleshooting Field Guide", short="the Field Guide", brand="The Trainer&rsquo;s Coach Vault",
         kit_form="10061497",               # Kit form "LM: Program Troubleshooting Field Guide"
         email_subject="Your Program Troubleshooting Field Guide",  # subject of sequence 2933413's first email
-        tag="lm-field-guide", sequence="LM02 Program Troubleshooting Field Guide: delivery + follow-ups",
+        tag="lm-field-guide", source="src-lm-fieldguide", sequence="LM02 Program Troubleshooting Field Guide: delivery + follow-ups",
         interest="coach", article="your-client-didnt-plateau-their-week-did",
         pages=8,
         h1="Find the problem<br>before the fix.",
@@ -125,7 +130,7 @@ def hub_body():
     return (
         hero("Free resources", "Tools from<br>the floor.",
              "Worksheets I use with clients and coaches. Each one solves one problem and needs a pen and your own records. "
-             "No purchase needed, and requesting one doesn't sign you up for anything else.",
+             "No purchase needed, and requesting one doesn't sign you up for anything else unless you tick the newsletter box.",
              short=True, size="h-display")
         + sec("light", lanes)
     )
@@ -134,16 +139,18 @@ def hub_body():
 # ---------------------------------------------------------------- Landing page
 def _form(r):
     return f"""<form class="form-card rs-form" method="post" action="#" novalidate data-resource="{r['slug']}"
- data-kit="{r['kit_form']}" data-thanks="{path(r)}/thanks" data-title="{html.escape(r['title'])}"{"" if r['kit_form'] else f' data-pdf="{SITE}{pdf(r)}"'}>
+ data-kit="{r['kit_form']}" data-nl="{NL.KIT_FORMS[r['interest']]}" data-source="{r['source']}" data-thanks="{path(r)}/thanks" data-title="{html.escape(r['title'])}"{"" if r['kit_form'] else f' data-pdf="{SITE}{pdf(r)}"'}>
 <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
 <div class="field"><label for="rs-first-{r['slug']}">First name <span class="hint">optional</span></label>
 <input id="rs-first-{r['slug']}" name="fields[first_name]" type="text" autocomplete="given-name"></div>
 <div class="field"><label for="rs-email-{r['slug']}">Email <span class="req">*</span></label>
 <input id="rs-email-{r['slug']}" name="email_address" type="email" autocomplete="email" required></div>
+<input type="hidden" name="fields[signup_source]" value="{r['source']}">
+<div class="field attest"><label class="choice"><input type="checkbox" name="nl_optin" value="yes"> Also send me Notes from the Floor, my weekly email. You’ll get an email to confirm. Unsubscribe anytime.</label></div>
 <div class="form-status" role="status" hidden></div>
 <div class="btns"><button class="btn btn-red" type="submit">{r['button']}</button></div>
 <p class="form-note">I'll email it to you right away, plus four short emails over two weeks on using it.
-It doesn't sign you up for the newsletter. Unsubscribe anytime. See the <a href="/privacy-policy">Privacy Policy</a>.</p>
+Unsubscribe anytime. See the <a href="/privacy-policy">Privacy Policy</a>.</p>
 </form>"""
 
 
@@ -217,16 +224,20 @@ PAGES = (
 
 SCRIPT = """<script>
 (function(){
+  """ + NL.OPTIN_JS + """
   document.querySelectorAll('form.rs-form').forEach(function(f){
     f.addEventListener('submit',function(e){
       var st=f.querySelector('.form-status'), btn=f.querySelector('button[type=submit]');
       if(!f.checkValidity()){ e.preventDefault(); st.textContent='Enter a valid email address so I can send it.'; st.hidden=false; f.reportValidity(); return; }
       var fd=new FormData(f); if(fd.get('_honey')){ e.preventDefault(); return; }
-      if(window.va){ window.va('event',{name:'Resource request',data:{resource:f.dataset.resource}}); }
+      var optin=fd.get('nl_optin')==='yes';
+      if(window.va){ window.va('event',{name:'Resource request',data:{resource:f.dataset.resource,newsletter:optin?'yes':'no'}}); }
+      if(optin){ kitOptin(f.dataset.nl, fd.get('email_address'), fd.get('fields[first_name]')||'', f.dataset.source); }
+      var ob=f.querySelector('[name=nl_optin]'); if(ob){ ob.disabled=true; }
       if(f.dataset.kit){ f.action='https://app.kit.com/forms/'+f.dataset.kit+'/subscriptions'; f.querySelector('[name=_honey]').disabled=true; btn.disabled=true; btn.textContent='Sending…'; return; }
       e.preventDefault();
       var data={_subject:'Resource request: '+f.dataset.title, email:fd.get('email_address'), first_name:fd.get('fields[first_name]')||'',
-        resource:f.dataset.resource, _template:'table', _captcha:'false', page:location.href,
+        resource:f.dataset.resource, newsletter:optin?'yes (Kit confirm sent)':'no', _template:'table', _captcha:'false', page:location.href,
         _autoresponse:'Here is '+f.dataset.title+': '+f.dataset.pdf+'  JR Romero, CSCS, JR Strength & Fitness'};
       btn.disabled=true; btn.textContent='Sending…'; st.hidden=true;
       fetch('""" + FORM_ENDPOINT + """',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})

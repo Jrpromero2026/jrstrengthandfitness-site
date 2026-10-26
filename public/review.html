@@ -236,6 +236,9 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
   f.addEventListener('reset',function(){ setTimeout(function(){ set(f.querySelector('[name=kind]:checked').value); },0); });
 })();
 </script><script>
+function kitOptin(formId,email,first,source){ if(!formId||!email){ return; }
+  var b=new URLSearchParams(); b.append('email_address',email); if(first){ b.append('fields[first_name]',first); } if(source){ b.append('fields[signup_source]',source); }
+  try{ fetch('https://app.kit.com/forms/'+formId+'/subscriptions',{method:'POST',mode:'no-cors',keepalive:true,body:b}).catch(function(){}); }catch(err){} }
 document.querySelectorAll('form[data-form]').forEach(function(f){
   f.addEventListener('submit',function(e){
     e.preventDefault();
@@ -243,6 +246,7 @@ document.querySelectorAll('form[data-form]').forEach(function(f){
     if(!f.checkValidity()){ st.textContent='Please fill in the required fields marked with *.'; st.hidden=false; f.reportValidity(); return; }
     var data={}; new FormData(f).forEach(function(v,k){ if(data[k]!==undefined){ data[k]=data[k]+', '+v; } else { data[k]=v; } });
     if(data._honey){ return; }
+    if(f.dataset.kitOptin){ kitOptin(f.dataset.kitOptin, data.email, data.first_name||'', f.dataset.source); data.newsletter='Kit confirm email sent ('+f.dataset.source+')'; }
     var now=new Date().toISOString(); Object.keys(data).forEach(function(k){ if(/_(confirmed|ok)$/.test(k)){ data[k+'_at']=now; } });
     var who=((data.first_name||'')+' '+(data.last_name||'')).trim();
     if(who){ data._subject=(data._subject||'Website submission')+' — '+who; }

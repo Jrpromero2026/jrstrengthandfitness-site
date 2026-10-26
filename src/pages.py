@@ -282,7 +282,7 @@ APPLY = (
     hero("Online coaching", "Apply for online coaching.",
          f"Tell me about your training and goals. Your application comes straight to me, and I reply to every one within {REPLY_TIME}.",
          f'<a class="link-u" href="{CONSULT}">Local to Corvallis? Book a free consult instead →</a>', side=NEXT_CARD, short=True, size="h-display")
-    + sec("light", f"""<form class="form-card" id="apply-form" novalidate data-form="apply" data-done="Thanks, your application went straight to JR. A confirmation is on its way to your inbox, and you’ll hear back within {REPLY_TIME}.">
+    + sec("light", f"""<form class="form-card" id="apply-form" novalidate data-form="apply" data-kit-optin="{NL.KIT_FORMS['training']}" data-source="src-coaching-application" data-done="Thanks, your application went straight to JR. A confirmation is on its way to your inbox, and you’ll hear back within {REPLY_TIME}.">
 <input type="hidden" name="_subject" value="Online coaching application">
 <input type="hidden" name="_autoresponse" value="{AUTORESPONSE.replace('&', '&amp;')}">
 <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
@@ -322,7 +322,7 @@ APPLY = (
 </fieldset>
 <div class="field"><label for="f-msg">Anything else I should know?</label><textarea id="f-msg" name="message"></textarea></div>
 {AGE_ATTESTATION}
-<p class="form-note">Your application is emailed to JR. By applying you agree to the <a href="/privacy-policy">Privacy Policy</a>. Health details are optional; we’ll cover them on our first call.</p>
+<p class="form-note">Your application is emailed to JR. {NL.CONFIRM_NOTE} By applying you agree to the <a href="/privacy-policy">Privacy Policy</a>. Health details are optional; we’ll cover them on our first call.</p>
 <div class="form-status" role="status" hidden></div>
 <div class="btns"><button class="btn btn-red" type="submit">Submit application</button></div>
 </form>""", mark=False)
@@ -336,8 +336,11 @@ APPLY_SCRIPT = """<script>
 })();
 </script>"""
 
-# Shared form handler: emails each submission to JR through FormSubmit (formsubmit.co).
+# Shared form handler: emails each submission to JR through FormSubmit (formsubmit.co). A form with data-kit-optin
+# (waitlists, the coaching application) also subscribes the address to that double opt-in Kit newsletter form,
+# with data-source in the Kit "Signup source" field; the form shows NL.CONFIRM_NOTE so the person knows.
 FORM_SCRIPT = """<script>
+""" + NL.OPTIN_JS + """
 document.querySelectorAll('form[data-form]').forEach(function(f){
   f.addEventListener('submit',function(e){
     e.preventDefault();
@@ -345,6 +348,7 @@ document.querySelectorAll('form[data-form]').forEach(function(f){
     if(!f.checkValidity()){ st.textContent='Please fill in the required fields marked with *.'; st.hidden=false; f.reportValidity(); return; }
     var data={}; new FormData(f).forEach(function(v,k){ if(data[k]!==undefined){ data[k]=data[k]+', '+v; } else { data[k]=v; } });
     if(data._honey){ return; }
+    if(f.dataset.kitOptin){ kitOptin(f.dataset.kitOptin, data.email, data.first_name||'', f.dataset.source); data.newsletter='Kit confirm email sent ('+f.dataset.source+')'; }
     var now=new Date().toISOString(); Object.keys(data).forEach(function(k){ if(/_(confirmed|ok)$/.test(k)){ data[k+'_at']=now; } });
     var who=((data.first_name||'')+' '+(data.last_name||'')).trim();
     if(who){ data._subject=(data._subject||'Website submission')+' — '+who; }

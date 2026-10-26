@@ -20,6 +20,17 @@ INTERESTS = [
     ("training", "My own training"),
     ("women", "Strength training for women"),
 ]
+# Notice shown wherever a signup also asks Kit for a newsletter subscription (waitlists, coaching application,
+# the resource opt-in box). The newsletter forms are double opt-in, so a new address gets a confirm email first.
+CONFIRM_NOTE = "You’ll also get an email to confirm Notes from the Floor, my weekly email. Unsubscribe anytime."
+
+# Browser helper used by the resource, waitlist and application forms: subscribe an address to a Kit newsletter
+# form through its public endpoint (the same one the newsletter forms post to; no API key). `source` lands in the
+# Kit custom field "Signup source" (key signup_source). keepalive lets it finish while the page navigates away.
+OPTIN_JS = """function kitOptin(formId,email,first,source){ if(!formId||!email){ return; }
+  var b=new URLSearchParams(); b.append('email_address',email); if(first){ b.append('fields[first_name]',first); } if(source){ b.append('fields[signup_source]',source); }
+  try{ fetch('https://app.kit.com/forms/'+formId+'/subscriptions',{method:'POST',mode:'no-cors',keepalive:true,body:b}).catch(function(){}); }catch(err){} }"""
+
 PITCH = ("What I’m testing with clients and coaches, new articles, and first word when TRAINCND "
          "and The Credential Standard open. No spam. Unsubscribe anytime.")
 

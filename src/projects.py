@@ -5,6 +5,7 @@ Facts come from each product's own live site. "Why" sections are drafts for JR t
 from layout import VAULT, EMAIL, CONSULT, FORM_ENDPOINT
 from ui import hero, sec, ext
 import examprep as XP
+import newsletter as NL
 
 # Fallback Vault counts, as published on vault.jrstrengthandfitness.com/pricing (Oct 2026).
 # Pages show these first; VAULT_STATS_SCRIPT then swaps in the live counts from /api/vault-stats.
@@ -197,10 +198,16 @@ def next_step(p, btns):
     return f"""<div class="main stack"><span class="eyebrow">Next step</span><h2 class="h-md">{p['cta'][0]}</h2><p class="body">{p['tagline']}</p><div class="btns">{btns}</div></div>"""
 
 
+# Waitlist signups go to JR by email (FormSubmit) and to Kit: the double opt-in "Newsletter: Coaches" form, with the
+# Kit "Signup source" field set from WAITLIST_SOURCE. The note under the button says so.
+WAITLIST_SOURCE = {"traincnd": "src-traincnd-waitlist", "credential-standard": "src-credential-waitlist"}
+
+
 def waitlist_block(p):
     name = p["name"]
+    src = WAITLIST_SOURCE.get(p["slug"], "src-" + p["slug"] + "-waitlist")
     return f"""<div class="main stack" id="waitlist"><span class="eyebrow">Waitlist</span><h2 class="h-md">Be first in.</h2><p class="body">{p['waitlist']}</p>
-<form class="inline-form" novalidate data-form="waitlist" data-done="You’re on the list. You’ll get an email when {name} opens.">
+<form class="inline-form" novalidate data-form="waitlist" data-kit-optin="{NL.KIT_FORMS['coach']}" data-source="{src}" data-done="You’re on the list. You’ll get an email when {name} opens.">
 <input type="hidden" name="_subject" value="Waitlist signup: {name}">
 <input type="hidden" name="project" value="{name}">
 <input type="hidden" name="_autoresponse" value="You’re on the {name} waitlist. I’ll email you as soon as it opens. JR Romero, JR Strength &amp; Fitness">
@@ -209,7 +216,8 @@ def waitlist_block(p):
 <input id="wl-{p['slug']}" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
 <button class="btn btn-pa" type="submit">Join the waitlist</button>
 <div class="form-status" role="status" hidden></div>
-</form></div>"""
+</form>
+<p class="form-note">{NL.CONFIRM_NOTE} See the <a href="/privacy-policy">Privacy Policy</a>.</p></div>"""
 
 
 # Project pages: the top banner and buttons carry the project's own brand (matching its card).

@@ -75,7 +75,7 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <div class="main stack"><p class="quote">I run personal training across two facilities, with coaches who work at one location or both. TRAINCND is the system I wanted for that: every client, program and coach in one place, held to one coaching standard.</p><p class="muted">JR Romero, CSCS</p></div>
 </div></div></section><section class="sec gray"><div class="wrap"><div class="split">
 <div class="main stack" id="waitlist"><span class="eyebrow">Waitlist</span><h2 class="h-md">Be first in.</h2><p class="body">Get an email when TRAINCND opens to new coaches and gyms.</p>
-<form class="inline-form" novalidate data-form="waitlist" data-done="You’re on the list. You’ll get an email when TRAINCND opens.">
+<form class="inline-form" novalidate data-form="waitlist" data-kit-optin="10028376" data-source="src-traincnd-waitlist" data-done="You’re on the list. You’ll get an email when TRAINCND opens.">
 <input type="hidden" name="_subject" value="Waitlist signup: TRAINCND">
 <input type="hidden" name="project" value="TRAINCND">
 <input type="hidden" name="_autoresponse" value="You’re on the TRAINCND waitlist. I’ll email you as soon as it opens. JR Romero, JR Strength &amp; Fitness">
@@ -84,7 +84,8 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 <input id="wl-traincnd" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
 <button class="btn btn-pa" type="submit">Join the waitlist</button>
 <div class="form-status" role="status" hidden></div>
-</form></div>
+</form>
+<p class="form-note">You’ll also get an email to confirm Notes from the Floor, my weekly email. Unsubscribe anytime. See the <a href="/privacy-policy">Privacy Policy</a>.</p></div>
 <div class="side"><span class="eyebrow" style="padding-bottom:16px">Next project</span><div class="panel brands next-one"><a class="cell brand-credential-standard" href="/projects/credential-standard">
 <div class="bar"></div>
 <div class="top"><h3 class="h-cell"><svg class="seal" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10.5"></circle><circle cx="12" cy="12" r="6.8" stroke-dasharray="1.6 2.05"></circle></g><path d="M8.6 12.2l2.3 2.4 4.5-4.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>The Credential Standard</h3><span class="tag ">In development</span></div>
@@ -195,6 +196,9 @@ if('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefe
 })();
 </script>
 <script>
+function kitOptin(formId,email,first,source){ if(!formId||!email){ return; }
+  var b=new URLSearchParams(); b.append('email_address',email); if(first){ b.append('fields[first_name]',first); } if(source){ b.append('fields[signup_source]',source); }
+  try{ fetch('https://app.kit.com/forms/'+formId+'/subscriptions',{method:'POST',mode:'no-cors',keepalive:true,body:b}).catch(function(){}); }catch(err){} }
 document.querySelectorAll('form[data-form]').forEach(function(f){
   f.addEventListener('submit',function(e){
     e.preventDefault();
@@ -202,6 +206,7 @@ document.querySelectorAll('form[data-form]').forEach(function(f){
     if(!f.checkValidity()){ st.textContent='Please fill in the required fields marked with *.'; st.hidden=false; f.reportValidity(); return; }
     var data={}; new FormData(f).forEach(function(v,k){ if(data[k]!==undefined){ data[k]=data[k]+', '+v; } else { data[k]=v; } });
     if(data._honey){ return; }
+    if(f.dataset.kitOptin){ kitOptin(f.dataset.kitOptin, data.email, data.first_name||'', f.dataset.source); data.newsletter='Kit confirm email sent ('+f.dataset.source+')'; }
     var now=new Date().toISOString(); Object.keys(data).forEach(function(k){ if(/_(confirmed|ok)$/.test(k)){ data[k+'_at']=now; } });
     var who=((data.first_name||'')+' '+(data.last_name||'')).trim();
     if(who){ data._subject=(data._subject||'Website submission')+' — '+who; }
