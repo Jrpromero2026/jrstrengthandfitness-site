@@ -162,6 +162,51 @@ CASES = [
          # Home-page excerpt: two of his sentences, verbatim; `key` is the phrase highlighted inside it.
          excerpt="I never asked him to make me look like a particular person. I just told him one thing: I wanted to be strong.",
          key="I wanted to be strong."),
+    # Jen. Words are hers, sent to JR (Oct 28, 2026), posted as written. Photo: JR's shoot (Drive, Jen_IMG_2736_JRSF.jpg), cropped.
+    # Facts in results/lead/quote come only from her story. Name "Jen A." as JR used it in his Oct 27 post caption.
+    # Jen OK'd her name, photo, words and injury details being public (confirmed by JR, Oct 28, 2026).
+    # JR set Timberhill and Optimal → Enhanced, and asked for her typos fixed ("cycling, running", "whole foods", the dash).
+    dict(name="Jen A.", where="Timberhill", mode="In person", length="Since May 2025",
+         start_tier="Optimal", to_tier="Enhanced",
+         src="In Jen’s own words, typos fixed.",
+         start=("Following a complete proximal hamstring rupture and surgical repair, I began training with JR in May 2025 "
+                "as a continuation of physical therapy.\n\n"
+                "Although I have always been athletic and enjoyed a variety of sports and fitness programs, including Orangetheory, "
+                "cycling, running and pickleball, I had never worked with a personal trainer.\n\n"
+                "My initial goal was just to safely rebuild strength and mobility after my severe injury as an aging woman. "
+                "That goal turned into much more than I ever thought achievable."),
+         plan=("JR developed an individualized training program that initially required significant lower-body modifications "
+               "to protect my healing hamstring tendons.\n\n"
+               "Rather than focusing on lifting heavy weights, we emphasized controlled movements and time under tension, "
+               "allowing me to progressively build strength without compromising my recovery.\n\n"
+               "As my strength, stability, and conditioning improved, we gradually reduced modifications while continuing to "
+               "accommodate the limitations of my hamstring repair.\n\n"
+               "I lift 4-5 days per week and see JR one of those days. My goal is to complete every session as specified. "
+               "I eat whole foods, mostly plants, and don’t count calories. I always eat until I am satiated."),
+         now=("At 51, I am stronger and more muscular than I have ever been—even after a lifetime of participating in sports "
+              "and fitness programs.\n\n"
+              "My improved strength, joint stability (note that both my ACLs are torn), and overall conditioning have allowed me "
+              "to do more than I ever imagined following surgery. Not only have I returned to the activities I love, but I have "
+              "also taken up tennis, which I now play several times a week.\n\n"
+              "Training with JR has also become part of a new birthday tradition. I celebrated my 50th birthday with 50 pull-ups "
+              "during a JR training session, and this year I returned to complete 51 pull-ups for my 51st birthday "
+              "(not consecutively—I wish).\n\n"
+              "What began as an extension of physical therapy has become an investment in my long-term strength, health, "
+              "and athletic ability."),
+         results=["Stronger and more muscular at 51 than ever before",
+                  "50 pull-ups on her 50th birthday, 51 on her 51st",
+                  "Back to the sports she loves, plus tennis several times a week"],
+         photo="/assets/photos/cases/jen-a.webp", photo_alt="Jen holding dumbbells on the training floor in a white tank top",
+         photo_pos="50% 30%",
+         quote="That goal turned into much more than I ever thought achievable.",
+         # Lead-in above "Read her full story". JR's voice; every fact comes from Jen's own story above.
+         lead=("Jen came to me in May 2025, straight out of physical therapy after surgery for a complete proximal hamstring rupture. "
+               "We protected the repair with lower-body modifications and controlled, slow work instead of heavy loads, "
+               "then pulled the modifications back as she got stronger. At 51 she lifts four to five days a week, "
+               "plays tennis several times a week, and marks each birthday with a pull-up for every year."),
+         excerpt=("At 51, I am stronger and more muscular than I have ever been—even after a lifetime of participating "
+                  "in sports and fitness programs."),
+         key="stronger and more muscular than I have ever been"),
 ]
 
 # Every excerpt must be a word-for-word slice of the client's own story, and its key phrase must sit inside it.
@@ -229,6 +274,8 @@ def _wall():
 
 # ---------------------------------------------------------------- Case files
 def _track(a, b):
+    if isinstance(a, PENDING) or isinstance(b, PENDING):
+        return f'<div class="pf-track">{ph(a + " → " + b)}</div>'
     i, j = TIERS.index(a), TIERS.index(b)
     out = []
     for k, t in enumerate(TIERS):
@@ -248,6 +295,7 @@ def _case(c, n):
     photo = (f'<img src="{c["photo"]}" alt="{alt}" loading="lazy"{pos}>'
              if c.get("photo") else '<img class="mark" src="/assets/jr-mark.svg" alt="">')
     res = "".join(f"<li>{_txt(x)}</li>" for x in c["results"])
+    src = c.get("src") or "In " + c["name"].split()[0] + "’s own words, as written."
     long = " long" if max(len(c["start"]), len(c["plan"]), len(c["now"])) > 400 else ""
     return f"""<article class="pf-case{long}">
 <div class="pf-case-ph">{photo}</div>
@@ -260,7 +308,7 @@ def _case(c, n):
 {f'<p class="pf-lead">{_h.escape(c["lead"])}</p>' if c.get("lead") else ""}
 <details class="pf-story{' led' if c.get('lead') else ''}"><summary>Read {_h.escape(c["name"].split()[0])}’s full story</summary>
 <div class="pf-steps"><div><b>Starting point</b>{_paras(c["start"])}</div><div><b>The plan</b>{_paras(c["plan"])}</div><div><b>Where now</b>{_paras(c["now"])}</div></div>
-<p class="pf-src">In {_h.escape(c["name"].split()[0])}’s own words, as written.</p>
+<p class="pf-src">{_h.escape(src)}</p>
 </details>
 </div></article>"""
 
