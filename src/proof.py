@@ -162,6 +162,49 @@ CASES = [
          # Home-page excerpt: two of his sentences, verbatim; `key` is the phrase highlighted inside it.
          excerpt="I never asked him to make me look like a particular person. I just told him one thing: I wanted to be strong.",
          key="I wanted to be strong."),
+    # Jen. Words are hers, sent to JR (Oct 28, 2026), posted as written. Photo: JR's shoot (Drive, Jen_IMG_2736_JRSF.jpg), cropped.
+    # Facts in results/lead/quote come only from her story. Not live until JR fills the PENDING fields below.
+    dict(name="Jen", where=PENDING("Timberhill or G3?"), mode="In person", length="Since May 2025",
+         start_tier=PENDING("Start tier"), to_tier=PENDING("Now tier"),
+         consent=PENDING("Jen's sign-off: name (last initial?), photo, and her injury details in public"),
+         start=("Following a complete proximal hamstring rupture and surgical repair, I began training with JR in May 2025 "
+                "as a continuation of physical therapy.\n\n"
+                "Although I have always been athletic and enjoyed a variety of sports and fitness programs, including Orangetheory, "
+                "cycling running and pickleball, I had never worked with a personal trainer.\n\n"
+                "My initial goal was just to safely rebuild strength and mobility after my severe injury as an aging woman. "
+                "That goal turned into much more than I ever thought achievable."),
+         plan=("JR developed an individualized training program that initially required significant lower-body modifications "
+               "to protect my healing hamstring tendons.\n\n"
+               "Rather than focusing on lifting heavy weights, we emphasized controlled movements and time under tension, "
+               "allowing me to progressively build strength without compromising my recovery.\n\n"
+               "As my strength, stability, and conditioning improved, we gradually reduced modifications while continuing to "
+               "accommodate the limitations of my hamstring repair.\n\n"
+               "I lift 4-5 days per week and see JR one of those days. My goal is to complete every session as specified. "
+               "I eat Whole Foods, mostly plants and don’t count calories. I always eat until I am satiated."),
+         now=("At 51, I am stronger and more muscular than I have ever been—even after a lifetime of participating in sports "
+              "and fitness programs.\n\n"
+              "My improved strength, joint stability (note that both my ACLs are torn), and overall conditioning have allowed me "
+              "to do more than I ever imagined following surgery. Not only have I returned to the activities I love, but I have "
+              "also taken up tennis, which I now play several times a week.\n\n"
+              "Training with JR has also become part of a new birthday tradition. I celebrated my 50th birthday with 50 pull-ups "
+              "during a JR training session, and this year I returned to complete 51 pull-ups for my 51st birthday "
+              "(not consecutively - I wish).\n\n"
+              "What began as an extension of physical therapy has become an investment in my long-term strength, health, "
+              "and athletic ability."),
+         results=["Stronger and more muscular at 51 than ever before",
+                  "50 pull-ups on her 50th birthday, 51 on her 51st",
+                  "Back to the sports she loves, plus tennis several times a week"],
+         photo="/assets/photos/cases/jen-a.webp", photo_alt="Jen holding dumbbells on the training floor in a white tank top",
+         photo_pos="50% 30%",
+         quote="That goal turned into much more than I ever thought achievable.",
+         # Lead-in above "Read her full story". JR's voice; every fact comes from Jen's own story above.
+         lead=("Jen came to me in May 2025, straight out of physical therapy after surgery for a complete proximal hamstring rupture. "
+               "We protected the repair with lower-body modifications and controlled, slow work instead of heavy loads, "
+               "then pulled the modifications back as she got stronger. At 51 she lifts four to five days a week, "
+               "plays tennis several times a week, and marks each birthday with a pull-up for every year."),
+         excerpt=("At 51, I am stronger and more muscular than I have ever been—even after a lifetime of participating "
+                  "in sports and fitness programs."),
+         key="stronger and more muscular than I have ever been"),
 ]
 
 # Every excerpt must be a word-for-word slice of the client's own story, and its key phrase must sit inside it.
@@ -229,6 +272,8 @@ def _wall():
 
 # ---------------------------------------------------------------- Case files
 def _track(a, b):
+    if isinstance(a, PENDING) or isinstance(b, PENDING):
+        return f'<div class="pf-track">{ph(a + " → " + b)}</div>'
     i, j = TIERS.index(a), TIERS.index(b)
     out = []
     for k, t in enumerate(TIERS):
