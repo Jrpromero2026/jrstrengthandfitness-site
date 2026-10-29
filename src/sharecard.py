@@ -2,7 +2,8 @@
 
 Design C (chosen Oct 2026): black ground, red "Notes from the Floor" tag, the headline in Jost 800
 uppercase, logo and byline at the bottom, and a photo on the right that fades into the black.
-The photo is the article's own `image` when it has one, otherwise JR's portrait.
+The photo is the article's own `image` when it has one; otherwise the full-colour JR mark on a red glow.
+Site pages (PAGE_CARDS) keep JR's portrait.
 
 Cards are written to public/assets/share/<slug>.jpg on every build. Pillow's output is
 deterministic, so unchanged articles produce byte-identical files and no git diff.
@@ -207,10 +208,12 @@ def build_all(posts, pages=()):
         render(headline, tag=tag).save(os.path.join(OUT_DIR, name + ".jpg"), "JPEG", quality=86, optimize=True)
         keep.add(name + ".jpg")
     for p in posts:
-        photo = os.path.join(PUBLIC, p["image"].lstrip("/")) if p.get("image") else None
-        focus = (0.5, 0.4) if photo else (0.5, 0.16)
         name = p["slug"] + ".jpg"
-        render(p["title"], photo, focus).save(os.path.join(OUT_DIR, name), "JPEG", quality=86, optimize=True)
+        if p.get("image"):
+            card = render(p["title"], os.path.join(PUBLIC, p["image"].lstrip("/")), (0.5, 0.4))
+        else:  # no article photo yet: the JR mark (JR picked this over his portrait, Oct 29 2026)
+            card = render(p["title"], art="mark")
+        card.save(os.path.join(OUT_DIR, name), "JPEG", quality=86, optimize=True)
         keep.add(name)
     for f in os.listdir(OUT_DIR):  # drop cards for deleted articles
         if f.endswith(".jpg") and f not in keep:
