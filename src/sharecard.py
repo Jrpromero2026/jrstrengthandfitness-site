@@ -17,6 +17,9 @@ FONTS = os.path.join(PUBLIC, "assets", "fonts")
 OUT_DIR = os.path.join(PUBLIC, "assets", "share")
 PORTRAIT = os.path.join(PUBLIC, "assets", "photos", "jr-portrait.webp")
 LOGO = os.path.join(PUBLIC, "assets", "jr-logo.png")
+# 1600px rasters of public/assets/jr-mark.svg and jr-watermark.svg (the brand-kit trace, not redrawn).
+MARK_BIG = os.path.join(ROOT, "src", "brand", "jr-mark-1600.png")
+WATERMARK_BIG = os.path.join(ROOT, "src", "brand", "jr-watermark-1600.png")
 
 W, H = 1200, 630
 BG = (10, 10, 10)
@@ -92,8 +95,36 @@ def _fit_headline(title, max_w, max_h):
     return font, _wrap(words, font, max_w)[:5], 41
 
 
-def render(title, photo_path=None, photo_focus=(0.5, 0.16), tag=TAG_TEXT):
+def _glow(card, cx, cy, r, alpha):
+    from PIL import ImageFilter
+    g = Image.new("L", (W, H), 0)
+    ImageDraw.Draw(g).ellipse((cx - r, cy - r, cx + r, cy + r), fill=alpha)
+    card.paste(Image.new("RGB", (W, H), RED), (0, 0), g.filter(ImageFilter.GaussianBlur(r * 0.45)))
+
+
+def _logo_art(card, style):
+    """Right side without a photo: the JR mark. 'mark' = full-colour mark on a red glow;
+    'watermark' = oversized faint mark bleeding off the edge, like the site hero."""
+    if style == "watermark":
+        _glow(card, 120, 700, 420, 120)
+        wm = Image.open(WATERMARK_BIG).convert("RGBA")
+        w = 900
+        wm = wm.resize((w, round(wm.height * w / wm.width)), Image.LANCZOS)
+        wm.putalpha(wm.split()[3].point(lambda v: round(v * 0.16)))
+        card.paste(wm, (780, -10), wm)
+    else:
+        _glow(card, 1000, 300, 280, 120)
+        m = Image.open(MARK_BIG).convert("RGBA")
+        w = 300
+        m = m.resize((w, round(m.height * w / m.width)), Image.LANCZOS)
+        card.paste(m, (1000 - w // 2, 290 - m.height // 2), m)
+
+
+def render(title, photo_path=None, photo_focus=(0.5, 0.16), tag=TAG_TEXT, art=None):
     card = Image.new("RGB", (W, H), BG)
+    if art:
+        _logo_art(card, art)
+        return _text(card, title, tag)
 
     # photo on the right, fading into the black ground
     src = Image.open(photo_path or PORTRAIT).convert("RGB")
@@ -106,7 +137,10 @@ def render(title, photo_path=None, photo_focus=(0.5, 0.16), tag=TAG_TEXT):
                 shade.putpixel((x, 0), round(a0 + (a1 - a0) * (x - x0) / max(1, x1 - x0)))
                 break
     card.paste(Image.new("RGB", (W, H), BG), (0, 0), shade.resize((W, H)))
+    return _text(card, title, tag)
 
+
+def _text(card, title, tag):
     d = ImageDraw.Draw(card)
 
     # red tag
