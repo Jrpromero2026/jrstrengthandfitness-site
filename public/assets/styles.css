@@ -883,6 +883,11 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2
 .pfeature-text { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
 .pfeature-t { margin: 0; font-weight: 800; font-size: clamp(26px, 3vw, 40px); line-height: 1.05; letter-spacing: 0.02em; color: var(--fg); }
 .pfeature-text p { color: var(--body); }
+/* Text-only cards (no photo yet): a heavy rule on top carries the card instead of an image. */
+.pcard.no-img a { border-top: 3px solid var(--fg); padding-top: 18px; gap: 10px; }
+.pcard.no-img a:hover { border-top-color: var(--red); }
+.pfeature.no-img a { display: block; border-top: 3px solid var(--red); padding: clamp(24px, 4vw, 48px); }
+.pfeature.no-img .pfeature-text { max-width: 760px; }
 .feed-link { margin-top: 56px; }
 @media (max-width: 720px) {
   .author { padding: 24px 20px; }

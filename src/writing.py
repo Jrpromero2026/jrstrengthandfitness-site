@@ -242,11 +242,17 @@ def audience_cta(aud):
 
 # ---------------------------------------------------------------- Cards
 def _media(p, cls):
-    if p.get("image"):
-        w, h = _img_size(p["image"])
-        return (f'<div class="{cls}"><img src="{html.escape(p["image"])}" alt="" width="{w}" height="{h}" '
-                'loading="lazy" decoding="async"></div>')
-    return f'<div class="{cls} brand-fill"><img src="/assets/jr-mark.svg" alt="" width="64" height="64"></div>'
+    """The card photo. Posts without their own `image` get no media box at all (JR, Oct 29 2026:
+    no placeholder art until there's a real photo album), and the card renders text-only."""
+    if not p.get("image"):
+        return ""
+    w, h = _img_size(p["image"])
+    return (f'<div class="{cls}"><img src="{html.escape(p["image"])}" alt="" width="{w}" height="{h}" '
+            'loading="lazy" decoding="async"></div>')
+
+
+def _noimg(p):
+    return "" if p.get("image") else " no-img"
 
 
 def _meta_line(p):
@@ -254,7 +260,7 @@ def _meta_line(p):
 
 
 def card(p, level="h3"):
-    return f"""<article class="pcard" data-topic="{p["topic"]}">
+    return f"""<article class="pcard{_noimg(p)}" data-topic="{p["topic"]}">
 <a href="/notes/{p["slug"]}">
 {_media(p, "pcard-media")}
 <span class="pcard-k">{html.escape(p["category"])}</span>
@@ -265,7 +271,7 @@ def card(p, level="h3"):
 
 
 def feature(p):
-    return f"""<article class="pfeature" data-topic="{p["topic"]}">
+    return f"""<article class="pfeature{_noimg(p)}" data-topic="{p["topic"]}">
 <a href="/notes/{p["slug"]}">
 {_media(p, "pfeature-media")}
 <div class="pfeature-text">
