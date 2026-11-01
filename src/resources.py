@@ -91,7 +91,7 @@ RESOURCES = [
     dict(
         slug="exercise-selection-blueprint", live=True, lane="coaching",
         title="The Exercise Selection Blueprint", short="the Blueprint", brand="JR Strength &amp; Fitness",
-        kit_form="",                       # Kit form "LM: Exercise Selection Blueprint" (fill in once created)
+        kit_form="10127073",               # Kit form "LM: Exercise Selection Blueprint"
         email_subject="Your Exercise Selection Blueprint",  # subject of sequence 2952502's first email
         tag="lm-exercise-selection-blueprint", source="src-lm-blueprint",
         sequence="LM10 Exercise Selection Blueprint: delivery + follow-ups",
