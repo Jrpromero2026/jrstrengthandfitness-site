@@ -87,6 +87,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/what-makes-personal-trainer-certification-credible",
+      "destination": "/notes/what-makes-personal-trainer-certification-credible",
+      "permanent": true
+    },
+    {
       "source": "/blog/personal-trainer-vs-strength-coach",
       "destination": "/notes/personal-trainer-vs-strength-coach",
       "permanent": true
