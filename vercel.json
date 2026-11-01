@@ -256,6 +256,15 @@
       ]
     },
     {
+      "source": "/resources/exercise-selection-blueprint.pdf",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
