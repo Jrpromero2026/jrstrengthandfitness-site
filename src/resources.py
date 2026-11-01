@@ -88,6 +88,35 @@ RESOURCES = [
         first_action="Pick one client whose progress has stalled. Before you change anything, fill in page two: the goal, "
                      "the current phase, and what you saw that started the review.",
     ),
+    dict(
+        slug="exercise-selection-blueprint", live=True, lane="coaching",
+        title="The Exercise Selection Blueprint", short="the Blueprint", brand="JR Strength &amp; Fitness",
+        kit_form="",                       # Kit form "LM: Exercise Selection Blueprint" (fill in once created)
+        email_subject="Your Exercise Selection Blueprint",  # subject of sequence 2952502's first email
+        tag="lm-exercise-selection-blueprint", source="src-lm-blueprint",
+        sequence="LM10 Exercise Selection Blueprint: delivery + follow-ups",
+        interest="coach", article=None,
+        pages=11,
+        h1="Stop guessing.<br>Start selecting.",
+        card="A coach's framework for choosing exercises: eight ways to read the exercise, six to read the person, "
+             "one decision process and a fillable card.",
+        lead="A practical exercise-selection framework for coaches who know the exercises but want a more consistent "
+             "system behind their decisions.",
+        inside=[
+            ("The decision", "A workout is a list of exercises. Coaching is the decision-making behind the list."),
+            ("The exercise", "Eight domains for what an exercise offers, what it demands and what may limit it."),
+            ("The person and the program", "Six domains for the individual and the programming context."),
+            ("The process", "Six steps from outcome to reassessment, with the feedback loop."),
+            ("IAOE", "Grade the decision, not the exercise: Inadequate, Adequate, Optimal, Enhanced."),
+            ("The card", "A fillable Decision Card, a completed example and two applied comparisons."),
+        ],
+        who="Personal trainers, strength coaches and performance coaches who already understand foundational exercise "
+            "science. It doesn't teach what a squat is. It's a system for deciding when, why and for whom.",
+        scope="A coaching decision framework. IAOE is professional judgment, not a validated measurement tool, and the "
+              "Blueprint isn't medical advice or a substitute for scope of practice or clinical referral.",
+        button="Email me the Blueprint",
+        first_action="Pick one exercise you prescribed this week and fill in the Decision Card on page eight for it.",
+    ),
 ]
 LIVE = [r for r in RESOURCES if r["live"]]
 BY_SLUG = {r["slug"]: r for r in RESOURCES}
