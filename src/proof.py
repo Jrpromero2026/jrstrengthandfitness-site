@@ -29,7 +29,7 @@ MIN_REVIEWS = 6
 # dict(name="First L.", where="Timberhill" | "G3" | "Online", date="YYYY-MM", text="...as written...", tag="Training" | "Consult",
 #      source="site" for reviews from /review; only post those where the client ticked publish_ok)
 # Copied word for word from Timberhill's Setmore reviews (all 160 checked 2026-10-12; these name JR).
-# Paragraph breaks kept; typos kept. Name = first name + last initial as the reviewer gave it.
+# Paragraph breaks kept; spelling slips fixed (JR, 2026-11-01), grammar left as written. Name = first name + last initial as the reviewer gave it.
 # All 20 that name JR are here; JR is reviewing which to keep.
 T, C = "Training", "Consult"
 REVIEWS = [
@@ -38,7 +38,7 @@ REVIEWS = [
          text="JR helped me redesign my approach to health and fitness, working in dietary changes and exercises that avoided ongoing injuries. He is very responsive, supportive, and knowledgeable about a wide variety of challenges to progress in the gym!"),
     # From /review (FormSubmit, 2026-11-01). Client ticked publish_ok; text as submitted. Last name given as "Rice - Platt".
     dict(name="Jessica R.", date="2026-11", tag=T, where="Timberhill", source="site", rating=5,
-         text="JR got me from a place of misery and fat to a place hope and renewal. After one year I got the body back that I had so desperately craved. Today I continue with his online platform and love it. I can’t imagine my life without his wisdom and encouragement."),
+         text="JR got me from a place of misery and fat to a place of hope and renewal. After one year I got the body back that I had so desperately craved. Today I continue with his online platform and love it. I can’t imagine my life without his wisdom and encouragement."),
     # From /review (FormSubmit, 2026-11-01). Client ticked publish_ok; text as submitted.
     dict(name="Lily B.", date="2026-11", tag=T, where="Timberhill", source="site", rating=5,
          text="I trained with JR after having a baby to safely get back into lifting. He was very encouraging and created a program just for me. I saw weekly increases in strength and stamina. Thanks, JR!"),
@@ -47,11 +47,11 @@ REVIEWS = [
          text="From the start, I shared my goals with JR, who created a thoughtful plan tailored to my needs. His coaching has helped me grow physically and mentally, moving from avoiding spaces where I felt uncomfortable to feeling confident and at ease.\n\n"
               "Working with JR has been incredibly positive! He is respectful, considerate, patient, and leads by example.\n\n"
               "I’m grateful for his guidance and highly recommend him to anyone seeking meaningful results and looking to take their training to the next level!"),
-    # From /review (FormSubmit, 2026-10-19). Client ticked publish_ok; text and line breaks as submitted (typo kept).
+    # From /review (FormSubmit, 2026-10-19). Client ticked publish_ok; text and line breaks as submitted ("andp" fixed).
     dict(name="Kari H.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
          text="I have been working with JR now for about three years. He has been instrumental in helping me build a personalized strength training program that enables me to live my life to the fullest.\n\n"
               "He is very knowledgeable and patient and always responsive.\n\n"
-              "This has been life-changing for me as I have some old injuries from my youth that JR has helped me manage andp improve pain management."),
+              "This has been life-changing for me as I have some old injuries from my youth that JR has helped me manage and improve pain management."),
     # From /review (FormSubmit, 2026-10-18). Client ticked publish_ok; text and paragraph breaks as submitted.
     dict(name="Cheslah B.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
          text="I cannot speak highly enough of my experience working with JR. When I began strength training, I was recovering from muscle atrophy and needed to rebuild my strength. Through his expertise and encouragement, I gained not only strength, but also energy and confidence. He consistently challenged me to push beyond what I thought I was capable of and, more importantly, helped me believe I could.\n\n"
@@ -111,11 +111,11 @@ REVIEWS = [
     dict(name="North", date="2024-05", tag=T, text="JR is a well educated and top notch strength and conditioning coach. He is iterating over a custom strength training plan for me that will fit into my endurance cycling workouts. He understands the difficulties and nuance of combining strength training and endurance training while providing enough recovery. He knows all about progressive overload, training stress scores, macro and micro periodization, block training, and other concepts that many coaches don't understand. I feel lucky to have such a good coach."),
     dict(name="Walt P.", date="2024-11", tag=T, text="I am writing this review of my interactions and training with JR \n\nI have been very impressed with his evaluation of my age, condition, goals for a program to achieve better fitness. \nHis training regimen is focused on making sure my technique is correct to avoid issues and he brings excellent knowledge and encouragement while I ramp into this new phase. \n\nWalt"),
     dict(name="Laura", date="2023-10", tag=T, text="J.R is an awesome trainer!  He has carefully watched my body movements and choreographed strength and stretching exercises to help with these areas. He is patient, kind, and funny! I appreciate him so much! I love Timberhill and everyone who works there. Thank-you all! I have hope that I can improve my strength and balance. My arthritis is even better !"),
-    dict(name="Maria", date="2024-03", tag=T, text="JR does a really good job of explaining things - both what is important in movement and posture, as well as in a picture of progression. He is clear but warm, and knowledgable. I'm looking forward to continuing to work with him  - I can already tell this is just the help I need."),
+    dict(name="Maria", date="2024-03", tag=T, text="JR does a really good job of explaining things - both what is important in movement and posture, as well as in a picture of progression. He is clear but warm, and knowledgeable. I'm looking forward to continuing to work with him  - I can already tell this is just the help I need."),
     dict(name="Andrew T.", date="2024-12", tag=T, text="JR is knowledgeable and has a great understanding body mechanics. He works with\nmy limitations and adjust the workout accordingly. He has a positive attitude, which make me look forward to my next training session. Highly recommend!"),
     dict(name="Steve", date="2024-06", tag=T, text="JR is an excellent trainer. I can see definite improvement in my strength and endurance since I started working with him. He’s the first trainer I’ve worked with and wish I had started sooner."),
-    dict(name="Jess", date="2024-10", tag=C, text="JR had a consultation with me to discuss the club's personal training options. We asked lots of great questions to get to know my exercise and sports background, was empathetic to my health and injury issues in recent years. He reviewed the different options offered and and paired me up a trainer he felt would be the right match for me. I'm excited to begin with Mason!"),
-    dict(name="Brenda R.", date="2026-04", tag=T, text="JR is knowledgeable , explains things well and intentional. You’re not exercising with JR, your training and focusing on muscle groups and getting stronger!"),
+    dict(name="Jess", date="2024-10", tag=C, text="JR had a consultation with me to discuss the club's personal training options. We asked lots of great questions to get to know my exercise and sports background, was empathetic to my health and injury issues in recent years. He reviewed the different options offered and paired me up a trainer he felt would be the right match for me. I'm excited to begin with Mason!"),
+    dict(name="Brenda R.", date="2026-04", tag=T, text="JR is knowledgeable , explains things well and intentional. You’re not exercising with JR, you’re training and focusing on muscle groups and getting stronger!"),
     dict(name="Walt P.", date="2025-09", tag=T, text="Today’s training with JR, was exactly the same as every workout. He is the consummate professional, exhibiting knowledge around various issues I have physically to both provide confidence and challenge. I cannot express enough gratitude that he is at Timberhill."),
     dict(name="Jo M.", date="2025-04", tag=T, text="JR has been a great help on my fitness path. He recognizes where I am at and helps me reach my personal goals."),
     dict(name="Deek", date="2024-05", tag=C, text="JR was waiting for me when I arrived and did a great job of explaining my options. He answered my questions clearly and  now have a good idea of how to proceed."),
@@ -291,7 +291,7 @@ def _wall():
             f'<a class="link-u" href="{SETMORE}"{ext(SETMORE)} data-track="Setmore reviews (proof wall)">Read them all →</a></p>'
             '<p class="pf-more">Trained with me? <a class="link-u" href="/review">Leave a review →</a></p>')
     return head_row("Client reviews", "In their words.",
-                    f"Copied word for word from {SOURCES}, typos and all. Last names shortened to an initial.") + \
+                    f"Copied word for word from {SOURCES}, with spelling slips fixed. Last names shortened to an initial.") + \
         f'{filt}<div class="pf-wall" data-pf-wall>{cards}</div>{more}'
 
 
