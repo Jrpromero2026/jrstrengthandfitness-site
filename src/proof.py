@@ -33,6 +33,29 @@ MIN_REVIEWS = 6
 # All 20 that name JR are here; JR is reviewing which to keep.
 T, C = "Training", "Consult"
 REVIEWS = [
+    # From /review (FormSubmit, 2026-11-01, PT). Client ticked publish_ok; text as submitted.
+    dict(name="Daniel R.", date="2026-11", tag=T, where="Timberhill", source="site", rating=5,
+         text="JR helped me redesign my approach to health and fitness, working in dietary changes and exercises that avoided ongoing injuries. He is very responsive, supportive, and knowledgeable about a wide variety of challenges to progress in the gym!"),
+    # From /review (FormSubmit, 2026-11-01). Client ticked publish_ok; text as submitted. Last name given as "Rice - Platt".
+    dict(name="Jessica R.", date="2026-11", tag=T, where="Timberhill", source="site", rating=5,
+         text="JR got me from a place of misery and fat to a place hope and renewal. After one year I got the body back that I had so desperately craved. Today I continue with his online platform and love it. I can’t imagine my life without his wisdom and encouragement."),
+    # From /review (FormSubmit, 2026-11-01). Client ticked publish_ok; text as submitted.
+    dict(name="Lily B.", date="2026-11", tag=T, where="Timberhill", source="site", rating=5,
+         text="I trained with JR after having a baby to safely get back into lifting. He was very encouraging and created a program just for me. I saw weekly increases in strength and stamina. Thanks, JR!"),
+    # From /review (FormSubmit, 2026-10-20). Client ticked publish_ok; text and paragraph breaks as submitted.
+    dict(name="Jessica B.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
+         text="From the start, I shared my goals with JR, who created a thoughtful plan tailored to my needs. His coaching has helped me grow physically and mentally, moving from avoiding spaces where I felt uncomfortable to feeling confident and at ease.\n\n"
+              "Working with JR has been incredibly positive! He is respectful, considerate, patient, and leads by example.\n\n"
+              "I’m grateful for his guidance and highly recommend him to anyone seeking meaningful results and looking to take their training to the next level!"),
+    # From /review (FormSubmit, 2026-10-19). Client ticked publish_ok; text and line breaks as submitted (typo kept).
+    dict(name="Kari H.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
+         text="I have been working with JR now for about three years. He has been instrumental in helping me build a personalized strength training program that enables me to live my life to the fullest.\n\n"
+              "He is very knowledgeable and patient and always responsive.\n\n"
+              "This has been life-changing for me as I have some old injuries from my youth that JR has helped me manage andp improve pain management."),
+    # From /review (FormSubmit, 2026-10-18). Client ticked publish_ok; text and paragraph breaks as submitted.
+    dict(name="Cheslah B.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
+         text="I cannot speak highly enough of my experience working with JR. When I began strength training, I was recovering from muscle atrophy and needed to rebuild my strength. Through his expertise and encouragement, I gained not only strength, but also energy and confidence. He consistently challenged me to push beyond what I thought I was capable of and, more importantly, helped me believe I could.\n\n"
+              "JR is exceptionally professional and attentive. I appreciated seeing that same level of care and dedication in his work with other clients and trainers. I greatly respect JR and wholeheartedly recommend him."),
     # From /review (FormSubmit, 2026-10-18). Client ticked publish_ok; text and paragraph breaks as submitted.
     dict(name="Cath K.", date="2026-10", tag=T, where="Timberhill", source="site", rating=5,
          text="I have been working with JR for one year, I wanted to increase my overall strength but was nervous about injury. He listened to me and started me on a program that I could manage. I have become stronger, which has really helped in many aspects of my life, and I have really appreciated JR's input, I ask him questions when we meet, and he makes suggestions on how to tweak what I am doing.\n\n"
