@@ -320,7 +320,7 @@ def body():
 {audience("For coaches",
     card("/resources/exercise-selection-blueprint", "jrsf", "blueprint", "Cover of the Exercise Selection Blueprint",
          "Exercise Selection Blueprint", "My framework for choosing the right exercise for the person in front of you, with a fillable Decision Card.",
-         "Free", "PDF by email, 11 pages", "Email me the Blueprint"),
+         "Free", "PDF by email, 18 pages", "Email me the Blueprint"),
     card("/resources/program-troubleshooting-field-guide", "vault", "guide", "Cover of the Program Troubleshooting Field Guide",
          "Program Trouble&shy;shooting Field Guide", "The review I run before changing a stalled client’s program.",
          "Free", "PDF by email, 8 pages", "Email me the Field Guide"),

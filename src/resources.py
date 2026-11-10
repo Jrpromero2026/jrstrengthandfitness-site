@@ -96,7 +96,7 @@ RESOURCES = [
         tag="lm-exercise-selection-blueprint", source="src-lm-blueprint",
         sequence="LM10 Exercise Selection Blueprint: delivery + follow-ups",
         interest="coach", article=None,
-        pages=11,
+        pages=18,
         h1="Stop guessing.<br>Start selecting.",
         card="A coach's framework for choosing exercises: eight ways to read the exercise, six to read the person, "
              "one decision process and a fillable card.",
@@ -115,7 +115,7 @@ RESOURCES = [
         scope="A coaching decision framework. IAOE is professional judgment, not a validated measurement tool, and the "
               "Blueprint isn't medical advice or a substitute for scope of practice or clinical referral.",
         button="Email me the Blueprint",
-        first_action="Pick one exercise you prescribed this week and fill in the Decision Card on page eight for it.",
+        first_action="Pick one exercise you prescribed this week and fill in the Decision Card on page thirteen for it.",
     ),
 ]
 LIVE = [r for r in RESOURCES if r["live"]]
