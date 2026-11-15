@@ -87,6 +87,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/what-good-personal-training-includes",
+      "destination": "/notes/what-good-personal-training-includes",
+      "permanent": true
+    },
+    {
       "source": "/blog/what-makes-personal-trainer-certification-credible",
       "destination": "/notes/what-makes-personal-trainer-certification-credible",
       "permanent": true
