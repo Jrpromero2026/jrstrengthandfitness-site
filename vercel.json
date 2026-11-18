@@ -87,6 +87,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/what-a-useful-client-check-in-includes",
+      "destination": "/notes/what-a-useful-client-check-in-includes",
+      "permanent": true
+    },
+    {
       "source": "/blog/what-good-personal-training-includes",
       "destination": "/notes/what-good-personal-training-includes",
       "permanent": true
