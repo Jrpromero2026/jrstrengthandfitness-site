@@ -15,14 +15,14 @@ every research claim sourced, first-person lines limited to things JR has alread
 | 2026-11-25 | How to Adjust Training During a High-Stress Week | topic-23 | how-to-adjust-training-during-a-high-stress-week.md |
 | 2026-11-29 | How Many Days a Week Should You Train? | topic-06 | how-many-days-a-week-should-you-train.md |
 | 2026-12-02 | How to Turn an Assessment Into Programming Decisions | topic-29 | how-to-turn-an-assessment-into-programming-decisions.md |
-| 2026-12-06 | What a Training Assessment Should Tell You | topic-07 | not written yet |
-| 2026-12-09 | How Strength Training Fits Around Practices and Games | topic-39 | not written yet |
-| 2026-12-13 | The Minimum Training Plan You Can Actually Maintain | topic-25 | not written yet |
-| 2026-12-16 | When a New Client Misses Their First Two Sessions | idea-07 | not written yet |
-| 2026-12-20 | When Maintaining Your Results Is the Right Goal | topic-27 | not written yet |
-| 2026-12-23 | How to Judge Progress During a Difficult Month | topic-26 | not written yet |
-| 2026-12-27 | How to Return to Training After a Long Break | topic-21 | not written yet |
-| 2026-12-30 | Certified Personal Trainer: What Comes After the Exam? | topic-33 | not written yet |
+| 2026-12-06 | What a Training Assessment Should Tell You | topic-07 | what-a-training-assessment-should-tell-you.md |
+| 2026-12-09 | How Strength Training Fits Around Practices and Games | topic-39 | strength-training-around-practices-and-games.md |
+| 2026-12-13 | The Minimum Training Plan You Can Actually Maintain | topic-25 | the-minimum-training-plan-you-can-maintain.md |
+| 2026-12-16 | When a New Client Misses Their First Two Sessions | idea-07 | when-a-new-client-misses-their-first-two-sessions.md |
+| 2026-12-20 | When Maintaining Your Results Is the Right Goal | topic-27 | when-maintaining-your-results-is-the-right-goal.md |
+| 2026-12-23 | How to Judge Progress During a Difficult Month | topic-26 | how-to-judge-progress-during-a-difficult-month.md |
+| 2026-12-27 | How to Return to Training After a Long Break | topic-21 | how-to-return-to-training-after-a-long-break.md |
+| 2026-12-30 | Certified Personal Trainer: What Comes After the Exam? | topic-33 | certified-personal-trainer-what-comes-after-the-exam.md |
 | 2027-01-03 | How to Set a Realistic Physique Goal | topic-19 | not written yet |
 | 2027-01-06 | Strength Training for Young Athletes: What Parents Ask First | idea-10 | not written yet |
 | 2027-01-10 | What Changes When Fat Loss Is the Priority? | topic-20 | not written yet |
